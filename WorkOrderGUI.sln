@@ -8,10 +8,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HLGranite.Drawing.Test", "HLGranite.Drawing.Test\HLGranite.Drawing.Test.csproj", "{DB309C47-3C06-46B4-8A8D-AC8BF313053A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9029127F-E3B7-415E-9560-3C79A30EEDEC}"
-	ProjectSection(SolutionItems) = preProject
-		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
-		WorkOrderGUI.vsmdi = WorkOrderGUI.vsmdi
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
