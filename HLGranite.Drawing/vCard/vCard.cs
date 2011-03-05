@@ -5,6 +5,12 @@
  * See LICENSE.TXT for licensing information.
  * ======================================================================= */
 
+/*
+ * Other useful reference:
+ * vCard generator - http://vcardmaker.com/ 
+ * http://codehelp.smartdev.eu/2009/04/06/how-to-generate-a-vcard-file/
+ */
+
 using System;
 using System.Collections.Specialized;
 using System.IO;
