@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{17D089BF-5191-4870-8726-4A05BFDA0E23}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HLGranite.Drawing</RootNamespace>
+    <AssemblyName>HLGranite.Drawing</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Project.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="vCard\vCard.cs" />
+    <Compile Include="vCard\vCardAccessClassification.cs" />
+    <Compile Include="vCard\vCardCertificate.cs" />
+    <Compile Include="vCard\vCardCertificateCollection.cs" />
+    <Compile Include="vCard\vCardCollection.cs" />
+    <Compile Include="vCard\vCardDeliveryAddress.cs" />
+    <Compile Include="vCard\vCardDeliveryAddressCollection.cs" />
+    <Compile Include="vCard\vCardDeliveryAddressTypes.cs" />
+    <Compile Include="vCard\vCardDeliveryLabel.cs" />
+    <Compile Include="vCard\vCardDeliveryLabelCollection.cs" />
+    <Compile Include="vCard\vCardEmailAddress.cs" />
+    <Compile Include="vCard\vCardEmailAddressCollection.cs" />
+    <Compile Include="vCard\vCardEmailAddressType.cs" />
+    <Compile Include="vCard\vCardEncoding.cs" />
+    <Compile Include="vCard\vCardException.cs" />
+    <Compile Include="vCard\vCardFormat.cs" />
+    <Compile Include="vCard\vCardGender.cs" />
+    <Compile Include="vCard\vCardNote.cs" />
+    <Compile Include="vCard\vCardNoteCollection.cs" />
+    <Compile Include="vCard\vCardPhone.cs" />
+    <Compile Include="vCard\vCardPhoneCollection.cs" />
+    <Compile Include="vCard\vCardPhoneTypes.cs" />
+    <Compile Include="vCard\vCardPhoto.cs" />
+    <Compile Include="vCard\vCardPhotoCollection.cs" />
+    <Compile Include="vCard\vCardProperty.cs" />
+    <Compile Include="vCard\vCardPropertyCollection.cs" />
+    <Compile Include="vCard\vCardReader.cs" />
+    <Compile Include="vCard\vCardSource.cs" />
+    <Compile Include="vCard\vCardSourceCollection.cs" />
+    <Compile Include="vCard\vCardStandardReader.cs" />
+    <Compile Include="vCard\vCardStandardWriter.cs" />
+    <Compile Include="vCard\vCardStandardWriterOptions.cs" />
+    <Compile Include="vCard\vCardSubproperty.cs" />
+    <Compile Include="vCard\vCardSubpropertyCollection.cs" />
+    <Compile Include="vCard\vCardValueCollection.cs" />
+    <Compile Include="vCard\vCardWebsite.cs" />
+    <Compile Include="vCard\vCardWebsiteCollection.cs" />
+    <Compile Include="vCard\vCardWebsiteTypes.cs" />
+    <Compile Include="vCard\vCardWriter.cs" />
+    <Compile Include="vCard\WarningMessages.Designer.cs" />
+    <Compile Include="WorkOrder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="vCard\WarningMessages.resx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
