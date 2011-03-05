@@ -5,7 +5,10 @@ using System.Text;
 
 namespace HLGranite.Drawing
 {
-    class Project
+    public partial class Project
     {
+        //public Project()
+        //{
+        //}
     }
 }

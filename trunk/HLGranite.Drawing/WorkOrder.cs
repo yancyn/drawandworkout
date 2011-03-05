@@ -5,7 +5,10 @@ using System.Text;
 
 namespace HLGranite.Drawing
 {
-    class WorkOrder
+    public partial class WorkOrder
     {
+        //public WorkOrder()
+        //{
+        //}
     }
 }
