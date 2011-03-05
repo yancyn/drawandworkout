@@ -22,6 +22,7 @@ namespace WorkOrderGUI
         public Window1()
         {
             InitializeComponent();
+            System.Diagnostics.Debug.WriteLine(rect1.Height);
         }
     }
 }
