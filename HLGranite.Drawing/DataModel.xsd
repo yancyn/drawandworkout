@@ -233,6 +233,15 @@
               </xsd:documentation>
             </xsd:annotation>
           </xsd:element>
+          <xsd:sequence>
+            <xsd:element ref="WorkOrder" minOccurs="1" maxOccurs="unbounded">
+              <xsd:annotation>
+                <xsd:documentation>
+                  Gets or sets work order collection for this project.
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
           <xsd:element name="Progress" type="xsd:decimal">
             <xsd:annotation>
               <xsd:documentation>

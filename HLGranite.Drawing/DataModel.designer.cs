@@ -219,6 +219,8 @@ namespace HLGranite.Drawing
 
         private Employee createdByField;
 
+        private IList<WorkOrder> workOrderField;
+
         private decimal progressField;
 
         /// <summary>
@@ -253,6 +255,21 @@ namespace HLGranite.Drawing
             set
             {
                 this.createdByField = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets work order collection for this project.
+        /// </summary>
+        public IList<WorkOrder> WorkOrder
+        {
+            get
+            {
+                return this.workOrderField;
+            }
+            set
+            {
+                this.workOrderField = value;
             }
         }
 
@@ -884,6 +901,16 @@ namespace HLGranite.Drawing
 
         private string guidField;
 
+        private IList<WorkItem> workItemField;
+
+        /// <summary>
+        /// WorkOrder class constructor
+        /// </summary>
+        public WorkOrder()
+        {
+            this.workItemField = new System.Collections.Generic.List<WorkItem>();
+        }
+
         public string Guid
         {
             get
@@ -893,6 +920,18 @@ namespace HLGranite.Drawing
             set
             {
                 this.guidField = value;
+            }
+        }
+
+        public IList<WorkItem> WorkItem
+        {
+            get
+            {
+                return this.workItemField;
+            }
+            set
+            {
+                this.workItemField = value;
             }
         }
     }
