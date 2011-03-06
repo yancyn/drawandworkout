@@ -23,6 +23,7 @@ namespace WorkOrderGUI
         {
             InitializeComponent();
             System.Diagnostics.Debug.WriteLine(rect1.Height);
+            //rect1.Margin;
         }
     }
 }
