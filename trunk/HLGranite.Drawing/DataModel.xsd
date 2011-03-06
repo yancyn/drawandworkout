@@ -14,6 +14,7 @@
   <xsd:simpleType name="Role">
     <xsd:restriction base="xsd:string">
       <xsd:enumeration value="Admin"/>
+      <xsd:enumeration value="Planner"/>
       <xsd:enumeration value="Employee"/>
       <xsd:enumeration value="Customer"/>
       <xsd:enumeration value="Supplier"/>
@@ -28,16 +29,6 @@
       <xsd:enumeration value="Inch"/>
       <xsd:enumeration value="Meter"/>
       <xsd:enumeration value="Feet"/>
-    </xsd:restriction>
-  </xsd:simpleType>
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <!--  WorkStatus  -->
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <xsd:simpleType name="WorkStatus">
-    <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="NotStarted"/>
-      <xsd:enumeration value="InProgress"/>
-      <xsd:enumeration value="Completed"/>
     </xsd:restriction>
   </xsd:simpleType>
   <!-- ================================================== -->
@@ -177,6 +168,8 @@
           <xsd:element name="WorkedAt" type="xsd:dateTime"/>
           <xsd:element name="Width" type="xsd:int"/>
           <xsd:element name="Height" type="xsd:int"/>
+          <xsd:element name="Source" type="Inventory"/>
+          <xsd:element name="WorkItem" type="WorkItem"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -199,14 +192,6 @@
     </xsd:sequence>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <!--  Lengths  -->
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <xsd:complexType name="Lengths">
-    <xsd:sequence>
-      <xsd:element ref="LengthItem" minOccurs="3" maxOccurs="unbounded"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  Object  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="Object"/>
@@ -215,7 +200,11 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="PolygonItem">
     <xsd:complexContent>
-      <xsd:extension base="ShapeItem"/>
+      <xsd:extension base="ShapeItem">
+        <xsd:sequence>
+          <xsd:element name="Lengths" type="LengthItem" minOccurs="3" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -234,7 +223,7 @@
             </xsd:annotation>
           </xsd:element>
           <xsd:sequence>
-            <xsd:element ref="WorkOrder" minOccurs="1" maxOccurs="unbounded">
+            <xsd:element name="WorkOrders" type="WorkOrder" minOccurs="1" maxOccurs="unbounded">
               <xsd:annotation>
                 <xsd:documentation>
                   Gets or sets work order collection for this project.
@@ -341,7 +330,11 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="User">
     <xsd:complexContent>
-      <xsd:extension base="vCard"/>
+      <xsd:extension base="vCard">
+        <xsd:sequence>
+          <xsd:element name="Type" type="Role"/>
+        </xsd:sequence>
+      </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -363,7 +356,7 @@
     <xsd:complexContent>
       <xsd:extension base="BaseElement">
         <xsd:sequence>
-          <xsd:element name="Address" type="vCardDeliveryAddressCollection"/>
+          <xsd:element name="Addresses" type="vCardDeliveryAddressCollection"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -389,6 +382,7 @@
         <xsd:sequence>
           <xsd:element name="CreatedAt" type="xsd:dateTime"/>
           <xsd:element name="WorkedBy" type="Employee"/>
+          <xsd:element name="ShapeItem" type="ShapeItem"/>
           <xsd:element name="MinWidth" type="xsd:int"/>
           <xsd:element name="MinHeight" type="xsd:int"/>
           <xsd:element name="Progress" type="xsd:decimal">
@@ -398,18 +392,10 @@
               </xsd:documentation>
             </xsd:annotation>
           </xsd:element>
-          <xsd:element ref="WorkItem" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="Child" type="WorkItem" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
-  </xsd:complexType>
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <!--  WorkItemCollection  -->
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <xsd:complexType name="WorkItemCollection">
-    <xsd:sequence>
-      <xsd:element ref="WorkItem" minOccurs="1" maxOccurs="unbounded"/>
-    </xsd:sequence>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  WorkOrder  -->
@@ -417,8 +403,9 @@
   <xsd:complexType name="WorkOrder">
     <xsd:sequence>
       <xsd:element name="Guid" type="xsd:string"/>
+      <xsd:element name="Stock" type="Stock"/>
       <xsd:sequence>
-        <xsd:element ref="WorkItem" minOccurs="1" maxOccurs="unbounded"/>
+        <xsd:element name="Items" type="WorkItem" minOccurs="1" maxOccurs="unbounded"/>
       </xsd:sequence>
     </xsd:sequence>
   </xsd:complexType>
@@ -450,7 +437,6 @@
   <xsd:element name="InventoryManager" type="InventoryManager"/>
   <xsd:element name="L" type="L"/>
   <xsd:element name="LengthItem" type="LengthItem"/>
-  <xsd:element name="Lengths" type="Lengths"/>
   <xsd:element name="Object" type="Object"/>
   <xsd:element name="PolygonItem" type="PolygonItem"/>
   <xsd:element name="Project" type="Project"/>
@@ -470,6 +456,5 @@
   <xsd:element name="Warehouse" type="Warehouse"/>
   <xsd:element name="Warehouses" type="Warehouses"/>
   <xsd:element name="WorkItem" type="WorkItem"/>
-  <xsd:element name="WorkItemCollection" type="WorkItemCollection"/>
   <xsd:element name="WorkOrder" type="WorkOrder"/>
 </xsd:schema>
