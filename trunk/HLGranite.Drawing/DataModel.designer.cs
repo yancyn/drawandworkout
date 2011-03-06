@@ -14,6 +14,7 @@ namespace HLGranite.Drawing
     using System.ComponentModel;
     using System.Collections.Generic;
     using System.Windows.Shapes;
+    using Thought.vCards;
 
 
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Project))]
@@ -99,13 +100,6 @@ namespace HLGranite.Drawing
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Employee))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Customer))]
     public partial class User : vCard
-    {
-    }
-
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(User))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Employee))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Customer))]
-    public partial class vCard
     {
     }
 
@@ -195,6 +189,19 @@ namespace HLGranite.Drawing
 
     public partial class Warehouse : BaseElement
     {
+        private vCardDeliveryAddressCollection addressField;
+
+        public vCardDeliveryAddressCollection Address
+        {
+            get
+            {
+                return this.addressField;
+            }
+            set
+            {
+                this.addressField = value;
+            }
+        }
     }
 
     public partial class Stock : BaseElement

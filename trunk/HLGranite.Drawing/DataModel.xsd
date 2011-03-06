@@ -352,7 +352,11 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="Warehouse">
     <xsd:complexContent>
-      <xsd:extension base="BaseElement"/>
+      <xsd:extension base="BaseElement">
+        <xsd:sequence>
+          <xsd:element name="Address" type="vCardDeliveryAddressCollection"/>
+        </xsd:sequence>
+      </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -404,12 +408,19 @@
   <xsd:complexType name="WorkOrder">
     <xsd:sequence>
       <xsd:element name="Guid" type="xsd:string"/>
+      <xsd:sequence>
+        <xsd:element ref="WorkItem" minOccurs="1" maxOccurs="unbounded"/>
+      </xsd:sequence>
     </xsd:sequence>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  vCard  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="vCard"/>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--  vCardDeliveryAddressCollection  -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:complexType name="vCardDeliveryAddressCollection"/>
 
 
 
@@ -446,6 +457,7 @@
   <xsd:element name="User" type="User"/>
   <xsd:element name="Users" type="Users"/>
   <xsd:element name="vCard" type="vCard"/>
+  <xsd:element name="vCardDeliveryAddressCollection" type="vCardDeliveryAddressCollection"/>
   <xsd:element name="Warehouse" type="Warehouse"/>
   <xsd:element name="Warehouses" type="Warehouses"/>
   <xsd:element name="WorkItem" type="WorkItem"/>
