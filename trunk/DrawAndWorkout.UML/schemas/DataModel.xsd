@@ -13,11 +13,47 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:simpleType name="Role">
     <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="Admin"/>
-      <xsd:enumeration value="Planner"/>
+      <xsd:enumeration value="Admin">
+      	<xsd:annotation>
+      		<xsd:documentation>
+      		Super user to this application.
+      		</xsd:documentation>
+      	</xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Planner">
+	      <xsd:annotation>
+	      	<xsd:documentation>
+	      	A user who draft the plan and measurement.
+	      	</xsd:documentation>
+	      </xsd:annotation>
+      </xsd:enumeration>
       <xsd:enumeration value="Employee"/>
       <xsd:enumeration value="Customer"/>
       <xsd:enumeration value="Supplier"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--  ProjectStatus  -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="ProjectStatus">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Draft"/>
+      <xsd:enumeration value="Quotation"/>
+      <xsd:enumeration value="Manufacture"/>
+      <xsd:enumeration value="Delivered"/>
+      <xsd:enumeration value="Invoice"/>
+      <xsd:enumeration value="Paid"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--  WorkStatus  -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="WorkStatus">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="NotStarted"/>
+      <xsd:enumeration value="InProgress"/>
+      <xsd:enumeration value="Completed"/>
+      <xsd:enumeration value="Rework"/>
     </xsd:restriction>
   </xsd:simpleType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -40,8 +76,8 @@
   <xsd:complexType name="BaseAttribute">
     <xsd:sequence>
       <xsd:element name="Guid" type="xsd:string"/>
-      <xsd:element name="creator" type="Employee"/>
-      <xsd:element name="date" type="xsd:dateTime"/>
+      <!-- <xsd:element name="creator" type="Employee"/> -->
+      <!-- <xsd:element name="date" type="xsd:dateTime"/> -->
       <xsd:element name="Notes" type="xsd:string"/>
       <xsd:element name="Tag" type="Object"/>
     </xsd:sequence>
@@ -65,8 +101,6 @@
     <xsd:complexContent>
       <xsd:extension base="BaseAttribute">
         <xsd:sequence>
-          <xsd:element name="width" type="xsd:int"/>
-          <xsd:element name="height" type="xsd:int"/>
           <xsd:element name="Uom" type="Unit">
             <xsd:annotation>
               <xsd:documentation>
@@ -161,6 +195,12 @@
   <!--  InventoryWIP  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="InventoryWIP">
+  	<xsd:annotation>
+  		<xsd:documentation>
+  		Inventory work in progress. Contains both assigned piece
+  		and remaining cut area if no work item assigned. 
+  		</xsd:documentation>
+  	</xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="BaseItem">
         <xsd:sequence>
@@ -175,9 +215,26 @@
     </xsd:complexContent>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--  Inventories  -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:complexType name="InventoryWIPs">
+    <xsd:annotation>
+      <xsd:documentation>
+        Inventory work in progress collection.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="DatabaseObject">
+        <xsd:sequence>
+          <xsd:element ref="Inventory" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  L  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <xsd:complexType name="L">
+  <xsd:complexType name="LShapeItem">
     <xsd:complexContent>
       <xsd:extension base="PolygonItem"/>
     </xsd:complexContent>
@@ -278,10 +335,9 @@
   <xsd:complexType name="ShapeItem">
     <xsd:complexContent>
       <xsd:extension base="Shape">
-        <xsd:sequence>
-          <xsd:element name="Width" type="xsd:int"/>
-          <xsd:element name="Height" type="xsd:int"/>
-        </xsd:sequence>
+      <xsd:sequence>
+      	<xsd:element name="Child" type="ShapeItem" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -310,17 +366,17 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="Thickness"/>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <!--  Triangle  -->
+  <!--  TriangleItem  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <xsd:complexType name="Triangle">
+  <xsd:complexType name="TriangleItem">
     <xsd:complexContent>
       <xsd:extension base="PolygonItem"/>
     </xsd:complexContent>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <!--  U  -->
+  <!--  UShapeItem  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <xsd:complexType name="U">
+  <xsd:complexType name="UShapeItem">
     <xsd:complexContent>
       <xsd:extension base="PolygonItem"/>
     </xsd:complexContent>
@@ -383,16 +439,17 @@
           <xsd:element name="CreatedAt" type="xsd:dateTime"/>
           <xsd:element name="WorkedBy" type="Employee"/>
           <xsd:element name="ShapeItem" type="ShapeItem"/>
-          <xsd:element name="MinWidth" type="xsd:int"/>
-          <xsd:element name="MinHeight" type="xsd:int"/>
-          <xsd:element name="Progress" type="xsd:decimal">
+          <xsd:element name="MaxWidth" type="xsd:int"/>
+          <xsd:element name="MaxHeight" type="xsd:int"/>
+          <xsd:element name="Material" type="Stock"/>
+          <xsd:element name="Element" type="ShapeItem"/>
+		  <xsd:element name="Progress" type="xsd:decimal">
             <xsd:annotation>
               <xsd:documentation>
                 Progress in percentage for this work item only.
               </xsd:documentation>
             </xsd:annotation>
           </xsd:element>
-          <xsd:element name="Child" type="WorkItem" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -417,6 +474,14 @@
   <!--  vCardDeliveryAddressCollection  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="vCardDeliveryAddressCollection"/>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--  ZShapeItem  -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:complexType name="ZShapeItem">
+    <xsd:complexContent>
+      <xsd:extension base="PolygonItem"/>
+    </xsd:complexContent>
+  </xsd:complexType>
 
 
 
@@ -434,8 +499,9 @@
   <xsd:element name="Inventories" type="Inventories"/>
   <xsd:element name="Inventory" type="Inventory"/>
   <xsd:element name="InventoryWIP" type="InventoryWIP"/>
+  <xsd:element name="InventoryWIPs" type="InventoryWIPs"/>
   <xsd:element name="InventoryManager" type="InventoryManager"/>
-  <xsd:element name="L" type="L"/>
+  <xsd:element name="LShapeItem" type="LShapeItem"/>
   <xsd:element name="LengthItem" type="LengthItem"/>
   <xsd:element name="Object" type="Object"/>
   <xsd:element name="PolygonItem" type="PolygonItem"/>
@@ -447,8 +513,8 @@
   <xsd:element name="Stock" type="Stock"/>
   <xsd:element name="Stocks" type="Stocks"/>
   <xsd:element name="Thickness" type="Thickness"/>
-  <xsd:element name="Triangle" type="Triangle"/>
-  <xsd:element name="U" type="U"/>
+  <xsd:element name="TriangleItem" type="TriangleItem"/>
+  <xsd:element name="UShapeItem" type="UShapeItem"/>
   <xsd:element name="User" type="User"/>
   <xsd:element name="Users" type="Users"/>
   <xsd:element name="vCard" type="vCard"/>
@@ -457,4 +523,5 @@
   <xsd:element name="Warehouses" type="Warehouses"/>
   <xsd:element name="WorkItem" type="WorkItem"/>
   <xsd:element name="WorkOrder" type="WorkOrder"/>
+  <xsd:element name="ZShapeItem" type="ZShapeItem"/>
 </xsd:schema>
