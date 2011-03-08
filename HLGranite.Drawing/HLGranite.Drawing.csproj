@@ -105,7 +105,7 @@
     <EmbeddedResource Include="vCard\WarningMessages.resx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DataModel.xsd" />
+    <None Include="..\DrawAndWorkout.UML\schemas\DataModel.xsd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
