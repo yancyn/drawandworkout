@@ -17,11 +17,12 @@
     <generalization xmi:id="_o-ZEAETTEeC_SaZDL-mcDw" general="_nKwjMETTEeC_SaZDL-mcDw"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_tN3KkETSEeC_SaZDL-mcDw" name="Project">
-    <generalization xmi:id="_K2-qUEbdEeCvMexyU7cjtg" general="_ybbsAEbdEeCvMexyU7cjtg"/>
+    <generalization xmi:id="_K2-qUEbdEeCvMexyU7cjtg" general="_H779EElwEeCv8taoZkDd9Q"/>
+    <generalization xmi:id="_XxqfoElwEeCv8taoZkDd9Q" general="_ybbsAEbdEeCvMexyU7cjtg"/>
     <ownedAttribute xmi:id="_FM1FIETTEeC_SaZDL-mcDw" name="CreatedAt" type="_JFuk8ES1EeCFl51ftuwnCA" aggregation="composite"/>
     <ownedAttribute xmi:id="_jhad8ETTEeC_SaZDL-mcDw" name="Progress" type="_LbjqkEZ7EeCw34UU7FfFCw" isReadOnly="true" aggregation="composite"/>
     <ownedAttribute xmi:id="_Ky9TsEbiEeCP999jW41XiA" name="CreatedBy" type="_A3_9cETUEeC_SaZDL-mcDw" aggregation="composite"/>
-    <ownedAttribute xmi:id="__3hxsEhyEeCrgMci05vtLw" name="Status" type="_2dQ2sEhyEeCrgMci05vtLw" aggregation="composite"/>
+    <ownedAttribute xmi:id="__3hxsEhyEeCrgMci05vtLw" name="Stage" type="_2dQ2sEhyEeCrgMci05vtLw" aggregation="composite"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_u-Ej8ETSEeC_SaZDL-mcDw" name="Projects">
     <generalization xmi:id="_9CvC0EeWEeCyObvqYt56PQ" general="_6pQC8EeWEeCyObvqYt56PQ"/>
@@ -302,7 +303,6 @@
     <ownedAttribute xmi:id="_3S3VAEbdEeCvMexyU7cjtg" name="Notes" aggregation="composite">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="_4p4yUEbdEeCvMexyU7cjtg" name="Tag" type="_tFiCcEeaEeCyObvqYt56PQ" aggregation="composite"/>
     <ownedAttribute xmi:id="_Em4zAEbiEeCP999jW41XiA" name="creator" visibility="protected" type="_A3_9cETUEeC_SaZDL-mcDw" aggregation="composite"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_yLXaQEbeEeCvMexyU7cjtg" name="BaseElement">
@@ -312,7 +312,6 @@
     <ownedAttribute xmi:id="_0OzRoEbeEeCvMexyU7cjtg" name="Name1" aggregation="composite">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="_cUxsAEbfEeCvMexyU7cjtg" name="Tag" type="_tFiCcEeaEeCyObvqYt56PQ" aggregation="composite"/>
     <ownedAttribute xmi:id="_1KjIMEbeEeCvMexyU7cjtg" name="Name2" aggregation="composite">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
@@ -430,7 +429,7 @@
     <ownedLiteral xmi:id="_xcaL8EhyEeCrgMci05vtLw" name="Completed"/>
     <ownedLiteral xmi:id="_0RTVcEhyEeCrgMci05vtLw" name="Rework"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Enumeration" xmi:id="_2dQ2sEhyEeCrgMci05vtLw" name="ProjectStatus">
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_2dQ2sEhyEeCrgMci05vtLw" name="ProjectStage">
     <ownedLiteral xmi:id="_3jllkEhyEeCrgMci05vtLw" name="Draft"/>
     <ownedLiteral xmi:id="_6MgvoEhyEeCrgMci05vtLw" name="Quotation"/>
     <ownedLiteral xmi:id="_7ArXgEhyEeCrgMci05vtLw" name="Manufacture"/>
@@ -449,6 +448,27 @@
     <ownedEnd xmi:id="_WEBhFEjLEeCGzpWswKZqhQ" name="dst" type="_HF3icEbYEeCvMexyU7cjtg" aggregation="composite" association="_WEBhEEjLEeCGzpWswKZqhQ">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WEBhFkjLEeCGzpWswKZqhQ" value="*"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WEBhFUjLEeCGzpWswKZqhQ"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_H779EElwEeCv8taoZkDd9Q" name="Tag" memberEnd="_H8CDsElwEeCv8taoZkDd9Q _H8CqwklwEeCv8taoZkDd9Q">
+    <ownedEnd xmi:id="_H8CDsElwEeCv8taoZkDd9Q" name="src" type="_ybbsAEbdEeCvMexyU7cjtg" association="_H779EElwEeCv8taoZkDd9Q">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_H8CqwUlwEeCv8taoZkDd9Q" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_H8CqwElwEeCv8taoZkDd9Q" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_H8CqwklwEeCv8taoZkDd9Q" name="dst" type="_tFiCcEeaEeCyObvqYt56PQ" aggregation="composite" association="_H779EElwEeCv8taoZkDd9Q">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_H8DR0ElwEeCv8taoZkDd9Q" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_H8Cqw0lwEeCv8taoZkDd9Q"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_cHlXAElwEeCv8taoZkDd9Q" name="Object"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_e6Gh8ElwEeCv8taoZkDd9Q" name="Tag" memberEnd="_e6HJAElwEeCv8taoZkDd9Q _e6HwEElwEeCv8taoZkDd9Q">
+    <ownedEnd xmi:id="_e6HJAElwEeCv8taoZkDd9Q" name="src" type="_yLXaQEbeEeCvMexyU7cjtg" association="_e6Gh8ElwEeCv8taoZkDd9Q">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_e6HJAklwEeCv8taoZkDd9Q" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e6HJAUlwEeCv8taoZkDd9Q" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_e6HwEElwEeCv8taoZkDd9Q" name="dst" type="_cHlXAElwEeCv8taoZkDd9Q" aggregation="composite" association="_e6Gh8ElwEeCv8taoZkDd9Q">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_e6HwEklwEeCv8taoZkDd9Q" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e6HwEUlwEeCv8taoZkDd9Q"/>
     </ownedEnd>
   </packagedElement>
 </uml:Model>

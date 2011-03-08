@@ -14,18 +14,18 @@
   <xsd:simpleType name="Role">
     <xsd:restriction base="xsd:string">
       <xsd:enumeration value="Admin">
-      	<xsd:annotation>
-      		<xsd:documentation>
-      		Super user to this application.
-      		</xsd:documentation>
-      	</xsd:annotation>
+        <xsd:annotation>
+          <xsd:documentation>
+            Super user to this application.
+          </xsd:documentation>
+        </xsd:annotation>
       </xsd:enumeration>
       <xsd:enumeration value="Planner">
-	      <xsd:annotation>
-	      	<xsd:documentation>
-	      	A user who draft the plan and measurement.
-	      	</xsd:documentation>
-	      </xsd:annotation>
+        <xsd:annotation>
+          <xsd:documentation>
+            A user who draft the plan and measurement.
+          </xsd:documentation>
+        </xsd:annotation>
       </xsd:enumeration>
       <xsd:enumeration value="Employee"/>
       <xsd:enumeration value="Customer"/>
@@ -33,9 +33,9 @@
     </xsd:restriction>
   </xsd:simpleType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <!--  ProjectStatus  -->
+  <!--  ProjectStage  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <xsd:simpleType name="ProjectStatus">
+  <xsd:simpleType name="ProjectStage">
     <xsd:restriction base="xsd:string">
       <xsd:enumeration value="Draft"/>
       <xsd:enumeration value="Quotation"/>
@@ -79,7 +79,7 @@
       <!-- <xsd:element name="creator" type="Employee"/> -->
       <!-- <xsd:element name="date" type="xsd:dateTime"/> -->
       <xsd:element name="Notes" type="xsd:string"/>
-      <xsd:element name="Tag" type="Object"/>
+      <xsd:element name="Tag" type="Object" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -91,7 +91,7 @@
       <xsd:element name="Name1" type="xsd:string"/>
       <xsd:element name="Name2" type="xsd:string"/>
       <xsd:element name="Notes" type="xsd:string"/>
-      <xsd:element name="Tag" type="Object"/>
+      <xsd:element name="Tag" type="Object" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -195,12 +195,12 @@
   <!--  InventoryWIP  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="InventoryWIP">
-  	<xsd:annotation>
-  		<xsd:documentation>
-  		Inventory work in progress. Contains both assigned piece
-  		and remaining cut area if no work item assigned. 
-  		</xsd:documentation>
-  	</xsd:annotation>
+    <xsd:annotation>
+      <xsd:documentation>
+        Inventory work in progress. Contains both assigned piece
+        and remaining cut area if no work item assigned.
+      </xsd:documentation>
+    </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="BaseItem">
         <xsd:sequence>
@@ -288,6 +288,13 @@
               </xsd:annotation>
             </xsd:element>
           </xsd:sequence>
+          <xsd:element name="Stage" type="ProjectStage">
+            <xsd:annotation>
+              <xsd:documentation>
+                Gets or sets latest project status i.e. Draft, Quotation, or delivered.
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
           <xsd:element name="Progress" type="xsd:decimal">
             <xsd:annotation>
               <xsd:documentation>
@@ -335,9 +342,9 @@
   <xsd:complexType name="ShapeItem">
     <xsd:complexContent>
       <xsd:extension base="Shape">
-      <xsd:sequence>
-      	<xsd:element name="Child" type="ShapeItem" minOccurs="0" maxOccurs="unbounded"/>
-      </xsd:sequence>
+        <xsd:sequence>
+          <xsd:element name="Child" type="ShapeItem" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -443,7 +450,8 @@
           <xsd:element name="MaxHeight" type="xsd:int"/>
           <xsd:element name="Material" type="Stock"/>
           <xsd:element name="Element" type="ShapeItem"/>
-		  <xsd:element name="Progress" type="xsd:decimal">
+          <xsd:element name="Status" type="WorkStatus"/>
+          <xsd:element name="Progress" type="xsd:decimal">
             <xsd:annotation>
               <xsd:documentation>
                 Progress in percentage for this work item only.
@@ -474,7 +482,7 @@
   <!--  vCardDeliveryAddressCollection  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="vCardDeliveryAddressCollection"/>
-    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  ZShapeItem  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="ZShapeItem">
