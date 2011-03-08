@@ -13,6 +13,8 @@ namespace HLGranite.Drawing
     /// </remarks>
     public partial class DatabaseObject
     {
+        protected static string fileName;
+
         private static System.Xml.Serialization.XmlSerializer serializer;
 
         private static System.Xml.Serialization.XmlSerializer Serializer
@@ -137,7 +139,7 @@ namespace HLGranite.Drawing
             return SaveToFile(fileName, Encoding.UTF8, out exception);
         }
 
-        public virtual void SaveToFile(string fileName)
+        public virtual void SaveToFile()
         {
             SaveToFile(fileName, Encoding.UTF8);
         }
@@ -200,7 +202,7 @@ namespace HLGranite.Drawing
             return LoadFromFile(fileName, out obj, out exception);
         }
 
-        public static DatabaseObject LoadFromFile(string fileName)
+        public static DatabaseObject LoadFromFile()
         {
             return LoadFromFile(fileName, Encoding.UTF8);
         }

@@ -56,10 +56,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimalTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StocksTest.cs" />
     <Compile Include="vCardCollectionTest.cs" />
+    <Compile Include="WarehousesTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HLGranite.Drawing\HLGranite.Drawing.csproj">
