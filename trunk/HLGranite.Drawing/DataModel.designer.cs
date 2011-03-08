@@ -964,9 +964,9 @@ namespace HLGranite.Drawing
         Paid,
     }
 
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Stocks))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Warehouses))]
     //TODO: [System.Xml.Serialization.XmlIncludeAttribute(typeof(Users))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Stocks))]
     //TODO: [System.Xml.Serialization.XmlIncludeAttribute(typeof(Projects))]
     //TODO: [System.Xml.Serialization.XmlIncludeAttribute(typeof(InventoryWIPs))]
     //TODO: [System.Xml.Serialization.XmlIncludeAttribute(typeof(Inventories))]
@@ -984,6 +984,7 @@ namespace HLGranite.Drawing
         /// </summary>
         public Warehouses()
         {
+            fileName = "Warehouses.xml";
             this.warehouseField = new System.Collections.Generic.List<Warehouse>();
         }
 
@@ -1037,6 +1038,7 @@ namespace HLGranite.Drawing
         public Stocks()
         {
             this.stockField = new System.Collections.Generic.List<Stock>();
+            fileName = "Stocks.xml";
         }
 
         public List<Stock> Stock

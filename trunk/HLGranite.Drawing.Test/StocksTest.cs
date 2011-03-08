@@ -50,7 +50,25 @@ namespace HLGranite.Drawing.Test
             Stock banana = new Stock { Code = "BANANA", Name1 = "Banana", Name2 = "香蕉", Notes = string.Empty };
             target.Stock.Add(apple);
             target.Stock.Add(banana);
-            target.SaveToFile("Stocks.xml");
+            target.SaveToFile();//"Stocks.xml");
+        }
+        /// <summary>
+        ///A test for LoadFromFile
+        ///</summary>
+        [TestMethod()]
+        public void LoadFromFileTest()
+        {
+            //string fileName = "Stocks.xml";
+            Stocks expected = new Stocks();
+            Stock apple = new Stock { Code = "APPLE", Name1 = "Apple", Name2 = "苹果" };
+            Stock banana = new Stock { Code = "BANANA", Name1 = "Banana", Name2 = "香蕉", Notes = string.Empty };
+            expected.Stock.Add(apple);
+            expected.Stock.Add(banana);
+            expected.SaveToFile();//fileName);
+
+            Stocks actual;
+            actual = DatabaseObject.LoadFromFile() as Stocks;
+            CollectionAssert.AreEqual(expected.Stock, actual.Stock);
         }
     }
 }
