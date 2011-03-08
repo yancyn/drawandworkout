@@ -1,13 +1,13 @@
-﻿using Thought.vCards;
+﻿using HLGranite.Drawing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace HLGranite.Drawing.Test
 {
     /// <summary>
-    ///This is a test class for vCardCollectionTest and is intended
-    ///to contain all vCardCollectionTest Unit Tests
+    ///This is a test class for StocksTest and is intended
+    ///to contain all StocksTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class vCardCollectionTest
+    public class StocksTest
     {
         #region Additional test attributes
         // 
@@ -40,17 +40,17 @@ namespace HLGranite.Drawing.Test
         #endregion
 
         /// <summary>
-        ///A test for vCardCollection Constructor
+        ///A test for SaveToFile
         ///</summary>
         [TestMethod()]
-        public void vCardCollectionConstructorTest()
+        public void SaveToFileTest()
         {
-            vCardCollection target = new vCardCollection();
-            //vCard card = new vCard(
-            //vCardReader reader = new vCardReader();
-            //reader.Read(
-
-            //target.Add(
+            Stocks target = new Stocks();
+            Stock apple = new Stock { Code = "APPLE", Name1 = "Apple", Name2 = "苹果" };
+            Stock banana = new Stock { Code = "BANANA", Name1 = "Banana", Name2 = "香蕉", Notes = string.Empty };
+            target.Stock.Add(apple);
+            target.Stock.Add(banana);
+            target.SaveToFile("Stocks.xml");
         }
     }
 }
