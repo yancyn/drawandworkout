@@ -102,6 +102,8 @@
     <Compile Include="vCard\vCardWebsiteTypes.cs" />
     <Compile Include="vCard\vCardWriter.cs" />
     <Compile Include="vCard\WarningMessages.Designer.cs" />
+    <Compile Include="Warehouse.cs" />
+    <Compile Include="Warehouses.cs" />
     <Compile Include="WorkOrder.cs" />
   </ItemGroup>
   <ItemGroup>
