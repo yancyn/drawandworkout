@@ -648,12 +648,14 @@ namespace HLGranite.Drawing
 
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Employee))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Customer))]
+    //TODO: [System.Xml.Serialization.XmlIncludeAttribute(typeof(Planner))]
+    //TODO: [System.Xml.Serialization.XmlIncludeAttribute(typeof(Admin))]
     public partial class User : vCard, System.ComponentModel.INotifyPropertyChanged
     {
 
-        private Role typeField;
+        protected UserRole typeField;
 
-        public Role Type
+        public UserRole Type
         {
             get
             {
@@ -681,7 +683,7 @@ namespace HLGranite.Drawing
         }
     }
 
-    public enum Role
+    public enum UserRole
     {
 
         /// <remarks/>
@@ -991,6 +993,19 @@ namespace HLGranite.Drawing
                 handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+
+    public enum NumberFormat
+    {
+
+        /// <remarks/>
+        Digit,
+
+        /// <remarks/>
+        Roman,
+
+        /// <remarks/>
+        Alphabet,
     }
 
     public partial class EllipseItem : ShapeItem, System.ComponentModel.INotifyPropertyChanged

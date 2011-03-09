@@ -1,22 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using System.Xml;
 using System.IO;
+using System.Xml;
 
 namespace HLGranite.Drawing
 {
-    /// <summary>
-    /// Database object core class.
-    /// </summary>
-    /// <remarks>
-    /// Refer to <see>Xsd2Code</see>.
-    /// </remarks>
-    public partial class DatabaseObject
+    //[System.Xml.Serialization.XmlIncludeAttribute(typeof(Users))]
+    public partial class Users
     {
         /// <summary>
-        /// Gets or sets the database location to stored.
+        /// Defautl constructor.
         /// </summary>
-        protected static string fileName;
+        public Users()
+        {
+            fileName = "Users.xml";
+            this.userField = new List<User>();
+        }
 
         #region Serialize/Deserialize
         private static System.Xml.Serialization.XmlSerializer serializer;
@@ -26,14 +27,14 @@ namespace HLGranite.Drawing
             {
                 if ((serializer == null))
                 {
-                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(DatabaseObject));
+                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(Users));
                 }
                 return serializer;
             }
         }
 
         /// <summary>
-        /// Serializes current DatabaseObject object into an XML document
+        /// Serializes current Users object into an XML document
         /// </summary>
         /// <returns>string XML value</returns>
         public virtual string Serialize(System.Text.Encoding encoding)
@@ -69,16 +70,16 @@ namespace HLGranite.Drawing
         }
 
         /// <summary>
-        /// Deserializes workflow markup into an DatabaseObject object
+        /// Deserializes workflow markup into an Users object
         /// </summary>
         /// <param name="xml">string workflow markup to deserialize</param>
-        /// <param name="obj">Output DatabaseObject object</param>
+        /// <param name="obj">Output Users object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool Deserialize(string xml, out DatabaseObject obj, out System.Exception exception)
+        public static bool Deserialize(string xml, out Users obj, out System.Exception exception)
         {
             exception = null;
-            obj = default(DatabaseObject);
+            obj = default(Users);
             try
             {
                 obj = Deserialize(xml);
@@ -90,18 +91,18 @@ namespace HLGranite.Drawing
                 return false;
             }
         }
-        public static bool Deserialize(string xml, out DatabaseObject obj)
+        public static bool Deserialize(string xml, out Users obj)
         {
             System.Exception exception = null;
             return Deserialize(xml, out obj, out exception);
         }
-        public static DatabaseObject Deserialize(string xml)
+        public static Users Deserialize(string xml)
         {
             System.IO.StringReader stringReader = null;
             try
             {
                 stringReader = new System.IO.StringReader(xml);
-                return ((DatabaseObject)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+                return ((Users)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
             }
             finally
             {
@@ -113,7 +114,7 @@ namespace HLGranite.Drawing
         }
 
         /// <summary>
-        /// Serializes current DatabaseObject object into file
+        /// Serializes current Users object into file
         /// </summary>
         /// <param name="fileName">full path of outupt xml file</param>
         /// <param name="exception">output Exception value if failed</param>
@@ -172,16 +173,16 @@ namespace HLGranite.Drawing
         }
 
         /// <summary>
-        /// Deserializes xml markup from file into an DatabaseObject object
+        /// Deserializes xml markup from file into an Users object
         /// </summary>
         /// <param name="fileName">string xml file to load and deserialize</param>
-        /// <param name="obj">Output DatabaseObject object</param>
+        /// <param name="obj">Output Users object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out DatabaseObject obj, out System.Exception exception)
+        public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out Users obj, out System.Exception exception)
         {
             exception = null;
-            obj = default(DatabaseObject);
+            obj = default(Users);
             try
             {
                 obj = LoadFromFile(fileName, encoding);
@@ -193,20 +194,20 @@ namespace HLGranite.Drawing
                 return false;
             }
         }
-        public static bool LoadFromFile(string fileName, out DatabaseObject obj, out System.Exception exception)
+        public static bool LoadFromFile(string fileName, out Users obj, out System.Exception exception)
         {
             return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
         }
-        public static bool LoadFromFile(string fileName, out DatabaseObject obj)
+        public static bool LoadFromFile(string fileName, out Users obj)
         {
             System.Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-        public static DatabaseObject LoadFromFile()
+        public static Users LoadFromFile()
         {
             return LoadFromFile(fileName, Encoding.UTF8);
         }
-        public static DatabaseObject LoadFromFile(string fileName, System.Text.Encoding encoding)
+        public static Users LoadFromFile(string fileName, System.Text.Encoding encoding)
         {
             System.IO.FileStream file = null;
             System.IO.StreamReader sr = null;

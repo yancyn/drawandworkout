@@ -16,7 +16,7 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  Role  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <xsd:simpleType name="Role">
+  <xsd:simpleType name="UserRole">
     <xsd:restriction base="xsd:string">
       <xsd:enumeration value="Admin">
         <xsd:annotation>

@@ -1,22 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Xml;
 using System.IO;
+using Thought.vCards;
 
 namespace HLGranite.Drawing
 {
-    /// <summary>
-    /// Database object core class.
-    /// </summary>
-    /// <remarks>
-    /// Refer to <see>Xsd2Code</see>.
-    /// </remarks>
-    public partial class DatabaseObject
+    public partial class User : vCard
     {
-        /// <summary>
-        /// Gets or sets the database location to stored.
-        /// </summary>
         protected static string fileName;
+
+        public User()
+        {
+            fileName = string.Empty;
+        }
 
         #region Serialize/Deserialize
         private static System.Xml.Serialization.XmlSerializer serializer;
@@ -26,14 +25,14 @@ namespace HLGranite.Drawing
             {
                 if ((serializer == null))
                 {
-                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(DatabaseObject));
+                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(User));
                 }
                 return serializer;
             }
         }
 
         /// <summary>
-        /// Serializes current DatabaseObject object into an XML document
+        /// Serializes current User object into an XML document
         /// </summary>
         /// <returns>string XML value</returns>
         public virtual string Serialize(System.Text.Encoding encoding)
@@ -50,6 +49,11 @@ namespace HLGranite.Drawing
                 memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
                 streamReader = new System.IO.StreamReader(memoryStream);
                 return streamReader.ReadToEnd();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+                throw ex;
             }
             finally
             {
@@ -69,16 +73,16 @@ namespace HLGranite.Drawing
         }
 
         /// <summary>
-        /// Deserializes workflow markup into an DatabaseObject object
+        /// Deserializes workflow markup into an User object
         /// </summary>
         /// <param name="xml">string workflow markup to deserialize</param>
-        /// <param name="obj">Output DatabaseObject object</param>
+        /// <param name="obj">Output User object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool Deserialize(string xml, out DatabaseObject obj, out System.Exception exception)
+        public static bool Deserialize(string xml, out User obj, out System.Exception exception)
         {
             exception = null;
-            obj = default(DatabaseObject);
+            obj = default(User);
             try
             {
                 obj = Deserialize(xml);
@@ -90,18 +94,18 @@ namespace HLGranite.Drawing
                 return false;
             }
         }
-        public static bool Deserialize(string xml, out DatabaseObject obj)
+        public static bool Deserialize(string xml, out User obj)
         {
             System.Exception exception = null;
             return Deserialize(xml, out obj, out exception);
         }
-        public static DatabaseObject Deserialize(string xml)
+        public static User Deserialize(string xml)
         {
             System.IO.StringReader stringReader = null;
             try
             {
                 stringReader = new System.IO.StringReader(xml);
-                return ((DatabaseObject)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+                return ((User)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
             }
             finally
             {
@@ -113,7 +117,7 @@ namespace HLGranite.Drawing
         }
 
         /// <summary>
-        /// Serializes current DatabaseObject object into file
+        /// Serializes current User object into file
         /// </summary>
         /// <param name="fileName">full path of outupt xml file</param>
         /// <param name="exception">output Exception value if failed</param>
@@ -138,7 +142,17 @@ namespace HLGranite.Drawing
         }
         public virtual void SaveToFile()
         {
-            SaveToFile(fileName, Encoding.UTF8);
+            fileName = this.DisplayName;//todo: set file name for vCard.
+            string path = "Data";
+            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+            path += Path.DirectorySeparatorChar + fileName + ".vcf";
+
+            //saving vCard            
+            vCardStandardWriter writer = new vCardStandardWriter();
+            writer.EmbedInternetImages = false;
+            writer.EmbedLocalImages = true;
+            writer.Options = vCardStandardWriterOptions.IgnoreCommas;
+            writer.Write(this as vCard, path);
         }
         public virtual void SaveToFile(string fileName, System.Text.Encoding encoding)
         {
@@ -146,14 +160,7 @@ namespace HLGranite.Drawing
             try
             {
                 string xmlString = Serialize(encoding);
-
-                string path = "Data";
-                if (this.GetType() == typeof(Project)) //todo: test save projects scenario
-                    path += Path.DirectorySeparatorChar + "Projects";
-                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-                path += Path.DirectorySeparatorChar + fileName;
-
-                streamWriter = new System.IO.StreamWriter(path, false, Encoding.UTF8);
+                streamWriter = new System.IO.StreamWriter(fileName, false, Encoding.UTF8);
                 streamWriter.WriteLine(xmlString);
                 streamWriter.Close();
             }
@@ -172,16 +179,16 @@ namespace HLGranite.Drawing
         }
 
         /// <summary>
-        /// Deserializes xml markup from file into an DatabaseObject object
+        /// Deserializes xml markup from file into an User object
         /// </summary>
         /// <param name="fileName">string xml file to load and deserialize</param>
-        /// <param name="obj">Output DatabaseObject object</param>
+        /// <param name="obj">Output User object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out DatabaseObject obj, out System.Exception exception)
+        public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out User obj, out System.Exception exception)
         {
             exception = null;
-            obj = default(DatabaseObject);
+            obj = default(User);
             try
             {
                 obj = LoadFromFile(fileName, encoding);
@@ -193,20 +200,20 @@ namespace HLGranite.Drawing
                 return false;
             }
         }
-        public static bool LoadFromFile(string fileName, out DatabaseObject obj, out System.Exception exception)
+        public static bool LoadFromFile(string fileName, out User obj, out System.Exception exception)
         {
             return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
         }
-        public static bool LoadFromFile(string fileName, out DatabaseObject obj)
+        public static bool LoadFromFile(string fileName, out User obj)
         {
             System.Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-        public static DatabaseObject LoadFromFile()
+        public static User LoadFromFile()
         {
             return LoadFromFile(fileName, Encoding.UTF8);
         }
-        public static DatabaseObject LoadFromFile(string fileName, System.Text.Encoding encoding)
+        public static User LoadFromFile(string fileName, System.Text.Encoding encoding)
         {
             System.IO.FileStream file = null;
             System.IO.StreamReader sr = null;
