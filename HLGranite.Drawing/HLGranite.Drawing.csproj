@@ -55,13 +55,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.cs" />
     <Compile Include="BaseItem.cs" />
+    <Compile Include="Customer.cs" />
     <Compile Include="DatabaseObject.cs" />
     <Compile Include="DataModel.designer.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="Planner.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeItem.cs" />
     <Compile Include="Stocks.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="Users.cs" />
     <Compile Include="vCard\vCard.cs" />
     <Compile Include="vCard\vCardAccessClassification.cs" />
     <Compile Include="vCard\vCardCertificate.cs" />

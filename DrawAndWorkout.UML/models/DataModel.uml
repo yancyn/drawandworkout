@@ -450,7 +450,7 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WEBhFUjLEeCGzpWswKZqhQ"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_H779EElwEeCv8taoZkDd9Q" name="Tag" memberEnd="_H8CDsElwEeCv8taoZkDd9Q _H8CqwklwEeCv8taoZkDd9Q">
+  <packagedElement xmi:type="uml:Association" xmi:id="_H779EElwEeCv8taoZkDd9Q" name="Tags" memberEnd="_H8CDsElwEeCv8taoZkDd9Q _H8CqwklwEeCv8taoZkDd9Q">
     <ownedEnd xmi:id="_H8CDsElwEeCv8taoZkDd9Q" name="src" type="_ybbsAEbdEeCvMexyU7cjtg" association="_H779EElwEeCv8taoZkDd9Q">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_H8CqwUlwEeCv8taoZkDd9Q" value="1"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_H8CqwElwEeCv8taoZkDd9Q" value="1"/>
@@ -461,7 +461,7 @@
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_cHlXAElwEeCv8taoZkDd9Q" name="Object"/>
-  <packagedElement xmi:type="uml:Association" xmi:id="_e6Gh8ElwEeCv8taoZkDd9Q" name="Tag" memberEnd="_e6HJAElwEeCv8taoZkDd9Q _e6HwEElwEeCv8taoZkDd9Q">
+  <packagedElement xmi:type="uml:Association" xmi:id="_e6Gh8ElwEeCv8taoZkDd9Q" name="Tags" memberEnd="_e6HJAElwEeCv8taoZkDd9Q _e6HwEElwEeCv8taoZkDd9Q">
     <ownedEnd xmi:id="_e6HJAElwEeCv8taoZkDd9Q" name="src" type="_yLXaQEbeEeCvMexyU7cjtg" association="_e6Gh8ElwEeCv8taoZkDd9Q">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_e6HJAklwEeCv8taoZkDd9Q" value="1"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e6HJAUlwEeCv8taoZkDd9Q" value="1"/>

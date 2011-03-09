@@ -1,13 +1,15 @@
-﻿using Thought.vCards;
+﻿using HLGranite.Drawing;
+using Thought.vCards;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 namespace HLGranite.Drawing.Test
 {
     /// <summary>
-    ///This is a test class for vCardCollectionTest and is intended
-    ///to contain all vCardCollectionTest Unit Tests
+    ///This is a test class for CustomerTest and is intended
+    ///to contain all CustomerTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class vCardCollectionTest
+    public class CustomerTest
     {
         #region Additional test attributes
         // 
@@ -40,16 +42,30 @@ namespace HLGranite.Drawing.Test
         #endregion
 
         /// <summary>
-        ///A test for vCardCollection Constructor
+        ///A test for Customer Constructor
         ///</summary>
         [TestMethod()]
-        public void vCardCollectionConstructorTest()
+        public void SaveToFileTest()
         {
-            vCardCollection target = new vCardCollection();
-            //vCard card = new vCard(
-            //vCardReader reader = new vCardReader();
-            //reader.Read(
-            //target.Add(
+            Users users = new Users();
+
+            Customer target = new Customer();
+            target.GivenName = "John";
+            target.FamilyName = "Lee";
+            target.DisplayName = target.GivenName + " " + target.FamilyName;
+
+            vCardDeliveryAddress add1 = new vCardDeliveryAddress();
+            add1.Street = "963 Jalan 6";
+            add1.City = "Bukit Mertajam";
+            add1.PostalCode = "14020";
+            add1.Country = "Malaysia";
+            target.DeliveryAddresses.Add(add1);
+
+            target.Phones.Add(new vCardPhone("012-4711134"));
+            target.SaveToFile();
+
+            users.User.Add(target);
+            users.SaveToFile();
         }
     }
 }
