@@ -391,6 +391,8 @@ namespace HLGranite.Drawing
     {
     }
 
+
+
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Employee))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Customer))]
     public partial class User : vCard
