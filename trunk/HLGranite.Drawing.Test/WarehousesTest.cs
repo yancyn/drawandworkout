@@ -15,9 +15,6 @@ namespace HLGranite.Drawing.Test
     {
         public WarehousesTest()
         {
-            //
-            // TODO: Add constructor logic here
-            //
         }
 
         #region Additional test attributes

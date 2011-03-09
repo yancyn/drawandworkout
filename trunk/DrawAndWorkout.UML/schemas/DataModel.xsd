@@ -4,7 +4,12 @@
 == Model: DataModel
 == Package: DataModel
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<xsd:schema
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ms="http://microsoft.com/wsdl/types/"
+	attributeFormDefault="unqualified"
+	elementFormDefault="qualified">
+  <xsd:import namespace="http://microsoft.com/wsdl/types/" schemaLocation="types.xsd"/>
   <!-- ================================================== -->
   <!-- =====  Simple Type Definitions  -->
   <!-- ================================================== -->
@@ -75,7 +80,7 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="BaseAttribute">
     <xsd:sequence>
-      <xsd:element name="Guid" type="xsd:string"/>
+      <xsd:element name="Guid" type="ms:guid"/>
       <!-- <xsd:element name="creator" type="Employee"/> -->
       <!-- <xsd:element name="date" type="xsd:dateTime"/> -->
       <xsd:element name="Notes" type="xsd:string"/>
@@ -467,7 +472,7 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="WorkOrder">
     <xsd:sequence>
-      <xsd:element name="Guid" type="xsd:string"/>
+      <xsd:element name="Guid" type="ms:guid"/>
       <xsd:element name="Stock" type="Stock"/>
       <xsd:sequence>
         <xsd:element name="Items" type="WorkItem" minOccurs="1" maxOccurs="unbounded"/>

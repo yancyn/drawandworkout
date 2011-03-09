@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- source from: http://www.level533.com/2011/01/how-to-define-guid-properties-in-xsd-schemas-for-generating-poco-classes/ -->
+<xsd:schema
+	xmlns:tns="http://microsoft.com/wsdl/types/"
+	elementFormDefault="qualified"
+	targetNamespace="http://microsoft.com/wsdl/types/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="guid">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

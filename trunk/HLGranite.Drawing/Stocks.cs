@@ -9,6 +9,10 @@ namespace HLGranite.Drawing
 {
     public partial class Stocks
     {
-
+        public Stocks()
+        {
+            fileName = "Stocks.xml";
+            this.stockField = new List<Stock>();
+        }
     }
 }
