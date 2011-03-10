@@ -143,7 +143,7 @@ namespace HLGranite.Drawing
         public virtual void SaveToFile()
         {
             fileName = this.DisplayName;//todo: set file name for vCard.
-            string path = "Data";
+            string path = "Data" + Path.DirectorySeparatorChar + "Contacts";
             if (!Directory.Exists(path)) Directory.CreateDirectory(path);
             path += Path.DirectorySeparatorChar + fileName + ".vcf";
 

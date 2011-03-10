@@ -42,7 +42,7 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_fsR_cETTEeC_SaZDL-mcDw" name="Customer" memberEnd="_fsR_cUTTEeC_SaZDL-mcDw _fsR_dETTEeC_SaZDL-mcDw">
+  <packagedElement xmi:type="uml:Association" xmi:id="_fsR_cETTEeC_SaZDL-mcDw" name="OrderBy" memberEnd="_fsR_cUTTEeC_SaZDL-mcDw _fsR_dETTEeC_SaZDL-mcDw">
     <ownedEnd xmi:id="_fsR_cUTTEeC_SaZDL-mcDw" name="1" type="_tN3KkETSEeC_SaZDL-mcDw" association="_fsR_cETTEeC_SaZDL-mcDw">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fsR_c0TTEeC_SaZDL-mcDw" value="1"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fsR_ckTTEeC_SaZDL-mcDw" value="1"/>
@@ -475,5 +475,16 @@
     <ownedLiteral xmi:id="_MJVKUEoPEeCny7xgi0FuFA" name="Digit"/>
     <ownedLiteral xmi:id="_M8rS0EoPEeCny7xgi0FuFA" name="Roman"/>
     <ownedLiteral xmi:id="_PWxWsEoPEeCny7xgi0FuFA" name="Alphabet"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_-1LdsEsAEeC2fOUhTSfUyg" name="Customer"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_CBb-UEsBEeC2fOUhTSfUyg" name="DeliverTo" memberEnd="_CBdzgEsBEeC2fOUhTSfUyg _CBfBoEsBEeC2fOUhTSfUyg">
+    <ownedEnd xmi:id="_CBdzgEsBEeC2fOUhTSfUyg" name="1" type="_tN3KkETSEeC_SaZDL-mcDw" association="_CBb-UEsBEeC2fOUhTSfUyg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CBeakUsBEeC2fOUhTSfUyg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CBeakEsBEeC2fOUhTSfUyg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_CBfBoEsBEeC2fOUhTSfUyg" name="1" type="_-1LdsEsAEeC2fOUhTSfUyg" aggregation="composite" association="_CBb-UEsBEeC2fOUhTSfUyg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CBfBoksBEeC2fOUhTSfUyg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CBfBoUsBEeC2fOUhTSfUyg" value="1"/>
+    </ownedEnd>
   </packagedElement>
 </uml:Model>

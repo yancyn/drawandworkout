@@ -1405,6 +1405,10 @@ namespace HLGranite.Drawing
 
         private Employee createdByField;
 
+        private Customer orderByField;
+
+        private Customer deliverToField;
+
         private List<WorkOrder> workOrdersField;
 
         private ProjectStage stageField;
@@ -1450,6 +1454,60 @@ namespace HLGranite.Drawing
                 {
                     this.createdByField = value;
                     this.OnPropertyChanged("CreatedBy");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Person who order this project might be a direct customer or an agent.
+        /// </summary>
+        public Customer OrderBy
+        {
+            get
+            {
+                return this.orderByField;
+            }
+            set
+            {
+                if ((this.orderByField != null))
+                {
+                    if ((orderByField.Equals(value) != true))
+                    {
+                        this.orderByField = value;
+                        this.OnPropertyChanged("OrderBy");
+                    }
+                }
+                else
+                {
+                    this.orderByField = value;
+                    this.OnPropertyChanged("OrderBy");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Address where to delivery.
+        /// </summary>
+        public Customer DeliverTo
+        {
+            get
+            {
+                return this.deliverToField;
+            }
+            set
+            {
+                if ((this.deliverToField != null))
+                {
+                    if ((deliverToField.Equals(value) != true))
+                    {
+                        this.deliverToField = value;
+                        this.OnPropertyChanged("DeliverTo");
+                    }
+                }
+                else
+                {
+                    this.deliverToField = value;
+                    this.OnPropertyChanged("DeliveryTo");
                 }
             }
         }

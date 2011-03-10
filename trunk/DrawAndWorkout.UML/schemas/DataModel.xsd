@@ -14,7 +14,7 @@
   <!-- =====  Simple Type Definitions  -->
   <!-- ================================================== -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <!--  Role  -->
+  <!--  UserRole  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:simpleType name="UserRole">
     <xsd:restriction base="xsd:string">
@@ -284,6 +284,20 @@
               </xsd:documentation>
             </xsd:annotation>
           </xsd:element>
+          <xsd:element name="OrderBy" type="Customer">
+            <xsd:annotation>
+              <xsd:documentation>
+                Person who order this project might be a direct customer or an agent.
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="DeliverTo" type="Customer">
+            <xsd:annotation>
+              <xsd:documentation>
+                Address where to deliver.
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
           <xsd:sequence>
             <xsd:element name="WorkOrders" type="WorkOrder" minOccurs="1" maxOccurs="unbounded">
               <xsd:annotation>
@@ -400,7 +414,7 @@
     <xsd:complexContent>
       <xsd:extension base="vCard">
         <xsd:sequence>
-          <xsd:element name="Type" type="Role"/>
+          <xsd:element name="Type" type="UserRole"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
