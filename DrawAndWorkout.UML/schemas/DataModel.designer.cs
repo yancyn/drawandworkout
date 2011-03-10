@@ -532,9 +532,9 @@ namespace HLGranite.Drawing {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Customer))]
     public partial class User : vCard, System.ComponentModel.INotifyPropertyChanged {
         
-        private Role typeField;
+        private UserRole typeField;
         
-        public Role Type {
+        public UserRole Type {
             get {
                 return this.typeField;
             }
@@ -556,7 +556,7 @@ namespace HLGranite.Drawing {
         }
     }
     
-    public enum Role {
+    public enum UserRole {
         
         /// <remarks/>
         Admin,
@@ -1158,6 +1158,10 @@ namespace HLGranite.Drawing {
         
         private Employee createdByField;
         
+        private Customer orderByField;
+        
+        private Customer deliveryToField;
+        
         private List<WorkOrder> workOrdersField;
         
         private ProjectStage stageField;
@@ -1193,6 +1197,48 @@ namespace HLGranite.Drawing {
                 else {
                     this.createdByField = value;
                     this.OnPropertyChanged("CreatedBy");
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Person who order this project might be a direct customer or an agent.
+        /// </summary>
+        public Customer OrderBy {
+            get {
+                return this.orderByField;
+            }
+            set {
+                if ((this.orderByField != null)) {
+                    if ((orderByField.Equals(value) != true)) {
+                        this.orderByField = value;
+                        this.OnPropertyChanged("OrderBy");
+                    }
+                }
+                else {
+                    this.orderByField = value;
+                    this.OnPropertyChanged("OrderBy");
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Address where to delivery.
+        /// </summary>
+        public Customer DeliveryTo {
+            get {
+                return this.deliveryToField;
+            }
+            set {
+                if ((this.deliveryToField != null)) {
+                    if ((deliveryToField.Equals(value) != true)) {
+                        this.deliveryToField = value;
+                        this.OnPropertyChanged("DeliveryTo");
+                    }
+                }
+                else {
+                    this.deliveryToField = value;
+                    this.OnPropertyChanged("DeliveryTo");
                 }
             }
         }

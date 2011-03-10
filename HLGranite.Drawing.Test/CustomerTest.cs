@@ -1,4 +1,6 @@
-﻿using HLGranite.Drawing;
+﻿using System;
+using System.Text;
+using HLGranite.Drawing;
 using Thought.vCards;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -41,16 +43,33 @@ namespace HLGranite.Drawing.Test
         //
         #endregion
 
+        private void CreateVCard(string name)
+        {
+            Customer target = new Customer();
+            target.GivenName = name;
+            target.FamilyName = "Lee";
+            target.DisplayName = target.GivenName + " " + target.FamilyName;
+
+            vCardDeliveryAddress add1 = new vCardDeliveryAddress();
+            add1.Street = "963 Jalan 6";
+            add1.City = "Bukit Mertajam";
+            add1.PostalCode = "14020";
+            add1.Country = "Malaysia";
+            target.DeliveryAddresses.Add(add1);
+
+            target.Phones.Add(new vCardPhone("012-4711134"));
+            target.SaveToFile();
+        }
+
         /// <summary>
         ///A test for Customer Constructor
         ///</summary>
         [TestMethod()]
         public void SaveToFileTest()
         {
-            Users users = new Users();
-
+            //Users users = new Users();
             Customer target = new Customer();
-            target.GivenName = "John";
+            target.GivenName = "John" + new Random().Next(200);
             target.FamilyName = "Lee";
             target.DisplayName = target.GivenName + " " + target.FamilyName;
 
@@ -64,8 +83,24 @@ namespace HLGranite.Drawing.Test
             target.Phones.Add(new vCardPhone("012-4711134"));
             target.SaveToFile();
 
-            users.User.Add(target);
-            users.SaveToFile();
+            //users.User.Add(target);
+            //users.SaveToFile();
+        }
+        /// <summary>
+        /// A test on load vCard into customer object.
+        /// </summary>
+        [TestMethod()]
+        public void LoadToFileTest()
+        {
+            //creating some test data
+            string name = "John" + new Random().Next(200);
+            CreateVCard(name);
+
+            name = "Ali" + new Random().Next(200);
+            CreateVCard(name);
+
+            Customer target = Customer.LoadFromFile(name + ".vcf", Encoding.UTF8) as Customer;
+            Assert.IsTrue(target.GivenName.Length > 0);
         }
     }
 }
