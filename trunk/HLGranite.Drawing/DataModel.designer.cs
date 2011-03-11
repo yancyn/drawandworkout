@@ -25,7 +25,7 @@ namespace HLGranite.Drawing
     public partial class BaseAttribute : System.ComponentModel.INotifyPropertyChanged
     {
 
-        private System.Guid guidField;
+        protected System.Guid guidField;
 
         private string notesField;
 
