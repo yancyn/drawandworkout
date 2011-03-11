@@ -3,7 +3,7 @@ using HLGranite.Drawing;
 using Thought.vCards;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace HLGranite.Drawing.Test
-{    
+{
     /// <summary>
     ///This is a test class for UsersTest and is intended
     ///to contain all UsersTest Unit Tests
@@ -41,14 +41,39 @@ namespace HLGranite.Drawing.Test
         //
         #endregion
 
+        public static void CreateVCard(string name)
+        {
+            Customer target = new Customer();
+            target.GivenName = name;
+            //target.FamilyName = "Lee";
+            target.DisplayName = target.GivenName;// +" " + target.FamilyName;
+
+            vCardDeliveryAddress add1 = new vCardDeliveryAddress();
+            add1.Street = "963 Jalan 6";
+            add1.City = "Bukit Mertajam";
+            add1.PostalCode = "14020";
+            add1.Country = "Malaysia";
+            target.DeliveryAddresses.Add(add1);
+
+            target.Phones.Add(new vCardPhone("012-4711134"));
+            target.SaveToFile();
+        }
+
         /// <summary>
         ///A test for Users Constructor
         ///</summary>
         [TestMethod()]
         public void UsersConstructorTest()
         {
+            CreateVCard("Amad");
+            CreateVCard("Akau");
+
+            int expected = 2;
+            int actual = 0;
             Users target = new Users();
-            Assert.IsTrue(target.User.Count > 0);
+            actual = target.User.Count;
+            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(target.User[0].GivenName.Length > 0);
         }
     }
 }
