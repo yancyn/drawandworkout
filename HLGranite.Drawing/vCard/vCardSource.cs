@@ -93,7 +93,7 @@ namespace Thought.vCards
         /// <summary>
         ///     The URI of the source.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnore()] //hack: ignore vCardSource.Uri
+        //[System.Xml.Serialization.XmlIgnore()] //ignore vCardSource.Uri
         public Uri Uri
         {
             get

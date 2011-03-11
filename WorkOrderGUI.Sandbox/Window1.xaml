@@ -9,7 +9,7 @@
         <!--</Canvas>-->
 
         <Canvas Name="labeling">
-            <TextBlock Text="2'" Margin="310,60,0,0" Foreground="Blue" />
+            <TextBlock Text="2'" Margin="300,60,0,0" Foreground="Blue" />
             
             
             <Line X1="0" Y1="-10" X2="300" Y2="-10" Stroke="Blue" StrokeThickness="1"/>
@@ -31,7 +31,7 @@
 
             
             <TextBlock Text="2'" Margin="60,420,0,0" Foreground="Blue" />
-            <TextBlock Text="40'⅛&quot;" Margin="0,210,0,0" Foreground="Blue" />
+            <TextBlock Text="40'⅛&quot;" Margin="0,210,0,0" Foreground="Blue"/>
         </Canvas>
     </Canvas>
 </Window>

@@ -49,13 +49,6 @@ namespace Thought.vCards
         private Uri url;
 
         /// <summary>
-        /// For serialize use.
-        /// </summary>
-        public vCardPhoto()
-        {
-        }
-
-        /// <summary>
         ///     Loads a photograph from an array of bytes.
         /// </summary>
         /// <param name="buffer">
@@ -250,7 +243,7 @@ namespace Thought.vCards
         /// <seealso cref="Fetch"/>
         //[System.Xml.Serialization.XmlElementAttribute("Url", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         //[System.Xml.Serialization.XmlAttribute()]
-        [System.Xml.Serialization.XmlIgnore()] //hack: ignore vCardPhoto.Url
+        //[System.Xml.Serialization.XmlIgnore()] //ignore vCardPhoto.Url
         public Uri Url
         {
             get

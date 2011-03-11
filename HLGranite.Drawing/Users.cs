@@ -25,10 +25,9 @@ namespace HLGranite.Drawing
             DirectoryInfo directoryInfo = new DirectoryInfo("Data" + Path.DirectorySeparatorChar + "Contacts");
             foreach (FileInfo f in directoryInfo.GetFiles())
             {
-                User user = new User();
                 vCard card = new vCard(f.FullName);
-                this.User.Add(card as User);
-                //vCardStandardReader reader = new vCardStandardReader();
+                User user = new User(card);
+                this.User.Add(user);
             }
         }
     }
