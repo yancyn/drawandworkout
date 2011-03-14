@@ -1,16 +1,81 @@
 ﻿<Window x:Class="WorkOrderGUI.Window1"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="Window1" Height="300" Width="300">
-    <Canvas>
-        <Rectangle
-            x:Name="rect1"  Width="49.985" Height="99.97"
-            StrokeThickness="1" Stroke="Black" Canvas.Left="109.198" Canvas.Top="26.915" />
-        <Ellipse
-        Fill="Yellow"
-        Height="65.365"
-        Width="121.502"
-        StrokeThickness="1"
-        Stroke="Black" Canvas.Left="66" Canvas.Top="150.03" />
-    </Canvas>
+    xmlns:wpg="clr-namespace:WPG;assembly=WPG"
+    Title="Window1" Height="600" Width="800" WindowState="Maximized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="24"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem x:Name="buttonNew" Header="New"/>
+                <MenuItem Header="Open"/>
+                <MenuItem Header="Save"/>
+                <Separator/>
+                <MenuItem Header="Close"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Cut"/>
+                <MenuItem Header="Copy"/>
+                <MenuItem Header="Paste"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="Index"/>
+                <MenuItem Header="About"/>
+            </MenuItem>
+        </Menu>
+        <ToolBar Grid.Row="1">
+            <Button>
+                <Image Source="Images\page.png"/>
+            </Button>
+            <Button>
+                <Image Source="Images\disk.png"/>
+            </Button>
+            <Button>
+                <Image Source="Images\printer.png"/>
+            </Button>
+            <Button>
+                <Image Source="Images\wrench.png"/>
+            </Button>
+        </ToolBar>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="32"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            
+            <ToolBarTray Orientation="Vertical">
+                <ToolBar x:Name="toolBox" Grid.Row="0">
+                    <Button>
+                        <Image Source="Images\page.png" Width="24"/>
+                    </Button>
+                    <Button>
+                        <Image Source="Images\disk.png" Width="24"/>
+                    </Button>
+                    <Button>
+                        <Image Source="Images\printer.png" Width="24"/>
+                    </Button>
+                    <Button>
+                        <Image Source="Images\wrench.png" Width="24"/>
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+            <DockPanel Grid.Column="2" LastChildFill="True">
+                <wpg:PropertyGrid x:Name="propertyGrid1" Instance="{Binding ElementName=buttonNew}" VerticalAlignment="Stretch" IsEnabled="True"/>
+            </DockPanel>
+        </Grid>        
+        <StatusBar Grid.Row="3">
+            <StatusBarItem>
+                <StackPanel>
+                    <TextBlock Text="Ready"/>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
 </Window>
