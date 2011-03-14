@@ -48,6 +48,14 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPG, Version=2.0.4090.38115, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\WPG.dll</HintPath>
+    </Reference>
+    <Reference Include="WPGBrushEditor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\WPGBrushEditor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -96,6 +104,22 @@
       <Project>{17D089BF-5191-4870-8726-4A05BFDA0E23}</Project>
       <Name>HLGranite.Drawing</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\accept.png" />
+    <Resource Include="Images\attach.png" />
+    <Resource Include="Images\calculator.png" />
+    <Resource Include="Images\comment.png" />
+    <Resource Include="Images\cross.png" />
+    <Resource Include="Images\cursor.png" />
+    <Resource Include="Images\cut.png" />
+    <Resource Include="Images\disk.png" />
+    <Resource Include="Images\email.png" />
+    <Resource Include="Images\lock.png" />
+    <Resource Include="Images\page.png" />
+    <Resource Include="Images\printer.png" />
+    <Resource Include="Images\wrench.png" />
+    <Resource Include="Images\zoom.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

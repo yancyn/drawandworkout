@@ -7,9 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HLGranite.Drawing", "HLGran
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HLGranite.Drawing.Test", "HLGranite.Drawing.Test\HLGranite.Drawing.Test.csproj", "{DB309C47-3C06-46B4-8A8D-AC8BF313053A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9029127F-E3B7-415E-9560-3C79A30EEDEC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkOrderGUI.Sandbox", "WorkOrderGUI.Sandbox\WorkOrderGUI.Sandbox.csproj", "{BABA31F1-9135-4A8E-B891-C2CEC3E21741}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{F8053EBC-2706-434C-88B2-C4B12BC7440E}"
+	ProjectSection(SolutionItems) = preProject
+		Libraries\log4net.dll = Libraries\log4net.dll
+		Libraries\WPG.dll = Libraries\WPG.dll
+		Libraries\WPGBrushEditor.dll = Libraries\WPGBrushEditor.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
