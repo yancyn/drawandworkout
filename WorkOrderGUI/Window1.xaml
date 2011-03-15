@@ -13,11 +13,11 @@
 
         <Menu Grid.Row="0">
             <MenuItem Header="File">
-                <MenuItem x:Name="buttonNew" Header="New"/>
+                <MenuItem x:Name="menuNew" Header="New"/>
                 <MenuItem Header="Open"/>
                 <MenuItem Header="Save"/>
                 <Separator/>
-                <MenuItem Header="Close"/>
+                <MenuItem x:Name="menuClose" Header="Close" Click="menuClose_Click"/>
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Cut"/>
@@ -30,8 +30,11 @@
             </MenuItem>
         </Menu>
         <ToolBar Grid.Row="1">
-            <Button>
+            <Button x:Name="buttonNew">
                 <Image Source="Images\page.png"/>
+            </Button>
+            <Button>
+                <Image Source="Images\folder_page.png"/>
             </Button>
             <Button>
                 <Image Source="Images\disk.png"/>
@@ -43,33 +46,6 @@
                 <Image Source="Images\wrench.png"/>
             </Button>
         </ToolBar>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="32"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="200"/>
-            </Grid.ColumnDefinitions>
-            
-            <ToolBarTray Orientation="Vertical">
-                <ToolBar x:Name="toolBox" Grid.Row="0">
-                    <Button>
-                        <Image Source="Images\page.png" Width="24"/>
-                    </Button>
-                    <Button>
-                        <Image Source="Images\disk.png" Width="24"/>
-                    </Button>
-                    <Button>
-                        <Image Source="Images\printer.png" Width="24"/>
-                    </Button>
-                    <Button>
-                        <Image Source="Images\wrench.png" Width="24"/>
-                    </Button>
-                </ToolBar>
-            </ToolBarTray>
-            <DockPanel Grid.Column="2" LastChildFill="True">
-                <wpg:PropertyGrid x:Name="propertyGrid1" Instance="{Binding ElementName=buttonNew}" VerticalAlignment="Stretch" IsEnabled="True"/>
-            </DockPanel>
-        </Grid>        
         <StatusBar Grid.Row="3">
             <StatusBarItem>
                 <StackPanel>
@@ -77,5 +53,101 @@
                 </StackPanel>
             </StatusBarItem>
         </StatusBar>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="32"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ToolBarTray Grid.Row="0" Orientation="Vertical">
+                <ToolBar x:Name="toolBox">
+                    <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                        <Path
+                            ToolTip="Selector" Stroke="White" Fill="Black"
+                            Data="M 0.5575,18.7662 C 0.5575,18.7662 0.5,0.5 0.5,0.5 c 0,0 12.04014,12.8752 12.04014,12.8752 0,0 -5.20198,-0.1182 -5.20198,-0.1182 0,0 3.4254,5.6771 3.4254,5.6771 0,0 -4.47307,2.1183 -4.47307,2.1183 0,0 -2.00879,-6.4587 -2.00879,-6.4587 0,0 -3.7242,4.1725 -3.7242,4.1725 z" Canvas.Left="-5" Width="13" Height="20.763" Canvas.Top="-10.766" />
+                    </RadioButton>
+                    <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                        <Path
+                            MouseLeftButtonDown="Path_MouseLeftButtonDown"
+                            ToolTip="Kitchen" Stroke="Black"
+                            Data="M 0,0 0,12.857143 0,18 l 5.1428571,0 7.7142859,0 0,-5.142857 -7.7142859,0 L 5.1428571,0 0,0 z"/>
+                        <!--<Path
+                            Canvas.Left="-8" Canvas.Top="-8"
+                            Fill="Black"
+                            Data="m 18,10 -8,8 8,0 0,-8 z"/>-->
+                    </RadioButton>
+                    <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                        <Path
+                            ToolTip="Kitchen" Stroke="Black"
+                            Data="M 0,0 0,12.857143 0,18 5.1428571,18 18,18 l 0,-5.142857 -12.8571429,0 L 5.1428571,0 0,0 z" Width="18" Height="18"/>
+                    </RadioButton>
+                    <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                        <Path
+                            ToolTip="Kitchen" Stroke="Black"
+                            Data="M 0,0 0,12.85714 0,18 5.14286,18 18,18 l 0,-5.14286 0,-7.71428 -5.14286,0 0,7.71428 -7.71428,0 L 5.14286,0 0,0 z"/>
+                    </RadioButton>
+                    <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                        <Path
+                            ToolTip="Kitchen" Stroke="Black"
+                            Data="M 0,0 0,12.857143 0,18 5.14286,18 18,18 18,12.857143 18,0 l -5.14286,0 0,12.857143 -7.71428,0 L 5.14286,0 0,0 z"/>
+                    </RadioButton>
+                    <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                        <Rectangle Width="16" Height="10" StrokeThickness="1" Stroke="Black" ToolTip="Rectangle"/>
+                    </RadioButton>
+                    <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                        <Rectangle Width="16" Height="16" StrokeThickness="1" Stroke="Black" ToolTip="Square"/>
+                    </RadioButton>
+                    <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                        <Ellipse Width="18" Height="14" StrokeThickness="1" Stroke="Black" ToolTip="Basin"/>
+                    </RadioButton>
+                    <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                        <Ellipse Width="18" Height="18" StrokeThickness="1" Stroke="Black" ToolTip="Circle"/>
+                    </RadioButton>
+                    <ToggleButton Width="24" Height="24">
+                        <Path
+                                Fill="Black"
+                                Data="m 18,10 -8,8 8,0 0,-8 z"/>
+                    </ToggleButton>
+                </ToolBar>
+            </ToolBarTray>
+            <TabControl Grid.Column="1">
+                <TabItem Header="Home"/>
+                <TabItem Header="010210">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="250"/>
+                        </Grid.ColumnDefinitions>
+                        <Canvas Grid.Column="0"/>
+                        <StackPanel>
+                            <!--<wpg:PropertyGrid x:Name="propertyGrid1" Instance="{Binding ElementName=buttonNew}" VerticalAlignment="Stretch" IsEnabled="True"/>-->
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="010311">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="250"/>
+                        </Grid.ColumnDefinitions>
+                        <Canvas Grid.Column="0"/>
+                        <StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="010315">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="250"/>
+                        </Grid.ColumnDefinitions>
+                        <Canvas Grid.Column="0"/>
+                        <StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
     </Grid>
 </Window>
