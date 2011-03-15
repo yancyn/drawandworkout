@@ -17,9 +17,9 @@ namespace WorkOrderGUI
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class MainWindow : Window
     {
-        public Window1()
+        public MainWindow()
         {
             InitializeComponent();
             //System.Diagnostics.Debug.WriteLine(rect1.Height);
