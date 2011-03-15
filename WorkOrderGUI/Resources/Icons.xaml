@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ContextMenu x:Key="menuLShapeCollection" Style="{x:Null}" BorderBrush="Transparent" BorderThickness="0">
+        <ToolBar>
+            <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                <Path Stroke="Black" Data="m 0,0 0,10 0,4 4,0 6,0 0,-4 L 4,10 4,0 0,0 z"/>
+            </RadioButton>
+            <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                <Path Stroke="Black" Data="M 0,0 0,4 0,10 4,10 4,4 14,4 14,0 4,0 0,0 z"/>
+            </RadioButton>
+            <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                <Path Stroke="Black" Data="M 0,0 0,4 6,4 6,14 10,14 10,4 10,0 6,0 0,0 z"/>
+            </RadioButton>
+            <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                <Path Stroke="Black" Data="m 10,0 0,6 -10,0 0,4 10,0 4,0 0,-4 0,-6 -4,0 z"/>
+            </RadioButton>
+            <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                <Path Stroke="Black" Data="M 0,0 0,4 0,14 4,14 4,4 10,4 10,0 4,0 0,0 z"/>
+            </RadioButton>
+            <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                <Path Stroke="Black" Data="M 0 0 L 0 4 L 10 4 L 10 10 L 14 10 L 14 4 L 14 0 L 10 0 L 0 0 z "/>
+            </RadioButton>
+            <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                <Path Stroke="Black" Data="m 6,0 0,10 -6,0 0,4 6,0 4,0 0,-4 0,-10 -4,0 z"/>
+            </RadioButton>
+            <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
+                <Path Stroke="Black" Data="m 0,0 0,6 0,4 4,0 10,0 L 14,6 4,6 4,0 0,0 z"/>
+            </RadioButton>
+        </ToolBar>
+    </ContextMenu>
+</ResourceDictionary>
