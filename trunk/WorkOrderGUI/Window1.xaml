@@ -32,8 +32,16 @@
                 </RadioButton>
             </ToolBar>
         </ContextMenu>
+        <ControlTemplate x:Key="tabItemHeader" TargetType="{x:Type TabItem}">
+            <StackPanel Orientation="Horizontal">
+                <Label>
+                    <ContentPresenter Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabItem} }, Path=Header}"/>
+                </Label>
+                <Button Content="x"/>
+            </StackPanel>
+        </ControlTemplate>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/>
@@ -114,7 +122,7 @@
                                 </BeginStoryboard>
                             </EventTrigger>
                         </RadioButton.Triggers>
-                        
+
                         <Path
                             MouseLeftButtonDown="Path_MouseLeftButtonDown"
                             Stroke="Black" Data="m 0,0 0,10 0,4 4,0 6,0 0,-4 L 4,10 4,0 0,0 z">
@@ -159,7 +167,23 @@
                 </ToolBar>
             </ToolBarTray>
             <TabControl Grid.Column="1">
-                <TabItem Header="Home"/>
+                <TabControl.Resources>
+                    <Style TargetType="{x:Type TabItem}">
+                        <Setter Property="HeaderTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label>
+                                            <ContentPresenter Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabItem} }, Path=Header}"/>
+                                        </Label>
+                                        <Button Style="{StaticResource CrossTabButton}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.Resources>
+                <TabItem Header="Home"></TabItem>
                 <TabItem Header="010210">
                     <Grid>
                         <Grid.ColumnDefinitions>
