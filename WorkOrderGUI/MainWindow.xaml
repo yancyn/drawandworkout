@@ -4,7 +4,7 @@
     Title="Window1" Height="600" Width="800" WindowState="Maximized">
     <!--xmlns:wpg="clr-namespace:WPG;assembly=WPG"-->
     <Window.Resources>
-        <ContextMenu x:Key="menuLShapeCollection" x:Name="menuLShapeCollection" Style="{x:Null}" BorderBrush="Transparent" BorderThickness="0">
+        <ContextMenu x:Key="MenuLShapeCollection" x:Name="MenuLShapeCollection" Style="{x:Null}" BorderBrush="Transparent" BorderThickness="0">
             <ToolBar>
                 <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
                     <Path Stroke="Black" Data="m 0,0 0,10 0,4 4,0 6,0 0,-4 L 4,10 4,0 0,0 z"/>
@@ -32,14 +32,10 @@
                 </RadioButton>
             </ToolBar>
         </ContextMenu>
-        <ControlTemplate x:Key="tabItemHeader" TargetType="{x:Type TabItem}">
-            <StackPanel Orientation="Horizontal">
-                <Label>
-                    <ContentPresenter Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabItem} }, Path=Header}"/>
-                </Label>
-                <Button Content="x"/>
-            </StackPanel>
-        </ControlTemplate>
+        <Style x:Key="ThemeMenuItemsStyle" TargetType="MenuItem">
+            <Setter Property="Header" Value="{Binding Name}"/>
+            <!--<Setter Property="Command" Value="{Binding ActivateCommand}"/>-->
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -49,46 +45,115 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="24"/>
         </Grid.RowDefinitions>
-
-        <Menu Grid.Row="0">
-            <MenuItem Header="File">
-                <MenuItem x:Name="menuNew" Header="New"/>
-                <MenuItem Header="Open"/>
-                <MenuItem Header="Save"/>
+        <!--<Menu x:Name="MainMenu" Grid.Row="0" DataContext="{Binding}" ItemContainerStyle="{StaticResource ThemeMenuItemsStyle}"/>-->
+        <Menu x:Name="MainMenu" Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem x:Name="MenuNew" Header="_New">
+                    <MenuItem.Icon>
+                        <Image Source="Images\page.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Open">
+                    <MenuItem.Icon>
+                        <Image Source="Images\folder_page.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Save">
+                    <MenuItem.Icon>
+                        <Image Source="Images\disk.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <Separator/>
-                <MenuItem x:Name="menuClose" Header="Close" Click="menuClose_Click"/>
+                <MenuItem Header="_Print">
+                    <MenuItem.Icon>
+                        <Image Source="Images\printer.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator/>
+                <MenuItem x:Name="MenuClose" Header="_Close" Click="MenuClose_Click">
+                    <MenuItem.Icon>
+                        <Image Source="Images/door_out.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
-            <MenuItem Header="Edit">
-                <MenuItem Header="Cut"/>
-                <MenuItem Header="Copy"/>
-                <MenuItem Header="Paste"/>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="Cut">
+                    <MenuItem.Icon>
+                        <Image Source="Images\cut.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Copy">
+                    <MenuItem.Icon>
+                        <Image Source="Images\page_copy.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Paste">
+                    <MenuItem.Icon>
+                        <Image Source="Images\paste_plain.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="_Setting">
+                    <MenuItem.Icon>
+                        <Image Source="Images\wrench.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
-            <MenuItem Header="Help">
-                <MenuItem Header="Index"/>
-                <MenuItem Header="About"/>
+            <MenuItem Header="_Tools">
+                <MenuItem Header="_Stock">
+                    <MenuItem.Icon>
+                        <Image Source="Images/package.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Customer">
+                    <MenuItem.Icon>
+                        <Image Source="Images/vcard.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Ca_lendar">
+                    <MenuItem.Icon>
+                        <Image Source="Images/date.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="_Report"/>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_Index">
+                    <MenuItem.Icon>
+                        <Image Source="Images/help.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Report _Bug">
+                    <MenuItem.Icon>
+                        <Image Source="Images\bug.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_About" Click="MenuAbout_Click"/>
             </MenuItem>
         </Menu>
         <ToolBar Grid.Row="1">
-            <Button x:Name="buttonNew">
-                <Image Source="Images\page.png"/>
+            <Button x:Name="ButtonNew">
+                <Image Source="Images\page.png" ToolTip="New"/>
             </Button>
             <Button>
-                <Image Source="Images\folder_page.png"/>
+                <Image Source="Images\folder_page.png" ToolTip="Open"/>
             </Button>
             <Button>
-                <Image Source="Images\disk.png"/>
+                <Image Source="Images\disk.png" ToolTip="Save"/>
+            </Button>
+            <Separator/>
+            <Button>
+                <Image Source="Images\printer.png" ToolTip="Print"/>
             </Button>
             <Button>
-                <Image Source="Images\printer.png"/>
-            </Button>
-            <Button>
-                <Image Source="Images\wrench.png"/>
+                <Image Source="Images\wrench.png" ToolTip="Setting"/>
             </Button>
         </ToolBar>
         <StatusBar Grid.Row="3">
             <StatusBarItem>
                 <StackPanel>
-                    <TextBlock Text="Ready"/>
+                    <TextBlock x:Name="StatusBar1" Text="Ready"/>
                 </StackPanel>
             </StatusBarItem>
         </StatusBar>
@@ -98,22 +163,21 @@
                 <ColumnDefinition Width="32"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
             <ToolBarTray Grid.Row="0" Orientation="Vertical">
-                <ToolBar x:Name="toolBox">
+                <ToolBar x:Name="Toolbox">
                     <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24">
-                        <Path x:Name="selector"
+                        <Path x:Name="ButtonSelector"
                             ToolTip="Selector" Stroke="White" Fill="Black"
-                            Data="M 0.5575,18.7662 C 0.5575,18.7662 0.5,0.5 0.5,0.5 c 0,0 12.04014,12.8752 12.04014,12.8752 0,0 -5.20198,-0.1182 -5.20198,-0.1182 0,0 3.4254,5.6771 3.4254,5.6771 0,0 -4.47307,2.1183 -4.47307,2.1183 0,0 -2.00879,-6.4587 -2.00879,-6.4587 0,0 -3.7242,4.1725 -3.7242,4.1725 z" Canvas.Left="-5" Width="13" Height="20.763" Canvas.Top="-10.766" />
+                            Data="M 0.5575,18.7662 C 0.5575,18.7662 0.5,0.5 0.5,0.5 c 0,0 12.04014,12.8752 12.04014,12.8752 0,0 -5.20198,-0.1182 -5.20198,-0.1182 0,0 3.4254,5.6771 3.4254,5.6771 0,0 -4.47307,2.1183 -4.47307,2.1183 0,0 -2.00879,-6.4587 -2.00879,-6.4587 0,0 -3.7242,4.1725 -3.7242,4.1725 z"/>
                     </RadioButton>
                     <RadioButton GroupName="Toolbox" Style="{StaticResource {x:Type ToggleButton}}" Width="24" Height="24"
-                        ContextMenu="{StaticResource menuLShapeCollection}">
+                        ContextMenu="{StaticResource MenuLShapeCollection}">
                         <RadioButton.Triggers>
                             <EventTrigger RoutedEvent="RadioButton.Checked">
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <BooleanAnimationUsingKeyFrames
-                                            Storyboard.TargetName="menuLShapeCollection"
+                                            Storyboard.TargetName="MenuLShapeCollection"
                                             Storyboard.TargetProperty="IsOpen">
                                             <DiscreteBooleanKeyFrame KeyTime="0:0:1" Value="True"/>
                                             <DiscreteBooleanKeyFrame KeyTime="0:0:3" Value="False"/>
@@ -167,7 +231,7 @@
                 </ToolBar>
             </ToolBarTray>
             <TabControl Grid.Column="1">
-                <TabItem Header="Home"></TabItem>
+                <TabItem Header="Home"/>
                 <TabItem Header="010210">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -187,7 +251,38 @@
                             <ColumnDefinition Width="250"/>
                         </Grid.ColumnDefinitions>
                         <Canvas Grid.Column="0"/>
-                        <StackPanel>
+                        <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                            <GroupBox Header="Project">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0" Margin="0,0,4,0">
+                                        <TextBlock Text="No." Style="{StaticResource RightLabel}"/>
+                                        <TextBlock Text="Created By" Style="{StaticResource RightLabel}"/>
+                                        <TextBlock Text="Created At" Style="{StaticResource RightLabel}"/>
+                                        <TextBlock Text="Order By" Style="{StaticResource RightLabel}"/>
+                                        <TextBlock Text="Deliver To" Style="{StaticResource RightLabel}"/>
+                                        <TextBlock Text="Taman" Style="{StaticResource RightLabel}"/>
+                                        <TextBlock Text="City" Style="{StaticResource RightLabel}"/>
+                                        <TextBlock Text="Phone" Style="{StaticResource RightLabel}"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1">
+                                        <TextBlock Text="010311" Style="{StaticResource LeftLabel}"/>
+                                        <TextBlock Text="yancyn@gmail.com" Style="{StaticResource LeftLabel}"/>
+                                        <TextBox Text="2011-03-11"/>
+                                        <TextBox/>
+                                        <TextBox/>
+                                        <TextBox/>
+                                        <TextBox/>
+                                        <TextBox/>
+                                    </StackPanel>
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="Details">
+                                
+                            </GroupBox>
                         </StackPanel>
                     </Grid>
                 </TabItem>

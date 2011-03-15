@@ -71,6 +71,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Resources\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\CustomControls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -97,7 +101,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Resources\CustomControls.cs" />
+    <Compile Include="Resources\CustomControls.xaml.cs">
+      <DependentUpon>CustomControls.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -158,6 +164,21 @@
     <Resource Include="Images\tick.png" />
     <Resource Include="Images\time.png" />
     <Resource Include="Images\vcard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\help.png" />
+    <Resource Include="Images\key.png" />
+    <Resource Include="Images\magnifier.png" />
+    <Resource Include="Images\package.png" />
+    <Resource Include="Images\resultset_first.png" />
+    <Resource Include="Images\resultset_last.png" />
+    <Resource Include="Images\resultset_next.png" />
+    <Resource Include="Images\resultset_previous.png" />
+    <Resource Include="Images\sum.png" />
+    <Resource Include="Images\telephone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\door_out.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
