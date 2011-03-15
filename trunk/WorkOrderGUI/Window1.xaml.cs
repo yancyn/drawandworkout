@@ -26,5 +26,15 @@ namespace WorkOrderGUI
             //rect1.Margin;
             //propertyGrid1.Instance = 
         }
+
+        private void menuClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Path_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

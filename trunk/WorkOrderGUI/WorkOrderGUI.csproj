@@ -121,6 +121,19 @@
     <Resource Include="Images\wrench.png" />
     <Resource Include="Images\zoom.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bug.png" />
+    <Resource Include="Images\database.png" />
+    <Resource Include="Images\date.png" />
+    <Resource Include="Images\folder_page.png" />
+    <Resource Include="Images\house.png" />
+    <Resource Include="Images\page_copy.png" />
+    <Resource Include="Images\paste_plain.png" />
+    <Resource Include="Images\star.png" />
+    <Resource Include="Images\tick.png" />
+    <Resource Include="Images\time.png" />
+    <Resource Include="Images\vcard.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
