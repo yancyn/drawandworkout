@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HLGranite.Drawing;
+using Thought.vCards;
 
 namespace WorkOrderGUI
 {
@@ -31,6 +33,47 @@ namespace WorkOrderGUI
             //rect1.Margin;
             //propertyGrid1.Instance = 
             //MainMenu.ItemsSource = BuildMenu();
+
+            PageManager pageManager = new PageManager();
+            Project project = CreateProject();
+            PageViewModel page = new PageViewModel(project);
+            pageManager.Add(page);
+
+            Project project2 = CreateProject();
+            PageViewModel page2 = new PageViewModel(project2);
+            pageManager.Add(page2);
+            //pageManager.Add(new PageViewModel(new Project()));
+
+            this.MainTabControl.ItemsSource = pageManager.Items;
+        }
+        private Project CreateProject()
+        {
+            Employee creator = new Employee();
+            creator.EmailAddresses.Add(new vCardEmailAddress { Address = "yancyn@gmail.com" });
+
+            Customer agent = new Customer { GivenName = "John" };
+
+            Customer customer = new Customer { GivenName = "Ah Hock" };
+            vCardDeliveryAddress deliver = new vCardDeliveryAddress();
+            deliver.Street = "963 Jalan 6";
+            deliver.Region = "Machang Bubok";
+            deliver.City = "Bukit Mertajam";
+            deliver.PostalCode = "05400";
+            deliver.Country = "Malaysia";
+            customer.DeliveryAddresses.Add(deliver);
+
+            Project target = new Project();
+            target.CreatedBy = creator;
+            target.DeliverTo = customer;//customer.DeliveryAddresses[0];
+            target.OrderBy = agent;
+            target.Stage = ProjectStage.Draft;
+
+            WorkOrder wo = new WorkOrder();
+            wo.Items.Add(new WorkItem { MaxHeight = 24, MaxWidth = 56, Material = new Stock { Name1 = "Tan Brown" } });
+            wo.Items.Add(new WorkItem { MaxHeight = 12, MaxWidth = 34, Material = new Stock { Name1 = "Black Galaxy" } });
+            target.WorkOrders.Add(wo);
+
+            return target;
         }
 
         private void MenuClose_Click(object sender, RoutedEventArgs e)

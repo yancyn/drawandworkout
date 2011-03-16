@@ -2,6 +2,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:w="http://schemas.microsoft.com/wpf/2008/toolkit"
+    xmlns:g="clr-namespace:WorkOrderGUI"
+    xmlns:d="clr-namespace:HLGranite.Drawing;assembly=HLGranite.Drawing"
     Title="WorkOrder beta" Height="600" Width="800" WindowState="Maximized">
     <!--xmlns:wpg="clr-namespace:WPG;assembly=WPG"-->
     <Window.Resources>
@@ -71,7 +73,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator/>
-                <MenuItem x:Name="MenuClose" Header="_Close" Click="MenuClose_Click">
+                <MenuItem x:Name="MenuClose" Header="E_xit" Click="MenuClose_Click">
                     <MenuItem.Icon>
                         <Image Source="Images/door_out.png"/>
                     </MenuItem.Icon>
@@ -221,75 +223,57 @@
                     </ToggleButton>
                 </ToolBar>
             </ToolBarTray>
-            <TabControl Grid.Column="1">
-                <TabItem Header="Home"/>
-                <TabItem Header="010210">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="250"/>
-                        </Grid.ColumnDefinitions>
-                        <Canvas Grid.Column="0"/>
-                        <StackPanel>
-                            <!--<wpg:PropertyGrid x:Name="propertyGrid1" Instance="{Binding ElementName=buttonNew}" VerticalAlignment="Stretch" IsEnabled="True"/>-->
-                        </StackPanel>
-                    </Grid>
-                </TabItem>
-                <!-- &#x0a; line break -->
-                <!-- &#0d; tab -->
-                <TabItem Header="010311&#x0a;大白花">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="250"/>
-                        </Grid.ColumnDefinitions>
-                        <Canvas Grid.Column="0"/>
-                        <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Right">
-                            <GroupBox Header="Project">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="80"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <StackPanel Grid.Column="0" Margin="0,0,4,0">
-                                        <TextBlock Text="No." Style="{StaticResource RightLabel}"/>
-                                        <TextBlock Text="Created By" Style="{StaticResource RightLabel}"/>
-                                        <TextBlock Text="Created At" Style="{StaticResource RightLabel}"/>
-                                        <TextBlock Text="Order By" Style="{StaticResource RightLabel}"/>
-                                        <TextBlock Text="Address" Style="{StaticResource RightLabel}"/>
-                                        <TextBlock Text="Taman" Style="{StaticResource RightLabel}"/>
-                                        <TextBlock Text="City" Style="{StaticResource RightLabel}"/>
-                                        <TextBlock Text="Phone" Style="{StaticResource RightLabel}"/>
-                                    </StackPanel>
-                                    <StackPanel Grid.Column="1">
-                                        <TextBlock Text="010311" Style="{StaticResource LeftLabel}"/>
-                                        <TextBlock Text="yancyn@gmail.com" Style="{StaticResource LeftLabel}"/>
-                                        <w:DatePicker />
-                                        <TextBox/>
-                                        <TextBox/>
-                                        <TextBox/>
-                                        <TextBox/>
-                                        <TextBox/>
-                                    </StackPanel>
-                                </Grid>
-                            </GroupBox>
-                            <GroupBox Header="Details">
+            <TabControl x:Name="MainTabControl" Grid.Column="1" DataContext="{Binding}">
+                <!-- define TabItem header -->
+                <!--<TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <ContentPresenter Content="{}"/>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>-->
 
-                            </GroupBox>
-                        </StackPanel>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="010315">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="250"/>
-                        </Grid.ColumnDefinitions>
-                        <Canvas Grid.Column="0"/>
-                        <StackPanel>
-                        </StackPanel>
-                    </Grid>
-                </TabItem>
+                <!-- define TabItem content -->
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="250"/>
+                            </Grid.ColumnDefinitions>
+                            <Canvas Grid.Column="0"/>
+                            <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                                <GroupBox Header="Project">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0" Margin="0,0,4,0">
+                                            <TextBlock Text="No."/>
+                                            <TextBlock Text="Created By"/>
+                                            <TextBlock Text="Created At"/>
+                                            <TextBlock Text="Order By"/>
+                                            <TextBlock Text="Address"/>
+                                            <TextBlock Text="Taman"/>
+                                            <TextBlock Text="City"/>
+                                            <TextBlock Text="Phone"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="{Binding Item.Guid}"/>
+                                            <TextBlock Text="{Binding Item.CreatedBy.EmailAddresses[0]}"/>
+                                            <w:DatePicker />
+                                            <TextBox/>
+                                            <TextBox/>
+                                            <TextBox/>
+                                            <TextBox/>
+                                            <TextBlock Text="{Binding Item.Progress}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Header="Details"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
             </TabControl>
         </Grid>
     </Grid>
