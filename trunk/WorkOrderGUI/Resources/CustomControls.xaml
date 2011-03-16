@@ -7,9 +7,9 @@
             <Setter.Value>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Label>
+                        <TextBlock Margin="0,0,4,0">
                             <ContentPresenter Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabItem} }, Path=Header}"/>
-                        </Label>
+                        </TextBlock>
                         <Button x:Name="CloseButton" Style="{StaticResource CrossTabButton}" Click="CloseButton_Click"/>
                     </StackPanel>
                 </DataTemplate>
