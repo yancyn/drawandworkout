@@ -2,95 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Markup;
-using System.Windows;
-using System.IO;
 using System.Xml;
+using System.IO;
 
 namespace HLGranite.Drawing
 {
-    public partial class Project
+    public partial class Inventories
     {
-        private string fileName;
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public Project()
+        public Inventories()
         {
-            this.fileName = string.Empty;
-
-            this.guidField = Guid.NewGuid();
-            this.createdAtField = DateTime.Now;
-            //todo: this.CreatedBy = current login user
-            this.progressField = 0m;
-            this.stageField = ProjectStage.Draft;
-            this.workOrdersField = new List<WorkOrder>();
+            fileName = "Inventories.xml";
+            this.inventoryField = new List<Inventory>();
         }
-
-        #region Methods
-        /// <summary>
-        /// Save into database together with the canvas drawing.
-        /// </summary>
-        /// <param name="sender">Canvas, Panel or UIElement object.</param>
-        public void Save(object sender)
+        public void Add(Inventory source, int quantity)
         {
-            this.fileName = this.guidField.ToString();
-            WriteToXaml(sender);
-            SaveToFile();
-        }
-        public void Save()
-        {
-            this.fileName = this.guidField.ToString();
-            //WriteToXaml(sender);
-            SaveToFile();
-        }
-        /// <summary>
-        /// Write to xaml file.
-        /// </summary>
-        /// <param name="sender">Canvas, Panel or Grid object.</param>
-        /// <see>http://msdn.microsoft.com/en-us/library/system.windows.markup.xamlwriter.aspx</see>
-        private void WriteToXaml(object sender)
-        {
-            try
+            for (int i = 0; i < quantity; i++)
             {
-                string xaml = XamlWriter.Save(sender);
-                //System.Diagnostics.Debug.WriteLine(xaml);
-                StreamWriter writer = File.AppendText(this.fileName + ".xaml");
-                writer.WriteLine(xaml);
-                writer.Close();
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex);
-                throw ex;
-            }
-        }
-        /// <summary>
-        /// Load xaml file into current page.
-        /// </summary>
-        /// <example>
-        /// <code>
-        /// Project project = new Project("500368f8-3a38-449d-b645-c702332fb941");
-        /// DependencyObject drawing = project.GetDrawing();
-        /// this.AddChild(drawing);
-        /// </code>
-        /// </example>
-        /// <see>http://blogs.msdn.com/b/ashish/archive/2007/08/14/dynamically-loading-xaml.aspx</see>
-        public DependencyObject GetDrawing()
-        {
-            try
-            {
-                StreamReader reader = new StreamReader(this.guidField.ToString() + ".xaml", Encoding.UTF8);
-                return XamlReader.Load(reader.BaseStream) as DependencyObject;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex);
-                throw ex;
+                Inventory item = new Inventory(source);
+                this.inventoryField.Add(item);
             }
         }
 
-
+        #region Serialize/Deserialize
         private static System.Xml.Serialization.XmlSerializer serializer;
         private static System.Xml.Serialization.XmlSerializer Serializer
         {
@@ -98,13 +34,14 @@ namespace HLGranite.Drawing
             {
                 if ((serializer == null))
                 {
-                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(Project));
+                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(Inventories));
                 }
                 return serializer;
             }
         }
+
         /// <summary>
-        /// Serializes current project object into an XML document
+        /// Serializes current Inventories object into an XML document
         /// </summary>
         /// <returns>string XML value</returns>
         public virtual string Serialize(System.Text.Encoding encoding)
@@ -143,17 +80,18 @@ namespace HLGranite.Drawing
         {
             return Serialize(Encoding.UTF8);
         }
+
         /// <summary>
-        /// Deserializes workflow markup into an Project object
+        /// Deserializes workflow markup into an Inventories object
         /// </summary>
         /// <param name="xml">string workflow markup to deserialize</param>
-        /// <param name="obj">Output Project object</param>
+        /// <param name="obj">Output Inventories object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool Deserialize(string xml, out Project obj, out System.Exception exception)
+        public static bool Deserialize(string xml, out Inventories obj, out System.Exception exception)
         {
             exception = null;
-            obj = default(Project);
+            obj = default(Inventories);
             try
             {
                 obj = Deserialize(xml);
@@ -165,18 +103,18 @@ namespace HLGranite.Drawing
                 return false;
             }
         }
-        public static bool Deserialize(string xml, out Project obj)
+        public static bool Deserialize(string xml, out Inventories obj)
         {
             System.Exception exception = null;
             return Deserialize(xml, out obj, out exception);
         }
-        public static Project Deserialize(string xml)
+        public static Inventories Deserialize(string xml)
         {
             System.IO.StringReader stringReader = null;
             try
             {
                 stringReader = new System.IO.StringReader(xml);
-                return ((Project)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+                return ((Inventories)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
             }
             finally
             {
@@ -186,11 +124,36 @@ namespace HLGranite.Drawing
                 }
             }
         }
-        private void SaveToFile()
+
+        /// <summary>
+        /// Serializes current Inventories object into file
+        /// </summary>
+        /// <param name="fileName">full path of outupt xml file</param>
+        /// <param name="exception">output Exception value if failed</param>
+        /// <returns>true if can serialize and save into file; otherwise, false</returns>
+        public virtual bool SaveToFile(string fileName, System.Text.Encoding encoding, out System.Exception exception)
+        {
+            exception = null;
+            try
+            {
+                SaveToFile(fileName, encoding);
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                exception = e;
+                return false;
+            }
+        }
+        public virtual bool SaveToFile(string fileName, out System.Exception exception)
+        {
+            return SaveToFile(fileName, Encoding.UTF8, out exception);
+        }
+        public virtual void SaveToFile()
         {
             SaveToFile(fileName, Encoding.UTF8);
         }
-        private void SaveToFile(string fileName, System.Text.Encoding encoding)
+        public virtual void SaveToFile(string fileName, System.Text.Encoding encoding)
         {
             System.IO.StreamWriter streamWriter = null;
             try
@@ -201,7 +164,7 @@ namespace HLGranite.Drawing
                 if (this.GetType() == typeof(Project)) //todo: test save projects scenario
                     path += Path.DirectorySeparatorChar + "Projects";
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-                path += Path.DirectorySeparatorChar + fileName + ".xml";
+                path += Path.DirectorySeparatorChar + fileName;
 
                 streamWriter = new System.IO.StreamWriter(path, false, Encoding.UTF8);
                 streamWriter.WriteLine(xmlString);
@@ -220,11 +183,43 @@ namespace HLGranite.Drawing
                 }
             }
         }
-        private Project LoadFromFile()
+
+        /// <summary>
+        /// Deserializes xml markup from file into an Inventories object
+        /// </summary>
+        /// <param name="fileName">string xml file to load and deserialize</param>
+        /// <param name="obj">Output Inventories object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
+        public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out Inventories obj, out System.Exception exception)
+        {
+            exception = null;
+            obj = default(Inventories);
+            try
+            {
+                obj = LoadFromFile(fileName, encoding);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+        public static bool LoadFromFile(string fileName, out Inventories obj, out System.Exception exception)
+        {
+            return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
+        }
+        public static bool LoadFromFile(string fileName, out Inventories obj)
+        {
+            System.Exception exception = null;
+            return LoadFromFile(fileName, out obj, out exception);
+        }
+        public static Inventories LoadFromFile()
         {
             return LoadFromFile(fileName, Encoding.UTF8);
         }
-        private Project LoadFromFile(string fileName, System.Text.Encoding encoding)
+        public static Inventories LoadFromFile(string fileName, System.Text.Encoding encoding)
         {
             System.IO.FileStream file = null;
             System.IO.StreamReader sr = null;

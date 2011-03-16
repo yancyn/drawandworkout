@@ -93,6 +93,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PageManager.cs" />
+    <Compile Include="PageViewModel.cs" />
     <Compile Include="Resources\CustomControls.xaml.cs">
       <DependentUpon>CustomControls.xaml</DependentUpon>
     </Compile>
