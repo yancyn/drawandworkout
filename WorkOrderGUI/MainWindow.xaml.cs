@@ -42,6 +42,10 @@ namespace WorkOrderGUI
             Project project2 = CreateProject();
             PageViewModel page2 = new PageViewModel(project2);
             pageManager.Add(page2);
+
+            Stocks stocks = new Stocks();
+            PageViewModel page3 = new PageViewModel(stocks);
+            pageManager.Add(page3);
             //pageManager.Add(new PageViewModel(new Project()));
 
             this.MainTabControl.ItemsSource = pageManager.Items;
