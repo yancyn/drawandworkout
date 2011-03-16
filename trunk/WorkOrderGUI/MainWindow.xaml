@@ -39,6 +39,47 @@
             <Setter Property="Header" Value="{Binding Name}"/>
             <!--<Setter Property="Command" Value="{Binding ActivateCommand}"/>-->
         </Style>
+        <DataTemplate x:Key="ProjectTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="250"/>
+                </Grid.ColumnDefinitions>
+                <Canvas Grid.Column="0"/>
+                <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                    <GroupBox Header="Project">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Margin="0,0,4,0">
+                                <TextBlock Text="No."/>
+                                <TextBlock Text="Created By"/>
+                                <TextBlock Text="Created At"/>
+                                <TextBlock Text="Order By"/>
+                                <TextBlock Text="Address"/>
+                                <TextBlock Text="Taman"/>
+                                <TextBlock Text="City"/>
+                                <TextBlock Text="Phone"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{Binding Item.Guid}"/>
+                                <TextBlock Text="{Binding Item.CreatedBy.EmailAddresses[0]}"/>
+                                <w:DatePicker />
+                                <TextBox/>
+                                <TextBox/>
+                                <TextBox/>
+                                <TextBox/>
+                                <TextBlock Text="{Binding Item.Progress}"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Details"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <g:PageTemplateSelector x:Key="pageTemplateSelector"/>
     </Window.Resources>
 
     <Grid>
@@ -223,58 +264,7 @@
                     </ToggleButton>
                 </ToolBar>
             </ToolBarTray>
-            <TabControl x:Name="MainTabControl" Grid.Column="1" DataContext="{Binding}">
-                <!-- define TabItem header -->
-                <!--<TabControl.ItemTemplate>
-                    <DataTemplate>
-                        <ContentPresenter Content="{}"/>
-                    </DataTemplate>
-                </TabControl.ItemTemplate>-->
-
-                <!-- define TabItem content -->
-                <TabControl.ContentTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="250"/>
-                            </Grid.ColumnDefinitions>
-                            <Canvas Grid.Column="0"/>
-                            <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Right">
-                                <GroupBox Header="Project">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="80"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel Grid.Column="0" Margin="0,0,4,0">
-                                            <TextBlock Text="No."/>
-                                            <TextBlock Text="Created By"/>
-                                            <TextBlock Text="Created At"/>
-                                            <TextBlock Text="Order By"/>
-                                            <TextBlock Text="Address"/>
-                                            <TextBlock Text="Taman"/>
-                                            <TextBlock Text="City"/>
-                                            <TextBlock Text="Phone"/>
-                                        </StackPanel>
-                                        <StackPanel Grid.Column="1">
-                                            <TextBlock Text="{Binding Item.Guid}"/>
-                                            <TextBlock Text="{Binding Item.CreatedBy.EmailAddresses[0]}"/>
-                                            <w:DatePicker />
-                                            <TextBox/>
-                                            <TextBox/>
-                                            <TextBox/>
-                                            <TextBox/>
-                                            <TextBlock Text="{Binding Item.Progress}"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </GroupBox>
-                                <GroupBox Header="Details"/>
-                            </StackPanel>
-                        </Grid>
-                    </DataTemplate>
-                </TabControl.ContentTemplate>
-            </TabControl>
+            <TabControl x:Name="MainTabControl" Grid.Column="1" DataContext="{Binding}" ContentTemplateSelector="{StaticResource pageTemplateSelector}"/>
         </Grid>
     </Grid>
 </Window>

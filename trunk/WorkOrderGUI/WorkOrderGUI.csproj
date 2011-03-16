@@ -93,6 +93,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTemplateSelectors.cs" />
     <Compile Include="ViewModels\PageManager.cs" />
     <Compile Include="ViewModels\PageViewModel.cs" />
     <Compile Include="Resources\CustomControls.xaml.cs">
