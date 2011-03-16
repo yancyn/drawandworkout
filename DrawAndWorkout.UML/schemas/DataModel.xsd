@@ -468,7 +468,7 @@
           <xsd:element name="MaxWidth" type="xsd:int"/>
           <xsd:element name="MaxHeight" type="xsd:int"/>
           <xsd:element name="Material" type="Stock"/>
-          <xsd:element name="Element" type="ShapeItem"/>
+          <xsd:element name="Elements" type="ShapeItem" minOccurs="0" maxOccurs="unbounded"/>
           <xsd:element name="Status" type="WorkStatus"/>
           <xsd:element name="Progress" type="xsd:decimal">
             <xsd:annotation>

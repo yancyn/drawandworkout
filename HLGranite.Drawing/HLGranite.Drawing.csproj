@@ -56,11 +56,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin.cs" />
+    <Compile Include="BaseAttribute.cs" />
     <Compile Include="BaseItem.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="DatabaseObject.cs" />
     <Compile Include="DataModel.designer.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="Inventories.cs" />
+    <Compile Include="Inventory.cs" />
     <Compile Include="Planner.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,6 +113,7 @@
     <Compile Include="vCard\WarningMessages.Designer.cs" />
     <Compile Include="Warehouse.cs" />
     <Compile Include="Warehouses.cs" />
+    <Compile Include="WorkItem.cs" />
     <Compile Include="WorkOrder.cs" />
   </ItemGroup>
   <ItemGroup>

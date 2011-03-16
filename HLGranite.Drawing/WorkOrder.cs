@@ -7,8 +7,11 @@ namespace HLGranite.Drawing
 {
     public partial class WorkOrder
     {
-        //public WorkOrder()
-        //{
-        //}
+        public WorkOrder()
+        {
+            this.guidField = Guid.NewGuid();
+            this.stockField = new Stock();
+            this.itemsField = new List<WorkItem>();
+        }
     }
 }

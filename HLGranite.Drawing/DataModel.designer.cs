@@ -418,15 +418,13 @@ namespace HLGranite.Drawing
 
         private Employee workedByField;
 
-        private ShapeItem shapeItemField;
-
         private int maxWidthField;
 
         private int maxHeightField;
 
         private Stock materialField;
 
-        private ShapeItem elementField;
+        private List<WorkItem> elementsField;
 
         private WorkStatus statusField;
 
@@ -468,30 +466,6 @@ namespace HLGranite.Drawing
                 {
                     this.workedByField = value;
                     this.OnPropertyChanged("WorkedBy");
-                }
-            }
-        }
-
-        public ShapeItem ShapeItem
-        {
-            get
-            {
-                return this.shapeItemField;
-            }
-            set
-            {
-                if ((this.shapeItemField != null))
-                {
-                    if ((shapeItemField.Equals(value) != true))
-                    {
-                        this.shapeItemField = value;
-                        this.OnPropertyChanged("ShapeItem");
-                    }
-                }
-                else
-                {
-                    this.shapeItemField = value;
-                    this.OnPropertyChanged("ShapeItem");
                 }
             }
         }
@@ -552,26 +526,26 @@ namespace HLGranite.Drawing
             }
         }
 
-        public ShapeItem Element
+        public List<WorkItem> Elements
         {
             get
             {
-                return this.elementField;
+                return this.elementsField;
             }
             set
             {
-                if ((this.elementField != null))
+                if ((this.elementsField != null))
                 {
-                    if ((elementField.Equals(value) != true))
+                    if ((elementsField.Equals(value) != true))
                     {
-                        this.elementField = value;
-                        this.OnPropertyChanged("Element");
+                        this.elementsField = value;
+                        this.OnPropertyChanged("Elements");
                     }
                 }
                 else
                 {
-                    this.elementField = value;
-                    this.OnPropertyChanged("Element");
+                    this.elementsField = value;
+                    this.OnPropertyChanged("Elements");
                 }
             }
         }
@@ -724,7 +698,7 @@ namespace HLGranite.Drawing
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TriangleItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(LShapeItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(EllipseItem))]
-    public partial class ShapeItem : Shape, System.ComponentModel.INotifyPropertyChanged
+    public partial class ShapeItem : System.ComponentModel.INotifyPropertyChanged
     {
 
         private List<ShapeItem> childField;
@@ -1281,10 +1255,6 @@ namespace HLGranite.Drawing
     {
 
         private System.DateTime purchaseAtField;
-
-        private int widthField;
-
-        private int heightField;
 
         private Stock stockField;
 

@@ -9,7 +9,6 @@ using System;
 
 namespace Thought.vCards
 {
-
     /// <summary>
     ///     A source of directory information for a vCard.
     /// </summary>
@@ -26,10 +25,8 @@ namespace Thought.vCards
     /// <seealso cref="vCardSourceCollection"/>
     public class vCardSource
     {
-
         private string context;
         private Uri uri;
-
 
         /// <summary>
         ///     Initializes a new instance of the vCardSource class.
@@ -38,8 +35,6 @@ namespace Thought.vCards
         {
             this.context = string.Empty;
         }
-
-
         /// <summary>
         ///     Initializes a new source with the specified URI.
         /// </summary>
@@ -50,8 +45,6 @@ namespace Thought.vCards
         {
             this.uri = uri;
         }
-
-
         /// <summary>
         ///     Initializes a new source with the specified
         ///     context and URI.
@@ -67,7 +60,6 @@ namespace Thought.vCards
             this.context = context;
             this.uri = uri;
         }
-
 
         /// <summary>
         ///     The context of the source URI.
@@ -89,11 +81,10 @@ namespace Thought.vCards
             }
         }
 
-
         /// <summary>
         ///     The URI of the source.
         /// </summary>
-        //[System.Xml.Serialization.XmlIgnore()] //ignore vCardSource.Uri
+        [System.Xml.Serialization.XmlIgnore()] //ignore vCardSource.Uri
         public Uri Uri
         {
             get
@@ -105,7 +96,5 @@ namespace Thought.vCards
                 this.uri = value;
             }
         }
-
     }
-
 }
