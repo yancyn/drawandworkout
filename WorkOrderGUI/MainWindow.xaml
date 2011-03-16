@@ -166,10 +166,8 @@
             </Grid.ColumnDefinitions>
             <ToolBarTray Grid.Row="0" Orientation="Vertical">
                 <ToolBar x:Name="Toolbox">
-                    <RadioButton Style="{StaticResource ToolbarButton}">
-                        <Path x:Name="ButtonSelector"
-                            ToolTip="Selector" Stroke="White" Fill="Black"
-                            Data="M 0.5575,18.7662 C 0.5575,18.7662 0.5,0.5 0.5,0.5 c 0,0 12.04014,12.8752 12.04014,12.8752 0,0 -5.20198,-0.1182 -5.20198,-0.1182 0,0 3.4254,5.6771 3.4254,5.6771 0,0 -4.47307,2.1183 -4.47307,2.1183 0,0 -2.00879,-6.4587 -2.00879,-6.4587 0,0 -3.7242,4.1725 -3.7242,4.1725 z"/>
+                    <RadioButton Style="{StaticResource ToolbarButton}" ToolTip="Selector">
+                        <Path x:Name="ButtonSelector" Stroke="White" Fill="Black" Data="M 0.5575,18.7662 C 0.5575,18.7662 0.5,0.5 0.5,0.5 c 0,0 12.04014,12.8752 12.04014,12.8752 0,0 -5.20198,-0.1182 -5.20198,-0.1182 0,0 3.4254,5.6771 3.4254,5.6771 0,0 -4.47307,2.1183 -4.47307,2.1183 0,0 -2.00879,-6.4587 -2.00879,-6.4587 0,0 -3.7242,4.1725 -3.7242,4.1725 z"/>
                     </RadioButton>
                     <RadioButton x:Name="ButtonLShape" Style="{StaticResource ToolbarButton}" ContextMenu="{StaticResource MenuLShapeCollection}">
                         <RadioButton.Triggers>
@@ -186,29 +184,22 @@
                                 </BeginStoryboard>
                             </EventTrigger>
                         </RadioButton.Triggers>
-                        <Path
-                            MouseLeftButtonDown="Path_MouseLeftButtonDown"
-                            Stroke="Black" Data="m 0,0 0,15 0,6 6,0 9,0 0,-6 L 6,15 6,0 0,0 z">
+                        <Path Stroke="Black" Data="m 0,0 0,15 0,6 6,0 9,0 0,-6 L 6,15 6,0 0,0 z"
+                            MouseLeftButtonDown="Path_MouseLeftButtonDown">
                         </Path>
                         <!--<Path
                             Canvas.Left="-8" Canvas.Top="-8"
                             Fill="Black"
                             Data="m 18,10 -8,8 8,0 0,-8 z"/>-->
                     </RadioButton>
-                    <RadioButton Style="{StaticResource ToolbarButton}">
-                        <Path
-                            ToolTip="Kitchen" Stroke="Black"
-                            Data="M 0,0 0,12.857143 0,18 5.1428571,18 18,18 l 0,-5.142857 -12.8571429,0 L 5.1428571,0 0,0 z" Width="18" Height="18"/>
+                    <RadioButton Style="{StaticResource ToolbarButton}" ToolTip="Kitchen">
+                        <Path Stroke="Black" Data="M 0,0 0,12.857143 0,18 5.1428571,18 18,18 l 0,-5.142857 -12.8571429,0 L 5.1428571,0 0,0 z"/>
                     </RadioButton>
-                    <RadioButton Style="{StaticResource ToolbarButton}">
-                        <Path
-                            ToolTip="Kitchen" Stroke="Black"
-                            Data="M 0,0 0,12.85714 0,18 5.14286,18 18,18 l 0,-5.14286 0,-7.71428 -5.14286,0 0,7.71428 -7.71428,0 L 5.14286,0 0,0 z"/>
+                    <RadioButton Style="{StaticResource ToolbarButton}" ToolTip="Kitchen">
+                        <Path Stroke="Black" Data="M 0,0 0,12.85714 0,18 5.14286,18 18,18 l 0,-5.14286 0,-7.71428 -5.14286,0 0,7.71428 -7.71428,0 L 5.14286,0 0,0 z"/>
                     </RadioButton>
-                    <RadioButton Style="{StaticResource ToolbarButton}">
-                        <Path
-                            ToolTip="Kitchen" Stroke="Black"
-                            Data="M 0,0 0,12.857143 0,18 5.14286,18 18,18 18,12.857143 18,0 l -5.14286,0 0,12.857143 -7.71428,0 L 5.14286,0 0,0 z"/>
+                    <RadioButton Style="{StaticResource ToolbarButton}" ToolTip="Kitchen">
+                        <Path Stroke="Black" Data="M 0,0 0,12.857143 0,18 5.14286,18 18,18 18,12.857143 18,0 l -5.14286,0 0,12.857143 -7.71428,0 L 5.14286,0 0,0 z"/>
                     </RadioButton>
                     <RadioButton Style="{StaticResource ToolbarButton}" ToolTip="Rectangle">
                         <Rectangle Width="20" Height="16" StrokeThickness="1" Stroke="Black"/>
@@ -226,9 +217,7 @@
                         <Ellipse Width="20" Height="20" StrokeThickness="1" Stroke="Black"/>
                     </RadioButton>
                     <ToggleButton Width="32" Height="32">
-                        <Path
-                            Fill="Black"
-                            Data="m 18,10 -8,8 8,0 0,-8 z"/>
+                        <Path Fill="Black" Data="m 18,10 -8,8 8,0 0,-8 z"/>
                     </ToggleButton>
                 </ToolBar>
             </ToolBarTray>
@@ -246,7 +235,9 @@
                         </StackPanel>
                     </Grid>
                 </TabItem>
-                <TabItem Header="010311">
+                <!-- &#x0a; line break -->
+                <!-- &#0d; tab -->
+                <TabItem Header="010311&#x0a;大白花">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -283,7 +274,7 @@
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="Details">
-                                
+
                             </GroupBox>
                         </StackPanel>
                     </Grid>
