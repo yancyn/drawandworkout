@@ -27,7 +27,10 @@ namespace WorkOrderGUI
                 //if ((sender as Button).Parent is TabItem)
                 //{
                 //    TabItem item = (sender as Button).Parent as TabItem;
-                (item.Parent as TabControl).Items.Remove(item);//todo: checking before assume it is a TabControl
+
+                //todo: checking before assume it is a TabControl.
+                //It is fail on data binding where there is no physical host exist!
+                (item.Parent as TabControl).Items.Remove(item);
             }
         }
     }

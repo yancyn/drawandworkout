@@ -485,4 +485,14 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Oyr6gE-nEeCY6K18wnk5gA"/>
     </ownedEnd>
   </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_Laxp4E-vEeCY6K18wnk5gA" name="ShapeItems" memberEnd="_LayQ8E-vEeCY6K18wnk5gA _Lay4AU-vEeCY6K18wnk5gA">
+    <ownedEnd xmi:id="_LayQ8E-vEeCY6K18wnk5gA" name="src" type="_J_zE4ETTEeC_SaZDL-mcDw" association="_Laxp4E-vEeCY6K18wnk5gA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Lay4AE-vEeCY6K18wnk5gA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LayQ8U-vEeCY6K18wnk5gA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_Lay4AU-vEeCY6K18wnk5gA" name="dst" type="_TsGuYEbREeCvMexyU7cjtg" aggregation="composite" association="_Laxp4E-vEeCY6K18wnk5gA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LazfEE-vEeCY6K18wnk5gA" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Lay4Ak-vEeCY6K18wnk5gA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
 </uml:Model>
