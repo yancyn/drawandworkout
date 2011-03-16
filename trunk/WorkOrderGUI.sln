@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{F8053EBC-2706-434C-88B2-C4B12BC7440E}"
 	ProjectSection(SolutionItems) = preProject
 		Libraries\log4net.dll = Libraries\log4net.dll
+		Libraries\WPFToolkit.dll = Libraries\WPFToolkit.dll
 		Libraries\WPG.dll = Libraries\WPG.dll
 		Libraries\WPGBrushEditor.dll = Libraries\WPGBrushEditor.dll
 	EndProjectSection

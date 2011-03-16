@@ -471,7 +471,7 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e6HwEUlwEeCv8taoZkDd9Q"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Enumeration" xmi:id="_KHDwkEoPEeCny7xgi0FuFA" name="NumbrerFormat">
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_KHDwkEoPEeCny7xgi0FuFA" name="NumberFormat">
     <ownedLiteral xmi:id="_MJVKUEoPEeCny7xgi0FuFA" name="Digit"/>
     <ownedLiteral xmi:id="_M8rS0EoPEeCny7xgi0FuFA" name="Roman"/>
     <ownedLiteral xmi:id="_PWxWsEoPEeCny7xgi0FuFA" name="Alphabet"/>
