@@ -8,10 +8,12 @@ namespace WorkOrderGUI
 {
     public class PageManager
     {
+        #region Properties
         private PageViewModel currentPage;
         public PageViewModel CurrentPage { get { return this.currentPage; } }
         private ObservableCollection<PageViewModel> items;
         public ObservableCollection<PageViewModel> Items { get { return this.items; } set { this.items = value; } }
+        #endregion
 
         public PageManager()
         {

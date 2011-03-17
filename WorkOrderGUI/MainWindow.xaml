@@ -263,12 +263,14 @@
                         <Path Fill="Black" Data="m 18,10 -8,8 8,0 0,-8 z"/>
                     </ToggleButton>
                 </ToolBar>
-                <ToolBar x:Name="LShapeToolbar">
-                    <ItemsControl>
-                        <RadioButton Style="{StaticResource ToolbarButton}">
-                            <Path Stroke="Black" Data="{Binding Item.Data}"/>
-                        </RadioButton>
-                    </ItemsControl>
+                <ToolBar x:Name="LShapeToolbar" DataContext="{Binding}">
+                    <ToolBar.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton Style="{StaticResource ToolbarButton}">
+                                <Path Stroke="Black" Data="{Binding Item.Data}"/>
+                            </RadioButton>
+                        </DataTemplate>
+                    </ToolBar.ItemTemplate>
                 </ToolBar>
             </ToolBarTray>
             <TabControl x:Name="MainTabControl" Grid.Column="1" DataContext="{Binding}" ContentTemplateSelector="{StaticResource pageTemplateSelector}"/>

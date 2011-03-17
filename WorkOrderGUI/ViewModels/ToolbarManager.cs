@@ -14,15 +14,22 @@ namespace WorkOrderGUI
 {
     public class ToolbarManager
     {
+        #region Properties
         private ObservableCollection<ToolbarViewModel> items;
         public ObservableCollection<ToolbarViewModel> Items { get { return this.items; } }
+        #endregion
+
         public ToolbarManager()
         {
             this.items = new ObservableCollection<ToolbarViewModel>();
+            Initialize();
+        }
+        protected void Initialize()
+        {
+            StreamReader reader = new StreamReader("Toolbars.xaml");
 
             try
             {
-                StreamReader reader = new StreamReader("Toolbars.xaml");
                 DependencyObject obj = XamlReader.Load(reader.BaseStream) as DependencyObject;
                 Panel panel = ((System.Windows.Controls.Panel)((obj as Window).Content));
                 for (int i = 0; i < panel.Children.Count; i++)
@@ -33,11 +40,20 @@ namespace WorkOrderGUI
                         this.items.Add(viewModel);
                     }
                 }
+                (obj as Window).Close();//key: force hidden window close or dispose.
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex);
                 return;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                    reader.Dispose();
+                }
             }
         }
     }
