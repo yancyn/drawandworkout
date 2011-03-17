@@ -8,9 +8,11 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="0,0,4,0">
-                            <ContentPresenter Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabItem} }, Path=Header}"/>
+                            <ContentPresenter Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabItem}}, Path=Header}"/>
                         </TextBlock>
-                        <Button x:Name="CloseButton" Style="{StaticResource CrossTabButton}" Click="CloseButton_Click"/>
+                        <Button x:Name="CloseButton" Style="{StaticResource CrossTabButton}"
+                                Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, Path=DataContext.RemovePage}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabItem}}, Path=DataContext}"/>
                     </StackPanel>
                 </DataTemplate>
             </Setter.Value>

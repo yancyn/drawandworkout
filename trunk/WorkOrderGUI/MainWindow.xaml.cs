@@ -42,11 +42,17 @@ namespace WorkOrderGUI
             Stocks stocks = new Stocks();
             PageViewModel page3 = new PageViewModel(stocks);
             pageManager.Add(page3);
-            this.MainTabControl.ItemsSource = pageManager.Items;
+            this.MainGrid.DataContext = pageManager;
+            //this.MainTabControl.ItemsSource = pageManager.Items;
 
-            ToolbarManager toolbarManager = new ToolbarManager();
-            System.Diagnostics.Debug.WriteLine(toolbarManager.Items.Count);
-            this.LShapeToolbar.ItemsSource = toolbarManager.Items;
+            if (this.FindResource("MenuLShapeCollection") != null)
+            {
+                ContextMenu menu = (this.FindResource("MenuLShapeCollection") as ContextMenu);
+                ToolbarManager toolbarManager = new ToolbarManager();
+                System.Diagnostics.Debug.WriteLine(toolbarManager.Items.Count);
+                //this.LShapeToolbar.ItemsSource = toolbarManager.Items;
+                if (menu.Items.Count > 0) ((System.Windows.Controls.ItemsControl)(menu.Items[0])).ItemsSource = toolbarManager.Items;
+            }
         }
         private Project CreateProject()
         {
@@ -120,6 +126,11 @@ namespace WorkOrderGUI
         {
             string version = "ver " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             MessageBox.Show("yancyn@gmail.com" + "\n" + version);
+        }
+
+        private void ButtonNew_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

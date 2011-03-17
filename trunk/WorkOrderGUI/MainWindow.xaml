@@ -8,31 +8,12 @@
     <!--xmlns:wpg="clr-namespace:WPG;assembly=WPG"-->
     <Window.Resources>
         <ContextMenu x:Key="MenuLShapeCollection" x:Name="MenuLShapeCollection" Style="{StaticResource TransparentFloatingToolbar}">
-            <ToolBar>
-                <RadioButton Style="{StaticResource ToolbarButton}">
-                    <Path Stroke="Black" Data="m 0,0 0,15 0,6 6,0 9,0 0,-6 L 6,15 6,0 0,0 z"/>
-                </RadioButton>
-                <RadioButton Style="{StaticResource ToolbarButton}">
-                    <Path Stroke="Black" Data="m 0,0 0,6 15,0 0,9 6,0 0,-9 0,-6 -6,0 -15,0 z"/>
-                </RadioButton>
-                <RadioButton Style="{StaticResource ToolbarButton}">
-                    <Path Stroke="Black" Data="M 0,0 0,6 9,6 9,21 15,21 15,6 15,0 9,0 0,0 z"/>
-                </RadioButton>
-                <RadioButton Style="{StaticResource ToolbarButton}">
-                    <Path Stroke="Black" Data="m 15,0 0,9 -15,0 0,6 15,0 6,0 0,-6 0,-9 -6,0 z"/>
-                </RadioButton>
-                <RadioButton Style="{StaticResource ToolbarButton}">
-                    <Path Stroke="Black" Data="M 0,0 0,6 0,21 6,21 6,6 15,6 15,0 6,0 0,0 z"/>
-                </RadioButton>
-                <RadioButton Style="{StaticResource ToolbarButton}">
-                    <Path Stroke="Black" Data="m 0,0 0,9 0,6 6,0 15,0 L 21,9 6,9 6,0 0,0 z"/>
-                </RadioButton>
-                <RadioButton Style="{StaticResource ToolbarButton}">
-                    <Path Stroke="Black" Data="m 9,0 0,15 -9,0 0,6 9,0 6,0 0,-6 0,-15 -6,0 z"/>
-                </RadioButton>
-                <RadioButton Style="{StaticResource ToolbarButton}">
-                    <Path Stroke="Black" Data="M 0,0 0,6 0,15 6,15 6,6 21,6 21,0 6,0 0,0 z"/>
-                </RadioButton>
+            <ToolBar x:Name="LShapeToolbar" DataContext="{Binding}">
+                <ToolBar.ItemTemplate>
+                    <DataTemplate>
+                        <RadioButton Style="{StaticResource ToolbarButton}" Content="{Binding Item}"/>
+                    </DataTemplate>
+                </ToolBar.ItemTemplate>
             </ToolBar>
         </ContextMenu>
         <Style x:Key="ThemeMenuItemsStyle" TargetType="MenuItem">
@@ -66,7 +47,7 @@
                             <StackPanel Grid.Column="1">
                                 <TextBlock Text="{Binding Item.Guid}"/>
                                 <TextBlock Text="{Binding Item.CreatedBy.EmailAddresses[0]}"/>
-                                <w:DatePicker />
+                                <w:DatePicker/>
                                 <TextBox/>
                                 <TextBox/>
                                 <TextBox/>
@@ -82,7 +63,7 @@
         <g:PageTemplateSelector x:Key="pageTemplateSelector"/>
     </Window.Resources>
 
-    <Grid>
+    <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/>
             <RowDefinition Height="32"/>
@@ -177,8 +158,8 @@
             </MenuItem>
         </Menu>
         <ToolBar Grid.Row="1">
-            <Button x:Name="ButtonNew">
-                <Image Source="Images\page.png" ToolTip="New"/>
+            <Button x:Name="ButtonNew" Command="{Binding NewProject}">
+                <Image Source="Images\page.png"/>
             </Button>
             <Button>
                 <Image Source="Images\folder_page.png" ToolTip="Open"/>
@@ -227,13 +208,7 @@
                                 </BeginStoryboard>
                             </EventTrigger>
                         </RadioButton.Triggers>
-                        <Path Stroke="Black" Data="m 0,0 0,15 0,6 6,0 9,0 0,-6 L 6,15 6,0 0,0 z"
-                            MouseLeftButtonDown="Path_MouseLeftButtonDown">
-                        </Path>
-                        <!--<Path
-                            Canvas.Left="-8" Canvas.Top="-8"
-                            Fill="Black"
-                            Data="m 18,10 -8,8 8,0 0,-8 z"/>-->
+                        <Path Stroke="Black" Data="m 0,0 0,15 0,6 6,0 9,0 0,-6 L 6,15 6,0 0,0 z"/>
                     </RadioButton>
                     <RadioButton Style="{StaticResource ToolbarButton}" ToolTip="Kitchen">
                         <Path Stroke="Black" Data="M 0,0 0,12.857143 0,18 5.1428571,18 18,18 l 0,-5.142857 -12.8571429,0 L 5.1428571,0 0,0 z"/>
@@ -263,17 +238,11 @@
                         <Path Fill="Black" Data="m 18,10 -8,8 8,0 0,-8 z"/>
                     </ToggleButton>
                 </ToolBar>
-                <ToolBar x:Name="LShapeToolbar" DataContext="{Binding}">
-                    <ToolBar.ItemTemplate>
-                        <DataTemplate>
-                            <RadioButton Style="{StaticResource ToolbarButton}">
-                                <Path Stroke="Black" Data="{Binding Item.Data}"/>
-                            </RadioButton>
-                        </DataTemplate>
-                    </ToolBar.ItemTemplate>
-                </ToolBar>
             </ToolBarTray>
-            <TabControl x:Name="MainTabControl" Grid.Column="1" DataContext="{Binding}" ContentTemplateSelector="{StaticResource pageTemplateSelector}"/>
+            <TabControl x:Name="MainTabControl" Grid.Column="1"
+                        DataContext="{Binding ElementName=MainGrid,Path=DataContext}"
+                        ItemsSource="{Binding ElementName=MainGrid,Path=DataContext.Items}"
+                        ContentTemplateSelector="{StaticResource pageTemplateSelector}"/>
         </Grid>
     </Grid>
 </Window>
