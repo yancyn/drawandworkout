@@ -30,6 +30,7 @@ namespace WorkOrderGUI
         {
             InitializeComponent();
 
+            #region Create example page
             PageManager pageManager = new PageManager();
             Project project = CreateProject();
             PageViewModel page = new PageViewModel(project);
@@ -42,17 +43,19 @@ namespace WorkOrderGUI
             Stocks stocks = new Stocks();
             PageViewModel page3 = new PageViewModel(stocks);
             pageManager.Add(page3);
+            #endregion
             this.MainGrid.DataContext = pageManager;
-            //this.MainTabControl.ItemsSource = pageManager.Items;
 
-            if (this.FindResource("MenuLShapeCollection") != null)
-            {
-                ContextMenu menu = (this.FindResource("MenuLShapeCollection") as ContextMenu);
-                ToolbarManager toolbarManager = new ToolbarManager();
-                System.Diagnostics.Debug.WriteLine(toolbarManager.Items.Count);
-                //this.LShapeToolbar.ItemsSource = toolbarManager.Items;
-                if (menu.Items.Count > 0) ((System.Windows.Controls.ItemsControl)(menu.Items[0])).ItemsSource = toolbarManager.Items;
-            }
+            ToolbarManager toolbarManager = new ToolbarManager();
+            this.Toolbox.ItemsSource = toolbarManager.Items;
+            //if (this.FindResource("MenuLShapeCollection") != null)
+            //{
+            //    ContextMenu menu = (this.FindResource("MenuLShapeCollection") as ContextMenu);
+            //    ToolbarManager toolbarManager = new ToolbarManager();
+            //    System.Diagnostics.Debug.WriteLine(toolbarManager.Items.Count);
+            //    //this.LShapeToolbar.ItemsSource = toolbarManager.Items;
+            //    if (menu.Items.Count > 0) ((System.Windows.Controls.ItemsControl)(menu.Items[0])).ItemsSource = toolbarManager.Items;
+            //}
         }
         private Project CreateProject()
         {

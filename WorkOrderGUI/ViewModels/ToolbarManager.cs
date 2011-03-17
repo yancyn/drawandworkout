@@ -37,12 +37,35 @@ namespace WorkOrderGUI
                 Panel panel = ((System.Windows.Controls.Panel)((obj as Window).Content));
                 for (int i = panel.Children.Count - 1; i >= 0; i--)
                 {
+                    ToolbarViewModel viewModel = null;
                     if (panel.Children[i] is Shape)
                     {
-                        ToolbarViewModel viewModel = new ToolbarViewModel(panel.Children[i] as Shape);
-                        panel.Children.RemoveAt(i);
-                        this.items.Add(viewModel);
+                        viewModel = new ToolbarViewModel(panel.Children[i] as Shape);
                     }
+                    if (panel.Children[i] is Panel)
+                    {
+                        Panel panel2 = (Panel)panel.Children[i];
+                        if (panel2.Children.Count == 2)  //todo: finetune
+                        {
+                            viewModel = new ToolbarViewModel(panel2.Children[0] as Shape);
+                            Panel panel3 = (Panel)panel2.Children[1];
+                            //remove 2 children from host
+                            panel2.Children.RemoveAt(0);
+                            panel2.Children.RemoveAt(0);
+
+                            for (int j = panel3.Children.Count - 1; j >= 0; j--)
+                            {
+                                ToolbarViewModel v = null;
+                                if (panel3.Children[j] is Shape) v = new ToolbarViewModel(panel3.Children[j] as Shape);
+                                panel3.Children.RemoveAt(j);
+                                viewModel.Children.Add(v);
+                            }
+                        }
+                    }
+
+                    panel.Children.RemoveAt(i);
+                    //last in last out
+                    if (viewModel != null) this.items.Insert(0, viewModel);//this.items.Add(viewModel);
                 }
                 (obj as Window).Close();//key: force hidden window close or dispose.
             }
