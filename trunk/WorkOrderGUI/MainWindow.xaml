@@ -7,19 +7,6 @@
     Title="WorkOrder beta" Height="600" Width="800" WindowState="Maximized">
     <!--xmlns:wpg="clr-namespace:WPG;assembly=WPG"-->
     <Window.Resources>
-        <ContextMenu x:Key="MenuLShapeCollection" x:Name="MenuLShapeCollection" Style="{StaticResource TransparentFloatingToolbar}">
-            <ToolBar x:Name="LShapeToolbar" DataContext="{Binding}">
-                <ToolBar.ItemTemplate>
-                    <DataTemplate>
-                        <RadioButton Style="{StaticResource ToolbarButton}" Content="{Binding Item}"/>
-                    </DataTemplate>
-                </ToolBar.ItemTemplate>
-            </ToolBar>
-        </ContextMenu>
-        <Style x:Key="ThemeMenuItemsStyle" TargetType="MenuItem">
-            <Setter Property="Header" Value="{Binding Name}"/>
-            <!--<Setter Property="Command" Value="{Binding ActivateCommand}"/>-->
-        </Style>
         <DataTemplate x:Key="ProjectTemplate">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -60,7 +47,8 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
-        <g:PageTemplateSelector x:Key="pageTemplateSelector"/>
+        <g:PageTemplateSelector x:Key="PageTemplateSelector"/>
+        <g:RowCountConverter x:Key="RowCountConverter"/>
     </Window.Resources>
 
     <Grid x:Name="MainGrid">
@@ -125,6 +113,11 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Tools">
+                <MenuItem Header="_Home">
+                    <MenuItem.Icon>
+                        <Image Source="Images/house.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <MenuItem Header="_Stock">
                     <MenuItem.Icon>
                         <Image Source="Images/package.png"/>
@@ -143,6 +136,7 @@
                 <Separator/>
                 <MenuItem Header="_Report"/>
             </MenuItem>
+            <MenuItem x:Name="MenuWindow" Header="_Window"/>
             <MenuItem Header="_Help">
                 <MenuItem Header="_Index">
                     <MenuItem.Icon>
@@ -190,59 +184,30 @@
             </Grid.ColumnDefinitions>
             <ToolBarTray Grid.Row="0" Orientation="Vertical">
                 <ToolBar x:Name="Toolbox">
-                    <RadioButton Style="{StaticResource ToolbarButton}" ToolTip="Selector">
-                        <Path x:Name="ButtonSelector" Stroke="White" Fill="Black" Data="M 0.5575,18.7662 C 0.5575,18.7662 0.5,0.5 0.5,0.5 c 0,0 12.04014,12.8752 12.04014,12.8752 0,0 -5.20198,-0.1182 -5.20198,-0.1182 0,0 3.4254,5.6771 3.4254,5.6771 0,0 -4.47307,2.1183 -4.47307,2.1183 0,0 -2.00879,-6.4587 -2.00879,-6.4587 0,0 -3.7242,4.1725 -3.7242,4.1725 z"/>
-                    </RadioButton>
-                    <RadioButton x:Name="ButtonLShape" Style="{StaticResource ToolbarButton}" ContextMenu="{StaticResource MenuLShapeCollection}">
-                        <RadioButton.Triggers>
-                            <EventTrigger RoutedEvent="RadioButton.Checked">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <BooleanAnimationUsingKeyFrames
-                                            Storyboard.TargetName="MenuLShapeCollection"
-                                            Storyboard.TargetProperty="IsOpen">
-                                            <DiscreteBooleanKeyFrame KeyTime="0:0:1" Value="True"/>
-                                            <DiscreteBooleanKeyFrame KeyTime="0:0:3" Value="False"/>
-                                        </BooleanAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </RadioButton.Triggers>
-                        <Path Stroke="Black" Data="m 0,0 0,15 0,6 6,0 9,0 0,-6 L 6,15 6,0 0,0 z"/>
-                    </RadioButton>
-                    <RadioButton Style="{StaticResource ToolbarButton}" ToolTip="Kitchen">
-                        <Path Stroke="Black" Data="M 0,0 0,12.857143 0,18 5.1428571,18 18,18 l 0,-5.142857 -12.8571429,0 L 5.1428571,0 0,0 z"/>
-                    </RadioButton>
-                    <RadioButton Style="{StaticResource ToolbarButton}" ToolTip="Kitchen">
-                        <Path Stroke="Black" Data="M 0,0 0,12.85714 0,18 5.14286,18 18,18 l 0,-5.14286 0,-7.71428 -5.14286,0 0,7.71428 -7.71428,0 L 5.14286,0 0,0 z"/>
-                    </RadioButton>
-                    <RadioButton Style="{StaticResource ToolbarButton}" ToolTip="Kitchen">
-                        <Path Stroke="Black" Data="M 0,0 0,12.857143 0,18 5.14286,18 18,18 18,12.857143 18,0 l -5.14286,0 0,12.857143 -7.71428,0 L 5.14286,0 0,0 z"/>
-                    </RadioButton>
-                    <RadioButton Style="{StaticResource ToolbarButton}" ToolTip="Rectangle">
-                        <Rectangle Width="20" Height="16" StrokeThickness="1" Stroke="Black"/>
-                    </RadioButton>
-                    <RadioButton Style="{StaticResource ToolbarButton}" ToolTip="Basin">
-                        <Rectangle Width="20" Height="16" StrokeThickness="1" Stroke="Black" RadiusX="5" RadiusY="5"/>
-                    </RadioButton>
-                    <RadioButton Style="{StaticResource ToolbarButton}" ToolTip="Square">
-                        <Rectangle Width="20" Height="20" StrokeThickness="1" Stroke="Black"/>
-                    </RadioButton>
-                    <RadioButton Style="{StaticResource ToolbarButton}" ToolTip="Basin">
-                        <Ellipse Width="20" Height="16" StrokeThickness="1" Stroke="Black"/>
-                    </RadioButton>
-                    <RadioButton Style="{StaticResource ToolbarButton}" ToolTip="Circle">
-                        <Ellipse Width="20" Height="20" StrokeThickness="1" Stroke="Black"/>
-                    </RadioButton>
-                    <ToggleButton Width="32" Height="32">
-                        <Path Fill="Black" Data="m 18,10 -8,8 8,0 0,-8 z"/>
-                    </ToggleButton>
+                    <ToolBar.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton Style="{StaticResource ToolbarButton}" Content="{Binding Item}" ToolTip="{Binding Item.ToolTip}">
+                                <RadioButton.ContextMenu>
+                                    <ContextMenu Style="{StaticResource TransparentFloatingToolbar}"
+                                                 Visibility="{Binding Children.Count,Converter={StaticResource RowCountConverter}}">
+                                        <ToolBar ItemsSource="{Binding Children}">
+                                            <ToolBar.ItemTemplate>
+                                                <DataTemplate>
+                                                    <RadioButton Content="{Binding Item}" Style="{StaticResource ToolbarButton}" ToolTip="{Binding Item.ToolTip}"/>
+                                                </DataTemplate>
+                                            </ToolBar.ItemTemplate>
+                                        </ToolBar>
+                                    </ContextMenu>
+                                </RadioButton.ContextMenu>
+                            </RadioButton>
+                        </DataTemplate>
+                    </ToolBar.ItemTemplate>
                 </ToolBar>
             </ToolBarTray>
             <TabControl x:Name="MainTabControl" Grid.Column="1"
                         DataContext="{Binding ElementName=MainGrid,Path=DataContext}"
                         ItemsSource="{Binding ElementName=MainGrid,Path=DataContext.Items}"
-                        ContentTemplateSelector="{StaticResource pageTemplateSelector}"/>
+                        ContentTemplateSelector="{StaticResource PageTemplateSelector}"/>
         </Grid>
     </Grid>
 </Window>

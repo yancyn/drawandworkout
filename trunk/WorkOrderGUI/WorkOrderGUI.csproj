@@ -97,6 +97,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters.cs" />
     <Compile Include="DataTemplateSelectors.cs" />
     <Compile Include="ViewModels\ToolbarManager.cs" />
     <Compile Include="ViewModels\ToolbarViewModel.cs" />
