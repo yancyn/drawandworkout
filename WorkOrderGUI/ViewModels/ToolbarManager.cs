@@ -16,6 +16,9 @@ namespace WorkOrderGUI
     {
         #region Properties
         private ObservableCollection<ToolbarViewModel> items;
+        /// <summary>
+        /// Toolbar collection.
+        /// </summary>
         public ObservableCollection<ToolbarViewModel> Items { get { return this.items; } }
         #endregion
 
@@ -32,11 +35,12 @@ namespace WorkOrderGUI
             {
                 DependencyObject obj = XamlReader.Load(reader.BaseStream) as DependencyObject;
                 Panel panel = ((System.Windows.Controls.Panel)((obj as Window).Content));
-                for (int i = 0; i < panel.Children.Count; i++)
+                for (int i = panel.Children.Count - 1; i >= 0; i--)
                 {
                     if (panel.Children[i] is Shape)
                     {
                         ToolbarViewModel viewModel = new ToolbarViewModel(panel.Children[i] as Shape);
+                        panel.Children.RemoveAt(i);
                         this.items.Add(viewModel);
                     }
                 }
