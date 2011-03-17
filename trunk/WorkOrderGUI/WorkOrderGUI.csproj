@@ -75,6 +75,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Toolbars.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\ShapesToolbar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -94,6 +98,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTemplateSelectors.cs" />
+    <Compile Include="ViewModels\ToolbarManager.cs" />
+    <Compile Include="ViewModels\ToolbarViewModel.cs" />
     <Compile Include="ViewModels\PageManager.cs" />
     <Compile Include="ViewModels\PageViewModel.cs" />
     <Compile Include="Resources\CustomControls.xaml.cs">
@@ -183,4 +189,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(ProjectDir)\Resources\Toolbars.xaml" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
