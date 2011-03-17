@@ -29,10 +29,6 @@ namespace WorkOrderGUI
         public MainWindow()
         {
             InitializeComponent();
-            //System.Diagnostics.Debug.WriteLine(rect1.Height);
-            //rect1.Margin;
-            //propertyGrid1.Instance = 
-            //MainMenu.ItemsSource = BuildMenu();
 
             PageManager pageManager = new PageManager();
             Project project = CreateProject();
@@ -46,9 +42,12 @@ namespace WorkOrderGUI
             Stocks stocks = new Stocks();
             PageViewModel page3 = new PageViewModel(stocks);
             pageManager.Add(page3);
-            //pageManager.Add(new PageViewModel(new Project()));
-
             this.MainTabControl.ItemsSource = pageManager.Items;
+
+
+            //ToolbarManager toolbarManager = new ToolbarManager();
+            //System.Diagnostics.Debug.WriteLine(toolbarManager.Items.Count);
+            //this.LShapeToolbar.ItemsSource = toolbarManager.Items;
         }
         private Project CreateProject()
         {

@@ -7,7 +7,7 @@ using HLGranite.Drawing;
 
 namespace WorkOrderGUI
 {
-    public class PageViewModel
+    public class PageViewModel : object, System.ComponentModel.INotifyPropertyChanged
     {
         private Object item;
         public Object Item { get { return this.item; } set { this.item = value; } }
@@ -35,6 +35,16 @@ namespace WorkOrderGUI
             }
 
             return base.ToString();
+        }
+
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null))
+            {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }
