@@ -44,10 +44,9 @@ namespace WorkOrderGUI
             pageManager.Add(page3);
             this.MainTabControl.ItemsSource = pageManager.Items;
 
-
-            //ToolbarManager toolbarManager = new ToolbarManager();
-            //System.Diagnostics.Debug.WriteLine(toolbarManager.Items.Count);
-            //this.LShapeToolbar.ItemsSource = toolbarManager.Items;
+            ToolbarManager toolbarManager = new ToolbarManager();
+            System.Diagnostics.Debug.WriteLine(toolbarManager.Items.Count);
+            this.LShapeToolbar.ItemsSource = toolbarManager.Items;
         }
         private Project CreateProject()
         {

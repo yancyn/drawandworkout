@@ -78,15 +78,23 @@ namespace HLGranite.Drawing
         /// <see>http://blogs.msdn.com/b/ashish/archive/2007/08/14/dynamically-loading-xaml.aspx</see>
         public DependencyObject GetDrawing()
         {
+            StreamReader reader = new StreamReader(this.guidField.ToString() + ".xaml", Encoding.UTF8);
             try
             {
-                StreamReader reader = new StreamReader(this.guidField.ToString() + ".xaml", Encoding.UTF8);
                 return XamlReader.Load(reader.BaseStream) as DependencyObject;
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex);
                 throw ex;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                    reader.Dispose();
+                }
             }
         }
 
