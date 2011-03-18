@@ -10,7 +10,6 @@ namespace HLGranite.Drawing
         public WorkOrder()
         {
             this.guidField = Guid.NewGuid();
-            this.stockField = new Stock();
             this.itemsField = new List<WorkItem>();
         }
     }

@@ -27,9 +27,9 @@ namespace HLGranite.Drawing
 
         protected System.Guid guidField;
 
-        private string notesField;
+        protected string notesField;
 
-        private List<Object> tagField;
+        protected List<Object> tagsField;
 
         public System.Guid Guid
         {
@@ -79,25 +79,25 @@ namespace HLGranite.Drawing
             }
         }
 
-        public List<Object> Tag
+        public List<Object> Tags
         {
             get
             {
-                return this.tagField;
+                return this.tagsField;
             }
             set
             {
-                if ((this.tagField != null))
+                if ((this.tagsField != null))
                 {
-                    if ((tagField.Equals(value) != true))
+                    if ((tagsField.Equals(value) != true))
                     {
-                        this.tagField = value;
+                        this.tagsField = value;
                         this.OnPropertyChanged("Tag");
                     }
                 }
                 else
                 {
-                    this.tagField = value;
+                    this.tagsField = value;
                     this.OnPropertyChanged("Tag");
                 }
             }
@@ -119,8 +119,6 @@ namespace HLGranite.Drawing
     {
 
         private System.Guid guidField;
-
-        private Stock stockField;
 
         private List<WorkItem> itemsField;
 
@@ -144,30 +142,6 @@ namespace HLGranite.Drawing
                 {
                     this.guidField = value;
                     this.OnPropertyChanged("Guid");
-                }
-            }
-        }
-
-        public Stock Stock
-        {
-            get
-            {
-                return this.stockField;
-            }
-            set
-            {
-                if ((this.stockField != null))
-                {
-                    if ((stockField.Equals(value) != true))
-                    {
-                        this.stockField = value;
-                        this.OnPropertyChanged("Stock");
-                    }
-                }
-                else
-                {
-                    this.stockField = value;
-                    this.OnPropertyChanged("Stock");
                 }
             }
         }
@@ -1379,11 +1353,11 @@ namespace HLGranite.Drawing
 
         private Customer deliverToField;
 
+        private System.DateTime? dueDateField;
+
         private List<WorkOrder> workOrdersField;
 
         private ProjectStage stageField;
-
-        private decimal progressField;
 
         public System.DateTime CreatedAt
         {
@@ -1482,6 +1456,22 @@ namespace HLGranite.Drawing
             }
         }
 
+        public System.DateTime? DueDate
+        {
+            get
+            {
+                return this.dueDateField;
+            }
+            set
+            {
+                if ((createdAtField.Equals(value) != true))
+                {
+                    this.dueDateField = value;
+                    this.OnPropertyChanged("DueDate");
+                }
+            }
+        }
+
         /// <summary>
         /// Gets or sets work order collection for this project.
         /// </summary>
@@ -1524,34 +1514,6 @@ namespace HLGranite.Drawing
                 {
                     this.stageField = value;
                     this.OnPropertyChanged("Stage");
-                }
-            }
-        }
-
-        /// <summary>
-        /// Overall progress in percentage for this project only.
-        /// It may contains multiple of work order.
-        /// </summary>
-        public decimal Progress
-        {
-            get
-            {
-                return this.progressField;
-            }
-            set
-            {
-                if ((this.progressField != null))
-                {
-                    if ((progressField.Equals(value) != true))
-                    {
-                        this.progressField = value;
-                        this.OnPropertyChanged("Progress");
-                    }
-                }
-                else
-                {
-                    this.progressField = value;
-                    this.OnPropertyChanged("Progress");
                 }
             }
         }

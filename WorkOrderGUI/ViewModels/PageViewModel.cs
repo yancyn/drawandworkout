@@ -27,14 +27,28 @@ namespace WorkOrderGUI
         /// <returns></returns>
         public override string ToString()
         {
+            string output = base.ToString();
             if (this.item.GetType() == typeof(Project))
-                return (item as Project).Guid.ToString();
-            if (this.item.GetType() == typeof(DatabaseObject))
+            {
+                Project project = item as Project;
+                output = project.CreatedAt.ToString("yyMMdd-HHmm");
+                //<!-- &#x0a; line break -->
+                //<!-- &#0d; tab -->
+                if (project.WorkOrders.Count > 0 && project.WorkOrders[0].Items.Count > 0)
+                {
+                    if (project.WorkOrders[0].Items[0].Material.Name2.Length > 0)
+                        output += "\n" + project.WorkOrders[0].Items[0].Material.Name2;
+                    else if (project.WorkOrders[0].Items[0].Material.Name1.Length > 0)
+                        output += "\n" + project.WorkOrders[0].Items[0].Material.Name1;
+                }
+                //output = (item as Project).Guid.ToString();
+            }
+            else if (this.item.GetType() == typeof(DatabaseObject))
             {
                 //todo: return (item as DatabaseObject).Name
             }
 
-            return base.ToString();
+            return output;
         }
 
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;

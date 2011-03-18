@@ -65,6 +65,7 @@ namespace WorkOrderGUI
             Customer agent = new Customer { GivenName = "John" };
 
             Customer customer = new Customer { GivenName = "Ah Hock" };
+            customer.Phones.Add(new vCardPhone { FullNumber = "012-4711134" });
             vCardDeliveryAddress deliver = new vCardDeliveryAddress();
             deliver.Street = "963 Jalan 6";
             deliver.Region = "Machang Bubok";
@@ -72,6 +73,8 @@ namespace WorkOrderGUI
             deliver.PostalCode = "05400";
             deliver.Country = "Malaysia";
             customer.DeliveryAddresses.Add(deliver);
+            customer.Latitude = 6.09105f;
+            customer.Longitude = 100.44629f;
 
             Project target = new Project();
             target.CreatedBy = creator;
@@ -80,8 +83,8 @@ namespace WorkOrderGUI
             target.Stage = ProjectStage.Draft;
 
             WorkOrder wo = new WorkOrder();
-            wo.Items.Add(new WorkItem { MaxHeight = 24, MaxWidth = 56, Material = new Stock { Name1 = "Tan Brown" } });
-            wo.Items.Add(new WorkItem { MaxHeight = 12, MaxWidth = 34, Material = new Stock { Name1 = "Black Galaxy" } });
+            wo.Items.Add(new WorkItem { MaxHeight = 24, MaxWidth = 56, Material = new Stock { Name1 = "Tan Brown" }, Progress = 10 });
+            wo.Items.Add(new WorkItem { MaxHeight = 12, MaxWidth = 34, Material = new Stock { Name1 = "Black Galaxy" }, Progress = 30 });
             target.WorkOrders.Add(wo);
 
             return target;

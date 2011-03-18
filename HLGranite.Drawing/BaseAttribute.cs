@@ -11,10 +11,10 @@ namespace HLGranite.Drawing
 
         public BaseAttribute()
         {
-            this.guidField = Guid.NewGuid();
-            this.notesField = string.Empty;
             this.dateField = DateTime.Now;
-            this.tagField = new List<object>();
+            this.guidField = Guid.NewGuid();
+            this.notesField = string.Empty;            
+            this.tagsField = new List<object>();
         }
     }
 }

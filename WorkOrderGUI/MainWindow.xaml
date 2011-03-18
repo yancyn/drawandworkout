@@ -7,48 +7,106 @@
     Title="WorkOrder beta" Height="600" Width="800" WindowState="Maximized">
     <!--xmlns:wpg="clr-namespace:WPG;assembly=WPG"-->
     <Window.Resources>
+        <g:RowCountConverter x:Key="RowCountConverter"/>
+        <g:NumberConverter x:Key="NumberConverter"/>
+        <g:PercentageConverter x:Key="PercentageConverter"/>
         <DataTemplate x:Key="ProjectTemplate">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="250"/>
                 </Grid.ColumnDefinitions>
-                <Canvas Grid.Column="0"/>
-                <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Right">
-                    <GroupBox Header="Project">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0" Margin="0,0,4,0">
-                                <TextBlock Text="No."/>
-                                <TextBlock Text="Created By"/>
-                                <TextBlock Text="Created At"/>
-                                <TextBlock Text="Order By"/>
-                                <TextBlock Text="Address"/>
-                                <TextBlock Text="Taman"/>
-                                <TextBlock Text="City"/>
-                                <TextBlock Text="Phone"/>
-                            </StackPanel>
-                            <StackPanel Grid.Column="1">
-                                <TextBlock Text="{Binding Item.Guid}"/>
-                                <TextBlock Text="{Binding Item.CreatedBy.EmailAddresses[0]}"/>
-                                <w:DatePicker/>
-                                <TextBox/>
-                                <TextBox/>
-                                <TextBox/>
-                                <TextBox/>
-                                <TextBlock Text="{Binding Item.Progress}"/>
-                            </StackPanel>
-                        </Grid>
-                    </GroupBox>
-                    <GroupBox Header="Details"/>
-                </StackPanel>
+                <Canvas Grid.Column="0" Margin="40" Background="Beige"/><!-- temp -->
+                <ScrollViewer Grid.Column="1" HorizontalAlignment="Right" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel>
+                        <GroupBox Header="Project">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="Reference No."/>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Item.CreatedAt,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Grid.Column="0" Grid.Row="1" Text="Received Date"/>
+                                <w:DatePicker Grid.Column="1" Grid.Row="1" SelectedDate="{Binding Item.CreatedAt,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Grid.Column="0" Grid.Row="2" Text="Created By"/>
+                                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Item.CreatedBy.EmailAddresses[0],ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+
+                                <TextBlock Grid.Column="0" Grid.Row="3" Text="Order By"/>
+                                <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Item.OrderBy.GivenName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Grid.Column="0" Grid.Row="4" Text="Customer Name"/>
+                                <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Item.DeliverTo.GivenName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Grid.Column="0" Grid.Row="5" Text="Phone"/>
+                                <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding Item.DeliverTo.Phones[0].FullNumber,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Grid.Column="0" Grid.Row="6" Text="Address"/>
+                                <TextBox Grid.Column="1" Grid.Row="6"/>
+                                <TextBlock Grid.Column="0" Grid.Row="7" Text="Taman"/>
+                                <TextBox Grid.Column="1" Grid.Row="7"/>
+                                <TextBlock Grid.Column="0" Grid.Row="8" Text="City"/>
+                                <TextBox Grid.Column="1" Grid.Row="8" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].City,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Grid.Column="0" Grid.Row="9" Text="GPS"/>
+                                <WrapPanel Grid.Column="1" Grid.Row="9">
+                                    <TextBox Text="{Binding Item.DeliverTo.Latitude,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text=" "/>
+                                    <TextBox Text="{Binding Item.DeliverTo.Longitude,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                                </WrapPanel>
+
+                                <TextBlock Grid.Column="0" Grid.Row="10" Text="Remarks"/>
+                                <TextBox Grid.Column="1" Grid.Row="10" MinLines="3" AcceptsReturn="True" Text="{Binding Item.Notes,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="Summary">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="Granite Type"/>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Item.WorkOrders[0].Items[0].Material}"/>
+                                <TextBlock Grid.Column="0" Grid.Row="1" Text="Deliver Date"/>
+                                <w:DatePicker Grid.Column="1" Grid.Row="1" SelectedDate="{Binding Item.DueDate,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Grid.Column="0" Grid.Row="2" Text="Progress"/>
+                                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Item.Progress,Converter={StaticResource PercentageConverter}}"/>
+
+                                <TextBlock Grid.Column="0" Grid.Row="3" Text="Total Area(f²)"/>
+                                <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Item.TotalArea,Converter={StaticResource NumberConverter}}"/>
+                                <TextBlock Grid.Column="0" Grid.Row="4" Text="Total Long(f)"/>
+                                <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Item.TotalLong,Converter={StaticResource NumberConverter}}"/>
+                                <TextBlock Grid.Column="0" Grid.Row="5" Text="Total Polishing(f)"/>
+                                <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Item.TotalPolish,Converter={StaticResource NumberConverter}}"/>
+                                <TextBlock Grid.Column="0" Grid.Row="6" Text="Other"/>
+                                <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Item.TotalOther,Converter={StaticResource NumberConverter}}"/>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="Details"/>
+                    </StackPanel>
+                </ScrollViewer>
             </Grid>
         </DataTemplate>
         <g:PageTemplateSelector x:Key="PageTemplateSelector"/>
-        <g:RowCountConverter x:Key="RowCountConverter"/>
     </Window.Resources>
 
     <Grid x:Name="MainGrid">
@@ -61,7 +119,7 @@
         <!--<Menu x:Name="MainMenu" Grid.Row="0" DataContext="{Binding}" ItemContainerStyle="{StaticResource ThemeMenuItemsStyle}"/>-->
         <Menu x:Name="MainMenu" Grid.Row="0">
             <MenuItem Header="_File">
-                <MenuItem x:Name="MenuNew" Header="_New">
+                <MenuItem x:Name="MenuNew" Header="_New" Command="{Binding NewProject}">
                     <MenuItem.Icon>
                         <Image Source="Images\page.png"/>
                     </MenuItem.Icon>
