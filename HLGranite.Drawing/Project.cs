@@ -35,16 +35,22 @@ namespace HLGranite.Drawing
             {
                 decimal totalProgress = 0.00m;
                 int totalItem = 0;
-                for (int i = 0; i < this.workOrdersField.Count; i++)
-                {
-                    totalProgress += this.workOrdersField[i].Items.Sum(w => w.Progress);
-                    totalItem += this.workOrdersField[i].Items.Count;
-                }
-                //var result = (from f in this.workOrdersField
-                //                 select new{
-                //                     amount = f.Items.Sum(m => m.Progress),
-                //                 }
-                //                 ).SingleOrDefault();
+                //for (int i = 0; i < this.workOrdersField.Count; i++)
+                //{
+                //    totalProgress += this.workOrdersField[i].Items.Sum(w => w.Progress);
+                //    totalItem += this.workOrdersField[i].Items.Count;
+                //}
+
+                totalProgress = this.workOrdersField.Sum(w => w.Items.Sum(i => i.Progress));
+                totalItem = this.workOrdersField.Sum(w => w.Items.Count);
+                //var result = (from w in this.workOrdersField
+                //              select new
+                //              {
+                //                  TotalProgress = w.Items.Sum(f => f.Progress),
+                //                  TotalItemCount = w.Items.Count,
+                //              }).FirstOrDefault();
+                //totalProgress = result.TotalProgress;
+                //totalItem = result.TotalItemCount;
 
                 this.progressField = totalProgress / totalItem;
             }
