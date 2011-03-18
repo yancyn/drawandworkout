@@ -81,6 +81,10 @@
         <element xmi:type="uml:Property" href="DataModel.uml#__3hxsEhyEeCrgMci05vtLw"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="__3sw0UhyEeCrgMci05vtLw"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_oUgZsFEtEeCcAtodVkhrzg" type="3001">
+        <element xmi:type="uml:Property" href="DataModel.uml#_oM6j8FEtEeCcAtodVkhrzg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_oUgZsVEtEeCcAtodVkhrzg"/>
+      </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_tPWYVkTSEeC_SaZDL-mcDw" showTitle="true"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_tPWYV0TSEeC_SaZDL-mcDw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_tPWYWETSEeC_SaZDL-mcDw"/>
@@ -2618,15 +2622,6 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_CBzKs0sBEeC2fOUhTSfUyg" points="[25, 18, -66, -50]$[75, 56, -16, -12]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CB8UoEsBEeC2fOUhTSfUyg" id="(0.8355263157894737,0.8333333333333334)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CB8UoUsBEeC2fOUhTSfUyg" id="(0.26,0.2)"/>
-  </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_opesoE-XEeCY6K18wnk5gA" type="4001" source="_tPWYUETSEeC_SaZDL-mcDw" target="_H8nSgElwEeCv8taoZkDd9Q">
-    <children xmi:type="notation:DecorationNode" xmi:id="_opgh0E-XEeCY6K18wnk5gA" type="6018">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_opgh0U-XEeCY6K18wnk5gA" y="40"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_opesoU-XEeCY6K18wnk5gA" fontName="Segoe UI"/>
-    <element xmi:type="uml:Generalization" href="DataModel.uml#_K2-qUEbdEeCvMexyU7cjtg"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_opesok-XEeCY6K18wnk5gA" points="[68, 13, -382, -74]$[391, 76, -59, -11]"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ophI4E-XEeCY6K18wnk5gA" id="(1.0,1.0)"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_OzHYUE-nEeCY6K18wnk5gA" type="4005" source="_3k8WUETWEeCJe9RP8ofhZg" target="_3k8WUETWEeCJe9RP8ofhZg">
     <children xmi:type="notation:DecorationNode" xmi:id="_OzH_YE-nEeCY6K18wnk5gA" type="6003">

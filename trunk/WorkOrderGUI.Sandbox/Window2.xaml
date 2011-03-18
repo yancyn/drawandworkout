@@ -13,34 +13,45 @@
             <GroupBox Header="Project">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Margin="0,0,4,0">
-                        <TextBlock Text="No."/>
-                        <TextBlock Text="Created By"/>
-                        <TextBlock Text="Created At"/>
-                        <TextBlock Text="Order By"/>
-                        <TextBlock Text="Address"/>
-                        <TextBlock Text="Taman"/>
-                        <TextBlock Text="City"/>
-                        <TextBlock Text="Phone"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1">
-                        <TextBlock Text="010311"/>
-                        <TextBlock Text="yancyn@gmail.com"/>
-                        <w:DatePicker />
-                        <TextBox/>
-                        <TextBox/>
-                        <TextBox/>
-                        <TextBox/>
-                        <TextBox/>
-                    </StackPanel>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Reference No."/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Item.CreatedAt}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Created By"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Item.CreatedBy.EmailAddresses[0]}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Created At"/>
+                    <w:DatePicker Grid.Column="1" Grid.Row="2" DisplayDate="{Binding Item.CreatedAt}" SelectedDate="3/18/2011" />
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Order By"/>
+                    <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Item.OrderBy.GivenName}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4" Text="Customer Name"/>
+                    <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Item.DeliverTo.GivenName}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="5" Text="Address"/>
+                    <TextBox Grid.Column="1" Grid.Row="5"/>
+                    <TextBlock Grid.Column="0" Grid.Row="6" Text="Taman"/>
+                    <TextBox Grid.Column="1" Grid.Row="6"/>
+                    <TextBlock Grid.Column="0" Grid.Row="7" Text="City"/>
+                    <TextBox Grid.Column="1" Grid.Row="7" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].City}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="8" Text="Phone"/>
+                    <TextBox Grid.Column="1" Grid.Row="8" Text="{Binding Item.DeliverTo.Phones[0].FullNumber}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="9" Text="Progress"/>
+                    <TextBlock Grid.Column="1" Grid.Row="9" Text="{Binding Item.Progress}"/>
                 </Grid>
             </GroupBox>
-            <GroupBox Header="Details">
-
-            </GroupBox>
+            <GroupBox Header="Details"/>
         </StackPanel>
     </Grid>
 </Window>

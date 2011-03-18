@@ -99,5 +99,56 @@ namespace HLGranite.Drawing.Test
 
             target.Save();
         }
+        [TestMethod()]
+        public void SaveWithoutDueDateTest()
+        {
+            Employee creator = new Employee();
+            creator.EmailAddresses.Add(new vCardEmailAddress { Address = "yancyn@gmail.com" });
+
+            Customer agent = new Customer { GivenName = "John" };
+
+            Customer customer = new Customer { GivenName = "Ah Hock" };
+            vCardDeliveryAddress deliver = new vCardDeliveryAddress();
+            deliver.Street = "963 Jalan 6";
+            deliver.Region = "Machang Bubok";
+            deliver.City = "Bukit Mertajam";
+            deliver.PostalCode = "05400";
+            deliver.Country = "Malaysia";
+            customer.DeliveryAddresses.Add(deliver);
+
+            Project target = new Project();
+            target.CreatedBy = creator;
+            target.DeliverTo = customer;//customer.DeliveryAddresses[0];
+            target.OrderBy = agent;
+            target.Stage = ProjectStage.Draft;
+
+            target.Save();
+        }
+        [TestMethod()]
+        public void SaveWithDueDateTest()
+        {
+            Employee creator = new Employee();
+            creator.EmailAddresses.Add(new vCardEmailAddress { Address = "yancyn@gmail.com" });
+
+            Customer agent = new Customer { GivenName = "John" };
+
+            Customer customer = new Customer { GivenName = "Ah Hock" };
+            vCardDeliveryAddress deliver = new vCardDeliveryAddress();
+            deliver.Street = "963 Jalan 6";
+            deliver.Region = "Machang Bubok";
+            deliver.City = "Bukit Mertajam";
+            deliver.PostalCode = "05400";
+            deliver.Country = "Malaysia";
+            customer.DeliveryAddresses.Add(deliver);
+
+            Project target = new Project();
+            target.CreatedBy = creator;
+            target.DeliverTo = customer;//customer.DeliveryAddresses[0];
+            target.OrderBy = agent;
+            target.Stage = ProjectStage.Draft;
+            target.DueDate = System.DateTime.Now.AddDays(10);
+
+            target.Save();
+        }
     }
 }

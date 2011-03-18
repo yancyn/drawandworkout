@@ -11,23 +11,136 @@ namespace HLGranite.Drawing
 {
     public partial class Project
     {
+        #region Properties
         private string fileName;
+        private decimal progressField;
+        /// <summary>
+        /// Gets overall progress in percentage for this project only.
+        /// It may contains multiple of work order.
+        /// </summary>
+        public decimal Progress
+        {
+            get
+            {
+                CalculateProgress();
+                return this.progressField;
+            }
+        }
+        /// <summary>
+        /// Calculate overall project progress based on total work item.
+        /// </summary>
+        private void CalculateProgress()
+        {
+            if (this.workOrdersField.Count > 0)
+            {
+                decimal totalProgress = 0.00m;
+                int totalItem = 0;
+                for (int i = 0; i < this.workOrdersField.Count; i++)
+                {
+                    totalProgress += this.workOrdersField[i].Items.Sum(w => w.Progress);
+                    totalItem += this.workOrdersField[i].Items.Count;
+                }
+                //var result = (from f in this.workOrdersField
+                //                 select new{
+                //                     amount = f.Items.Sum(m => m.Progress),
+                //                 }
+                //                 ).SingleOrDefault();
+
+                this.progressField = totalProgress / totalItem;
+            }
+        }
+        private decimal totalAreaField;
+        public decimal TotalArea
+        {
+            get
+            {
+                return this.totalAreaField;
+            }
+        }
+        private decimal totalLongField;
+        public decimal TotalLong
+        {
+            get
+            {
+                return this.totalLongField;
+            }
+        }
+        private decimal totalPolishField;
+        public decimal TotalPolish
+        {
+            get
+            {
+                return this.totalPolishField;
+            }
+        }
+        private decimal totalOtherField;
+        public decimal TotalOther
+        {
+            get
+            {
+                return this.totalOtherField;
+            }
+        }
+        #endregion
+
         /// <summary>
         /// Default constructor.
         /// </summary>
         public Project()
+        {
+            Initialize();
+        }
+        /// <summary>
+        /// Retrieve constructor.
+        /// </summary>
+        /// <param name="guid"></param>
+        public Project(Guid guid)
+        {
+            this.guidField = guid;
+            this.fileName = this.guidField.ToString();
+            Copy(LoadFromFile());
+        }
+
+        #region Methods
+        /// <summary>
+        /// Initialize object instance.
+        /// </summary>
+        protected void Initialize()
         {
             this.fileName = string.Empty;
 
             this.guidField = Guid.NewGuid();
             this.createdAtField = DateTime.Now;
             //todo: this.CreatedBy = current login user
-            this.progressField = 0m;
+            //this.dueDateField = DateTime.Now;
             this.stageField = ProjectStage.Draft;
             this.workOrdersField = new List<WorkOrder>();
-        }
 
-        #region Methods
+            this.progressField = 0m;
+            this.totalAreaField = 0m;
+            this.totalLongField = 0m;
+            this.totalOtherField = 0m;
+        }
+        /// <summary>
+        /// Clone to itself.
+        /// </summary>
+        /// <param name="sender"></param>
+        protected void Copy(Project sender)
+        {
+            this.dateField = sender.CreatedAt;
+            this.guidField = sender.Guid;
+            this.notesField = sender.Notes;
+            this.tagsField = sender.Tags;
+
+            this.createdAtField = sender.CreatedAt;
+            this.createdByField = sender.CreatedBy;
+            this.deliverToField = sender.DeliverTo;
+            this.dueDateField = sender.DueDate;
+            this.orderByField = sender.OrderBy;
+            this.progressField = sender.Progress;
+            this.stageField = sender.Stage;
+            this.workOrdersField = sender.WorkOrders;
+        }
         /// <summary>
         /// Save into database together with the canvas drawing.
         /// </summary>

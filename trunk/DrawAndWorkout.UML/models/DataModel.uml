@@ -23,6 +23,7 @@
     <ownedAttribute xmi:id="_jhad8ETTEeC_SaZDL-mcDw" name="Progress" type="_LbjqkEZ7EeCw34UU7FfFCw" isReadOnly="true" aggregation="composite"/>
     <ownedAttribute xmi:id="_Ky9TsEbiEeCP999jW41XiA" name="CreatedBy" type="_A3_9cETUEeC_SaZDL-mcDw" aggregation="composite"/>
     <ownedAttribute xmi:id="__3hxsEhyEeCrgMci05vtLw" name="Stage" type="_2dQ2sEhyEeCrgMci05vtLw" aggregation="composite"/>
+    <ownedAttribute xmi:id="_oM6j8FEtEeCcAtodVkhrzg" name="DueDate" type="_JFuk8ES1EeCFl51ftuwnCA" aggregation="composite"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_u-Ej8ETSEeC_SaZDL-mcDw" name="Projects">
     <generalization xmi:id="_9CvC0EeWEeCyObvqYt56PQ" general="_6pQC8EeWEeCyObvqYt56PQ"/>

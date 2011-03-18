@@ -84,7 +84,7 @@
       <!-- <xsd:element name="creator" type="Employee"/> -->
       <!-- <xsd:element name="date" type="xsd:dateTime"/> -->
       <xsd:element name="Notes" type="xsd:string"/>
-      <xsd:element name="Tag" type="Object" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="Tags" type="Object" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -298,6 +298,7 @@
               </xsd:documentation>
             </xsd:annotation>
           </xsd:element>
+          <xsd:element name="DueDate" type="xsd:dateTime"/>
           <xsd:sequence>
             <xsd:element name="WorkOrders" type="WorkOrder" minOccurs="1" maxOccurs="unbounded">
               <xsd:annotation>
@@ -487,7 +488,6 @@
   <xsd:complexType name="WorkOrder">
     <xsd:sequence>
       <xsd:element name="Guid" type="ms:guid"/>
-      <xsd:element name="Stock" type="Stock"/>
       <xsd:sequence>
         <xsd:element name="Items" type="WorkItem" minOccurs="1" maxOccurs="unbounded"/>
       </xsd:sequence>
