@@ -28,9 +28,9 @@ namespace WorkOrderGUI
             {
                 PageViewModel viewModel = item as PageViewModel;
                 if (viewModel.Item is Project)
-                {
                     return element.FindResource("ProjectTemplate") as DataTemplate;
-                }
+                else if (viewModel.Item is Stocks)
+                    return element.FindResource("StockTemplate") as DataTemplate;
             }
 
             return base.SelectTemplate(item, container);

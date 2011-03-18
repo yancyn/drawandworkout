@@ -58,7 +58,7 @@ namespace WorkOrderGUI
                                 ToolbarViewModel v = null;
                                 if (panel3.Children[j] is Shape) v = new ToolbarViewModel(panel3.Children[j] as Shape);
                                 panel3.Children.RemoveAt(j);
-                                viewModel.Children.Add(v);
+                                viewModel.Children.Insert(0, v);
                             }
                         }
                     }
