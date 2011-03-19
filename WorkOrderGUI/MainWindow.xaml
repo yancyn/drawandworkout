@@ -180,7 +180,7 @@
         <!--<Menu x:Name="MainMenu" Grid.Row="0" DataContext="{Binding}" ItemContainerStyle="{StaticResource ThemeMenuItemsStyle}"/>-->
         <Menu x:Name="MainMenu" Grid.Row="0">
             <MenuItem Header="_File">
-                <MenuItem x:Name="MenuNew" Header="_New" Command="{Binding NewProject}">
+                <MenuItem Header="_New" Command="{Binding NewProject}">
                     <MenuItem.Icon>
                         <Image Source="Images\page.png"/>
                     </MenuItem.Icon>
@@ -202,7 +202,9 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator/>
-                <MenuItem x:Name="MenuClose" Header="E_xit" Click="MenuClose_Click">
+                
+                <!-- todo: convert to ICommand-->
+                <MenuItem Header="E_xit" Click="MenuClose_Click">
                     <MenuItem.Icon>
                         <Image Source="Images/door_out.png"/>
                     </MenuItem.Icon>
@@ -237,7 +239,7 @@
                         <Image Source="Images/house.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Stock">
+                <MenuItem Header="_Stock" Command="{Binding OpenInventory}">
                     <MenuItem.Icon>
                         <Image Source="Images/package.png"/>
                     </MenuItem.Icon>
@@ -284,6 +286,7 @@
             <Button>
                 <Image Source="Images\printer.png" ToolTip="Print"/>
             </Button>
+            <Separator/>
             <Button>
                 <Image Source="Images\wrench.png" ToolTip="Setting"/>
             </Button>
@@ -325,7 +328,8 @@
             </ToolBarTray>
             <TabControl x:Name="MainTabControl" Grid.Column="1"
                         DataContext="{Binding ElementName=MainGrid,Path=DataContext}"
-                        ItemsSource="{Binding ElementName=MainGrid,Path=DataContext.Items}"
+                        ItemsSource="{Binding Items}"
+                        SelectedItem="{Binding CurrentPage,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
                         ContentTemplateSelector="{StaticResource PageTemplateSelector}"/>
         </Grid>
     </Grid>
