@@ -84,10 +84,14 @@ namespace WorkOrderGUI
         public NewProject NewProject { get { return this.newProject; } }
         private RemovePage removePage;
         public RemovePage RemovePage { get { return this.removePage; } }
-        private OpenInventory openInventory;
-        public OpenInventory OpenInventory { get { return this.openInventory; } }
         private SelectPage selectPage;
         public SelectPage SelectPage { get { return this.selectPage; } }
+        private OpenInventory openInventory;
+        public OpenInventory OpenInventory { get { return this.openInventory; } }
+        private OpenContact openContact;
+        public OpenContact OpenContact { get { return this.openContact; } }
+        private OpenWarehouse openWarehouse;
+        public OpenWarehouse OpenWarehouse { get { return this.openWarehouse; } }
         #endregion
 
         public PageManager()
@@ -95,8 +99,11 @@ namespace WorkOrderGUI
             this.items = new ObservableCollection<PageViewModel>();
             this.newProject = new NewProject(this);
             this.removePage = new RemovePage(this);
-            this.openInventory = new OpenInventory(this);
             this.selectPage = new SelectPage(this);
+
+            this.openInventory = new OpenInventory(this);
+            this.openContact = new OpenContact(this);
+            this.openWarehouse = new OpenWarehouse(this);
         }
 
         #region Methods
@@ -309,6 +316,36 @@ namespace WorkOrderGUI
         #endregion
     }
     /// <summary>
+    /// Select this page.
+    /// </summary>
+    public class SelectPage : ICommand
+    {
+        private PageManager manager;
+        public SelectPage(PageManager sender)
+        {
+            this.manager = sender;
+        }
+        #region ICommand Members
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+        public event EventHandler CanExecuteChanged;
+        public void Execute(object parameter)
+        {
+            if (parameter is PageViewModel)
+            {
+                this.manager.Select(parameter as PageViewModel);
+                return;
+            }
+
+            throw new NotImplementedException();
+        }
+
+        #endregion
+    }
+
+    /// <summary>
     /// Open inventory page if not exist otherwise bring it to focus.
     /// </summary>
     public class OpenInventory : ICommand
@@ -342,12 +379,16 @@ namespace WorkOrderGUI
         }
         #endregion
     }
-    public class SelectPage : ICommand
+
+    /// <summary>
+    /// Open a warehouse maintenance page.
+    /// </summary>
+    public class OpenWarehouse : ICommand
     {
-        private PageManager manager;
-        public SelectPage(PageManager sender)
+        private PageManager pageManager;
+        public OpenWarehouse(PageManager sender)
         {
-            this.manager = sender;
+            this.pageManager = sender;
         }
         #region ICommand Members
         public bool CanExecute(object parameter)
@@ -355,17 +396,61 @@ namespace WorkOrderGUI
             return true;
         }
         public event EventHandler CanExecuteChanged;
+        /// <summary>
+        /// Retrieve warehouse from database.
+        /// </summary>
+        /// <param name="parameter"></param>
         public void Execute(object parameter)
         {
-            if (parameter is PageViewModel)
+            Warehouses items = new Warehouses();
+            items = DatabaseObject.LoadFromFile() as Warehouses;
+            if (items == null)
+                items = new Warehouses();
+            else
             {
-                this.manager.Select(parameter as PageViewModel);
-                return;
+                //stocks.Refresh();
             }
 
-            throw new NotImplementedException();
+            PageViewModel viewModel = new PageViewModel(items);
+            this.pageManager.Add(viewModel);
         }
+        #endregion
+    }
 
+    /// <summary>
+    /// Open a contact maintenance page.
+    /// </summary>
+    public class OpenContact : ICommand
+    {
+        private PageManager pageManager;
+        public OpenContact(PageManager sender)
+        {
+            this.pageManager = sender;
+        }
+        #region ICommand Members
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+        public event EventHandler CanExecuteChanged;
+        /// <summary>
+        /// Retrieve warehouse from database.
+        /// </summary>
+        /// <param name="parameter"></param>
+        public void Execute(object parameter)
+        {
+            Users items = new Users();
+            items = DatabaseObject.LoadFromFile() as Users;
+            if (items == null)
+                items = new Users();
+            else
+            {
+                //stocks.Refresh();
+            }
+
+            PageViewModel viewModel = new PageViewModel(items);
+            this.pageManager.Add(viewModel);
+        }
         #endregion
     }
 }

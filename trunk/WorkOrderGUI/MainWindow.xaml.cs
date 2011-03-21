@@ -30,6 +30,10 @@ namespace WorkOrderGUI
         {
             InitializeComponent();
 
+            ToolbarManager toolbarManager = new ToolbarManager();
+            this.Toolbox.ItemsSource = toolbarManager.Items;
+
+            //testing only
             #region Create example page
             PageManager pageManager = new PageManager();
             Project project = CreateProject();
@@ -48,17 +52,6 @@ namespace WorkOrderGUI
             pageManager.Add(page3);
             #endregion
             this.MainGrid.DataContext = pageManager;
-
-            ToolbarManager toolbarManager = new ToolbarManager();
-            this.Toolbox.ItemsSource = toolbarManager.Items;
-            //if (this.FindResource("MenuLShapeCollection") != null)
-            //{
-            //    ContextMenu menu = (this.FindResource("MenuLShapeCollection") as ContextMenu);
-            //    ToolbarManager toolbarManager = new ToolbarManager();
-            //    System.Diagnostics.Debug.WriteLine(toolbarManager.Items.Count);
-            //    //this.LShapeToolbar.ItemsSource = toolbarManager.Items;
-            //    if (menu.Items.Count > 0) ((System.Windows.Controls.ItemsControl)(menu.Items[0])).ItemsSource = toolbarManager.Items;
-            //}
         }
         private Project CreateProject()
         {
@@ -92,15 +85,6 @@ namespace WorkOrderGUI
 
             return target;
         }
-
-        private void MenuClose_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-        private void Path_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
         /// <summary>
         /// Obsolete. Build up menu for application.
         /// </summary>
@@ -131,15 +115,19 @@ namespace WorkOrderGUI
             items.Add(item3);
             return items;
         }
+
+        private void MenuClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        private void Path_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
         private void MenuAbout_Click(object sender, RoutedEventArgs e)
         {
             string version = "ver " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             MessageBox.Show("yancyn@gmail.com" + "\n" + version);
-        }
-
-        private void ButtonNew_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
