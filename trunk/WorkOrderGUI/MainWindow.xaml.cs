@@ -43,7 +43,7 @@ namespace WorkOrderGUI
             //retrieve stocks from database
             Stocks stocks = new Stocks();
             stocks = DatabaseObject.LoadFromFile() as Stocks;
-            stocks.Refresh();
+            if (stocks != null) stocks.Refresh();
             PageViewModel page3 = new PageViewModel(stocks);
             pageManager.Add(page3);
             #endregion

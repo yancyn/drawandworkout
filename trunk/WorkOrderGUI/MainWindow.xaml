@@ -119,10 +119,10 @@
                 </GroupBox>
                 <DockPanel Grid.Column="1" LastChildFill="True" DataContext="{Binding ElementName=StockView,Path=SelectedItem}">
                     <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" DataContext="{Binding ElementName=StockGrid,Path=DataContext.Item}">
-                        <Button Margin="4" Width="60" Command="{Binding NewStock}">Add</Button>
-                        <Button Margin="4" Width="60" Command="{Binding SaveStock}" ToolTip="Save all into database">Save</Button>
-                        <Button Margin="4" Width="60" Command="{Binding RemoveStock}" CommandParameter="{Binding ElementName=StockView,Path=SelectedItem}">Delete</Button>
-                        <Button Margin="4" Width="60" Command="{Binding RefreshStock}" ToolTip="Discard all changes">Cancel</Button>
+                        <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding NewStock}">Add</Button>
+                        <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding SaveStock}" ToolTip="Save all into database">Save</Button>
+                        <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RemoveStock}" CommandParameter="{Binding ElementName=StockView,Path=SelectedItem}">Delete</Button>
+                        <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RefreshStock}" ToolTip="Discard all changes">Cancel</Button>
                     </WrapPanel>
                     <StackPanel DockPanel.Dock="Top">
                         <GroupBox Header="Details">
@@ -273,7 +273,7 @@
                 <Separator/>
                 <MenuItem Header="_Report"/>
             </MenuItem>
-            <MenuItem x:Name="MenuWindow" Header="_Window"/>
+            <MenuItem x:Name="MenuWindow" Header="_Window" ItemsSource="{Binding Items}" ItemTemplate="{StaticResource WindowMenuTemplate}"/>
             <MenuItem Header="_Help">
                 <MenuItem Header="_Index">
                     <MenuItem.Icon>
@@ -342,9 +342,12 @@
                     </ToolBar.ItemTemplate>
                 </ToolBar>
             </ToolBarTray>
+            <!-- SelectedItem="{Binding CurrentPage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" -->
+            <!-- IsSynchronizedWithCurrentItem="True" -->
             <TabControl x:Name="MainTabControl" Grid.Column="1"
                         DataContext="{Binding ElementName=MainGrid,Path=DataContext}"
-                        ItemsSource="{Binding Items}"
+                        SelectedItem="{Binding CurrentPage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        ItemsSource="{Binding Items,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                         ContentTemplateSelector="{StaticResource PageTemplateSelector}"/>
         </Grid>
     </Grid>

@@ -17,13 +17,45 @@ namespace WorkOrderGUI
             {
                 if (this.item != null)
                 {
-                    this.item = value;
-                    this.OnPropertyChanged("Item");
+                    if (this.item.Equals(value) != true)
+                    {
+                        this.item = value;
+                        this.OnPropertyChanged("Item");
+                    }
                 }
                 else
                 {
                     this.item = value;
                     this.OnPropertyChanged("Item");
+                }
+            }
+        }
+        private bool isSelected;
+        /// <summary>
+        /// Determine whether this PageViewModel is selected or not.
+        /// </summary>
+        /// <remarks>
+        /// Use DataTemplate will reset again IsSelected value,
+        /// so have to configure again this value for TabItem in order SelectedItem can works.
+        /// </remarks>
+        /// <see>http://social.msdn.microsoft.com/Forums/en-US/wpf/thread/dfa817cd-b2ec-4805-bf5b-4e6cb7706a4b/</see>
+        public bool IsSelected
+        {
+            get { return this.isSelected; }
+            set
+            {
+                if (this.isSelected != null)
+                {
+                    if (this.isSelected.Equals(value) != true)
+                    {
+                        this.isSelected = value;
+                        this.OnPropertyChanged("IsSelected");
+                    }
+                }
+                else
+                {
+                    this.isSelected = value;
+                    this.OnPropertyChanged("IsSelected");
                 }
             }
         }
@@ -44,32 +76,35 @@ namespace WorkOrderGUI
         public override string ToString()
         {
             string output = base.ToString();
-            if (this.item.GetType() == typeof(Project))
+            if (this.item != null)
             {
-                Project project = item as Project;
-                output = project.CreatedAt.ToString("yyMMdd-HHmm");
-                //<!-- &#x0a; line break -->
-                //<!-- &#0d; tab -->
-                if (project.WorkOrders.Count > 0 && project.WorkOrders[0].Items.Count > 0)
+                if (this.item.GetType() == typeof(Project))
                 {
-                    if (project.WorkOrders[0].Items[0].Material.Name2.Length > 0)
-                        output += "\n" + project.WorkOrders[0].Items[0].Material.Name2;
-                    else if (project.WorkOrders[0].Items[0].Material.Name1.Length > 0)
-                        output += "\n" + project.WorkOrders[0].Items[0].Material.Name1;
+                    Project project = item as Project;
+                    output = project.CreatedAt.ToString("yyMMdd-HHmm");
+                    //<!-- &#x0a; line break -->
+                    //<!-- &#0d; tab -->
+                    if (project.WorkOrders.Count > 0 && project.WorkOrders[0].Items.Count > 0)
+                    {
+                        if (project.WorkOrders[0].Items[0].Material.Name2.Length > 0)
+                            output += "\n" + project.WorkOrders[0].Items[0].Material.Name2;
+                        else if (project.WorkOrders[0].Items[0].Material.Name1.Length > 0)
+                            output += "\n" + project.WorkOrders[0].Items[0].Material.Name1;
+                    }
+                    //output = (item as Project).Guid.ToString();
                 }
-                //output = (item as Project).Guid.ToString();
-            }
-            else if (this.item.GetType() == typeof(Stocks))
-            {
-                output = "Stock";
-            }
-            else if (this.item.GetType() == typeof(Warehouses))
-            {
-                output = "Warehouse";
-            }
-            else if (this.item.GetType() == typeof(Users))
-            {
-                output = "Contacts";
+                else if (this.item.GetType() == typeof(Stocks))
+                {
+                    output = "Stock";
+                }
+                else if (this.item.GetType() == typeof(Warehouses))
+                {
+                    output = "Warehouse";
+                }
+                else if (this.item.GetType() == typeof(Users))
+                {
+                    output = "Contacts";
+                }
             }
 
             return output;
