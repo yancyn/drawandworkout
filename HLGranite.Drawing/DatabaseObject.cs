@@ -212,7 +212,13 @@ namespace HLGranite.Drawing
             System.IO.StreamReader sr = null;
             try
             {
-                file = new System.IO.FileStream(fileName, FileMode.Open, FileAccess.Read);
+                string path = "Data";
+                //if(fileName.ToLower().Contains("project")) //todo: how to handle if accidently save a project object?
+                //    path += Path.DirectorySeparatorChar + "Projects";
+                path += Path.DirectorySeparatorChar + fileName;
+                if (!File.Exists(path)) return null;
+
+                file = new System.IO.FileStream(path, FileMode.Open, FileAccess.Read);
                 sr = new System.IO.StreamReader(file, encoding);
                 string xmlString = sr.ReadToEnd();
                 sr.Close();

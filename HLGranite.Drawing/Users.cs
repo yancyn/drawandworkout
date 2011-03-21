@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Xml;
+using System.Collections.ObjectModel;
 using Thought.vCards;
 
 namespace HLGranite.Drawing
@@ -17,7 +18,7 @@ namespace HLGranite.Drawing
         public Users()
         {
             fileName = "Users.xml";
-            this.userField = new List<User>();
+            this.userField = new ObservableCollection<User>();
             Load();
         }
         protected void Load()
