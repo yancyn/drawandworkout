@@ -40,7 +40,10 @@ namespace WorkOrderGUI
             PageViewModel page2 = new PageViewModel(project2);
             pageManager.Add(page2);
 
+            //retrieve stocks from database
             Stocks stocks = new Stocks();
+            stocks = DatabaseObject.LoadFromFile() as Stocks;
+            stocks.Refresh();
             PageViewModel page3 = new PageViewModel(stocks);
             pageManager.Add(page3);
             #endregion

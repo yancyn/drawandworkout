@@ -152,9 +152,8 @@ namespace WorkOrderGUI
                 return;
             }
 
-            throw new NotImplementedException();
+            throw new NotImplementedException("Not recognized parameter type");
         }
-
         #endregion
     }
     /// <summary>
@@ -173,9 +172,17 @@ namespace WorkOrderGUI
             return true;
         }
         public event EventHandler CanExecuteChanged;
+        /// <summary>
+        /// Retrieve stocks from database.
+        /// </summary>
+        /// <param name="parameter"></param>
         public void Execute(object parameter)
         {
-            PageViewModel viewModel = new PageViewModel(new Stocks());
+            Stocks stocks = new Stocks();
+            stocks = DatabaseObject.LoadFromFile() as Stocks;
+            stocks.Refresh();
+
+            PageViewModel viewModel = new PageViewModel(stocks);
             this.pageManager.Add(viewModel);
         }
         #endregion

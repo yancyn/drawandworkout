@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.ObjectModel;
 
 namespace HLGranite.Drawing
 {
@@ -10,7 +11,7 @@ namespace HLGranite.Drawing
         public WorkOrder()
         {
             this.guidField = Guid.NewGuid();
-            this.itemsField = new List<WorkItem>();
+            this.itemsField = new ObservableCollection<WorkItem>();
         }
     }
 }

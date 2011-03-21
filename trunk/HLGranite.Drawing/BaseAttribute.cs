@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.ObjectModel;
 
 namespace HLGranite.Drawing
 {
@@ -13,8 +14,8 @@ namespace HLGranite.Drawing
         {
             this.dateField = DateTime.Now;
             this.guidField = Guid.NewGuid();
-            this.notesField = string.Empty;            
-            this.tagsField = new List<object>();
+            this.notesField = string.Empty;
+            this.tagsField = new ObservableCollection<object>();
         }
     }
 }

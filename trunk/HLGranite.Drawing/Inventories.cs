@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace HLGranite.Drawing
 {
@@ -15,7 +16,7 @@ namespace HLGranite.Drawing
         public Inventories()
         {
             fileName = "Inventories.xml";
-            this.inventoryField = new List<Inventory>();
+            this.inventoryField = new ObservableCollection<Inventory>();
         }
         public void Add(Inventory source, int quantity)
         {

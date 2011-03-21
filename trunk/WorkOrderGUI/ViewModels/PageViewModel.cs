@@ -7,10 +7,26 @@ using HLGranite.Drawing;
 
 namespace WorkOrderGUI
 {
-    public class PageViewModel : object, System.ComponentModel.INotifyPropertyChanged
+    public class PageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private Object item;
-        public Object Item { get { return this.item; } set { this.item = value; } }
+        public Object Item
+        {
+            get { return this.item; }
+            set
+            {
+                if (this.item != null)
+                {
+                    this.item = value;
+                    this.OnPropertyChanged("Item");
+                }
+                else
+                {
+                    this.item = value;
+                    this.OnPropertyChanged("Item");
+                }
+            }
+        }
 
         public PageViewModel(Project project)
         {
@@ -43,21 +59,28 @@ namespace WorkOrderGUI
                 }
                 //output = (item as Project).Guid.ToString();
             }
-            else if (this.item.GetType() == typeof(DatabaseObject))
+            else if (this.item.GetType() == typeof(Stocks))
             {
-                //todo: return (item as DatabaseObject).Name
+                output = "Stock";
+            }
+            else if (this.item.GetType() == typeof(Warehouses))
+            {
+                output = "Warehouse";
+            }
+            else if (this.item.GetType() == typeof(Users))
+            {
+                output = "Contacts";
             }
 
             return output;
         }
-
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        protected void RaisePropertyChanged(string propertyName)
+        public virtual void OnPropertyChanged(string propertyName)
         {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null))
+            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
+            if ((handler != null))
             {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
     }

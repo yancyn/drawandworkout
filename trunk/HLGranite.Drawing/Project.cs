@@ -6,6 +6,7 @@ using System.Windows.Markup;
 using System.Windows;
 using System.IO;
 using System.Xml;
+using System.Collections.ObjectModel;
 
 namespace HLGranite.Drawing
 {
@@ -120,7 +121,7 @@ namespace HLGranite.Drawing
             //todo: this.CreatedBy = current login user
             //this.dueDateField = DateTime.Now;
             this.stageField = ProjectStage.Draft;
-            this.workOrdersField = new List<WorkOrder>();
+            this.workOrdersField = new ObservableCollection<WorkOrder>();
 
             this.progressField = 0m;
             this.totalAreaField = 0m;

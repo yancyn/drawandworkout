@@ -16,7 +16,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="250"/>
                 </Grid.ColumnDefinitions>
-                <Canvas Grid.Column="0" Margin="40" Background="Beige"/><!-- temp -->
+                <Canvas Grid.Column="0" Margin="40" Background="Beige"/>
+                <!-- temp -->
                 <ScrollViewer Grid.Column="1" HorizontalAlignment="Right" HorizontalScrollBarVisibility="Disabled">
                     <StackPanel>
                         <GroupBox Header="Project">
@@ -107,16 +108,21 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="StockTemplate">
-            <Grid>
+            <Grid x:Name="StockGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250"/>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <ListView Grid.Column="0"/>
-                <DockPanel Grid.Column="1" LastChildFill="True">
-                    <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
-                        <Button Margin="4" Width="60">Save</Button>
-                        <Button Margin="4" Width="60">Cancel</Button>
+                <GroupBox Header="All" Grid.Column="0">
+                    <!-- DataContext="{Binding ElementName=MainGrid,Path=DataContext.Item}" -->
+                    <ListView x:Name="StockView" DisplayMemberPath="Name1" ItemsSource="{Binding Path=Item.Stock,UpdateSourceTrigger=PropertyChanged}"/>
+                </GroupBox>
+                <DockPanel Grid.Column="1" LastChildFill="True" DataContext="{Binding ElementName=StockView,Path=SelectedItem}">
+                    <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" DataContext="{Binding ElementName=StockGrid,Path=DataContext.Item}">
+                        <Button Margin="4" Width="60" Command="{Binding NewStock}">Add</Button>
+                        <Button Margin="4" Width="60" Command="{Binding SaveStock}" ToolTip="Save all into database">Save</Button>
+                        <Button Margin="4" Width="60" Command="{Binding RemoveStock}" CommandParameter="{Binding ElementName=StockView,Path=SelectedItem}">Delete</Button>
+                        <Button Margin="4" Width="60" Command="{Binding RefreshStock}" ToolTip="Discard all changes">Cancel</Button>
                     </WrapPanel>
                     <StackPanel DockPanel.Dock="Top">
                         <GroupBox Header="Details">
@@ -132,16 +138,22 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Code"/>
-                                <TextBox Grid.Row="0" Grid.Column="1"/>
+                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Code,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Name"/>
-                                <TextBox Grid.Row="1" Grid.Column="1"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name1,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Chinese"/>
-                                <TextBox Grid.Row="2" Grid.Column="1"/>
+                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Name2,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                                 <TextBlock Grid.Row="3" Grid.Column="0" Text="Remarks"/>
-                                <TextBox Grid.Row="3" Grid.Column="1" MinLines="3" AcceptsReturn="True"/>
+                                <TextBox Grid.Row="3" Grid.Column="1" MinLines="3" AcceptsReturn="True" Text="{Binding Notes,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="Stock In">
+                        <GroupBox>
+                            <GroupBox.Header>
+                                <WrapPanel>
+                                    <TextBlock Text="Stock In"/>
+                                    <Button Margin="4,0,0,4" Width="20" Height="20">+</Button>
+                                </WrapPanel>
+                            </GroupBox.Header>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="80"/>
@@ -150,16 +162,20 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Date"/>
                                 <w:DatePicker Grid.Row="0" Grid.Column="1"/>
                                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Size"/>
                                 <WrapPanel Grid.Row="1" Grid.Column="1">
                                     <TextBox Width="40" />
-                                    <TextBlock Text="x"/>
+                                    <TextBlock Text="&quot;" />
+                                    <TextBlock Margin="4,0,0,0" Text="x"/>
                                     <TextBox Width="40" />
-                                    <Button>Add</Button>
+                                    <TextBlock Text="&quot;" />
                                 </WrapPanel>
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Quantity"/>
+                                <TextBox Grid.Row="2" Grid.Column="1"/>
                             </Grid>
                         </GroupBox>
                     </StackPanel>
@@ -202,7 +218,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator/>
-                
+
                 <!-- todo: convert to ICommand-->
                 <MenuItem Header="E_xit" Click="MenuClose_Click">
                     <MenuItem.Icon>
@@ -329,7 +345,6 @@
             <TabControl x:Name="MainTabControl" Grid.Column="1"
                         DataContext="{Binding ElementName=MainGrid,Path=DataContext}"
                         ItemsSource="{Binding Items}"
-                        SelectedItem="{Binding CurrentPage,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
                         ContentTemplateSelector="{StaticResource PageTemplateSelector}"/>
         </Grid>
     </Grid>

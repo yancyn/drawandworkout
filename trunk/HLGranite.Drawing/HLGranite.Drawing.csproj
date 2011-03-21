@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Admin.cs" />
     <Compile Include="BaseAttribute.cs" />
+    <Compile Include="BaseElement.cs" />
     <Compile Include="BaseItem.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="DatabaseObject.cs" />
