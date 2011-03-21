@@ -255,12 +255,13 @@
                         <Image Source="Images/house.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
+                <MenuItem Header="_Warehouse" Command="{Binding OpenWarehouse}"/>
                 <MenuItem Header="_Stock" Command="{Binding OpenInventory}">
                     <MenuItem.Icon>
                         <Image Source="Images/package.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Customer">
+                <MenuItem Header="_Customer" Command="{Binding OpenContact}">
                     <MenuItem.Icon>
                         <Image Source="Images/vcard.png"/>
                     </MenuItem.Icon>

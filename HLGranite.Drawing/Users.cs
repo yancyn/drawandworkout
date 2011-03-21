@@ -23,7 +23,10 @@ namespace HLGranite.Drawing
         }
         protected void Load()
         {
-            DirectoryInfo directoryInfo = new DirectoryInfo("Data" + Path.DirectorySeparatorChar + "Contacts");
+            string directory = "Data" + Path.DirectorySeparatorChar + "Contacts";
+            if (!Directory.Exists(directory)) return;
+
+            DirectoryInfo directoryInfo = new DirectoryInfo(directory);
             foreach (FileInfo f in directoryInfo.GetFiles())
             {
                 vCard card = new vCard(f.FullName);
