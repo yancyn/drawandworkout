@@ -39,7 +39,9 @@ namespace HLGranite.Drawing
         #region Methods
         public void Add()
         {
-            this.warehouseField.Add(new Warehouse());
+            Warehouse warehouse = new Warehouse();
+            warehouse.Addresses.Add(new Thought.vCards.vCardDeliveryAddress());
+            this.warehouseField.Add(warehouse);
         }
         public void Remove(Warehouse item)
         {
