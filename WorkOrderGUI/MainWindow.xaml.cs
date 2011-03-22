@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 using HLGranite.Drawing;
 using Thought.vCards;
 
@@ -29,29 +30,50 @@ namespace WorkOrderGUI
         public MainWindow()
         {
             InitializeComponent();
+            Initialize();
+        }
 
-            ToolbarManager toolbarManager = new ToolbarManager();
-            this.Toolbox.ItemsSource = toolbarManager.Items;
+        private void Initialize()
+        {
+            try
+            {
+                /*ProjectWindow projectWin = new ProjectWindow();
+                Grid grid = (Grid)projectWin.Content;
+                //FrameworkElementFactory factory = new FrameworkElementFactory(typeof(Grid));
+                //factory.SetValue(Grid.Cont,grid);
+                DataTemplate template = (this.FindResource("ProjectTemplate") as DataTemplate);
+                projectWin.Content = null;
+                projectWin.Close();
+                */
 
-            //testing only
-            #region Create example page
-            PageManager pageManager = new PageManager();
-            Project project = CreateProject();
-            PageViewModel page = new PageViewModel(project);
-            pageManager.Add(page);
 
-            Project project2 = CreateProject();
-            PageViewModel page2 = new PageViewModel(project2);
-            pageManager.Add(page2);
+                ToolbarManager toolbarManager = new ToolbarManager();
+                this.Toolbox.ItemsSource = toolbarManager.Items;
 
-            //retrieve stocks from database
-            Stocks stocks = new Stocks();
-            stocks = DatabaseObject.LoadFromFile() as Stocks;
-            if (stocks != null) stocks.Refresh();
-            PageViewModel page3 = new PageViewModel(stocks);
-            pageManager.Add(page3);
-            #endregion
-            this.MainGrid.DataContext = pageManager;
+                //testing only
+                #region Create example page
+                PageManager pageManager = new PageManager();
+                Project project = CreateProject();
+                PageViewModel page = new PageViewModel(project);
+                pageManager.Add(page);
+
+                Project project2 = CreateProject();
+                PageViewModel page2 = new PageViewModel(project2);
+                pageManager.Add(page2);
+
+                //retrieve stocks from database
+                Stocks stocks = new Stocks();
+                stocks = DatabaseObject.LoadFromFile() as Stocks;
+                if (stocks != null) stocks.Refresh();
+                PageViewModel page3 = new PageViewModel(stocks);
+                pageManager.Add(page3);
+                #endregion
+                this.MainGrid.DataContext = pageManager;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
         }
         private Project CreateProject()
         {
