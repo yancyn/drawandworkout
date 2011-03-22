@@ -39,10 +39,10 @@
                   Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorLevel=3,AncestorType={x:Type Grid}},Path=DataContext.SelectPage}"
                   CommandParameter="{Binding .}"/>
     </DataTemplate>
-    <g:RowCountConverter x:Key="RowCountConverter"/>
-    <g:NumberConverter x:Key="NumberConverter"/>
-    <g:PercentageConverter x:Key="PercentageConverter"/>
-
+    
+    <!--<Style x:Key="{x:Type w:DatePicker}" TargetType="{x:Type w:DatePicker}">
+        <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+    </Style>-->
     <!-- todo: seems like fail -->
     <Style x:Key="TransparentFloatingToolbar" BasedOn="{x:Null}" TargetType="{x:Type ContextMenu}">
         <Setter Property="BorderBrush" Value="Transparent"/>

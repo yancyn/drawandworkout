@@ -18,13 +18,8 @@ using Thought.vCards;
 namespace WorkOrderGUI
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    /// <remarks>
-    /// todo: still buggy for popup multiple toolbar.
-    /// TODO: change the selected shape toolbar if there are muliple choices.
-    /// todo: toolbox imcompatible on different screen resolution.
-    /// </remarks>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -45,7 +40,6 @@ namespace WorkOrderGUI
                 projectWin.Content = null;
                 projectWin.Close();
                 */
-
 
                 ToolbarManager toolbarManager = new ToolbarManager();
                 this.Toolbox.ItemsSource = toolbarManager.Items;
