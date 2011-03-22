@@ -136,10 +136,6 @@ namespace WorkOrderGUI
         {
             this.Close();
         }
-        private void Path_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
         private void MenuAbout_Click(object sender, RoutedEventArgs e)
         {
             string version = "ver " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();

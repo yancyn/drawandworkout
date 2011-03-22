@@ -13,7 +13,7 @@ namespace HLGranite.Drawing
         {
             this.Name1 = "<New Warehouse>";
             this.addressesField = new Thought.vCards.vCardDeliveryAddressCollection();
-            this.addressesField.Add(new vCardDeliveryAddress());
+            //this.addressesField.Add(new vCardDeliveryAddress());
         }
     }
 }
