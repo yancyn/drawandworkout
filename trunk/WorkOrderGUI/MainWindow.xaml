@@ -7,9 +7,6 @@
     Title="WorkOrder beta" Height="600" Width="800" WindowState="Maximized">
     <!--xmlns:wpg="clr-namespace:WPG;assembly=WPG"-->
     <Window.Resources>
-        <g:RowCountConverter x:Key="RowCountConverter"/>
-        <g:NumberConverter x:Key="NumberConverter"/>
-        <g:PercentageConverter x:Key="PercentageConverter"/>
         <DataTemplate x:Key="ProjectTemplate">
             <Grid>
                 <Grid.ColumnDefinitions>
