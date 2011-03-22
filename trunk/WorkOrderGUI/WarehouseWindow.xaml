@@ -17,8 +17,8 @@
             <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" DataContext="{Binding ElementName=WarehouseGrid,Path=DataContext.Item}">
                 <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding NewWarehouse}">Add</Button>
                 <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding SaveWarehouse}" ToolTip="Save all into database">Save</Button>
-                <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RemoWarehouse}" CommandParameter="{Binding ElementName=WarehouseView,Path=SelectedItem}">Delete</Button>
-                <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RefreshWarehose}" ToolTip="Discard all changes">Cancel</Button>
+                <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RemoveWarehouse}" CommandParameter="{Binding ElementName=WarehouseView,Path=SelectedItem}">Delete</Button>
+                <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RefreshWarehouse}" ToolTip="Discard all changes">Cancel</Button>
             </WrapPanel>
             <GroupBox DockPanel.Dock="Top" Header="Details">
                 <Grid>
@@ -31,15 +31,29 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Code"/>
                     <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Code,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Name"/>
                     <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name1,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Chinese"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Name2,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Remarks"/>
-                    <TextBox Grid.Row="3" Grid.Column="1" MinLines="3" AcceptsReturn="True" Text="{Binding Notes,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Address"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" MinLines="2" AcceptsReturn="True" Text="{Binding Addresses[0].Street,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                    
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="City"/>
+                    <Grid Grid.Row="3" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" Text="{Binding Addresses[0].City,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Grid.Column="1" Text="PostCode" TextAlignment="Right"/>
+                        <TextBox Grid.Column="2" Text="{Binding Addresses[0].PostalCode,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                    </Grid>
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Remarks"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" MinLines="3" AcceptsReturn="True" Text="{Binding Notes,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </GroupBox>
             <w:DataGrid/>

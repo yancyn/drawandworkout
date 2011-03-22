@@ -103,6 +103,8 @@ namespace HLGranite.Drawing
         /// <param name="guid"></param>
         public Project(Guid guid)
         {
+            Initialize();
+
             this.guidField = guid;
             this.fileName = this.guidField.ToString();
             Copy(LoadFromFile());
@@ -129,6 +131,8 @@ namespace HLGranite.Drawing
             this.createdAtField = DateTime.Now;
             //todo: this.CreatedBy = current login user
             //this.dueDateField = DateTime.Now;
+            this.orderByField = new Customer();
+            this.deliverToField = new Customer();
             this.stageField = ProjectStage.Draft;
             this.workOrdersField = new ObservableCollection<WorkOrder>();
 

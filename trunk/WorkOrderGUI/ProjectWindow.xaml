@@ -44,16 +44,16 @@
 
                         <TextBlock Grid.Column="0" Grid.Row="3" Text="Order By"/>
                         <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Item.OrderBy.GivenName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBlock Grid.Column="0" Grid.Row="4" Text="Customer Name"/>
+                        <TextBlock Grid.Column="0" Grid.Row="4" Text="Customer"/>
                         <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Item.DeliverTo.GivenName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Column="0" Grid.Row="5" Text="Phone"/>
                         <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding Item.DeliverTo.Phones[0].FullNumber,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBlock Grid.Column="0" Grid.Row="6" Text="Address"/>
-                        <TextBox Grid.Column="1" Grid.Row="6"/>
-                        <TextBlock Grid.Column="0" Grid.Row="7" Text="Taman"/>
-                        <TextBox Grid.Column="1" Grid.Row="7"/>
-                        <TextBlock Grid.Column="0" Grid.Row="8" Text="City"/>
-                        <TextBox Grid.Column="1" Grid.Row="8" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].City,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="6" Text="Street"/>
+                        <TextBox Grid.Column="1" Grid.Row="6" MinLines="2" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].Street,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="7" Text="City"/>
+                        <TextBox Grid.Column="1" Grid.Row="7" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].City,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Grid.Column="0" Grid.Row="8" Text="Postcode"/>
+                        <TextBox Grid.Column="1" Grid.Row="8" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].PostalCode,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Column="0" Grid.Row="9" Text="GPS"/>
                         <WrapPanel Grid.Column="1" Grid.Row="9">
                             <TextBox Width="60" Text="{Binding Item.DeliverTo.Latitude,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
