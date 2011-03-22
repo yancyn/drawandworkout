@@ -178,7 +178,7 @@ namespace WorkOrderGUI
                     this.items[this.items.Count - 1].IsSelected = true;
                 }
             }
-            else if (this.items.Contains(item))
+            else if (this.items.Contains(item)) //todo: check uniqueness - this.items.Contains(item)
             //else if(item.Item.GetType() == typeof(Project))
             {
                 this.currentPage = item;

@@ -32,7 +32,6 @@ namespace HLGranite.Drawing
         {
             fileName = "Stocks.xml";
             this.stockField = new ObservableCollection<Stock>();
-            //this.stockField.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(stockField_CollectionChanged);
             this.newStock = new NewStock(this);
             this.removeStock = new RemoveStock(this);
             this.saveStock = new SaveStock(this);
@@ -41,11 +40,11 @@ namespace HLGranite.Drawing
         }
 
         #region Methods
-        protected void Initialize()
-        {
-            if (DatabaseObject.LoadFromFile() != null)
-                this.stockField = (DatabaseObject.LoadFromFile() as Stocks).Stock;
-        }
+        //protected void Initialize()
+        //{
+        //    if (DatabaseObject.LoadFromFile() != null)
+        //        this.stockField = (DatabaseObject.LoadFromFile() as Stocks).Stock;
+        //}
         public void Add()
         {
             this.stockField.Add(new Stock());
