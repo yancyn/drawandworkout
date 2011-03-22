@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Thought.vCards;
 
 namespace HLGranite.Drawing
 {
@@ -12,6 +13,7 @@ namespace HLGranite.Drawing
         {
             this.Name1 = "<New Warehouse>";
             this.addressesField = new Thought.vCards.vCardDeliveryAddressCollection();
+            this.addressesField.Add(new vCardDeliveryAddress());
         }
     }
 }
