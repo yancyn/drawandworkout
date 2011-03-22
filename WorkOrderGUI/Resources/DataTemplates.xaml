@@ -3,11 +3,9 @@
     xmlns:w="http://schemas.microsoft.com/wpf/2008/toolkit"
     xmlns:g="clr-namespace:WorkOrderGUI"
     xmlns:d="clr-namespace:HLGranite.Drawing;assembly=HLGranite.Drawing">
-
     <g:RowCountConverter x:Key="RowCountConverter"/>
     <g:NumberConverter x:Key="NumberConverter"/>
     <g:PercentageConverter x:Key="PercentageConverter"/>
-
 
     <DataTemplate x:Key="ProjectTemplate">
         <Grid>
@@ -107,15 +105,13 @@
             </ScrollViewer>
         </Grid>
     </DataTemplate>
-
     <DataTemplate x:Key="StockTemplate">
-        <Grid>
+        <Grid x:Name="StockGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <GroupBox Header="All" Grid.Column="0">
-                <!-- DataContext="{Binding ElementName=MainGrid,Path=DataContext.Item}" -->
                 <ListView x:Name="StockView" DisplayMemberPath="Name1" ItemsSource="{Binding Path=Item.Stock,UpdateSourceTrigger=PropertyChanged}"/>
             </GroupBox>
             <DockPanel Grid.Column="1" LastChildFill="True" DataContext="{Binding ElementName=StockView,Path=SelectedItem}">
@@ -125,7 +121,41 @@
                     <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RemoveStock}" CommandParameter="{Binding ElementName=StockView,Path=SelectedItem}">Delete</Button>
                     <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RefreshStock}" ToolTip="Discard all changes">Cancel</Button>
                 </WrapPanel>
-                <StackPanel DockPanel.Dock="Top">
+                <DockPanel LastChildFill="True" DockPanel.Dock="Top">
+                    <GroupBox DockPanel.Dock="Right">
+                        <GroupBox.Header>
+                            <WrapPanel>
+                                <TextBlock Text="Stock In"/>
+                                <Button Margin="4,0,0,4" Width="20" Height="20">+</Button>
+                            </WrapPanel>
+                        </GroupBox.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Warehouse"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Date"/>
+                            <w:DatePicker Grid.Row="1" Grid.Column="1"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Size"/>
+                            <WrapPanel Grid.Row="2" Grid.Column="1">
+                                <TextBox Width="40" />
+                                <TextBlock Text="&quot;" />
+                                <TextBlock Margin="4,0,0,0" Text="x"/>
+                                <TextBox Width="40" />
+                                <TextBlock Text="&quot;" />
+                            </WrapPanel>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Quantity"/>
+                            <TextBox Grid.Row="3" Grid.Column="1"/>
+                        </Grid>
+                    </GroupBox>
                     <GroupBox Header="Details">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -148,42 +178,10 @@
                             <TextBox Grid.Row="3" Grid.Column="1" MinLines="3" AcceptsReturn="True" Text="{Binding Notes,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox>
-                        <GroupBox.Header>
-                            <WrapPanel>
-                                <TextBlock Text="Stock In"/>
-                                <Button Margin="4,0,0,4" Width="20" Height="20">+</Button>
-                            </WrapPanel>
-                        </GroupBox.Header>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Date"/>
-                            <w:DatePicker Grid.Row="0" Grid.Column="1"/>
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Size"/>
-                            <WrapPanel Grid.Row="1" Grid.Column="1">
-                                <TextBox Width="40" />
-                                <TextBlock Text="&quot;" />
-                                <TextBlock Margin="4,0,0,0" Text="x"/>
-                                <TextBox Width="40" />
-                                <TextBlock Text="&quot;" />
-                            </WrapPanel>
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Quantity"/>
-                            <TextBox Grid.Row="2" Grid.Column="1"/>
-                        </Grid>
-                    </GroupBox>
-                </StackPanel>
+                </DockPanel>
                 <w:DataGrid/>
             </DockPanel>
         </Grid>
     </DataTemplate>
-
     <g:PageTemplateSelector x:Key="PageTemplateSelector"/>
 </ResourceDictionary>
