@@ -110,6 +110,15 @@ namespace HLGranite.Drawing
 
         #region Methods
         /// <summary>
+        /// Determine the unique key for project object.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return this.guidField.GetHashCode();
+            //return base.GetHashCode();
+        }
+        /// <summary>
         /// Initialize object instance.
         /// </summary>
         protected void Initialize()
