@@ -11,7 +11,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Markup;
 using System.IO;
+
 using HLGranite.Drawing;
 using Thought.vCards;
 
@@ -32,15 +34,8 @@ namespace WorkOrderGUI
         {
             try
             {
-                /*ProjectWindow projectWin = new ProjectWindow();
-                Grid grid = (Grid)projectWin.Content;
-                //FrameworkElementFactory factory = new FrameworkElementFactory(typeof(Grid));
-                //factory.SetValue(Grid.Cont,grid);
-                DataTemplate template = (this.FindResource("ProjectTemplate") as DataTemplate);
-                projectWin.Content = null;
-                projectWin.Close();
-                */
-
+                //ConvertWindowToDataTemplate();
+                
                 ToolbarManager toolbarManager = new ToolbarManager();
                 this.Toolbox.ItemsSource = toolbarManager.Items;
 
@@ -68,6 +63,26 @@ namespace WorkOrderGUI
             {
                 System.Diagnostics.Debug.WriteLine(ex);
             }
+        }
+        /// <summary>
+        /// todo: Try to convert Window content into DataTemplate.
+        /// </summary>
+        /// <remarks>Fail.</remarks>
+        private void ConvertWindowToDataTemplate()
+        {
+            ProjectWindow win = new ProjectWindow();
+            Grid grid = (Grid)win.Content;
+            string xaml = "<DataTemplate x:Key=\"ProjectTemplate\">";
+            xaml += System.Windows.Markup.XamlWriter.Save(grid);
+            xaml += "</DataTemplate>";
+            win.Close();
+
+            MemoryStream stream = new MemoryStream(Encoding.ASCII.GetBytes(xaml));
+            ParserContext context = new ParserContext();
+            context.XmlnsDictionary.Add("", "http://schemas.microsoft.com/winfx/2006/xaml/presentation");
+            context.XmlnsDictionary.Add("x", "http://schemas.microsoft.com/winfx/2006/xaml");
+            context.XmlnsDictionary.Add("w", "http://schemas.microsoft.com/wpf/2008/toolkit");
+            this.Resources.Add("ProjectTemplate", (DataTemplate)XamlReader.Load(stream, context));
         }
         private Project CreateProject()
         {
