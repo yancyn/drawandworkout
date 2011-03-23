@@ -80,7 +80,7 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Granite Type"/>
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Granite"/>
                         <ComboBox Grid.Column="1" Grid.Row="0"
                                   ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Stocks.Stock}"
                                   SelectedItem="{Binding Item.WorkOrders[0].Items[0].Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>

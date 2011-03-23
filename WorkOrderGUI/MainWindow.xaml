@@ -109,7 +109,7 @@
             </MenuItem>
         </Menu>
         <ToolBar Grid.Row="1">
-            <Button x:Name="ButtonNew" Command="{Binding NewProject}">
+            <Button x:Name="ButtonNew" Command="{Binding NewProject}" ToolTip="New project">
                 <Image Source="Images\page.png"/>
             </Button>
             <Button>
@@ -162,8 +162,6 @@
                     </ToolBar.ItemTemplate>
                 </ToolBar>
             </ToolBarTray>
-            <!-- SelectedItem="{Binding CurrentPage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" -->
-            <!-- IsSynchronizedWithCurrentItem="True" -->
             <TabControl x:Name="MainTabControl" Grid.Column="1"
                         DataContext="{Binding ElementName=MainGrid,Path=DataContext}"
                         SelectedItem="{Binding CurrentPage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"

@@ -59,6 +59,7 @@ namespace HLGranite.Drawing
         /// </summary>
         public void Refresh()
         {
+            //DatabaseObject.Stocks.Stock
             //sort collection by name1 alphabetically
             Stocks target = new Stocks();
             target = DatabaseObject.LoadFromFile() as Stocks;
@@ -68,10 +69,6 @@ namespace HLGranite.Drawing
             if (temp.Count > 0) this.stockField.Clear();//tips: don't use new it will break all the binding = new ObservableCollection<Stock>();
             foreach (Stock s in temp)
                 this.stockField.Add(s);
-
-            //Stocks stocks = new Stocks();
-            //stocks = DatabaseObject.LoadFromFile() as Stocks;
-            //this.stockField = stocks.stockField;
         }
         #endregion
     }

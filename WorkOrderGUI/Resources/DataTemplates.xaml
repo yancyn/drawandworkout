@@ -15,7 +15,6 @@
             </Grid.ColumnDefinitions>
             <Canvas Grid.Column="0" Margin="40" Background="Beige"/>
 
-            <!-- temp -->
             <ScrollViewer Grid.Column="1" Width="250" HorizontalAlignment="Right" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
                     <GroupBox Header="Project">
@@ -87,7 +86,6 @@
                             <ComboBox Grid.Column="1" Grid.Row="0"
                                   ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Stocks.Stock}"
                                   SelectedItem="{Binding Item.WorkOrders[0].Items[0].Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                            <!--<TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Item.WorkOrders[0].Items[0].Material}"/>-->
                             <TextBlock Grid.Column="0" Grid.Row="1" Text="Deliver Date"/>
                             <w:DatePicker Grid.Column="1" Grid.Row="1" SelectedDate="{Binding Item.DueDate,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock Grid.Column="0" Grid.Row="2" Text="Progress"/>
@@ -108,6 +106,7 @@
             </ScrollViewer>
         </Grid>
     </DataTemplate>
+
     <DataTemplate x:Key="StockTemplate">
         <Grid x:Name="StockGrid">
             <Grid.ColumnDefinitions>
@@ -144,7 +143,9 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0" Grid.Column="0" Text="Warehouse"/>
-                            <ComboBox Grid.Row="0" Grid.Column="1"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1"
+                                  ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Warehouses.Warehouse}"
+                                  SelectedItem="{Binding Warehouse,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock Grid.Row="1" Grid.Column="0" Text="Date"/>
                             <w:DatePicker Grid.Row="1" Grid.Column="1"/>
                             <TextBlock Grid.Row="2" Grid.Column="0" Text="Size"/>
