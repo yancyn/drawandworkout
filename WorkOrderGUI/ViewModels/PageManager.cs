@@ -149,7 +149,7 @@ namespace WorkOrderGUI
             }*/
 
 
-            
+
             if (item.Item is DatabaseObject)
             {
                 bool found = false;
@@ -193,7 +193,7 @@ namespace WorkOrderGUI
                 this.currentPage = item;
                 this.items[this.items.Count - 1].IsSelected = true;
             }
-            
+
 
             System.Diagnostics.Debug.WriteLine("currentPage: " + this.currentPage.ToString());
         }
@@ -367,14 +367,8 @@ namespace WorkOrderGUI
         /// <param name="parameter"></param>
         public void Execute(object parameter)
         {
-            Stocks stocks = new Stocks();
-            stocks = DatabaseObject.LoadFromFile() as Stocks;
-            if (stocks == null)
-                stocks = new Stocks();
-            else
-                stocks.Refresh();
-
-            PageViewModel viewModel = new PageViewModel(stocks);
+            DatabaseObject.Stocks.Refresh();
+            PageViewModel viewModel = new PageViewModel(DatabaseObject.Stocks);
             this.pageManager.Add(viewModel);
         }
         #endregion
@@ -402,16 +396,8 @@ namespace WorkOrderGUI
         /// <param name="parameter"></param>
         public void Execute(object parameter)
         {
-            Warehouses items = new Warehouses();
-            items = DatabaseObject.LoadFromFile() as Warehouses;
-            if (items == null)
-                items = new Warehouses();
-            else
-            {
-                //stocks.Refresh();
-            }
-
-            PageViewModel viewModel = new PageViewModel(items);
+            DatabaseObject.Warehouses.Refresh();
+            PageViewModel viewModel = new PageViewModel(DatabaseObject.Warehouses);
             this.pageManager.Add(viewModel);
         }
         #endregion
@@ -439,16 +425,8 @@ namespace WorkOrderGUI
         /// <param name="parameter"></param>
         public void Execute(object parameter)
         {
-            Users items = new Users();
-            items = DatabaseObject.LoadFromFile() as Users;
-            if (items == null)
-                items = new Users();
-            else
-            {
-                //stocks.Refresh();
-            }
-
-            PageViewModel viewModel = new PageViewModel(items);
+            //todo: DatabaseObject.Users.Refresh();
+            PageViewModel viewModel = new PageViewModel(DatabaseObject.Users);
             this.pageManager.Add(viewModel);
         }
         #endregion

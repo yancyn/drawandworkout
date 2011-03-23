@@ -2,6 +2,8 @@
 using System.Text;
 using System.Xml;
 using System.IO;
+using System.Threading;
+using System.Collections;
 
 namespace HLGranite.Drawing
 {
@@ -17,6 +19,60 @@ namespace HLGranite.Drawing
         /// Gets or sets the database location to stored.
         /// </summary>
         protected static string fileName;
+
+        #region Properties
+        private static Stocks stocks;
+        /// <summary>
+        /// Gets stocks collection from stored database.
+        /// </summary>
+        public static Stocks Stocks
+        {
+            get
+            {
+                if (stocks == null)
+                {
+                    stocks = DatabaseObject.LoadFromFile() as Stocks;
+                    if (stocks == null) stocks = new Stocks();
+                }
+
+                return stocks;
+            }
+        }
+        private static Warehouses warehouses;
+        /// <summary>
+        /// Gets warehouses collection from stored database.
+        /// </summary>
+        public static Warehouses Warehouses
+        {
+            get
+            {
+                if (warehouses == null)
+                {
+                    warehouses = DatabaseObject.LoadFromFile() as Warehouses;
+                    if (warehouses == null) warehouses = new Warehouses();
+                }
+
+                return warehouses;
+            }
+        }
+        private static Users users;
+        /// <summary>
+        /// Gets stocks collection from stored database.
+        /// </summary>
+        public static Users Users
+        {
+            get
+            {
+                if (users == null)
+                {
+                    users = DatabaseObject.LoadFromFile() as Users;
+                    if (users == null) users = new Users();
+                }
+
+                return users;
+            }
+        }
+        #endregion
 
         #region Serialize/Deserialize
         private static System.Xml.Serialization.XmlSerializer serializer;
