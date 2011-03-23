@@ -123,10 +123,6 @@
       <Project>{17D089BF-5191-4870-8726-4A05BFDA0E23}</Project>
       <Name>HLGranite.Drawing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WorkOrderGUI\WorkOrderGUI.csproj">
-      <Project>{0D919823-18EA-4081-B2EB-A42736F36E0E}</Project>
-      <Name>WorkOrderGUI</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
