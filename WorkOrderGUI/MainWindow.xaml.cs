@@ -49,13 +49,6 @@ namespace WorkOrderGUI
                 Project project2 = CreateProject();
                 PageViewModel page2 = new PageViewModel(project2);
                 pageManager.Add(page2);
-
-                //retrieve stocks from database
-                Stocks stocks = new Stocks();
-                stocks = DatabaseObject.LoadFromFile() as Stocks;
-                if (stocks != null) stocks.Refresh();
-                PageViewModel page3 = new PageViewModel(stocks);
-                pageManager.Add(page3);
                 #endregion
                 this.MainGrid.DataContext = pageManager;
             }
@@ -89,7 +82,7 @@ namespace WorkOrderGUI
             Employee creator = new Employee();
             creator.EmailAddresses.Add(new vCardEmailAddress { Address = "yancyn@gmail.com" });
 
-            Customer agent = new Customer { GivenName = "John" };
+            Customer agent = new Customer { GivenName = "John" + new Random().Next(20) };
 
             Customer customer = new Customer { GivenName = "Ah Hock" };
             customer.Phones.Add(new vCardPhone { FullNumber = "012-4711134" });
@@ -109,9 +102,11 @@ namespace WorkOrderGUI
             target.OrderBy = agent;
             target.Stage = ProjectStage.Draft;
 
+            int size = DatabaseObject.Stocks.Stock.Count;
+            Stock stock = DatabaseObject.Stocks.Stock[new Random().Next(size)];
             WorkOrder wo = new WorkOrder();
-            wo.Items.Add(new WorkItem { MaxHeight = 24, MaxWidth = 56, Material = new Stock { Name1 = "Tan Brown" }, Progress = 10 });
-            wo.Items.Add(new WorkItem { MaxHeight = 12, MaxWidth = 34, Material = new Stock { Name1 = "Black Galaxy" }, Progress = 30 });
+            wo.Items.Add(new WorkItem { MaxHeight = 24, MaxWidth = 56, Material = stock, Progress = 10 });
+            wo.Items.Add(new WorkItem { MaxHeight = 12, MaxWidth = 34, Material = stock, Progress = 30 });
             target.WorkOrders.Add(wo);
 
             return target;
