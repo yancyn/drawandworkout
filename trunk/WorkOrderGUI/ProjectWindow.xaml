@@ -81,20 +81,22 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Column="0" Grid.Row="0" Text="Granite Type"/>
-                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Item.WorkOrders[0].Items[0].Material}"/>
+                        <ComboBox Grid.Column="1" Grid.Row="0"
+                                  ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Stocks.Stock}"
+                                  SelectedItem="{Binding Item.WorkOrders[0].Items[0].Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Column="0" Grid.Row="1" Text="Deliver Date"/>
                         <w:DatePicker Grid.Column="1" Grid.Row="1" SelectedDate="{Binding Item.DueDate,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Column="0" Grid.Row="2" Text="Progress"/>
-                        <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Item.Progress,Converter={StaticResource PercentageConverter}}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Item.Progress,Converter={StaticResource PercentageConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
 
                         <TextBlock Grid.Column="0" Grid.Row="3" Text="Total Area(f²)"/>
-                        <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Item.TotalArea,Converter={StaticResource NumberConverter}}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Item.TotalArea,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Column="0" Grid.Row="4" Text="Total Long(f)"/>
-                        <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Item.TotalLong,Converter={StaticResource NumberConverter}}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Item.TotalLong,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Column="0" Grid.Row="5" Text="Total Polish(f)"/>
-                        <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Item.TotalPolish,Converter={StaticResource NumberConverter}}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Item.TotalPolish,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Column="0" Grid.Row="6" Text="Other"/>
-                        <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Item.TotalOther,Converter={StaticResource NumberConverter}}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Item.TotalOther,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
                 </GroupBox>
                 <GroupBox Header="Details"/>

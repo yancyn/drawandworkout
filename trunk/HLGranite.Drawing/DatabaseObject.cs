@@ -31,6 +31,7 @@ namespace HLGranite.Drawing
             {
                 if (stocks == null)
                 {
+                    stocks = new Stocks();
                     stocks = DatabaseObject.LoadFromFile() as Stocks;
                     if (stocks == null) stocks = new Stocks();
                 }
@@ -48,6 +49,7 @@ namespace HLGranite.Drawing
             {
                 if (warehouses == null)
                 {
+					warehouses = new Warehouses();
                     warehouses = DatabaseObject.LoadFromFile() as Warehouses;
                     if (warehouses == null) warehouses = new Warehouses();
                 }
@@ -65,6 +67,7 @@ namespace HLGranite.Drawing
             {
                 if (users == null)
                 {
+					users = new Users();
                     users = DatabaseObject.LoadFromFile() as Users;
                     if (users == null) users = new Users();
                 }

@@ -38,24 +38,6 @@ namespace WorkOrderGUI
                 }
             }
         }
-        private int currentPageIndex;
-        /// <summary>
-        /// Gets or sets current page index.
-        /// </summary>
-        public int CurrentPageIndex
-        {
-            get
-            {
-                this.currentPageIndex = this.items.IndexOf(this.currentPage);
-                return this.currentPageIndex;
-            }
-            set
-            {
-                this.currentPageIndex = value;
-                this.currentPage = this.items[value];
-                this.OnPropertyChanged("CurrentPageIndex");
-            }
-        }
         private ObservableCollection<PageViewModel> items;
         public ObservableCollection<PageViewModel> Items
         {
@@ -74,6 +56,30 @@ namespace WorkOrderGUI
                 {
                     this.items = value;
                     this.OnPropertyChanged("Items");
+                }
+            }
+        }
+        private DatabaseObject database;
+        /// <summary>
+        /// Gets or sets database object for this application use.
+        /// </summary>
+        public DatabaseObject Database
+        {
+            get { return this.database; }
+            set
+            {
+                if (this.database != null)
+                {
+                    if (this.database.Equals(value) != true)
+                    {
+                        this.database = value;
+                        this.OnPropertyChanged("Database");
+                    }
+                }
+                else
+                {
+                    this.database = value;
+                    this.OnPropertyChanged("Database");
                 }
             }
         }
@@ -97,6 +103,8 @@ namespace WorkOrderGUI
         public PageManager()
         {
             this.items = new ObservableCollection<PageViewModel>();
+            this.database = new DatabaseObject();
+
             this.newProject = new NewProject(this);
             this.removePage = new RemovePage(this);
             this.selectPage = new SelectPage(this);
