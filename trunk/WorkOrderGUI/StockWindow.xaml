@@ -40,7 +40,9 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" Grid.Column="0" Text="Warehouse"/>
-                        <ComboBox Grid.Row="0" Grid.Column="1"/>
+                        <ComboBox Grid.Row="0" Grid.Column="1"
+                                  ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Warehouses.Warehouse}"
+                                  SelectedItem="{Binding Warehouse,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Row="1" Grid.Column="0" Text="Date"/>
                         <w:DatePicker Grid.Row="1" Grid.Column="1"/>
                         <TextBlock Grid.Row="2" Grid.Column="0" Text="Size"/>

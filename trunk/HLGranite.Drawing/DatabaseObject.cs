@@ -4,6 +4,8 @@ using System.Xml;
 using System.IO;
 using System.Threading;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HLGranite.Drawing
 {
@@ -15,15 +17,15 @@ namespace HLGranite.Drawing
     /// </remarks>
     public partial class DatabaseObject
     {
+        #region Properties
         /// <summary>
         /// Gets or sets the database location to stored.
         /// </summary>
         protected static string fileName;
 
-        #region Properties
         private static Stocks stocks;
         /// <summary>
-        /// Gets stocks collection from stored database.
+        /// Gets stocks collection from a stored database.
         /// </summary>
         public static Stocks Stocks
         {
@@ -34,6 +36,21 @@ namespace HLGranite.Drawing
                     stocks = new Stocks();
                     stocks = DatabaseObject.LoadFromFile() as Stocks;
                     if (stocks == null) stocks = new Stocks();
+
+                    //sort collection by name1 alphabetically
+                    /*Stocks target = new Stocks();
+                    target = DatabaseObject.LoadFromFile() as Stocks;
+                    if (target != null)
+                    {
+                        var hold = from f in target.Stock select f;
+                        List<Stock> temp = hold.OrderBy(f => f.Name1).ToList();
+                        //if (temp.Count > 0) this.stockField.Clear();//tips: don't use new it will break all the binding = new ObservableCollection<Stock>();
+                        foreach (Stock s in temp)
+                            stocks.Stock.Add(s);
+                    }
+                    else
+                        stocks = new Stocks();
+                    */
                 }
 
                 return stocks;
@@ -41,7 +58,7 @@ namespace HLGranite.Drawing
         }
         private static Warehouses warehouses;
         /// <summary>
-        /// Gets warehouses collection from stored database.
+        /// Gets warehouses collection from a stored database.
         /// </summary>
         public static Warehouses Warehouses
         {
@@ -49,7 +66,7 @@ namespace HLGranite.Drawing
             {
                 if (warehouses == null)
                 {
-					warehouses = new Warehouses();
+                    warehouses = new Warehouses();
                     warehouses = DatabaseObject.LoadFromFile() as Warehouses;
                     if (warehouses == null) warehouses = new Warehouses();
                 }
@@ -59,7 +76,7 @@ namespace HLGranite.Drawing
         }
         private static Users users;
         /// <summary>
-        /// Gets stocks collection from stored database.
+        /// Gets stocks collection from a stored database.
         /// </summary>
         public static Users Users
         {
@@ -67,7 +84,7 @@ namespace HLGranite.Drawing
             {
                 if (users == null)
                 {
-					users = new Users();
+                    users = new Users();
                     users = DatabaseObject.LoadFromFile() as Users;
                     if (users == null) users = new Users();
                 }

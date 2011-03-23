@@ -1,9 +1,5 @@
-﻿<DataTemplate x:Key="ProjectTemplate">
-    <Grid
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:assembly="http://schemas.microsoft.com/wpf/2008/toolkit"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:w="http://schemas.microsoft.com/wpf/2008/toolkit">
+﻿<DataTemplate x:Key="ProjectTemplate" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:w="http://schemas.microsoft.com/wpf/2008/toolkit">
+    <Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:assembly="http://schemas.microsoft.com/wpf/2008/toolkit" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="250" />
@@ -33,7 +29,7 @@
                         <TextBlock Text="Reference No." Grid.Column="0" Grid.Row="0" />
                         <TextBlock Text="" Grid.Column="1" Grid.Row="0" />
                         <TextBlock Text="Received Date" Grid.Column="0" Grid.Row="1" />
-                        <assembly:DatePicker DisplayDate="2011-03-22T00:00+08:00" FirstDayOfWeek="Sunday" SelectedDate="{x:Null}" SelectedDateFormat="Long" Grid.Column="1" Grid.Row="1" />
+                        <assembly:DatePicker DisplayDate="2011-03-23T00:00+08:00" FirstDayOfWeek="Sunday" SelectedDate="{x:Null}" SelectedDateFormat="Long" Grid.Column="1" Grid.Row="1" />
                         <TextBlock Text="Created By" Grid.Column="0" Grid.Row="2" />
                         <TextBlock Text="" Grid.Column="1" Grid.Row="2" />
                         <TextBlock Text="Order By" Grid.Column="0" Grid.Row="3" />
@@ -54,10 +50,10 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Granite Type" Grid.Column="0" Grid.Row="0" />
-                        <TextBlock Text="" Grid.Column="1" Grid.Row="0" />
+                        <TextBlock Text="Granite" Grid.Column="0" Grid.Row="0" />
+                        <ComboBox Grid.Column="1" Grid.Row="0" />
                         <TextBlock Text="Deliver Date" Grid.Column="0" Grid.Row="1" />
-                        <assembly:DatePicker DisplayDate="2011-03-22T00:00+08:00" FirstDayOfWeek="Sunday" SelectedDate="{x:Null}" Grid.Column="1" Grid.Row="1" />
+                        <assembly:DatePicker DisplayDate="2011-03-23T00:00+08:00" FirstDayOfWeek="Sunday" SelectedDate="{x:Null}" Grid.Column="1" Grid.Row="1" />
                         <TextBlock Text="Progress" Grid.Column="0" Grid.Row="2" />
                         <TextBlock Text="" Grid.Column="1" Grid.Row="2" />
                         <TextBlock Text="Total Area(f²)" Grid.Column="0" Grid.Row="3" />

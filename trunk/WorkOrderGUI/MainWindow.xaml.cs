@@ -65,17 +65,25 @@ namespace WorkOrderGUI
         {
             ProjectWindow win = new ProjectWindow();
             Grid grid = (Grid)win.Content;
-            string xaml = "<DataTemplate x:Key=\"ProjectTemplate\">";
+            string xaml = "<DataTemplate";
+            xaml += " xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"";
+            xaml += " xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"";
+            xaml += " xmlns:w=\"http://schemas.microsoft.com/wpf/2008/toolkit\">";
+            //System.Windows.Markup.XamlWriter.Save(
             xaml += System.Windows.Markup.XamlWriter.Save(grid);
             xaml += "</DataTemplate>";
             win.Close();
 
-            MemoryStream stream = new MemoryStream(Encoding.ASCII.GetBytes(xaml));
+            MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(xaml));
             ParserContext context = new ParserContext();
             context.XmlnsDictionary.Add("", "http://schemas.microsoft.com/winfx/2006/xaml/presentation");
             context.XmlnsDictionary.Add("x", "http://schemas.microsoft.com/winfx/2006/xaml");
             context.XmlnsDictionary.Add("w", "http://schemas.microsoft.com/wpf/2008/toolkit");
             this.Resources.Add("ProjectTemplate", (DataTemplate)XamlReader.Load(stream, context));
+            
+            //win.Close();
+            //DataTemplate template = new DataTemplate(grid);
+            //this.Resources.Add("ProjectTemplate", template);
         }
         private Project CreateProject()
         {
