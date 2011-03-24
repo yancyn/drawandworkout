@@ -82,14 +82,18 @@ namespace WorkOrderGUI
                 {
                     Project project = item as Project;
                     output = project.CreatedAt.ToString("yyMMdd-HHmm");
+                    output += " " + project.OrderBy.GivenName;
                     //<!-- &#x0a; line break -->
                     //<!-- &#0d; tab -->
                     if (project.WorkOrders.Count > 0 && project.WorkOrders[0].Items.Count > 0)
                     {
-                        if (project.WorkOrders[0].Items[0].Material.Name2.Length > 0)
-                            output += "\n" + project.WorkOrders[0].Items[0].Material.Name2;
-                        else if (project.WorkOrders[0].Items[0].Material.Name1.Length > 0)
-                            output += "\n" + project.WorkOrders[0].Items[0].Material.Name1;
+                        if (project.WorkOrders[0].Items[0].Material != null)
+                        {
+                            if (project.WorkOrders[0].Items[0].Material.Name2.Length > 0)
+                                output += "\n" + project.WorkOrders[0].Items[0].Material.Name2;
+                            else if (project.WorkOrders[0].Items[0].Material.Name1.Length > 0)
+                                output += "\n" + project.WorkOrders[0].Items[0].Material.Name1;
+                        }
                     }
                     //output = (item as Project).Guid.ToString();
                 }
