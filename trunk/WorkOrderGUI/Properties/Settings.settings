@@ -1,7 +1,42 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WorkOrderGUI.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Gmail" Type="System.String" Scope="User">
+      <Value Profile="(Default)">yancyn</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Uom" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Inch</Value>
+    </Setting>
+    <Setting Name="LongDate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">dd/MM/yyyy HH:mm</Value>
+    </Setting>
+    <Setting Name="ShortDate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">dd/MM/yyyy dd/MM/yyyy</Value>
+    </Setting>
+    <Setting Name="Svn" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SvnPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Buffer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Proxy" Type="System.String" Scope="User">
+      <Value Profile="(Default)">co-proxy-003</Value>
+    </Setting>
+    <Setting Name="ProxyUserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">AP\yeang-shing.then</Value>
+    </Setting>
+    <Setting Name="ProxyPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Language" Type="System.String" Scope="User">
+      <Value Profile="(Default)">English</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

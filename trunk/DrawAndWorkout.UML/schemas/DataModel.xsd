@@ -14,6 +14,46 @@
   <!-- =====  Simple Type Definitions  -->
   <!-- ================================================== -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--  NumberingFormat  -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="NumberingFormat">
+    <xsd:annotation>
+      <xsd:documentation>
+        Numbering format for labeling in drawing.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Digit">
+        <xsd:annotation>
+          <xsd:documentation>
+            1, 2, 3, 4...
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Roman">
+        <xsd:annotation>
+          <xsd:documentation>
+            I, II, III, IV, ...
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Alphabet">
+        <xsd:annotation>
+          <xsd:documentation>
+            A, B, C, D, ...
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Chinese">
+        <xsd:annotation>
+          <xsd:documentation>
+            甲, 乙, 丙, 丁, ...
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  UserRole  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:simpleType name="UserRole">
