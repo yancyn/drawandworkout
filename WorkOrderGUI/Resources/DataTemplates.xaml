@@ -5,6 +5,7 @@
     xmlns:w="http://schemas.microsoft.com/wpf/2008/toolkit"
     xmlns:g="clr-namespace:WorkOrderGUI"
     xmlns:d="clr-namespace:HLGranite.Drawing;assembly=HLGranite.Drawing">
+    
     <g:RowCountConverter x:Key="RowCountConverter"/>
     <g:NumberConverter x:Key="NumberConverter"/>
     <g:PercentageConverter x:Key="PercentageConverter"/>
@@ -18,6 +19,7 @@
             </Grid.ColumnDefinitions>
             <Canvas Grid.Column="0" Margin="40" Background="Beige"/>
 
+            <!-- temp -->
             <ScrollViewer Grid.Column="1" Width="250" HorizontalAlignment="Right" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
                     <GroupBox Header="Project">
@@ -38,36 +40,42 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Grid.Column="0" Grid.Row="0" Text="Reference No."/>
-                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Item.CreatedAt,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock Grid.Column="0" Grid.Row="1" Text="Received Date"/>
-                            <w:DatePicker Grid.Column="1" Grid.Row="1" SelectedDate="{Binding Item.CreatedAt,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" SelectedDateFormat="Long" />
-                            <TextBlock Grid.Column="0" Grid.Row="2" Text="Created By"/>
-                            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Item.CreatedBy.EmailAddresses[0],ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="0"  Grid.Column="0" Text="Reference No."/>
+                            <TextBlock Grid.Row="0"  Grid.Column="1" Text="{Binding Item.CreatedAt,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Received Date"/>
+                            <w:DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding Item.CreatedAt,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" SelectedDateFormat="Long" />
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Deliver Date"/>
+                            <w:DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding Item.DueDate,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Status"/>
+                            <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Source={StaticResource ProjectStageEnums}}" SelectedValue="{Binding Item.Stage,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
 
-                            <TextBlock Grid.Column="0" Grid.Row="3" Text="Order By"/>
-                            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Item.OrderBy.GivenName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock Grid.Column="0" Grid.Row="4" Text="Customer"/>
-                            <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Item.DeliverTo.GivenName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock Grid.Column="0" Grid.Row="5" Text="Phone"/>
-                            <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding Item.DeliverTo.Phones[0].FullNumber,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock Grid.Column="0" Grid.Row="6" Text="Street"/>
-                            <TextBox Grid.Column="1" Grid.Row="6" MinLines="2" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].Street,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock Grid.Column="0" Grid.Row="7" Text="City"/>
-                            <TextBox Grid.Column="1" Grid.Row="7" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].City,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock Grid.Column="0" Grid.Row="8" Text="Postcode"/>
-                            <TextBox Grid.Column="1" Grid.Row="8" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].PostalCode,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock Grid.Column="0" Grid.Row="9" Text="GPS"/>
-                            <WrapPanel Grid.Column="1" Grid.Row="9">
+                            <TextBlock Grid.Row="4" Grid.Column="0" Text="Created By"/>
+                            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Item.CreatedBy.EmailAddresses[0],ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="5" Grid.Column="0" Text="Order By"/>
+                            <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Item.OrderBy.GivenName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="6" Grid.Column="0" Text="Customer"/>
+                            <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Item.DeliverTo.GivenName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="7" Grid.Column="0" Text="Phone"/>
+                            <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Item.DeliverTo.Phones[0].FullNumber,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="8" Grid.Column="0" Text="Street"/>
+                            <TextBox Grid.Row="8" Grid.Column="1" MinLines="2" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].Street,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="9" Grid.Column="0" Text="City"/>
+                            <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].City,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="10" Grid.Column="0" Text="Postcode"/>
+                            <TextBox Grid.Row="10" Grid.Column="1" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].PostalCode,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="11" Grid.Column="0" Text="GPS"/>
+                            <WrapPanel Grid.Row="11" Grid.Column="1">
                                 <TextBox Width="60" Text="{Binding Item.DeliverTo.Latitude,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                                 <TextBlock Text=" "/>
                                 <TextBox Width="60" Text="{Binding Item.DeliverTo.Longitude,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                             </WrapPanel>
 
-                            <TextBlock Grid.Column="0" Grid.Row="10" Text="Remarks"/>
-                            <TextBox Grid.Column="1" Grid.Row="10" MinLines="3" AcceptsReturn="True" Text="{Binding Item.Notes,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="12" Grid.Column="0" Text="Remarks"/>
+                            <TextBox Grid.Row="12" Grid.Column="1" MinLines="3" AcceptsReturn="True" Text="{Binding Item.Notes,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Summary">
@@ -83,25 +91,22 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Column="0" Grid.Row="0" Text="Granite Type"/>
-                            <ComboBox Grid.Column="1" Grid.Row="0"
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Granite"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1"
                                   ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Stocks.Stock}"
                                   SelectedItem="{Binding Item.WorkOrders[0].Items[0].Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock Grid.Column="0" Grid.Row="1" Text="Deliver Date"/>
-                            <w:DatePicker Grid.Column="1" Grid.Row="1" SelectedDate="{Binding Item.DueDate,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock Grid.Column="0" Grid.Row="2" Text="Progress"/>
-                            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Item.Progress,Converter={StaticResource PercentageConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Progress"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Item.Progress,Converter={StaticResource PercentageConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
 
-                            <TextBlock Grid.Column="0" Grid.Row="3" Text="Total Area(f²)"/>
-                            <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Item.TotalArea,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock Grid.Column="0" Grid.Row="4" Text="Total Long(f)"/>
-                            <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Item.TotalLong,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock Grid.Column="0" Grid.Row="5" Text="Total Polish(f)"/>
-                            <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Item.TotalPolish,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock Grid.Column="0" Grid.Row="6" Text="Other"/>
-                            <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Item.TotalOther,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Total Area(f²)"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Item.TotalArea,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Total Long(f)"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Item.TotalLong,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="4" Grid.Column="0" Text="Total Polish(f)"/>
+                            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Item.TotalPolish,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="5" Grid.Column="0" Text="Other"/>
+                            <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Item.TotalOther,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Details"/>

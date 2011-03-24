@@ -118,6 +118,10 @@ namespace WorkOrderGUI
         }
 
         #region Methods
+        /// <summary>
+        /// todo: use better algorithm checking during add an existing page.
+        /// </summary>
+        /// <param name="item"></param>
         public void Add(PageViewModel item)
         {
             /*bool found = false;
