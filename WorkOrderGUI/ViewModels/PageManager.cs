@@ -98,6 +98,8 @@ namespace WorkOrderGUI
         public OpenContact OpenContact { get { return this.openContact; } }
         private OpenWarehouse openWarehouse;
         public OpenWarehouse OpenWarehouse { get { return this.openWarehouse; } }
+        private OpenSetting openSetting;
+        public OpenSetting OpenSetting { get { return this.openSetting; } }
         #endregion
 
         public PageManager()
@@ -112,6 +114,7 @@ namespace WorkOrderGUI
             this.openInventory = new OpenInventory(this);
             this.openContact = new OpenContact(this);
             this.openWarehouse = new OpenWarehouse(this);
+            this.openSetting = new OpenSetting(this);
         }
 
         #region Methods
@@ -435,6 +438,34 @@ namespace WorkOrderGUI
         {
             //todo: DatabaseObject.Users.Refresh();
             PageViewModel viewModel = new PageViewModel(DatabaseObject.Users);
+            this.pageManager.Add(viewModel);
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Open setting page if not exist otherwise bring it to focus.
+    /// </summary>
+    public class OpenSetting : ICommand
+    {
+        private PageManager pageManager;
+        public OpenSetting(PageManager sender)
+        {
+            this.pageManager = sender;
+        }
+        #region ICommand Members
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+        public event EventHandler CanExecuteChanged;
+        /// <summary>
+        /// Open setting page.
+        /// </summary>
+        /// <param name="parameter"></param>
+        public void Execute(object parameter)
+        {
+            PageViewModel viewModel = new PageViewModel("Setting");
             this.pageManager.Add(viewModel);
         }
         #endregion

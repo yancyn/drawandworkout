@@ -9,6 +9,27 @@ namespace WorkOrderGUI
 {
     public class PageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
+        private string title;
+        public string Title
+        {
+            get { return this.title; }
+            set
+            {
+                if (this.title != null)
+                {
+                    if (this.title.Equals(value) != true)
+                    {
+                        this.title = value;
+                        this.OnPropertyChanged("Title");
+                    }
+                }
+                else
+                {
+                    this.title = value;
+                    this.OnPropertyChanged("Title");
+                }
+            }
+        }
         private Object item;
         public Object Item
         {
@@ -68,6 +89,10 @@ namespace WorkOrderGUI
         {
             this.item = database;
         }
+        public PageViewModel(string title)
+        {
+            this.title = title;
+        }
         /// <summary>
         /// Returns a default key represent this PageViewModel.
         /// Normally is refer to it's primary key or Guid.
@@ -110,6 +135,8 @@ namespace WorkOrderGUI
                     output = "Contacts";
                 }
             }
+            else
+                output = this.title;
 
             return output;
         }

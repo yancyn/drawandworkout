@@ -21,8 +21,8 @@ namespace WorkOrderGUI
 
             //define own date format for application instead of rely on Windows environment.
             //WorkOrderGUI.Properties.Settings.Default.Language
-            CultureInfo ci = new CultureInfo(Thread.CurrentThread.CurrentCulture.Name);//"en-US"
-            //todo: CultureInfo ci = new CultureInfo("zh-CN");
+            //CultureInfo ci = new CultureInfo(Thread.CurrentThread.CurrentCulture.Name);//"en-US"
+            CultureInfo ci = new CultureInfo("zh-CN");
             ci.DateTimeFormat.LongDatePattern = "dd/MM/yyyy HH:mm";
             ci.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
             Thread.CurrentThread.CurrentUICulture = ci;

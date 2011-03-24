@@ -35,7 +35,7 @@ namespace WorkOrderGUI
             try
             {
                 //ConvertWindowToDataTemplate();
-                
+
                 ToolbarManager toolbarManager = new ToolbarManager();
                 this.Toolbox.ItemsSource = toolbarManager.Items;
 
@@ -80,7 +80,7 @@ namespace WorkOrderGUI
             context.XmlnsDictionary.Add("x", "http://schemas.microsoft.com/winfx/2006/xaml");
             context.XmlnsDictionary.Add("w", "http://schemas.microsoft.com/wpf/2008/toolkit");
             this.Resources.Add("ProjectTemplate", (DataTemplate)XamlReader.Load(stream, context));
-            
+
             //win.Close();
             //DataTemplate template = new DataTemplate(grid);
             //this.Resources.Add("ProjectTemplate", template);

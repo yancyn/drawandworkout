@@ -62,7 +62,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="_Setting">
+                <MenuItem Header="_Setting" Command="{Binding OpenSetting}">
                     <MenuItem.Icon>
                         <Image Source="Images\wrench.png"/>
                     </MenuItem.Icon>

@@ -13,16 +13,11 @@ using System.Windows.Shapes;
 
 namespace WorkOrderGUI
 {
-    /// <summary>
-    /// Interaction logic for SettingWindow.xaml
-    /// </summary>
-    public partial class SettingWindow : Window
+    public partial class DataTemplates : ResourceDictionary
     {
-        public SettingWindow()
+        public DataTemplates()
         {
-            InitializeComponent();
         }
-
         private void SaveSetting_Click(object sender, RoutedEventArgs e)
         {
             WorkOrderGUI.Properties.Settings.Default.Save();
