@@ -9,6 +9,7 @@ namespace WorkOrderGUI
 {
     public class PageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
+        #region Properties
         private string title;
         public string Title
         {
@@ -80,6 +81,7 @@ namespace WorkOrderGUI
                 }
             }
         }
+        #endregion
 
         public PageViewModel(Project project)
         {
@@ -93,6 +95,8 @@ namespace WorkOrderGUI
         {
             this.title = title;
         }
+
+        #region Methods
         /// <summary>
         /// Returns a default key represent this PageViewModel.
         /// Normally is refer to it's primary key or Guid.
@@ -107,19 +111,20 @@ namespace WorkOrderGUI
                 {
                     Project project = item as Project;
                     output = project.CreatedAt.ToString("yyMMdd-HHmm");
-                    output += " " + project.OrderBy.GivenName;
+                    if (project.OrderBy != null) output += " " + project.OrderBy.GivenName;
+
                     //<!-- &#x0a; line break -->
                     //<!-- &#0d; tab -->
-                    if (project.WorkOrders.Count > 0 && project.WorkOrders[0].Items.Count > 0)
-                    {
-                        if (project.WorkOrders[0].Items[0].Material != null)
-                        {
-                            if (project.WorkOrders[0].Items[0].Material.Name2.Length > 0)
-                                output += "\n" + project.WorkOrders[0].Items[0].Material.Name2;
-                            else if (project.WorkOrders[0].Items[0].Material.Name1.Length > 0)
-                                output += "\n" + project.WorkOrders[0].Items[0].Material.Name1;
-                        }
-                    }
+                    //if (project.WorkOrders.Count > 0 && project.WorkOrders[0].Items.Count > 0)
+                    //{
+                    //    if (project.WorkOrders[0].Items[0].Material != null)
+                    //    {
+                    //        if (project.WorkOrders[0].Items[0].Material.Name2.Length > 0)
+                    //            output += "\n" + project.WorkOrders[0].Items[0].Material.Name2;
+                    //        else if (project.WorkOrders[0].Items[0].Material.Name1.Length > 0)
+                    //            output += "\n" + project.WorkOrders[0].Items[0].Material.Name1;
+                    //    }
+                    //}
                     //output = (item as Project).Guid.ToString();
                 }
                 else if (this.item.GetType() == typeof(Stocks))
@@ -132,7 +137,7 @@ namespace WorkOrderGUI
                 }
                 else if (this.item.GetType() == typeof(Users))
                 {
-                    output = "Contacts";
+                    output = "Customers";
                 }
             }
             else
@@ -149,5 +154,6 @@ namespace WorkOrderGUI
                 handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+        #endregion
     }
 }

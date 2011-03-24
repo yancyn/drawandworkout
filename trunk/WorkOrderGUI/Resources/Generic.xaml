@@ -146,6 +146,11 @@
             <x:TypeExtension TypeName="d:Unit"/>
         </ObjectDataProvider.MethodParameters>
     </ObjectDataProvider>
+    <ObjectDataProvider x:Key="ProjectStageEnums" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:TypeExtension TypeName="d:ProjectStage"/>
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
 
     <!--<Style x:Key="{x:Type w:DatePicker}" TargetType="{x:Type w:DatePicker}">
         <Setter Property="IsSelected" Value="{Binding IsSelected}"/>

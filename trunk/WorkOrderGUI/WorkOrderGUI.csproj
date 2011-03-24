@@ -73,11 +73,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="UserControls\ErrorWindow.xaml">
+    <Page Include="Resources\DataTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\DataTemplates.xaml">
+    <Page Include="UserControls\ErrorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,8 +131,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Resources\DataTemplates.xaml.cs">
+      <DependentUpon>DataTemplates.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Converters.cs" />
-    <Compile Include="Resources\DataTemplates.xaml.cs" />
     <Compile Include="Utils\DataTemplateSelectors.cs" />
     <Compile Include="UserControls\ErrorWindow.xaml.cs">
       <DependentUpon>ErrorWindow.xaml</DependentUpon>
@@ -182,7 +184,7 @@
     </Compile>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
