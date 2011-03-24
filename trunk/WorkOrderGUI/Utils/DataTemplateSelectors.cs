@@ -33,6 +33,8 @@ namespace WorkOrderGUI
                     return element.FindResource("StockTemplate") as DataTemplate;
                 else if (viewModel.Item is Warehouses)
                     return element.FindResource("WarehouseTemplate") as DataTemplate;
+                else if (viewModel.Title == "Setting")
+                    return element.FindResource("SettingTemplate") as DataTemplate;
                 //else if (viewModel.Item is Users)
                 //todo: return element.FindResource("UserTemplate") as DataTemplate;
             }
