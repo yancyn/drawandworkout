@@ -65,6 +65,8 @@
     <Compile Include="Employee.cs" />
     <Compile Include="Inventories.cs" />
     <Compile Include="Inventory.cs" />
+    <Compile Include="Language.cs" />
+    <Compile Include="NumberingFormat.cs" />
     <Compile Include="Planner.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

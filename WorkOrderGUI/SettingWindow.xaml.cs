@@ -21,6 +21,12 @@ namespace WorkOrderGUI
         public SettingWindow()
         {
             InitializeComponent();
+            //this.DataContext = WorkOrderGUI.Properties.Settings.Default;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            WorkOrderGUI.Properties.Settings.Default.Save();
         }
     }
 }
