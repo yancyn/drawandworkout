@@ -56,12 +56,14 @@ namespace HLGranite.Drawing
             //sort collection by name1 alphabetically
             Warehouses target = new Warehouses();
             target = DatabaseObject.LoadFromFile() as Warehouses;
-            var hold = from f in target.Warehouse select f;
-            List<Warehouse> temp = hold.OrderBy(f => f.Name1).ToList();
-
-            if (temp.Count > 0) this.warehouseField.Clear();//tips: don't use new it will break all the binding = new ObservableCollection<Warehouse>();
-            foreach (Warehouse s in temp)
-                this.warehouseField.Add(s);
+            if (target != null)
+            {
+                var hold = from f in target.Warehouse select f;
+                List<Warehouse> temp = hold.OrderBy(f => f.Name1).ToList();
+                if (temp.Count > 0) this.warehouseField.Clear();//tips: don't use new it will break all the binding = new ObservableCollection<Warehouse>();
+                foreach (Warehouse s in temp)
+                    this.warehouseField.Add(s);
+            }
         }
         #endregion
     }
