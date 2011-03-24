@@ -5,6 +5,9 @@
     xmlns:d="clr-namespace:HLGranite.Drawing;assembly=HLGranite.Drawing"
     xmlns:g="clr-namespace:WorkOrderGUI"
     Title="SettingWindow" Height="600" Width="800">
+    <Window.Resources>
+        <g:GlobaliztionResource x:Key="Resource"/>
+    </Window.Resources>
     <DockPanel DataContext="{Binding Source={x:Static g:Properties.Settings.Default}}">
         <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
             <Button Style="{StaticResource DefaultButtonStyle}" Click="Button_Click">Save</Button>
@@ -28,12 +31,12 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="User"/>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=AString, Source={StaticResource Resource},Mode=OneWay,Converter={StaticResource Resource}, ConverterParameter=User}" />
                     <WrapPanel Grid.Row="0" Grid.Column="1">
                         <TextBox Text="{Binding Gmail,Mode=TwoWay}"/>
                         <TextBlock Text="@gmail.com"/>
                     </WrapPanel>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Password"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=AString, Source={StaticResource Resource},Mode=OneWay,Converter={StaticResource Resource}, ConverterParameter=Password}"/>
                     <PasswordBox Grid.Row="1" Grid.Column="1" PasswordChar="*"/>
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Language"/>
                     <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Source={StaticResource LanguageEnums}}" SelectedValue="{Binding Language,Mode=TwoWay}"/>

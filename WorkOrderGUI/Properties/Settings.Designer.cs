@@ -50,9 +50,9 @@ namespace WorkOrderGUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Inch")]
-        public string Uom {
+        public global::HLGranite.Drawing.Unit Uom {
             get {
-                return ((string)(this["Uom"]));
+                return ((global::HLGranite.Drawing.Unit)(this["Uom"]));
             }
             set {
                 this["Uom"] = value;
@@ -158,9 +158,9 @@ namespace WorkOrderGUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("English")]
-        public string Language {
+        public global::HLGranite.Drawing.Language Language {
             get {
-                return ((string)(this["Language"]));
+                return ((global::HLGranite.Drawing.Language)(this["Language"]));
             }
             set {
                 this["Language"] = value;

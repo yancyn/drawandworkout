@@ -8,7 +8,7 @@
     <Setting Name="Password" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Uom" Type="System.String" Scope="User">
+    <Setting Name="Uom" Type="HLGranite.Drawing.Unit" Scope="User">
       <Value Profile="(Default)">Inch</Value>
     </Setting>
     <Setting Name="LongDate" Type="System.String" Scope="User">
@@ -35,7 +35,7 @@
     <Setting Name="ProxyPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Language" Type="System.String" Scope="User">
+    <Setting Name="Language" Type="HLGranite.Drawing.Language" Scope="User">
       <Value Profile="(Default)">English</Value>
     </Setting>
   </Settings>
