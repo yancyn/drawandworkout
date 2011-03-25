@@ -15,7 +15,7 @@
         <!-- temp -->
         <ScrollViewer Grid.Column="1" Width="250" HorizontalAlignment="Right" HorizontalScrollBarVisibility="Disabled">
             <StackPanel>
-                <GroupBox Header="Project">
+                <Expander Header="Project" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="90"/>
@@ -70,8 +70,8 @@
                         <TextBlock Grid.Row="12" Grid.Column="0" Text="Remarks"/>
                         <TextBox Grid.Row="12" Grid.Column="1" MinLines="3" AcceptsReturn="True" Text="{Binding Item.Notes,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
-                </GroupBox>
-                <GroupBox Header="Summary">
+                </Expander>
+                <Expander Header="Summary" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="90"/>
@@ -101,8 +101,8 @@
                         <TextBlock Grid.Row="5" Grid.Column="0" Text="Other"/>
                         <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Item.TotalOther,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
-                </GroupBox>
-                <GroupBox Header="Details"/>
+                </Expander>
+                <Expander Header="Details" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>
