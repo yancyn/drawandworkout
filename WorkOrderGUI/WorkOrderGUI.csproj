@@ -249,6 +249,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Labels.zh-CN.resx" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add.png" />
+    <Resource Include="Images\brick.png" />
+    <Resource Include="Images\car.png" />
+    <Resource Include="Images\chart_bar.png" />
+    <Resource Include="Images\exclamation.png" />
+    <Resource Include="Images\information.png" />
+    <Resource Include="Images\money_dollar.png" />
+    <Resource Include="Images\newspaper.png" />
+    <Resource Include="Images\palette.png" />
+    <Resource Include="Images\plugin.png" />
+    <Resource Include="Images\status_offline.png" />
+    <Resource Include="Images\status_online.png" />
+    <Resource Include="Images\world.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

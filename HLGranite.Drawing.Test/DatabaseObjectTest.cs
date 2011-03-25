@@ -45,7 +45,7 @@ namespace HLGranite.Drawing.Test
 
         /// <summary>
         /// A singleton test for Stocks ensure there is always only 1 instance.
-        ///</summary>
+        /// </summary>
         [TestMethod()]
         public void StocksTest()
         {
@@ -61,6 +61,27 @@ namespace HLGranite.Drawing.Test
             expected = 1;
             actual = DatabaseObject.Stocks.Stock.Count;
             Assert.AreEqual(expected, actual);
+        }
+        /// <summary>
+        /// A singleton test for Stocks ensure not save into a wrong file.
+        /// </summary>
+        /// <remarks>
+        /// After run this test, manually go to backend file structure to verify the file.
+        /// </remarks>
+        [TestMethod()]
+        public void SingletonTest()
+        {
+            DatabaseObject.Stocks.Stock.Add(new Stock());
+            DatabaseObject.Stocks.Stock.Add(new Stock());
+            DatabaseObject.Stocks.SaveToFile();
+
+            DatabaseObject.Warehouses.Warehouse.Add(new Warehouse());
+            DatabaseObject.Warehouses.SaveToFile();
+
+            int i = DatabaseObject.Stocks.Stock.Count;
+            DatabaseObject.Stocks.Stock[i - 1].Name1 = "Last Stock";
+            DatabaseObject.Warehouses.SaveToFile();
+            DatabaseObject.Stocks.SaveToFile();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace HLGranite.Drawing
         /// <summary>
         /// Gets or sets the database location to stored.
         /// </summary>
-        protected static string fileName;
+        protected string fileName;
 
         private static Stocks stocks;
         /// <summary>
@@ -34,7 +34,8 @@ namespace HLGranite.Drawing
                 if (stocks == null)
                 {
                     stocks = new Stocks();
-                    stocks = DatabaseObject.LoadFromFile() as Stocks;
+                    stocks = stocks.LoadFromFile() as Stocks;
+                    //stocks = DatabaseObject.LoadFromFile() as Stocks;
                     if (stocks == null) stocks = new Stocks();
 
                     //sort collection by name1 alphabetically
@@ -67,7 +68,7 @@ namespace HLGranite.Drawing
                 if (warehouses == null)
                 {
                     warehouses = new Warehouses();
-                    warehouses = DatabaseObject.LoadFromFile() as Warehouses;
+                    warehouses = warehouses.LoadFromFile() as Warehouses;
                     if (warehouses == null) warehouses = new Warehouses();
                 }
 
@@ -85,7 +86,7 @@ namespace HLGranite.Drawing
                 if (users == null)
                 {
                     users = new Users();
-                    users = DatabaseObject.LoadFromFile() as Users;
+                    users = users.LoadFromFile() as Users;
                     if (users == null) users = new Users();
                 }
 
@@ -254,7 +255,7 @@ namespace HLGranite.Drawing
         /// <param name="obj">Output DatabaseObject object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out DatabaseObject obj, out System.Exception exception)
+        protected bool LoadFromFile(string fileName, System.Text.Encoding encoding, out DatabaseObject obj, out System.Exception exception)
         {
             exception = null;
             obj = default(DatabaseObject);
@@ -269,20 +270,20 @@ namespace HLGranite.Drawing
                 return false;
             }
         }
-        public static bool LoadFromFile(string fileName, out DatabaseObject obj, out System.Exception exception)
+        protected bool LoadFromFile(string fileName, out DatabaseObject obj, out System.Exception exception)
         {
             return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
         }
-        public static bool LoadFromFile(string fileName, out DatabaseObject obj)
+        protected bool LoadFromFile(string fileName, out DatabaseObject obj)
         {
             System.Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-        public static DatabaseObject LoadFromFile()
+        public DatabaseObject LoadFromFile()
         {
             return LoadFromFile(fileName, Encoding.UTF8);
         }
-        public static DatabaseObject LoadFromFile(string fileName, System.Text.Encoding encoding)
+        public DatabaseObject LoadFromFile(string fileName, System.Text.Encoding encoding)
         {
             System.IO.FileStream file = null;
             System.IO.StreamReader sr = null;

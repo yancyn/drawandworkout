@@ -5,7 +5,7 @@
     xmlns:g="clr-namespace:WorkOrderGUI"
     xmlns:d="clr-namespace:HLGranite.Drawing;assembly=HLGranite.Drawing"
     Title="WorkOrder beta" Height="600" Width="800" WindowState="Maximized">
-    
+
     <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/>
@@ -100,11 +100,19 @@
                         <Image Source="Images/help.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Report _Bug">
+                <MenuItem>
+                    <MenuItem.Header>
+                        <TextBlock>
+                            <Hyperlink NavigateUri="mailto:yancyn@gmail.com" RequestNavigate="ReportBugLink_RequestNavigate">
+                                <TextBlock Text="Report Bug"/>
+                            </Hyperlink>
+                        </TextBlock>
+                    </MenuItem.Header>
                     <MenuItem.Icon>
                         <Image Source="Images\bug.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
+                <MenuItem Header="Check _Updates"/>
                 <MenuItem Header="_About" Click="MenuAbout_Click"/>
             </MenuItem>
         </Menu>

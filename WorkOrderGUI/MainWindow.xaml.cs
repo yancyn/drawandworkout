@@ -159,5 +159,10 @@ namespace WorkOrderGUI
             string version = "ver " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             MessageBox.Show("yancyn@gmail.com" + "\n" + version);
         }
+        private void ReportBugLink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Hyperlink hyperlink = (sender as Hyperlink);
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(hyperlink.NavigateUri.ToString()));
+        }
     }
 }

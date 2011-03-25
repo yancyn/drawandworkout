@@ -30,7 +30,7 @@ namespace HLGranite.Drawing
 
         public Stocks()
         {
-            fileName = "Stocks.xml";
+            base.fileName = "Stocks.xml";
             this.stockField = new ObservableCollection<Stock>();
             this.newStock = new NewStock(this);
             this.removeStock = new RemoveStock(this);
@@ -62,7 +62,7 @@ namespace HLGranite.Drawing
             //DatabaseObject.Stocks.Stock
             //sort collection by name1 alphabetically
             Stocks target = new Stocks();
-            target = DatabaseObject.LoadFromFile() as Stocks;
+            target = target.LoadFromFile() as Stocks;
             if (target != null)
             {
                 var hold = from f in target.Stock select f;
