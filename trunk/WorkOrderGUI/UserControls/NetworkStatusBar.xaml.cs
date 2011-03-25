@@ -19,6 +19,10 @@ namespace WorkOrderGUI
     /// <summary>
     /// Interaction logic for NetworkStatusBar.xaml
     /// </summary>
+    /// <remarks>
+    /// Not support proxy temporarity. Wirewall need to test as well.
+    /// todo: use other than DispatcherTimmer http://msdn.microsoft.com/en-us/library/ms741870.aspx
+    /// </remarks>
     public partial class NetworkStatusBar : UserControl
     {
         private DispatcherTimer timer;
