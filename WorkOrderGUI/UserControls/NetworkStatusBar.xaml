@@ -1,0 +1,8 @@
+﻿<UserControl x:Class="WorkOrderGUI.NetworkStatusBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <WrapPanel>
+        <TextBlock x:Name="Message" Text="Offline"/>
+        <Image x:Name="Icon" Source="..\Images\status_offline.png"/>
+    </WrapPanel>
+</UserControl>

@@ -137,9 +137,10 @@
         </ToolBar>
         <StatusBar Grid.Row="3">
             <StatusBarItem>
-                <StackPanel>
-                    <TextBlock x:Name="StatusBar1" Text="Ready"/>
-                </StackPanel>
+                <TextBlock x:Name="StatusBar1" Text="Ready"/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <g:NetworkStatusBar/>
             </StatusBarItem>
         </StatusBar>
 
