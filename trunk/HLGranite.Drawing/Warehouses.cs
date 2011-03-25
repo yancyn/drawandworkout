@@ -28,7 +28,7 @@ namespace HLGranite.Drawing
 
         public Warehouses()
         {
-            fileName = "Warehouses.xml";
+            base.fileName = "Warehouses.xml";
             this.warehouseField = new ObservableCollection<Warehouse>();
             this.newWarehouse = new NewWarehouse(this);
             this.removeWarehouse = new RemoveWarehouse(this);
@@ -55,7 +55,7 @@ namespace HLGranite.Drawing
         {
             //sort collection by name1 alphabetically
             Warehouses target = new Warehouses();
-            target = DatabaseObject.LoadFromFile() as Warehouses;
+            target = target.LoadFromFile() as Warehouses;// DatabaseObject.LoadFromFile() as Warehouses;
             if (target != null)
             {
                 var hold = from f in target.Warehouse select f;

@@ -24,9 +24,8 @@ namespace WorkOrderGUI
             InitializeComponent();
 
             Stocks stocks = new Stocks();
-            stocks = DatabaseObject.LoadFromFile() as Stocks;
+            stocks = stocks.LoadFromFile() as Stocks;
             this.ComboBox1.ItemsSource = stocks.Stock;
-
             this.ComboBox2.ItemsSource = Enum.GetValues(typeof(ProjectStage));
         }
     }

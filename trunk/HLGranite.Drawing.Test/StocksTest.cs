@@ -66,8 +66,8 @@ namespace HLGranite.Drawing.Test
             expected.Stock.Add(banana);
             expected.SaveToFile();//fileName);
 
-            Stocks actual;
-            actual = DatabaseObject.LoadFromFile() as Stocks;
+            Stocks actual = new Stocks();
+            actual = actual.LoadFromFile() as Stocks;
             //todo: CollectionAssert.AreEqual(expected.Stock, actual.Stock);
             Assert.AreEqual(expected.Stock.Count, actual.Stock.Count);
         }

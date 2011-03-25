@@ -28,8 +28,8 @@ namespace HLGranite.Drawing
         }
 
         #region Serialize/Deserialize
-        private static System.Xml.Serialization.XmlSerializer serializer;
-        private static System.Xml.Serialization.XmlSerializer Serializer
+        private System.Xml.Serialization.XmlSerializer serializer;
+        private System.Xml.Serialization.XmlSerializer Serializer
         {
             get
             {
@@ -89,7 +89,7 @@ namespace HLGranite.Drawing
         /// <param name="obj">Output Inventories object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool Deserialize(string xml, out Inventories obj, out System.Exception exception)
+        protected bool Deserialize(string xml, out Inventories obj, out System.Exception exception)
         {
             exception = null;
             obj = default(Inventories);
@@ -104,12 +104,12 @@ namespace HLGranite.Drawing
                 return false;
             }
         }
-        public static bool Deserialize(string xml, out Inventories obj)
+        protected bool Deserialize(string xml, out Inventories obj)
         {
             System.Exception exception = null;
             return Deserialize(xml, out obj, out exception);
         }
-        public static Inventories Deserialize(string xml)
+        public Inventories Deserialize(string xml)
         {
             System.IO.StringReader stringReader = null;
             try
@@ -192,7 +192,7 @@ namespace HLGranite.Drawing
         /// <param name="obj">Output Inventories object</param>
         /// <param name="exception">output Exception value if deserialize failed</param>
         /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out Inventories obj, out System.Exception exception)
+        protected bool LoadFromFile(string fileName, System.Text.Encoding encoding, out Inventories obj, out System.Exception exception)
         {
             exception = null;
             obj = default(Inventories);
@@ -207,20 +207,20 @@ namespace HLGranite.Drawing
                 return false;
             }
         }
-        public static bool LoadFromFile(string fileName, out Inventories obj, out System.Exception exception)
+        protected bool LoadFromFile(string fileName, out Inventories obj, out System.Exception exception)
         {
             return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
         }
-        public static bool LoadFromFile(string fileName, out Inventories obj)
+        protected bool LoadFromFile(string fileName, out Inventories obj)
         {
             System.Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-        public static Inventories LoadFromFile()
+        public Inventories LoadFromFile()
         {
             return LoadFromFile(fileName, Encoding.UTF8);
         }
-        public static Inventories LoadFromFile(string fileName, System.Text.Encoding encoding)
+        protected Inventories LoadFromFile(string fileName, System.Text.Encoding encoding)
         {
             System.IO.FileStream file = null;
             System.IO.StreamReader sr = null;
