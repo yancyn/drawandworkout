@@ -15,7 +15,7 @@
             <Control Template="{StaticResource ErrorIcon}" />
             <!--<Image Width="40" Source="..\Images\bug.png"/>-->
             <!-- this will appear scrollbar inside textbox if content exceed the size -->
-            <TextBox Grid.Column="1" x:Name="Message" Style="{StaticResource LikeLabel}" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+            <TextBox Grid.Column="1" x:Name="Message" Style="{StaticResource TransparentTextBox}" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
         </Grid>
     </DockPanel>
 </Window>

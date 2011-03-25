@@ -125,25 +125,32 @@
                 <MenuItem Header="_About" Click="MenuAbout_Click"/>
             </MenuItem>
         </Menu>
-        <ToolBar Grid.Row="1">
-            <Button x:Name="ButtonNew" Command="{Binding NewProject}" ToolTip="New project">
-                <Image Source="Images\page.png"/>
-            </Button>
-            <Button>
-                <Image Source="Images\folder_page.png" ToolTip="Open"/>
-            </Button>
-            <Button>
-                <Image Source="Images\disk.png" ToolTip="Save"/>
-            </Button>
-            <Separator/>
-            <Button>
-                <Image Source="Images\printer.png" ToolTip="Print"/>
-            </Button>
-            <Separator/>
-            <Button>
-                <Image Source="Images\wrench.png" ToolTip="Setting"/>
-            </Button>
-        </ToolBar>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <ToolBar Grid.Column="0">
+                <Button x:Name="ButtonNew" Command="{Binding NewProject}" ToolTip="New project">
+                    <Image Source="Images\page.png"/>
+                </Button>
+                <Button>
+                    <Image Source="Images\folder_page.png" ToolTip="Open"/>
+                </Button>
+                <Button>
+                    <Image Source="Images\disk.png" ToolTip="Save"/>
+                </Button>
+                <Separator/>
+                <Button>
+                    <Image Source="Images\printer.png" ToolTip="Print"/>
+                </Button>
+                <Separator/>
+                <Button>
+                    <Image Source="Images\wrench.png" ToolTip="Setting"/>
+                </Button>
+            </ToolBar>
+            <g:SearchBox Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"/>
+        </Grid>
         <StatusBar Grid.Row="3">
             <StatusBarItem>
                 <TextBlock x:Name="StatusBar1" Text="Ready"/>
