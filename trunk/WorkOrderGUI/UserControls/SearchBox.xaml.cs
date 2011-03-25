@@ -9,24 +9,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using HLGranite.Drawing;
 
 namespace WorkOrderGUI
 {
     /// <summary>
-    /// Interaction logic for TestWindow.xaml
+    /// Interaction logic for SearchBox.xaml
     /// </summary>
-    public partial class TestWindow : Window
+    public partial class SearchBox : UserControl
     {
-        public TestWindow()
+        public SearchBox()
         {
             InitializeComponent();
+        }
 
-            //Stocks stocks = new Stocks();
-            //stocks = stocks.LoadFromFile() as Stocks;
-            //this.ComboBox1.ItemsSource = stocks.Stock;
-            //this.ComboBox2.ItemsSource = Enum.GetValues(typeof(ProjectStage));
+        private void SearchImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("SearchImage_MouseLeftButtonDown");
         }
     }
 }
