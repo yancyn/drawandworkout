@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Configuration;
+using Thought.vCards;
 
 namespace WorkOrderGUI.Properties
 {
@@ -10,6 +11,15 @@ namespace WorkOrderGUI.Properties
     //  The SettingsSaving event is raised before the setting values are saved.
     public sealed partial class Settings
     {
+        ///// <summary>
+        ///// Company profile.
+        ///// </summary>
+        //public vCard CompanyProfile
+        //{
+        //    get { return ((vCard)(this["CompanyProfile"])); }
+        //    set { this["CompanyProfile"] = value; }
+        //}
+
         private void SettingChangingEventHandler(object sender, SettingChangingEventArgs e)
         {
             // Add code to handle the SettingChangingEvent event here.
@@ -18,6 +28,11 @@ namespace WorkOrderGUI.Properties
         private void SettingsSavingEventHandler(object sender, CancelEventArgs e)
         {
             // Add code to handle the SettingsSaving event here.
+        }
+        public override void Save()
+        {
+            base.Save();
+            System.Diagnostics.Debug.WriteLine("saving company vcard");
         }
     }
 }
