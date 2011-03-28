@@ -105,6 +105,11 @@ namespace HLGranite.Drawing
             writer.Options = vCardStandardWriterOptions.IgnoreCommas;
             writer.Write(this as vCard, path);
         }
+        /// <summary>
+        /// Provide full path to retrieve a vcard.
+        /// </summary>
+        /// <param name="fileName">Full location path.</param>
+        /// <returns></returns>
         public static vCard LoadFromFile(string fileName)
         {
             return new vCard(fileName);

@@ -25,7 +25,7 @@ namespace WorkOrderGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("yancyn")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Gmail {
             get {
                 return ((string)(this["Gmail"]));
@@ -170,12 +170,23 @@ namespace WorkOrderGUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Setting {
+        public string vCard {
             get {
-                return ((string)(this["Setting"]));
+                return ((string)(this["vCard"]));
             }
             set {
-                this["Setting"] = value;
+                this["vCard"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::Thought.vCards.vCard CompanyProfile {
+            get {
+                return ((global::Thought.vCards.vCard)(this["CompanyProfile"]));
+            }
+            set {
+                this["CompanyProfile"] = value;
             }
         }
     }

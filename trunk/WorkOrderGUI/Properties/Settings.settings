@@ -38,7 +38,10 @@
     <Setting Name="Uom" Type="HLGranite.Drawing.Unit" Scope="User">
       <Value Profile="(Default)">British</Value>
     </Setting>
-    <Setting Name="Setting" Type="System.String" Scope="User">
+    <Setting Name="vCard" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CompanyProfile" Type="Thought.vCards.vCard" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>
