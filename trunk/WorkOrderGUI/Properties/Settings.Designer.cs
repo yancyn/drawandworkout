@@ -26,18 +26,6 @@ namespace WorkOrderGUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Gmail {
-            get {
-                return ((string)(this["Gmail"]));
-            }
-            set {
-                this["Gmail"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Password {
             get {
                 return ((string)(this["Password"]));
@@ -187,6 +175,18 @@ namespace WorkOrderGUI.Properties {
             }
             set {
                 this["CompanyProfile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Gmail {
+            get {
+                return ((string)(this["Gmail"]));
+            }
+            set {
+                this["Gmail"] = value;
             }
         }
     }

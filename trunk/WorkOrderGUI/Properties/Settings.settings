@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WorkOrderGUI.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Gmail" Type="System.String" Scope="User">
-      <Value Profile="(Default)">yancyn</Value>
-    </Setting>
     <Setting Name="Password" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
@@ -42,6 +39,9 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="CompanyProfile" Type="Thought.vCards.vCard" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Gmail" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

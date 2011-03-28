@@ -52,14 +52,7 @@ namespace WorkOrderGUI
 
         private void SaveSetting_Click(object sender, RoutedEventArgs e)
         {
-            WorkOrderGUI.Properties.Settings.Default.vCard = WorkOrderGUI.Properties.Settings.Default.CompanyProfile.DisplayName;
             WorkOrderGUI.Properties.Settings.Default.Save();
-            Save(WorkOrderGUI.Properties.Settings.Default.CompanyProfile);
-        }
-        private void Save(vCard vcard)
-        {
-            User user = new User(vcard);
-            user.SaveToFile();
         }
     }
 }
