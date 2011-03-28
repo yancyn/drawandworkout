@@ -253,7 +253,7 @@
         </Grid>
     </DataTemplate>
     <DataTemplate x:Key="SettingTemplate">
-       <ScrollViewer>
+           <ScrollViewer>
         <DockPanel Margin="10" DataContext="{Binding Source={x:Static g:Properties.Settings.Default}}">
             <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
                 <Button Style="{StaticResource DefaultButtonStyle}" Click="SaveSetting_Click">Save</Button>
@@ -283,7 +283,7 @@
                             <TextBlock Text="@gmail.com"/>
                         </WrapPanel>
                         <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=AString, Source={StaticResource Resource},Mode=OneWay,Converter={StaticResource Resource}, ConverterParameter=Password}"/>
-                        <PasswordBox Grid.Row="1" Grid.Column="1" PasswordChar="*"/>
+                        <PasswordBox Grid.Row="1" Grid.Column="1" PasswordChar="*" g:PasswordHelper.Attach="True" g:PasswordHelper.Password="{Binding Password,Mode=TwoWay}"/>
                         <TextBlock Grid.Row="2" Grid.Column="0" Text="Language"/>
                         <WrapPanel Grid.Row="2" Grid.Column="1">
                             <ComboBox ItemsSource="{Binding Source={StaticResource LanguageEnums}}" SelectedValue="{Binding Language,Mode=TwoWay}"/>
@@ -331,33 +331,33 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" Grid.Column="0" Text="Name"/>
-                        <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding CompanyProfile.DisplayName,Mode=TwoWay}" />
                         <TextBlock Grid.Row="1" Grid.Column="0" Text="Address"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" MinLines="3" AcceptsReturn="True" Grid.ColumnSpan="3"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" MinLines="3" AcceptsReturn="True" Grid.ColumnSpan="3" Text="{Binding CompanyProfile.DeliveryAddresses[0].Street,Mode=TwoWay}"/>
 
                         <TextBlock Grid.Row="2" Grid.Column="0" Text="City"/>
-                        <TextBox Grid.Row="2" Grid.Column="1"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CompanyProfile.DeliveryAddresses[0].City,Mode=TwoWay}"/>
                         <TextBlock Grid.Row="2" Grid.Column="2" Text="Postcode"/>
-                        <TextBox Grid.Row="2" Grid.Column="3"/>
+                        <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding CompanyProfile.DeliveryAddresses[0].PostalCode,Mode=TwoWay}"/>
 
                         <TextBlock Grid.Row="3" Grid.Column="0" Text="Country"/>
-                        <TextBox Grid.Row="3" Grid.Column="1"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CompanyProfile.DeliveryAddresses[0].Country,Mode=TwoWay}"/>
 
                         <TextBlock Grid.Row="4" Grid.Column="0" Text="Telephone"/>
-                        <TextBox Grid.Row="4" Grid.Column="1"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding CompanyProfile.Phones[0].FullNumber,Mode=TwoWay}"/>
                         <TextBlock Grid.Row="4" Grid.Column="2" Text="Fax"/>
-                        <TextBox Grid.Row="4" Grid.Column="3"/>
+                        <TextBox Grid.Row="4" Grid.Column="3" Text="{Binding CompanyProfile.Phones[1].FullNumber,Mode=TwoWay}"/>
 
                         <TextBlock Grid.Row="5" Grid.Column="0" Text="Mobile"/>
-                        <TextBox Grid.Row="5" Grid.Column="1"/>
-                        <TextBox Grid.Row="5" Grid.Column="3"/>
-                        <TextBox Grid.Row="6" Grid.Column="1"/>
-                        <TextBox Grid.Row="6" Grid.Column="3"/>
-                        <TextBox Grid.Row="7" Grid.Column="1"/>
-                        <TextBox Grid.Row="7" Grid.Column="3"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding CompanyProfile.Phones[2].FullNumber,Mode=TwoWay}"/>
+                        <TextBox Grid.Row="5" Grid.Column="3" Text="{Binding CompanyProfile.Phones[3].FullNumber,Mode=TwoWay}"/>
+                        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding CompanyProfile.Phones[4].FullNumber,Mode=TwoWay}"/>
+                        <TextBox Grid.Row="6" Grid.Column="3" Text="{Binding CompanyProfile.Phones[5].FullNumber,Mode=TwoWay}"/>
+                        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding CompanyProfile.Phones[6].FullNumber,Mode=TwoWay}"/>
+                        <TextBox Grid.Row="7" Grid.Column="3" Text="{Binding CompanyProfile.Phones[7].FullNumber,Mode=TwoWay}"/>
 
                         <TextBlock Grid.Row="8" Grid.Column="0" Text="Email"/>
-                        <TextBox Grid.Row="8" Grid.Column="1"/>
+                        <TextBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding CompanyProfile.EmailAddresses[0].Address,Mode=TwoWay}"/>
                     </Grid>
                 </GroupBox>
             </StackPanel>
