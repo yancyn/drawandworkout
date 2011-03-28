@@ -1054,16 +1054,10 @@ namespace HLGranite.Drawing
     {
 
         /// <remarks/>
-        Cm,
+        Metric,
 
         /// <remarks/>
-        Inch,
-
-        /// <remarks/>
-        Meter,
-
-        /// <remarks/>
-        Feet,
+        British,
     }
 
     public partial class InventoryWIP : BaseItem, System.ComponentModel.INotifyPropertyChanged

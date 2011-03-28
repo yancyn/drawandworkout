@@ -85,4 +85,46 @@ namespace WorkOrderGUI
         }
         #endregion
     }
+    /// <summary>
+    /// Convert Metric to cm and British to inch.
+    /// </summary>
+    public class UomStringConverter : IValueConverter
+    {
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if ((HLGranite.Drawing.Unit)value == HLGranite.Drawing.Unit.British)
+                return "inch";
+            else if((HLGranite.Drawing.Unit)value == HLGranite.Drawing.Unit.Metric)
+                return "cm";
+
+            throw new NotImplementedException();
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
+    /// <summary>
+    /// Convert Metric to cm and British to ".
+    /// </summary>
+    public class UomUnitConverter : IValueConverter
+    {
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if ((HLGranite.Drawing.Unit)value == HLGranite.Drawing.Unit.British)
+                return "\"";
+            else if ((HLGranite.Drawing.Unit)value == HLGranite.Drawing.Unit.Metric)
+                return "cm";
+
+            throw new NotImplementedException();
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
 }

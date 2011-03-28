@@ -95,10 +95,8 @@
     <generalization xmi:id="_wnVV4ETUEeC_SaZDL-mcDw" general="_S9XnYETUEeC_SaZDL-mcDw"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Enumeration" xmi:id="_gYCx4ETWEeCJe9RP8ofhZg" name="Unit">
-    <ownedLiteral xmi:id="_hIxEMETWEeCJe9RP8ofhZg" name="Cm"/>
-    <ownedLiteral xmi:id="_jQN44ETWEeCJe9RP8ofhZg" name="Inch"/>
-    <ownedLiteral xmi:id="_lYaUcETWEeCJe9RP8ofhZg" name="Meter"/>
-    <ownedLiteral xmi:id="_mj9hkETWEeCJe9RP8ofhZg" name="Feet"/>
+    <ownedLiteral xmi:id="_hIxEMETWEeCJe9RP8ofhZg" name="Metric"/>
+    <ownedLiteral xmi:id="_jQN44ETWEeCJe9RP8ofhZg" name="British"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_3ko0UETWEeCJe9RP8ofhZg" name="WorkItem">
     <generalization xmi:id="_NrL-sEbaEeCvMexyU7cjtg" general="_umohgEbZEeCvMexyU7cjtg"/>

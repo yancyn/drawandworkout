@@ -46,7 +46,7 @@
                   CommandParameter="{Binding .}"/>
     </DataTemplate>
     
-    <!-- @see http://weblogs.asp.net/bsimser/archive/2008/10/24/building-an-error-icon-in-wpf.aspx -->
+    <!-- Error Icon @see http://weblogs.asp.net/bsimser/archive/2008/10/24/building-an-error-icon-in-wpf.aspx -->
     <ControlTemplate x:Key="ErrorIcon">
         <Canvas Grid.Column="0" x:Uid="ErrorCanvas" Margin="0,3,0,0" Width="44">
             <Grid Name="RedWarning" x:Uid="RedWarning" Width="44" Height="44" Visibility="Visible">

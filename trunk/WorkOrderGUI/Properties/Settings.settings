@@ -8,9 +8,6 @@
     <Setting Name="Password" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Uom" Type="HLGranite.Drawing.Unit" Scope="User">
-      <Value Profile="(Default)">Inch</Value>
-    </Setting>
     <Setting Name="LongDate" Type="System.String" Scope="User">
       <Value Profile="(Default)">dd/MM/yyyy HH:mm</Value>
     </Setting>
@@ -37,6 +34,12 @@
     </Setting>
     <Setting Name="Language" Type="HLGranite.Drawing.Language" Scope="User">
       <Value Profile="(Default)">English</Value>
+    </Setting>
+    <Setting Name="Uom" Type="HLGranite.Drawing.Unit" Scope="User">
+      <Value Profile="(Default)">British</Value>
+    </Setting>
+    <Setting Name="Setting" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

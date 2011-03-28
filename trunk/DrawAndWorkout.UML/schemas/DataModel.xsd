@@ -106,10 +106,20 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:simpleType name="Unit">
     <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="Cm"/>
-      <xsd:enumeration value="Inch"/>
-      <xsd:enumeration value="Meter"/>
-      <xsd:enumeration value="Feet"/>
+      <xsd:enumeration value="Metric">
+        <xsd:annotation>
+          <xsd:documentation>
+            In cm unit.
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="British">
+        <xsd:annotation>
+          <xsd:documentation>
+            In inch unit.
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
   <!-- ================================================== -->
