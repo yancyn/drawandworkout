@@ -446,14 +446,6 @@
         <element xmi:type="uml:EnumerationLiteral" href="DataModel.uml#_jQN44ETWEeCJe9RP8ofhZg"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_jQgz0UTWEeCJe9RP8ofhZg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_lYt2cETWEeCJe9RP8ofhZg" type="3016">
-        <element xmi:type="uml:EnumerationLiteral" href="DataModel.uml#_lYaUcETWEeCJe9RP8ofhZg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_lYt2cUTWEeCJe9RP8ofhZg"/>
-      </children>
-      <children xmi:type="notation:Node" xmi:id="_mkHSkETWEeCJe9RP8ofhZg" type="3016">
-        <element xmi:type="uml:EnumerationLiteral" href="DataModel.uml#_mj9hkETWEeCJe9RP8ofhZg"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_mkHSkUTWEeCJe9RP8ofhZg"/>
-      </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_gYe2xkTWEeCJe9RP8ofhZg" showTitle="true"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_gYe2x0TWEeCJe9RP8ofhZg"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_gYe2yETWEeCJe9RP8ofhZg"/>

@@ -11,8 +11,8 @@
 
                 <!-- tips: cannot use outside style -->
                 <!--<TextBox Grid.Column="0" Style="{StaticResource TransparentTextBox}"/>-->
-                <TextBox Grid.Column="0" BorderThickness="0" Background="Transparent"/>
-                <Image Grid.Column="1" Cursor="Hand" HorizontalAlignment="Right" Source="..\Images\magnifier.png"
+                <TextBox x:Name="SearchTextBox" Grid.Column="0" BorderThickness="0" Background="Transparent" KeyDown="SearchTextBox_KeyDown"/>
+                <Image x:Name="SearchImage" Grid.Column="1" Cursor="Hand" HorizontalAlignment="Right" Source="..\Images\magnifier.png"
                    MouseLeftButtonDown="SearchImage_MouseLeftButtonDown"/>
             </Grid>
         </Border>

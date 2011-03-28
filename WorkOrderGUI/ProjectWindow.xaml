@@ -8,12 +8,12 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="270"/>
         </Grid.ColumnDefinitions>
         <Canvas Grid.Column="0" Margin="40" Background="Beige"/>
 
         <!-- temp -->
-        <ScrollViewer Grid.Column="1" Width="250" HorizontalAlignment="Right" HorizontalScrollBarVisibility="Disabled">
+        <ScrollViewer Grid.Column="1" Width="270" HorizontalAlignment="Right" HorizontalScrollBarVisibility="Disabled">
             <StackPanel>
                 <Expander Header="Project" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
                     <Grid>

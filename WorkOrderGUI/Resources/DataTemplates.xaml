@@ -9,18 +9,20 @@
     <g:RowCountConverter x:Key="RowCountConverter"/>
     <g:NumberConverter x:Key="NumberConverter"/>
     <g:PercentageConverter x:Key="PercentageConverter"/>
+    <g:UomStringConverter x:Key="UomStringConverter"/>
+    <g:UomUnitConverter x:Key="UomUnitConverter"/>
     <g:GlobaliztionResource x:Key="Resource"/>
 
     <DataTemplate x:Key="ProjectTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="270"/>
             </Grid.ColumnDefinitions>
             <Canvas Grid.Column="0" Margin="40" Background="Beige"/>
 
             <!-- temp -->
-            <ScrollViewer Grid.Column="1" Width="250" HorizontalAlignment="Right" HorizontalScrollBarVisibility="Disabled">
+            <ScrollViewer Grid.Column="1" Width="270" HorizontalAlignment="Right" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
                     <Expander Header="Project" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
                         <Grid>
@@ -251,13 +253,14 @@
         </Grid>
     </DataTemplate>
     <DataTemplate x:Key="SettingTemplate">
-        <DockPanel DataContext="{Binding Source={x:Static g:Properties.Settings.Default}}">
+       <ScrollViewer>
+        <DockPanel Margin="10" DataContext="{Binding Source={x:Static g:Properties.Settings.Default}}">
             <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
                 <Button Style="{StaticResource DefaultButtonStyle}" Click="SaveSetting_Click">Save</Button>
                 <Button Style="{StaticResource DefaultButtonStyle}">Cancel</Button>
             </WrapPanel>
-            <WrapPanel>
-                <GroupBox Header="Setting" Width="300" Padding="4">
+            <StackPanel>
+                <GroupBox Header="Setting" Width="500" Padding="4" Margin="0,0,0,10" HorizontalAlignment="Left">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="80"/>
@@ -282,11 +285,21 @@
                         <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=AString, Source={StaticResource Resource},Mode=OneWay,Converter={StaticResource Resource}, ConverterParameter=Password}"/>
                         <PasswordBox Grid.Row="1" Grid.Column="1" PasswordChar="*"/>
                         <TextBlock Grid.Row="2" Grid.Column="0" Text="Language"/>
-                        <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Source={StaticResource LanguageEnums}}" SelectedValue="{Binding Language,Mode=TwoWay}"/>
+                        <WrapPanel Grid.Row="2" Grid.Column="1">
+                            <ComboBox ItemsSource="{Binding Source={StaticResource LanguageEnums}}" SelectedValue="{Binding Language,Mode=TwoWay}"/>
+                        </WrapPanel>
                         <TextBlock Grid.Row="3" Grid.Column="0" Text="Uom" ToolTip="Unit of Measurement"/>
-                        <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Source={StaticResource UomEnums}}" SelectedValue="{Binding Uom,Mode=TwoWay}"/>
+                        <WrapPanel Grid.Row="3" Grid.Column="1">
+                            <ComboBox ItemsSource="{Binding Source={StaticResource UomEnums}}" SelectedValue="{Binding Uom,Mode=TwoWay}" />
+                            <TextBlock Margin="4,0,0,0" Text="{Binding Uom,Mode=OneWay,Converter={StaticResource UomStringConverter}}"/>
+                        </WrapPanel>
+
                         <TextBlock Grid.Row="4" Grid.Column="0" Text="Buffer"/>
-                        <TextBox Grid.Row="4" Grid.Column="1" Width="80" HorizontalAlignment="Left" Text="{Binding Buffer,Mode=TwoWay}"/>
+                        <WrapPanel Grid.Row="4" Grid.Column="1">
+                            <TextBox Width="30" HorizontalAlignment="Left" Text="{Binding Buffer,Mode=TwoWay}"/>
+                            <TextBlock Margin="4,0,0,0" Text="{Binding Uom,Mode=OneWay,Converter={StaticResource UomUnitConverter}}"/>
+                        </WrapPanel>
+
                         <TextBlock Grid.Row="5" Grid.Column="0" Text="Long Date" ToolTip="Long date format"/>
                         <TextBox Grid.Row="5" Grid.Column="1" MaxLines="1" Text="{Binding LongDate,Mode=TwoWay}"/>
                         <TextBlock Grid.Row="6" Grid.Column="0" Text="Short Date" ToolTip="Short date format"/>
@@ -297,8 +310,59 @@
                         <PasswordBox Grid.Row="8" Grid.Column="1" PasswordChar="*"/>
                     </Grid>
                 </GroupBox>
-            </WrapPanel>
+                <GroupBox Header="Company" Width="500" Padding="4" Margin="0,0,0,10" HorizontalAlignment="Left">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Name"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Address"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" MinLines="3" AcceptsReturn="True" Grid.ColumnSpan="3"/>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="City"/>
+                        <TextBox Grid.Row="2" Grid.Column="1"/>
+                        <TextBlock Grid.Row="2" Grid.Column="2" Text="Postcode"/>
+                        <TextBox Grid.Row="2" Grid.Column="3"/>
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Country"/>
+                        <TextBox Grid.Row="3" Grid.Column="1"/>
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Telephone"/>
+                        <TextBox Grid.Row="4" Grid.Column="1"/>
+                        <TextBlock Grid.Row="4" Grid.Column="2" Text="Fax"/>
+                        <TextBox Grid.Row="4" Grid.Column="3"/>
+
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Mobile"/>
+                        <TextBox Grid.Row="5" Grid.Column="1"/>
+                        <TextBox Grid.Row="5" Grid.Column="3"/>
+                        <TextBox Grid.Row="6" Grid.Column="1"/>
+                        <TextBox Grid.Row="6" Grid.Column="3"/>
+                        <TextBox Grid.Row="7" Grid.Column="1"/>
+                        <TextBox Grid.Row="7" Grid.Column="3"/>
+
+                        <TextBlock Grid.Row="8" Grid.Column="0" Text="Email"/>
+                        <TextBox Grid.Row="8" Grid.Column="1"/>
+                    </Grid>
+                </GroupBox>
+            </StackPanel>
         </DockPanel>
+      </ScrollViewer>
     </DataTemplate>
     
     <g:PageTemplateSelector x:Key="PageTemplateSelector"/>

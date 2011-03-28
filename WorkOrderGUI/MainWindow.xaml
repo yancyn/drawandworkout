@@ -113,7 +113,7 @@
                     <MenuItem.Header>
                         <TextBlock>
                             <Hyperlink NavigateUri="mailto:yancyn@gmail.com" RequestNavigate="ReportBugLink_RequestNavigate">
-                                <TextBlock Text="Report Bug"/>
+                                <TextBlock Text="Report a bug"/>
                             </Hyperlink>
                         </TextBlock>
                     </MenuItem.Header>
