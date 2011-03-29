@@ -44,5 +44,11 @@
     <Setting Name="Gmail" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="Theme" Type="HLGranite.Drawing.Theme" Scope="User">
+      <Value Profile="(Default)">Classic</Value>
+    </Setting>
+    <Setting Name="NumberFormat" Type="HLGranite.Drawing.NumberingFormat" Scope="User">
+      <Value Profile="(Default)">Digit</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

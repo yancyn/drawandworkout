@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Configuration;
+using System.Windows.Input;
 using HLGranite.Drawing;
 using Thought.vCards;
 
@@ -12,9 +14,12 @@ namespace WorkOrderGUI.Properties
     //  The SettingsSaving event is raised before the setting values are saved.
     public sealed partial class Settings
     {
+        private SaveSetting saveSetting;
+        public SaveSetting SaveSetting { get { return this.saveSetting; } }
         public Settings()
         {
             System.Diagnostics.Debug.WriteLine("initialize Settings");
+            this.saveSetting = new SaveSetting(this);
             if (this.vCard.Length == 0)
             {
                 vCard vcard = new vCard();
@@ -71,5 +76,24 @@ namespace WorkOrderGUI.Properties
             User user = new User(this.CompanyProfile);
             user.SaveToFile();
         }
+    }
+    public class SaveSetting : ICommand
+    {
+        private Settings manager;
+        public SaveSetting(Settings sender)
+        {
+            this.manager = sender;
+        }
+        #region ICommand Members
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+        public event EventHandler CanExecuteChanged;
+        public void Execute(object parameter)
+        {
+            this.manager.Save();
+        }
+        #endregion
     }
 }
