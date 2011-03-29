@@ -5,3 +5,4 @@ FabTabControl - http://fabtab.codeplex.com/
 Save config file. Thanks to http://www.hanselman.com/blog/LearningWPFWithBabySmashConfigurationWithDataBinding.aspx
 todo: Globalization - http://www.codeproject.com/KB/WPF/Localization_in_WPF.aspx
 http://msdn.microsoft.com/en-us/library/ms788718.aspx#examples_of_localization
+ICommand - http://msdn.microsoft.com/en-us/library/ms752308.aspx

@@ -64,6 +64,7 @@
     <Compile Include="DataModel.designer.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="INotification.cs" />
     <Compile Include="Inventories.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Language.cs" />
