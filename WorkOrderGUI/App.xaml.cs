@@ -27,6 +27,13 @@ namespace WorkOrderGUI
             ci.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
+
+            string theme = (WorkOrderGUI.Properties.Settings.Default.Theme == HLGranite.Drawing.Theme.Classic)
+                ? "Classic" : "Professional";
+            App.Current.Resources.MergedDictionaries.Add((
+                System.Windows.ResourceDictionary)System.Windows.Application.LoadComponent(
+                new System.Uri("/WorkOrderGUI;component/Themes/" + theme + ".xaml",
+                    System.UriKind.Relative)));
         }
     }
     partial class EntryPoint

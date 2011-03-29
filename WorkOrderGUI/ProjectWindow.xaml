@@ -5,17 +5,17 @@
     xmlns:g="clr-namespace:WorkOrderGUI"
     xmlns:d="clr-namespace:HLGranite.Drawing;assembly=HLGranite.Drawing"
     Title="ProjectWindow" Height="600" Width="800">
-    <Grid>
+    <Grid Style="{DynamicResource GridBackground}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="270"/>
         </Grid.ColumnDefinitions>
-        <Canvas Grid.Column="0" Margin="40" Background="Beige"/>
+        <Canvas Grid.Column="0" Margin="40"/>
 
         <!-- temp -->
         <ScrollViewer Grid.Column="1" Width="270" HorizontalAlignment="Right" HorizontalScrollBarVisibility="Disabled">
             <StackPanel>
-                <Expander Header="Project" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
+                <Expander Style="{DynamicResource ExpanderBackground}" Header="Project" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="90"/>
@@ -49,29 +49,29 @@
                         <TextBlock Grid.Row="4" Grid.Column="0" Text="Created By"/>
                         <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Item.CreatedBy.EmailAddresses[0],ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Row="5" Grid.Column="0" Text="Order By"/>
-                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Item.OrderBy.GivenName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" Style="{DynamicResource InputTextBox}" Text="{Binding Item.OrderBy.GivenName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Row="6" Grid.Column="0" Text="Customer"/>
-                        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Item.DeliverTo.GivenName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="6" Grid.Column="1" Style="{DynamicResource InputTextBox}" Text="{Binding Item.DeliverTo.GivenName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Row="7" Grid.Column="0" Text="Phone"/>
-                        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Item.DeliverTo.Phones[0].FullNumber,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="7" Grid.Column="1" Style="{DynamicResource InputTextBox}" Text="{Binding Item.DeliverTo.Phones[0].FullNumber,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Row="8" Grid.Column="0" Text="Street"/>
-                        <TextBox Grid.Row="8" Grid.Column="1" MinLines="2" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].Street,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="8" Grid.Column="1" Style="{DynamicResource InputTextBox}" MinLines="2" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].Street,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Row="9" Grid.Column="0" Text="City"/>
-                        <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].City,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="9" Grid.Column="1" Style="{DynamicResource InputTextBox}" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].City,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Row="10" Grid.Column="0" Text="Postcode"/>
-                        <TextBox Grid.Row="10" Grid.Column="1" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].PostalCode,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="10" Grid.Column="1" Style="{DynamicResource InputTextBox}" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].PostalCode,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Row="11" Grid.Column="0" Text="GPS"/>
                         <WrapPanel Grid.Row="11" Grid.Column="1">
-                            <TextBox Width="60" Text="{Binding Item.DeliverTo.Latitude,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{DynamicResource InputTextBox}" Width="60" Text="{Binding Item.DeliverTo.Latitude,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock Text=" "/>
-                            <TextBox Width="60" Text="{Binding Item.DeliverTo.Longitude,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{DynamicResource InputTextBox}" Width="60" Text="{Binding Item.DeliverTo.Longitude,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         </WrapPanel>
 
                         <TextBlock Grid.Row="12" Grid.Column="0" Text="Remarks"/>
-                        <TextBox Grid.Row="12" Grid.Column="1" MinLines="3" AcceptsReturn="True" Text="{Binding Item.Notes,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="12" Grid.Column="1" Style="{DynamicResource InputTextBox}" MinLines="3" AcceptsReturn="True" Text="{Binding Item.Notes,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
                 </Expander>
-                <Expander Header="Summary" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
+                <Expander Style="{DynamicResource ExpanderBackground}" Header="Summary" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="90"/>
@@ -102,7 +102,7 @@
                         <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Item.TotalOther,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
                 </Expander>
-                <Expander Header="Details" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10"/>
+                <Expander Style="{DynamicResource ExpanderBackground}" Header="Details" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

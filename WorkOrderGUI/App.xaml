@@ -8,6 +8,7 @@
                 <ResourceDictionary Source="Resources/Generic.xaml"/>
                 <ResourceDictionary Source="Resources/DataTemplates.xaml"/>
                 <ResourceDictionary Source="Resources/CustomControls.xaml"/>
+                <!--<ResourceDictionary Source="Themes/Classic.xaml"/>--><!-- runtime-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
