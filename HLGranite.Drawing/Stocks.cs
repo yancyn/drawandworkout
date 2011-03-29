@@ -74,6 +74,10 @@ namespace HLGranite.Drawing
         }
         #endregion
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <see>http://blogs.msdn.com/b/mikehillberg/archive/2009/03/20/icommand-is-like-a-chocolate-cake.aspx</see>
     public class NewStock : ICommand
     {
         private Stocks manager;
@@ -93,7 +97,7 @@ namespace HLGranite.Drawing
         }
         #endregion
     }
-    public class RemoveStock : ICommand
+    public class RemoveStock : ICommand //,INotification
     {
         private Stocks manager;
         public RemoveStock(Stocks sender)
@@ -108,6 +112,7 @@ namespace HLGranite.Drawing
         public event EventHandler CanExecuteChanged;
         public void Execute(object parameter)
         {
+            if (parameter == null) return;
             if (parameter is Stock)
             {
                 this.manager.Remove((parameter as Stock));

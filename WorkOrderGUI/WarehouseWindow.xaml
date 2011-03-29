@@ -4,6 +4,7 @@
     xmlns:w="http://schemas.microsoft.com/wpf/2008/toolkit"
     xmlns:g="clr-namespace:WorkOrderGUI"
     xmlns:d="clr-namespace:HLGranite.Drawing;assembly=HLGranite.Drawing"
+    xmlns:i="clr-namespace:Microsoft.Expression.Interactivity;assembly=Microsoft.Expression.Interactivity"
     Title="WarehouseWindow" Height="600" Width="800">
     <Grid x:Name="WarehouseGrid">
         <Grid.ColumnDefinitions>
@@ -17,7 +18,13 @@
             <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" DataContext="{Binding ElementName=WarehouseGrid,Path=DataContext.Item}">
                 <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding NewWarehouse}">Add</Button>
                 <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding SaveWarehouse}" ToolTip="Save all into database">Save</Button>
-                <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RemoveWarehouse}" CommandParameter="{Binding ElementName=WarehouseView,Path=SelectedItem}">Delete</Button>
+                <Button Content="Delete" Style="{StaticResource DefaultButtonStyle}" Tag="{Binding RemoveWarehouse}" CommandParameter="{Binding ElementName=WarehouseView,Path=SelectedItem}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <g:ConfirmCommandAction/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
                 <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RefreshWarehouse}" ToolTip="Discard all changes">Cancel</Button>
             </WrapPanel>
             <GroupBox DockPanel.Dock="Top" Header="Details">
