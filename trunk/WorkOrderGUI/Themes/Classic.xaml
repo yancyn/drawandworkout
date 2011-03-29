@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="GridBackground" TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="White"/>
+    </Style>
+    <Style x:Key="ExpanderBackground" TargetType="{x:Type Expander}">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+    <Style x:Key="Labeling" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+    <Style x:Key="InputTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+</ResourceDictionary>
