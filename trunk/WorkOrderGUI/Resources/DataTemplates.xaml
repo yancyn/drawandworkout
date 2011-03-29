@@ -253,20 +253,22 @@
         </Grid>
     </DataTemplate>
     <DataTemplate x:Key="SettingTemplate">
-           <ScrollViewer>
+	  <ScrollViewer>
         <DockPanel Margin="10" DataContext="{Binding Source={x:Static g:Properties.Settings.Default}}">
             <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
-                <Button Style="{StaticResource DefaultButtonStyle}" Click="SaveSetting_Click">Save</Button>
+                <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding SaveSetting}">Save</Button>
                 <Button Style="{StaticResource DefaultButtonStyle}">Cancel</Button>
             </WrapPanel>
             <StackPanel>
                 <GroupBox Header="Setting" Width="500" Padding="4" Margin="0,0,0,10" HorizontalAlignment="Left">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="110"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
@@ -284,36 +286,49 @@
                         </WrapPanel>
                         <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=AString, Source={StaticResource Resource},Mode=OneWay,Converter={StaticResource Resource}, ConverterParameter=Password}"/>
                         <PasswordBox Grid.Row="1" Grid.Column="1" PasswordChar="*" g:PasswordHelper.Attach="True" g:PasswordHelper.Password="{Binding Password,Mode=TwoWay}"/>
+                        
                         <TextBlock Grid.Row="2" Grid.Column="0" Text="Language"/>
                         <WrapPanel Grid.Row="2" Grid.Column="1">
                             <ComboBox ItemsSource="{Binding Source={StaticResource LanguageEnums}}" SelectedValue="{Binding Language,Mode=TwoWay}"/>
                         </WrapPanel>
-                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Uom" ToolTip="Unit of Measurement"/>
+                        
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Theme"/>
                         <WrapPanel Grid.Row="3" Grid.Column="1">
+                            <ComboBox ItemsSource="{Binding Source={StaticResource ThemeEnums}}" SelectedValue="{Binding Theme,Mode=TwoWay}"/>
+                        </WrapPanel>
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Number Format"/>
+                        <WrapPanel Grid.Row="4" Grid.Column="1">
+                            <ComboBox ItemsSource="{Binding Source={StaticResource NumberFormatEnums}}" SelectedValue="{Binding NumberFormat,Mode=TwoWay}"/>
+                        </WrapPanel>
+
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Uom" ToolTip="Unit of Measurement"/>
+                        <WrapPanel Grid.Row="5" Grid.Column="1">
                             <ComboBox ItemsSource="{Binding Source={StaticResource UomEnums}}" SelectedValue="{Binding Uom,Mode=TwoWay}" />
                             <TextBlock Margin="4,0,0,0" Text="{Binding Uom,Mode=OneWay,Converter={StaticResource UomStringConverter}}"/>
                         </WrapPanel>
 
-                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Buffer"/>
-                        <WrapPanel Grid.Row="4" Grid.Column="1">
+                        <TextBlock Grid.Row="6" Grid.Column="0" Text="Buffer"/>
+                        <WrapPanel Grid.Row="6" Grid.Column="1">
                             <TextBox Width="30" HorizontalAlignment="Left" Text="{Binding Buffer,Mode=TwoWay}"/>
                             <TextBlock Margin="4,0,0,0" Text="{Binding Uom,Mode=OneWay,Converter={StaticResource UomUnitConverter}}"/>
                         </WrapPanel>
 
-                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Long Date" ToolTip="Long date format"/>
-                        <TextBox Grid.Row="5" Grid.Column="1" MaxLines="1" Text="{Binding LongDate,Mode=TwoWay}"/>
-                        <TextBlock Grid.Row="6" Grid.Column="0" Text="Short Date" ToolTip="Short date format"/>
-                        <TextBox Grid.Row="6" Grid.Column="1" MaxLines="1" Text="{Binding ShortDate,Mode=TwoWay}"/>
-                        <TextBlock Grid.Row="7" Grid.Column="0" Text="Database"/>
-                        <TextBox Grid.Row="7" Grid.Column="1" MaxLines="1" Text="{Binding Svn,Mode=TwoWay}"/>
-                        <TextBlock Grid.Row="8" Grid.Column="0" Text="Svn Password"/>
-                        <PasswordBox Grid.Row="8" Grid.Column="1" PasswordChar="*"/>
+                        <TextBlock Grid.Row="7" Grid.Column="0" Text="Long Date" ToolTip="Long date format"/>
+                        <TextBox Grid.Row="7" Grid.Column="1" MaxLines="1" Text="{Binding LongDate,Mode=TwoWay}"/>
+                        <TextBlock Grid.Row="8" Grid.Column="0" Text="Short Date" ToolTip="Short date format"/>
+                        <TextBox Grid.Row="8" Grid.Column="1" MaxLines="1" Text="{Binding ShortDate,Mode=TwoWay}"/>
+                        
+                        <TextBlock Grid.Row="9" Grid.Column="0" Text="Database"/>
+                        <TextBox Grid.Row="9" Grid.Column="1" MaxLines="1" Text="{Binding Svn,Mode=TwoWay}"/>
+                        <TextBlock Grid.Row="10" Grid.Column="0" Text="Database Password"/>
+                        <PasswordBox Grid.Row="10" Grid.Column="1" PasswordChar="*" g:PasswordHelper.Attach="True" g:PasswordHelper.Password="{Binding SvnPassword,Mode=TwoWay}"/>
                     </Grid>
                 </GroupBox>
                 <GroupBox Header="Company" Width="500" Padding="4" Margin="0,0,0,10" HorizontalAlignment="Left">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="110"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="80"/>
                             <ColumnDefinition Width="*"/>
@@ -340,24 +355,27 @@
                         <TextBlock Grid.Row="2" Grid.Column="2" Text="Postcode"/>
                         <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding CompanyProfile.DeliveryAddresses[0].PostalCode,Mode=TwoWay}"/>
 
-                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Country"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CompanyProfile.DeliveryAddresses[0].Country,Mode=TwoWay}"/>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="State"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CompanyProfile.DeliveryAddresses[0].Region,Mode=TwoWay}"/>
 
-                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Telephone"/>
-                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding CompanyProfile.Phones[0].FullNumber,Mode=TwoWay}"/>
-                        <TextBlock Grid.Row="4" Grid.Column="2" Text="Fax"/>
-                        <TextBox Grid.Row="4" Grid.Column="3" Text="{Binding CompanyProfile.Phones[1].FullNumber,Mode=TwoWay}"/>
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Country"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding CompanyProfile.DeliveryAddresses[0].Country,Mode=TwoWay}"/>
 
-                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Mobile"/>
-                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding CompanyProfile.Phones[2].FullNumber,Mode=TwoWay}"/>
-                        <TextBox Grid.Row="5" Grid.Column="3" Text="{Binding CompanyProfile.Phones[3].FullNumber,Mode=TwoWay}"/>
-                        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding CompanyProfile.Phones[4].FullNumber,Mode=TwoWay}"/>
-                        <TextBox Grid.Row="6" Grid.Column="3" Text="{Binding CompanyProfile.Phones[5].FullNumber,Mode=TwoWay}"/>
-                        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding CompanyProfile.Phones[6].FullNumber,Mode=TwoWay}"/>
-                        <TextBox Grid.Row="7" Grid.Column="3" Text="{Binding CompanyProfile.Phones[7].FullNumber,Mode=TwoWay}"/>
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Telephone"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding CompanyProfile.Phones[0].FullNumber,Mode=TwoWay}"/>
+                        <TextBlock Grid.Row="5" Grid.Column="2" Text="Fax"/>
+                        <TextBox Grid.Row="5" Grid.Column="3" Text="{Binding CompanyProfile.Phones[1].FullNumber,Mode=TwoWay}"/>
 
-                        <TextBlock Grid.Row="8" Grid.Column="0" Text="Email"/>
-                        <TextBox Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding CompanyProfile.EmailAddresses[0].Address,Mode=TwoWay}"/>
+                        <TextBlock Grid.Row="6" Grid.Column="0" Text="Mobile"/>
+                        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding CompanyProfile.Phones[2].FullNumber,Mode=TwoWay}"/>
+                        <TextBox Grid.Row="6" Grid.Column="3" Text="{Binding CompanyProfile.Phones[3].FullNumber,Mode=TwoWay}"/>
+                        
+                        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding CompanyProfile.Phones[4].FullNumber,Mode=TwoWay}"/>
+                        <TextBox Grid.Row="7" Grid.Column="3" Text="{Binding CompanyProfile.Phones[5].FullNumber,Mode=TwoWay}"/>
+                        <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding CompanyProfile.Phones[6].FullNumber,Mode=TwoWay}"/>
+                        <TextBox Grid.Row="8" Grid.Column="3" Text="{Binding CompanyProfile.Phones[7].FullNumber,Mode=TwoWay}"/>
+                        <TextBlock Grid.Row="9" Grid.Column="0" Text="Email"/>
+                        <TextBox Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding CompanyProfile.EmailAddresses[0].Address,Mode=TwoWay}"/>
                     </Grid>
                 </GroupBox>
             </StackPanel>

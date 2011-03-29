@@ -458,10 +458,11 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_e6HwEUlwEeCv8taoZkDd9Q"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Enumeration" xmi:id="_KHDwkEoPEeCny7xgi0FuFA" name="NumberFormat">
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_KHDwkEoPEeCny7xgi0FuFA" name="NumberingFormat">
     <ownedLiteral xmi:id="_MJVKUEoPEeCny7xgi0FuFA" name="Digit"/>
     <ownedLiteral xmi:id="_M8rS0EoPEeCny7xgi0FuFA" name="Roman"/>
     <ownedLiteral xmi:id="_PWxWsEoPEeCny7xgi0FuFA" name="Alphabet"/>
+    <ownedLiteral xmi:id="_KuI90FmpEeCONM7P5czMxA" name="Chinese"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_-1LdsEsAEeC2fOUhTSfUyg" name="Customer"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_CBb-UEsBEeC2fOUhTSfUyg" name="DeliverTo" memberEnd="_CBdzgEsBEeC2fOUhTSfUyg _CBfBoEsBEeC2fOUhTSfUyg">
@@ -493,5 +494,9 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LazfEE-vEeCY6K18wnk5gA" value="*"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Lay4Ak-vEeCY6K18wnk5gA" value="1"/>
     </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_XgrRoFmoEeCONM7P5czMxA" name="Theme">
+    <ownedLiteral xmi:id="_ZuTm0FmoEeCONM7P5czMxA" name="Classic"/>
+    <ownedLiteral xmi:id="_bbzDYFmoEeCONM7P5czMxA" name="Professional"/>
   </packagedElement>
 </uml:Model>

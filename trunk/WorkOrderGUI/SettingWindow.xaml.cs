@@ -49,10 +49,5 @@ namespace WorkOrderGUI
                 WorkOrderGUI.Properties.Settings.Default.CompanyProfile = vcard;
             }
         }
-
-        private void SaveSetting_Click(object sender, RoutedEventArgs e)
-        {
-            WorkOrderGUI.Properties.Settings.Default.Save();
-        }
     }
 }

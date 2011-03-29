@@ -189,5 +189,29 @@ namespace WorkOrderGUI.Properties {
                 this["Gmail"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Classic")]
+        public global::HLGranite.Drawing.Theme Theme {
+            get {
+                return ((global::HLGranite.Drawing.Theme)(this["Theme"]));
+            }
+            set {
+                this["Theme"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Digit")]
+        public global::HLGranite.Drawing.NumberingFormat NumberFormat {
+            get {
+                return ((global::HLGranite.Drawing.NumberingFormat)(this["NumberFormat"]));
+            }
+            set {
+                this["NumberFormat"] = value;
+            }
+        }
     }
 }

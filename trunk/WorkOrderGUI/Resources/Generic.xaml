@@ -23,6 +23,7 @@
     </Style>
     <Style x:Key="CrossTabButton" BasedOn="{StaticResource BorderlessButton}" TargetType="{x:Type Button}">
         <Setter Property="Content" Value="x"/>
+        <Setter Property="Cursor" Value="Hand"/>
     </Style>
     <Style x:Key="RightLabel" TargetType="{x:Type TextBlock}">
         <Setter Property="Height" Value="22"/>
@@ -149,6 +150,16 @@
     <ObjectDataProvider x:Key="ProjectStageEnums" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
         <ObjectDataProvider.MethodParameters>
             <x:TypeExtension TypeName="d:ProjectStage"/>
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <ObjectDataProvider x:Key="ThemeEnums" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:TypeExtension TypeName="d:Theme"/>
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <ObjectDataProvider x:Key="NumberFormatEnums" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:TypeExtension TypeName="d:NumberingFormat"/>
         </ObjectDataProvider.MethodParameters>
     </ObjectDataProvider>
 

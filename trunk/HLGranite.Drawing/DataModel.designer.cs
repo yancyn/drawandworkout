@@ -931,19 +931,6 @@ namespace HLGranite.Drawing
         }
     }
 
-    public enum NumberFormat
-    {
-
-        /// <remarks/>
-        Digit,
-
-        /// <remarks/>
-        Roman,
-
-        /// <remarks/>
-        Alphabet,
-    }
-
     public partial class EllipseItem : ShapeItem, System.ComponentModel.INotifyPropertyChanged
     {
 

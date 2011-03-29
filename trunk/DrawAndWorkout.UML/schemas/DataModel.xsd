@@ -54,6 +54,49 @@
     </xsd:restriction>
   </xsd:simpleType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--  ProjectStage  -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="ProjectStage">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Draft"/>
+      <xsd:enumeration value="Quotation"/>
+      <xsd:enumeration value="Manufacture"/>
+      <xsd:enumeration value="Delivered"/>
+      <xsd:enumeration value="Invoice"/>
+      <xsd:enumeration value="Paid"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--  Theme  -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="Theme">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Classic"/>
+      <xsd:enumeration value="Professional"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--  Unit  -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:simpleType name="Unit">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Metric">
+        <xsd:annotation>
+          <xsd:documentation>
+            In cm unit.
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="British">
+        <xsd:annotation>
+          <xsd:documentation>
+            In inch unit.
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  UserRole  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:simpleType name="UserRole">
@@ -78,19 +121,6 @@
     </xsd:restriction>
   </xsd:simpleType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <!--  ProjectStage  -->
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <xsd:simpleType name="ProjectStage">
-    <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="Draft"/>
-      <xsd:enumeration value="Quotation"/>
-      <xsd:enumeration value="Manufacture"/>
-      <xsd:enumeration value="Delivered"/>
-      <xsd:enumeration value="Invoice"/>
-      <xsd:enumeration value="Paid"/>
-    </xsd:restriction>
-  </xsd:simpleType>
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  WorkStatus  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:simpleType name="WorkStatus">
@@ -99,27 +129,6 @@
       <xsd:enumeration value="InProgress"/>
       <xsd:enumeration value="Completed"/>
       <xsd:enumeration value="Rework"/>
-    </xsd:restriction>
-  </xsd:simpleType>
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <!--  Unit  -->
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <xsd:simpleType name="Unit">
-    <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="Metric">
-        <xsd:annotation>
-          <xsd:documentation>
-            In cm unit.
-          </xsd:documentation>
-        </xsd:annotation>
-      </xsd:enumeration>
-      <xsd:enumeration value="British">
-        <xsd:annotation>
-          <xsd:documentation>
-            In inch unit.
-          </xsd:documentation>
-        </xsd:annotation>
-      </xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
   <!-- ================================================== -->

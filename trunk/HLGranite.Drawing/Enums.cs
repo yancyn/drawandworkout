@@ -5,6 +5,9 @@ using System.Text;
 
 namespace HLGranite.Drawing
 {
+    /// <summary>
+    /// Numbering format.
+    /// </summary>
     public enum NumberingFormat
     {
         /// <summary>
@@ -23,5 +26,19 @@ namespace HLGranite.Drawing
         /// 甲, 乙, 丙, 丁, ...
         /// </summary>
         Chinese,
+    }
+    /// <summary>
+    /// Theme color for application.
+    /// </summary>
+    public enum Theme
+    {
+        /// <summary>
+        /// Plain background.
+        /// </summary>
+        Classic,
+        /// <summary>
+        /// Black background.
+        /// </summary>
+        Professional,
     }
 }
