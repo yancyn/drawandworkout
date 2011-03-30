@@ -137,7 +137,7 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </Button>
-                    <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RefreshStock}" ToolTip="Discard all changes">Cancel</Button>
+                    <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RefreshStock}" ToolTip="Discard all changes">Reset</Button>
                 </WrapPanel>
                 <DockPanel LastChildFill="True" DockPanel.Dock="Top">
                     <GroupBox DockPanel.Dock="Right">
@@ -223,7 +223,7 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </Button>
-                    <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RefreshWarehouse}" ToolTip="Discard all changes">Cancel</Button>
+                    <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RefreshWarehouse}" ToolTip="Discard all changes">Reset</Button>
                 </WrapPanel>
                 <GroupBox DockPanel.Dock="Top" Header="Details">
                     <Grid>
@@ -270,7 +270,7 @@
         <DockPanel Margin="10" DataContext="{Binding Source={x:Static g:Properties.Settings.Default}}">
             <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
                 <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding SaveSetting}">Save</Button>
-                <Button Style="{StaticResource DefaultButtonStyle}">Cancel</Button>
+                <Button Style="{StaticResource DefaultButtonStyle}">Reset</Button>
             </WrapPanel>
             <StackPanel>
                 <GroupBox Header="Setting" Width="500" Padding="4" Margin="0,0,0,10" HorizontalAlignment="Left">

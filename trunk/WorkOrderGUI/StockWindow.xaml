@@ -25,7 +25,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Button>
-                <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RefreshStock}" ToolTip="Discard all changes">Cancel</Button>
+                <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RefreshStock}" ToolTip="Discard all changes">Reset</Button>
             </WrapPanel>
             <DockPanel LastChildFill="True" DockPanel.Dock="Top">
                 <GroupBox DockPanel.Dock="Right">

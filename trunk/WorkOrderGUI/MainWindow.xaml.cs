@@ -29,7 +29,12 @@ namespace WorkOrderGUI
             InitializeComponent();
             Initialize();
         }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadShortcut();
+        }
 
+        #region Methods
         private void Initialize()
         {
             try
@@ -55,6 +60,7 @@ namespace WorkOrderGUI
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex);
+                throw ex;
             }
         }
         /// <summary>
@@ -149,7 +155,18 @@ namespace WorkOrderGUI
             items.Add(item3);
             return items;
         }
+        /// <summary>
+        /// todo: Loading shortcut definitions.
+        /// </summary>
+        /// <see>http://stackoverflow.com/questions/2382916/binding-a-wpf-shortcut-key-to-a-command-in-the-viewmodel</see>
+        private void LoadShortcut()
+        {
+            this.InputBindings.Add(new KeyBinding(this.NewMenu.Command, new KeyGesture(Key.N, ModifierKeys.Control)));
+            //this.InputBindings.Add(new KeyBinding(this.NewMenu.Command, new KeyGesture(Key.W, ModifierKeys.Control)));
+        }
+        #endregion
 
+        #region Events
         private void MenuClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -164,5 +181,6 @@ namespace WorkOrderGUI
             Hyperlink hyperlink = (sender as Hyperlink);
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(hyperlink.NavigateUri.ToString()));
         }
+        #endregion
     }
 }

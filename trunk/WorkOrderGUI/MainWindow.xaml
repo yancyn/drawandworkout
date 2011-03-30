@@ -4,7 +4,7 @@
     xmlns:w="http://schemas.microsoft.com/wpf/2008/toolkit"
     xmlns:g="clr-namespace:WorkOrderGUI"
     xmlns:d="clr-namespace:HLGranite.Drawing;assembly=HLGranite.Drawing"
-    Title="WorkOrder beta" Height="600" Width="800" WindowState="Maximized">
+    Title="WorkOrder beta" Height="600" Width="800" WindowState="Maximized" Loaded="Window_Loaded">
 
     <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
@@ -15,23 +15,23 @@
         </Grid.RowDefinitions>
         <Menu x:Name="MainMenu" Grid.Row="0">
             <MenuItem Header="_File">
-                <MenuItem Header="_New" Command="{Binding NewProject}">
+                <MenuItem x:Name="NewMenu" Header="_New" Command="{Binding NewProject}" InputGestureText="Ctrl+N">
                     <MenuItem.Icon>
                         <Image Source="Images\page.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Open">
+                <MenuItem x:Name="OpenMenu" Header="_Open" InputGestureText="Ctrl+O">
                     <MenuItem.Icon>
                         <Image Source="Images\folder_page.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Save">
+                <MenuItem x:Name="SaveMenu" Header="_Save" InputGestureText="Ctrl+S">
                     <MenuItem.Icon>
                         <Image Source="Images\disk.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="_Print">
+                <MenuItem x:Name="PrintMenu" Header="_Print" InputGestureText="Ctrl+P">
                     <MenuItem.Icon>
                         <Image Source="Images\printer.png"/>
                     </MenuItem.Icon>
@@ -46,17 +46,17 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Edit">
-                <MenuItem Header="Cut">
+                <MenuItem Header="Cut" InputGestureText="Ctrl+X">
                     <MenuItem.Icon>
                         <Image Source="Images\cut.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Copy">
+                <MenuItem Header="_Copy" InputGestureText="Ctrl+C">
                     <MenuItem.Icon>
                         <Image Source="Images\page_copy.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Paste">
+                <MenuItem Header="_Paste" InputGestureText="Ctrl+V">
                     <MenuItem.Icon>
                         <Image Source="Images\paste_plain.png"/>
                     </MenuItem.Icon>
@@ -69,7 +69,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Tools">
-                <MenuItem Header="_Home">
+                <MenuItem Header="_Home" InputGestureText="Ctrl+H">
                     <MenuItem.Icon>
                         <Image Source="Images/house.png"/>
                     </MenuItem.Icon>
@@ -104,7 +104,7 @@
             </MenuItem>
             <MenuItem x:Name="MenuWindow" Header="_Window" ItemsSource="{Binding Items}" ItemTemplate="{StaticResource WindowMenuTemplate}"/>
             <MenuItem Header="_Help">
-                <MenuItem Header="_Index">
+                <MenuItem Header="_Index" InputGestureText="F1">
                     <MenuItem.Icon>
                         <Image Source="Images/help.png"/>
                     </MenuItem.Icon>
