@@ -7,12 +7,13 @@
     xmlns:d="clr-namespace:HLGranite.Drawing;assembly=HLGranite.Drawing"
     xmlns:i="clr-namespace:Microsoft.Expression.Interactivity;assembly=Microsoft.Expression.Interactivity">
     
+    <g:GlobaliztionResource x:Key="Resource"/>
     <g:RowCountConverter x:Key="RowCountConverter"/>
     <g:NumberConverter x:Key="NumberConverter"/>
     <g:PercentageConverter x:Key="PercentageConverter"/>
     <g:UomStringConverter x:Key="UomStringConverter"/>
     <g:UomUnitConverter x:Key="UomUnitConverter"/>
-    <g:GlobaliztionResource x:Key="Resource"/>
+    <g:IndexConverter x:Key="IndexConverter"/>    
 
     <DataTemplate x:Key="ProjectTemplate">
 	  <Grid Style="{DynamicResource GridBackground}">

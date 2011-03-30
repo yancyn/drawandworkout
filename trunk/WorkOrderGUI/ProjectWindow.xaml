@@ -5,7 +5,77 @@
     xmlns:g="clr-namespace:WorkOrderGUI"
     xmlns:d="clr-namespace:HLGranite.Drawing;assembly=HLGranite.Drawing"
     Title="ProjectWindow" Height="600" Width="800">
-    <Grid Style="{DynamicResource GridBackground}">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type d:LengthItem}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="60" HorizontalAlignment="Right" Margin="0,0,4,0">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource IndexConverter}">
+                            <Binding/>
+                            <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}" Path="ItemsSource"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBox Text="{Binding Length}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type d:RectItem}">
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--<TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding }"/>-->
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Material"/>
+                <ComboBox Grid.Row="1" Grid.Column="1"
+                          ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}},Path=DataContext.Database.Stocks.Stock}"
+                          SelectedItem="{Binding Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Size"/>
+                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                    <TextBox Width="50" Text="{Binding Width,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="x" Margin="4,0,4,0"/>
+                    <TextBox Width="50" Text="{Binding Height,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type d:WorkItem}">
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <!--<TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding }"/>-->
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Material"/>
+                <ComboBox Grid.Row="1" Grid.Column="1"
+                          ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}},Path=DataContext.Database.Stocks.Stock}"
+                          SelectedItem="{Binding Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Size"/>
+                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                    <TextBox Width="50" Text="{Binding MaxWidth,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="x" Margin="4,0,4,0"/>
+                    <TextBox Width="50" Text="{Binding MaxHeight,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                    <ItemsControl ItemsSource="{Binding Lengths}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid Style="{DynamicResource GridBackground}" DataContext="{Binding Items[0]}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="270"/>
@@ -87,7 +157,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" Grid.Column="0" Text="Granite"/>
                         <ComboBox Grid.Row="0" Grid.Column="1"
-                                  ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Stocks.Stock}"
+                                  ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}},Path=DataContext.Database.Stocks.Stock}"
                                   SelectedItem="{Binding Item.WorkOrders[0].Items[0].Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Row="1" Grid.Column="0" Text="Progress"/>
                         <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Item.Progress,Converter={StaticResource PercentageConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
@@ -102,7 +172,11 @@
                         <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Item.TotalOther,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
                 </Expander>
-                <Expander Style="{DynamicResource ExpanderBackground}" Header="Details" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10"/>
+                <Expander Style="{DynamicResource ExpanderBackground}" Header="Details" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
+                    <StackPanel>
+                        <ItemsControl ItemsSource="{Binding Item.WorkOrders[0].Items}"/>
+                    </StackPanel>
+                </Expander>
             </StackPanel>
         </ScrollViewer>
     </Grid>

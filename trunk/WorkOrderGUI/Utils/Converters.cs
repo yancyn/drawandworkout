@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Data;
 using System.Windows;
+using HLGranite.Drawing;
 
 namespace WorkOrderGUI
 {
@@ -124,6 +126,35 @@ namespace WorkOrderGUI
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+        #endregion
+    }
+    /// <summary>
+    /// Get index of collection.
+    /// </summary>
+    /// <see>http://blogs.microsoft.co.il/blogs/davids/archive/2010/04/17/how-to-bind-to-the-index-of-a-collection-in-wpf.aspx</see>
+    public class IndexConverter : IMultiValueConverter
+    {
+        #region IMultiValueConverter Members
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (values.Length > 1)
+            {
+                if (values[0] is LengthItem && values[1] is ObservableCollection<LengthItem>)
+                {
+                    LengthItem item = values[0] as LengthItem;
+                    ObservableCollection<LengthItem> collection = values[1] as ObservableCollection<LengthItem>;
+                    return "L" + (collection.IndexOf(item) + 1).ToString();
+                }
+            }
+
+            //throw new NotImplementedException();
+            return null;
+        }
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            //throw new NotImplementedException();
+            return null;
         }
         #endregion
     }
