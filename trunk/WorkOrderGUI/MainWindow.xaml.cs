@@ -24,6 +24,7 @@ namespace WorkOrderGUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private PageManager pageManager;
         public MainWindow()
         {
             InitializeComponent();
@@ -46,7 +47,7 @@ namespace WorkOrderGUI
 
                 //testing only
                 #region Create example page
-                PageManager pageManager = new PageManager();
+                this.pageManager = new PageManager();
                 Project project = CreateProject();
                 PageViewModel page = new PageViewModel(project);
                 pageManager.Add(page);
@@ -156,13 +157,20 @@ namespace WorkOrderGUI
             return items;
         }
         /// <summary>
-        /// todo: Loading shortcut definitions.
+        /// Loading shortcut definitions.
         /// </summary>
         /// <see>http://stackoverflow.com/questions/2382916/binding-a-wpf-shortcut-key-to-a-command-in-the-viewmodel</see>
         private void LoadShortcut()
         {
-            this.InputBindings.Add(new KeyBinding(this.NewMenu.Command, new KeyGesture(Key.N, ModifierKeys.Control)));
-            //this.InputBindings.Add(new KeyBinding(this.NewMenu.Command, new KeyGesture(Key.W, ModifierKeys.Control)));
+            this.InputBindings.Add(new KeyBinding(this.pageManager.NewProject, new KeyGesture(Key.N, ModifierKeys.Control)));
+
+            //todo: KeyBinding removeKey = new KeyBinding(this.pageManager.RemovePage, new KeyGesture(Key.W, ModifierKeys.Control));
+            //removeKey.CommandParameter = this.pageManager.CurrentPage;
+            //this.InputBindings.Add(removeKey);
+
+            //KeyBinding removeKey2 = new KeyBinding(this.pageManager.RemovePage, new KeyGesture(Key.F4, ModifierKeys.Control));
+            //removeKey2.CommandParameter = this.pageManager.CurrentPage;
+            //this.InputBindings.Add(removeKey2);
         }
         #endregion
 

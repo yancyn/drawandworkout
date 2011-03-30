@@ -5,6 +5,9 @@
     xmlns:g="clr-namespace:WorkOrderGUI"
     xmlns:d="clr-namespace:HLGranite.Drawing;assembly=HLGranite.Drawing"
     Title="WorkOrder beta" Height="600" Width="800" WindowState="Maximized" Loaded="Window_Loaded">
+    <!--<Window.InputBindings>
+        <KeyBinding Command="NewMenu.Command" Gesture="Ctrl+N"/>
+    </Window.InputBindings>-->
 
     <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
