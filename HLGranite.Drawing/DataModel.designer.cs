@@ -392,6 +392,8 @@ namespace HLGranite.Drawing
 
         private decimal progressField;
 
+        private ShapeItem shapeItemField;
+
         public System.DateTime CreatedAt
         {
             get
@@ -555,6 +557,22 @@ namespace HLGranite.Drawing
             }
         }
 
+        public ShapeItem ShapeItem
+        {
+            get
+            {
+                return this.shapeItemField;
+            }
+            set
+            {
+                if ((statusField.Equals(value) != true))
+                {
+                    this.shapeItemField = value;
+                    this.OnPropertyChanged("ShapeItem");
+                }
+            }
+        }
+
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 
         public virtual void OnPropertyChanged(string propertyName)
@@ -701,7 +719,7 @@ namespace HLGranite.Drawing
         }
     }
 
-    public partial class RectItem : ShapeItem, System.ComponentModel.INotifyPropertyChanged
+    public partial class RectItem : WorkItem, System.ComponentModel.INotifyPropertyChanged
     {
 
         private int widthField;
@@ -756,7 +774,7 @@ namespace HLGranite.Drawing
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(UShapeItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TriangleItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(LShapeItem))]
-    public partial class PolygonItem : ShapeItem, System.ComponentModel.INotifyPropertyChanged
+    public partial class PolygonItem : WorkItem, System.ComponentModel.INotifyPropertyChanged
     {
 
         private ObservableCollection<LengthItem> lengthsField;
@@ -931,7 +949,7 @@ namespace HLGranite.Drawing
         }
     }
 
-    public partial class EllipseItem : ShapeItem, System.ComponentModel.INotifyPropertyChanged
+    public partial class EllipseItem : WorkItem, System.ComponentModel.INotifyPropertyChanged
     {
 
         private int widthField;

@@ -8,9 +8,10 @@ namespace HLGranite.Drawing
     public partial class BaseItem
     {
         protected int widthField;
-
         protected int heightField;
-        public BaseItem():base()
+
+        public BaseItem()
+            : base()
         {
             this.uomField = Unit.British;
             this.widthField = 0;
