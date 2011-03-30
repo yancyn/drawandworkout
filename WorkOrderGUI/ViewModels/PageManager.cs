@@ -105,6 +105,7 @@ namespace WorkOrderGUI
         public PageManager()
         {
             this.items = new ObservableCollection<PageViewModel>();
+            this.items.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(items_CollectionChanged);
             this.database = new DatabaseObject();
 
             this.newProject = new NewProject(this);
@@ -267,6 +268,12 @@ namespace WorkOrderGUI
 
             System.Diagnostics.Debug.WriteLine("currentPage: " + this.currentPage.ToString());
         }
+
+        private void items_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            //KeyBinding removeKey = new KeyBinding(this.removePage, new KeyGesture(Key.W, ModifierKeys.Control));
+            //removeKey.CommandParameter = this.currentPage;
+        }
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged(string propertyName)
         {
@@ -284,10 +291,10 @@ namespace WorkOrderGUI
     /// <see>http://shujaatsiddiqi.blogspot.com/2010/07/using-icommand-for-light-weight-views.html</see>
     public class NewProject : ICommand
     {
-        private PageManager pageManager;
+        private PageManager manager;
         public NewProject(PageManager sender)
         {
-            this.pageManager = sender;
+            this.manager = sender;
         }
         #region ICommand Members
         public bool CanExecute(object parameter)
@@ -298,7 +305,7 @@ namespace WorkOrderGUI
         public void Execute(object parameter)
         {
             PageViewModel viewModel = new PageViewModel(new Project());
-            this.pageManager.Add(viewModel);
+            this.manager.Add(viewModel);
         }
         #endregion
     }
