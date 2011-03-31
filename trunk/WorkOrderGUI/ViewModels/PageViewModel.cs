@@ -83,6 +83,9 @@ namespace WorkOrderGUI
         }
         #endregion
 
+        public PageViewModel()
+        {
+        }
         public PageViewModel(Project project)
         {
             this.item = project;

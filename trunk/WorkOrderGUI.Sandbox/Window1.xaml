@@ -11,23 +11,24 @@
         <Canvas Name="labeling">
             <TextBlock Text="2'" Margin="300,60,0,0" Foreground="Blue" />
 
-
-            <Line X1="0" Y1="-10" X2="300" Y2="-10" Stroke="Blue" StrokeThickness="1"/>
-            <Line X1="0" Y1="0" X2="0" Y2="-24" Stroke="Blue" StrokeThickness="1"/>
-            <Line X1="300" Y1="0" X2="300" Y2="-24" Stroke="Blue" StrokeThickness="1"/>
-            <!-- arrow from: http://social.msdn.microsoft.com/Forums/en-US/wpf/thread/29171dc7-a8d8-421e-b456-06c4a82ed735/ -->
-            <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="10" Canvas.Top="-15">
-                <Path.RenderTransform>
-                    <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
-                </Path.RenderTransform>
-            </Path>
-            <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="290" Canvas.Top="-15">
-                <Path.RenderTransform>
-                    <ScaleTransform ScaleX="0.25" ScaleY="0.25" />
-                </Path.RenderTransform>
-            </Path>
-            <Rectangle Width="50" Height="24" Fill="White" Canvas.Left="125" Canvas.Top="-24" />
-            <TextBlock Text="39&quot;½" Margin="150,0,0,0" Foreground="Blue" Canvas.Top="-20" Canvas.Left="-20" />
+            <Canvas Canvas.Top="-24">
+                <Line X1="0" Y1="10" X2="300" Y2="10" Stroke="Blue" StrokeThickness="1"/>
+                <Line X1="0" Y1="0" X2="0" Y2="24" Stroke="Blue" StrokeThickness="1"/>
+                <Line X1="300" Y1="0" X2="300" Y2="24" Stroke="Blue" StrokeThickness="1"/>
+                <!-- arrow from: http://social.msdn.microsoft.com/Forums/en-US/wpf/thread/29171dc7-a8d8-421e-b456-06c4a82ed735/ -->
+                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="10" Canvas.Top="5">
+                    <Path.RenderTransform>
+                        <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
+                    </Path.RenderTransform>
+                </Path>
+                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="290" Canvas.Top="5">
+                    <Path.RenderTransform>
+                        <ScaleTransform ScaleX="0.25" ScaleY="0.25" />
+                    </Path.RenderTransform>
+                </Path>
+                <Rectangle Width="50" Height="24" Fill="White" Canvas.Left="125"/>
+                <TextBlock Text="39&quot;½" Margin="150,0,0,0" Foreground="Blue" Canvas.Left="-20" />
+            </Canvas>
 
 
             <TextBlock Text="2'" Margin="60,420,0,0" Foreground="Blue" />

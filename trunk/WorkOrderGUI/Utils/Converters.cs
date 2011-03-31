@@ -146,6 +146,12 @@ namespace WorkOrderGUI
                     ObservableCollection<LengthItem> collection = values[1] as ObservableCollection<LengthItem>;
                     return "L" + (collection.IndexOf(item) + 1).ToString();
                 }
+                if (values[0] is WorkItem && values[1] is ObservableCollection<WorkItem>)
+                {
+                    WorkItem item = values[0] as WorkItem;
+                    ObservableCollection<WorkItem> collection = values[1] as ObservableCollection<WorkItem>;
+                    return (collection.IndexOf(item) + 1).ToString() + ".";
+                }
             }
 
             //throw new NotImplementedException();
@@ -155,6 +161,33 @@ namespace WorkOrderGUI
         {
             //throw new NotImplementedException();
             return null;
+        }
+        #endregion
+    }
+    /// <summary>
+    /// Convert top and left into margin measurement.
+    /// </summary>
+    public class MarginConverter : IMultiValueConverter
+    {
+        #region IMultiValueConverter Members
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (values.Length > 1)
+            {
+                double left = (double)values[0];
+                double top = (double)values[1];
+
+                Thickness output = new Thickness(left, top, 0, 0);
+                return output;
+            }
+
+            return null;//throw new NotImplementedException();
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+            //throw new NotImplementedException();
         }
         #endregion
     }

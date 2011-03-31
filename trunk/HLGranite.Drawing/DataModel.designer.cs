@@ -181,9 +181,7 @@ namespace HLGranite.Drawing
         }
     }
 
-    public partial class Stock : BaseElement //, System.ComponentModel.INotifyPropertyChanged
-    {
-    }
+    public partial class Stock : BaseElement { }
 
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Warehouse))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Stock))]
@@ -332,7 +330,7 @@ namespace HLGranite.Drawing
         }
     }
 
-    public partial class Warehouse : BaseElement //, System.ComponentModel.INotifyPropertyChanged
+    public partial class Warehouse : BaseElement
     {
 
         private vCardDeliveryAddressCollection addressesField;
@@ -360,29 +358,22 @@ namespace HLGranite.Drawing
                 }
             }
         }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 
-    public partial class WorkItem : BaseItem, System.ComponentModel.INotifyPropertyChanged
+    public partial class WorkItem : BaseItem
     {
 
         private System.DateTime createdAtField;
 
         private Employee workedByField;
 
-        private int maxWidthField;
+        private double maxWidthField;
 
-        private int maxHeightField;
+        private double maxHeightField;
+
+        private double leftField;
+
+        private double topField;
 
         private Stock materialField;
 
@@ -434,7 +425,7 @@ namespace HLGranite.Drawing
             }
         }
 
-        public int MaxWidth
+        public double MaxWidth
         {
             get
             {
@@ -450,7 +441,7 @@ namespace HLGranite.Drawing
             }
         }
 
-        public int MaxHeight
+        public double MaxHeight
         {
             get
             {
@@ -462,6 +453,38 @@ namespace HLGranite.Drawing
                 {
                     this.maxHeightField = value;
                     this.OnPropertyChanged("MaxHeight");
+                }
+            }
+        }
+
+        public double Left
+        {
+            get
+            {
+                return this.leftField;
+            }
+            set
+            {
+                if ((leftField.Equals(value) != true))
+                {
+                    this.leftField = value;
+                    this.OnPropertyChanged("Left");
+                }
+            }
+        }
+
+        public double Top
+        {
+            get
+            {
+                return this.topField;
+            }
+            set
+            {
+                if ((topField.Equals(value) != true))
+                {
+                    this.topField = value;
+                    this.OnPropertyChanged("Top");
                 }
             }
         }
@@ -572,33 +595,9 @@ namespace HLGranite.Drawing
                 }
             }
         }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 
-    public partial class Employee : User, System.ComponentModel.INotifyPropertyChanged
-    {
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
+    public partial class Employee : User { }
 
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Employee))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Customer))]
@@ -656,20 +655,7 @@ namespace HLGranite.Drawing
         Supplier,
     }
 
-    public partial class Customer : User, System.ComponentModel.INotifyPropertyChanged
-    {
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
+    public partial class Customer : User { }
 
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(RectItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PolygonItem))]
@@ -719,14 +705,10 @@ namespace HLGranite.Drawing
         }
     }
 
-    public partial class RectItem : WorkItem, System.ComponentModel.INotifyPropertyChanged
+    public partial class RectItem : WorkItem //, System.ComponentModel.INotifyPropertyChanged
     {
 
-        private int widthField;
-
-        private int heightField;
-
-        public int Width
+        public double Width
         {
             get
             {
@@ -742,7 +724,7 @@ namespace HLGranite.Drawing
             }
         }
 
-        public int Height
+        public double Height
         {
             get
             {
@@ -757,24 +739,13 @@ namespace HLGranite.Drawing
                 }
             }
         }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ZShapeItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(UShapeItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TriangleItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(LShapeItem))]
-    public partial class PolygonItem : WorkItem, System.ComponentModel.INotifyPropertyChanged
+    public partial class PolygonItem : WorkItem //, System.ComponentModel.INotifyPropertyChanged
     {
 
         private ObservableCollection<LengthItem> lengthsField;
@@ -802,27 +773,16 @@ namespace HLGranite.Drawing
                 }
             }
         }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 
     public partial class LengthItem : System.ComponentModel.INotifyPropertyChanged
     {
 
-        private int lengthField;
+        private double lengthField;
 
         private Bullnose typeField;
 
-        public int Length
+        public double Length
         {
             get
             {
@@ -889,74 +849,18 @@ namespace HLGranite.Drawing
         }
     }
 
-    public partial class ZShapeItem : PolygonItem, System.ComponentModel.INotifyPropertyChanged
+    public partial class ZShapeItem : PolygonItem { }
+
+    public partial class UShapeItem : PolygonItem { }
+
+    public partial class TriangleItem : PolygonItem { }
+
+    public partial class LShapeItem : PolygonItem { }
+
+    public partial class EllipseItem : WorkItem
     {
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-
-    public partial class UShapeItem : PolygonItem, System.ComponentModel.INotifyPropertyChanged
-    {
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-
-    public partial class TriangleItem : PolygonItem, System.ComponentModel.INotifyPropertyChanged
-    {
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-
-    public partial class LShapeItem : PolygonItem, System.ComponentModel.INotifyPropertyChanged
-    {
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-
-    public partial class EllipseItem : WorkItem, System.ComponentModel.INotifyPropertyChanged
-    {
-
-        private int widthField;
-
-        private int heightField;
-
-        public int Width
+        public double Width
         {
             get
             {
@@ -972,7 +876,7 @@ namespace HLGranite.Drawing
             }
         }
 
-        public int Height
+        public double Height
         {
             get
             {
@@ -985,17 +889,6 @@ namespace HLGranite.Drawing
                     this.heightField = value;
                     this.OnPropertyChanged("Height");
                 }
-            }
-        }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
     }
@@ -1019,7 +912,7 @@ namespace HLGranite.Drawing
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(WorkItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(InventoryWIP))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Inventory))]
-    public partial class BaseItem : BaseAttribute, System.ComponentModel.INotifyPropertyChanged
+    public partial class BaseItem : BaseAttribute
     {
 
         private Unit uomField;
@@ -1042,17 +935,6 @@ namespace HLGranite.Drawing
                 }
             }
         }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 
     public enum Unit
@@ -1065,16 +947,16 @@ namespace HLGranite.Drawing
         British,
     }
 
-    public partial class InventoryWIP : BaseItem, System.ComponentModel.INotifyPropertyChanged
+    public partial class InventoryWIP : BaseItem
     {
 
         private Employee workedByField;
 
         private System.DateTime workedAtField;
 
-        private int widthField;
+        private double widthField;
 
-        private int heightField;
+        private double heightField;
 
         private Inventory sourceField;
 
@@ -1120,7 +1002,7 @@ namespace HLGranite.Drawing
             }
         }
 
-        public int Width
+        public double Width
         {
             get
             {
@@ -1136,7 +1018,7 @@ namespace HLGranite.Drawing
             }
         }
 
-        public int Height
+        public double Height
         {
             get
             {
@@ -1199,20 +1081,9 @@ namespace HLGranite.Drawing
                 }
             }
         }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 
-    public partial class Inventory : BaseItem, System.ComponentModel.INotifyPropertyChanged
+    public partial class Inventory : BaseItem
     {
 
         private System.DateTime purchaseAtField;
@@ -1237,7 +1108,7 @@ namespace HLGranite.Drawing
             }
         }
 
-        public int Width
+        public double Width
         {
             get
             {
@@ -1253,7 +1124,7 @@ namespace HLGranite.Drawing
             }
         }
 
-        public int Height
+        public double Height
         {
             get
             {
@@ -1316,20 +1187,9 @@ namespace HLGranite.Drawing
                 }
             }
         }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 
-    public partial class Project : BaseAttribute, System.ComponentModel.INotifyPropertyChanged
+    public partial class Project : BaseAttribute
     {
 
         private System.DateTime createdAtField;
@@ -1504,17 +1364,6 @@ namespace HLGranite.Drawing
                 }
             }
         }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 
     public enum ProjectStage
@@ -1560,7 +1409,7 @@ namespace HLGranite.Drawing
         }
     }
 
-    public partial class Warehouses : DatabaseObject, System.ComponentModel.INotifyPropertyChanged
+    public partial class Warehouses : DatabaseObject
     {
 
         private ObservableCollection<Warehouse> warehouseField;
@@ -1588,20 +1437,9 @@ namespace HLGranite.Drawing
                 }
             }
         }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 
-    public partial class Users : DatabaseObject, System.ComponentModel.INotifyPropertyChanged
+    public partial class Users : DatabaseObject
     {
 
         private ObservableCollection<User> userField;
@@ -1629,20 +1467,9 @@ namespace HLGranite.Drawing
                 }
             }
         }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 
-    public partial class Stocks : DatabaseObject, System.ComponentModel.INotifyPropertyChanged
+    public partial class Stocks : DatabaseObject
     {
 
         private ObservableCollection<Stock> stockField;
@@ -1670,20 +1497,9 @@ namespace HLGranite.Drawing
                 }
             }
         }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 
-    public partial class Projects : DatabaseObject, System.ComponentModel.INotifyPropertyChanged
+    public partial class Projects : DatabaseObject
     {
 
         private ObservableCollection<Project> projectField;
@@ -1711,20 +1527,9 @@ namespace HLGranite.Drawing
                 }
             }
         }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 
-    public partial class InventoryWIPs : DatabaseObject, System.ComponentModel.INotifyPropertyChanged
+    public partial class InventoryWIPs : DatabaseObject
     {
 
         private ObservableCollection<Inventory> inventoryField;
@@ -1752,20 +1557,9 @@ namespace HLGranite.Drawing
                 }
             }
         }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 
-    public partial class Inventories : DatabaseObject, System.ComponentModel.INotifyPropertyChanged
+    public partial class Inventories : DatabaseObject
     {
 
         private ObservableCollection<Inventory> inventoryField;
@@ -1791,17 +1585,6 @@ namespace HLGranite.Drawing
                     this.inventoryField = value;
                     this.OnPropertyChanged("Inventory");
                 }
-            }
-        }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
     }

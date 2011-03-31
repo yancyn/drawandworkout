@@ -42,4 +42,20 @@ namespace WorkOrderGUI
             return base.SelectTemplate(item, container);
         }
     }
+    public class WorkItemTemplateSelector : DataTemplateSelector
+    {
+        public override DataTemplate SelectTemplate(object item, DependencyObject container)
+        {
+            FrameworkElement element = container as FrameworkElement;
+            if (element != null && item != null)
+            {
+                if (item is LShapeItem)
+                    return element.FindResource("LShapeTemplate") as DataTemplate;
+                else if (item is RectItem)
+                    return element.FindResource("RectTemplate") as DataTemplate;
+            }
+
+            return base.SelectTemplate(item, container);
+        }
+    }
 }
