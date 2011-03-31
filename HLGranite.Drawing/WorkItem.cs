@@ -14,6 +14,9 @@ namespace HLGranite.Drawing
             this.elementsField = new ObservableCollection<WorkItem>();
             this.materialField = new Stock();
             this.maxHeightField = 0;
+            this.maxWidthField = 0;
+            this.topField = 0;
+            this.leftField = 0;
             this.progressField = 0;
             this.workedByField = new Employee();
         }

@@ -7,8 +7,8 @@ namespace HLGranite.Drawing
 {
     public partial class BaseItem
     {
-        protected int widthField;
-        protected int heightField;
+        protected double widthField;
+        protected double heightField;
 
         public BaseItem()
             : base()

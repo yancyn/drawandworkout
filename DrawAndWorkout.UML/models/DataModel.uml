@@ -102,14 +102,16 @@
     <generalization xmi:id="_NrL-sEbaEeCvMexyU7cjtg" general="_umohgEbZEeCvMexyU7cjtg"/>
     <ownedAttribute xmi:id="_HZW00ETYEeCJe9RP8ofhZg" name="Progress" type="_LbjqkEZ7EeCw34UU7FfFCw" aggregation="composite"/>
     <ownedAttribute xmi:id="_KXy74ETYEeCJe9RP8ofhZg" name="WorkedBy" type="_A3_9cETUEeC_SaZDL-mcDw" aggregation="composite"/>
-    <ownedAttribute xmi:id="_l2wPAEbTEeCvMexyU7cjtg" name="MaxWidth" aggregation="composite">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
-    </ownedAttribute>
-    <ownedAttribute xmi:id="_n1t2EEbTEeCvMexyU7cjtg" name="MaxHeight" aggregation="composite">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
-    </ownedAttribute>
+    <ownedAttribute xmi:id="_l2wPAEbTEeCvMexyU7cjtg" name="MaxWidth" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
+    <ownedAttribute xmi:id="_n1t2EEbTEeCvMexyU7cjtg" name="MaxHeight" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
     <ownedAttribute xmi:id="_v1SW4EbiEeCP999jW41XiA" name="CreatedAt" type="_JFuk8ES1EeCFl51ftuwnCA" aggregation="composite"/>
     <ownedAttribute xmi:id="_qa-JgEhyEeCrgMci05vtLw" name="Status" type="_tnuZYEhyEeCrgMci05vtLw" aggregation="composite"/>
+    <ownedAttribute xmi:id="_m3Gz4Ft7EeCWn_HrzsiL4Q" name="Left" aggregation="composite">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_n2ks0Ft7EeCWn_HrzsiL4Q" name="Top" aggregation="composite">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_MMJD0ETXEeCJe9RP8ofhZg" name="WorkOrder" memberEnd="_MMJD0UTXEeCJe9RP8ofhZg _MMJD1ETXEeCJe9RP8ofhZg">
     <ownedEnd xmi:id="_MMJD0UTXEeCJe9RP8ofhZg" name="src" type="_tN3KkETSEeC_SaZDL-mcDw" association="_MMJD0ETXEeCJe9RP8ofhZg">
@@ -152,12 +154,8 @@
   <packagedElement xmi:type="uml:Class" xmi:id="_OXI4AEbVEeCvMexyU7cjtg" name="Inventory">
     <generalization xmi:id="_KEqj8EbaEeCvMexyU7cjtg" general="_umohgEbZEeCvMexyU7cjtg"/>
     <ownedAttribute xmi:id="_fM8XgEbVEeCvMexyU7cjtg" name="PurchaseAt" type="_JFuk8ES1EeCFl51ftuwnCA" aggregation="composite"/>
-    <ownedAttribute xmi:id="_FPpSkEbWEeCvMexyU7cjtg" name="Width" aggregation="composite">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
-    </ownedAttribute>
-    <ownedAttribute xmi:id="_GeK7MEbWEeCvMexyU7cjtg" name="Height" aggregation="composite">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
-    </ownedAttribute>
+    <ownedAttribute xmi:id="_FPpSkEbWEeCvMexyU7cjtg" name="Width" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
+    <ownedAttribute xmi:id="_GeK7MEbWEeCvMexyU7cjtg" name="Height" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_bJNcUEbVEeCvMexyU7cjtg" name="Item" memberEnd="_bJNcUUbVEeCvMexyU7cjtg _bJNcVEbVEeCvMexyU7cjtg">
     <ownedEnd xmi:id="_bJNcUUbVEeCvMexyU7cjtg" name="1" type="_OXI4AEbVEeCvMexyU7cjtg" association="_bJNcUEbVEeCvMexyU7cjtg">
@@ -242,12 +240,8 @@
     <generalization xmi:id="_NCNTIEbaEeCvMexyU7cjtg" general="_umohgEbZEeCvMexyU7cjtg"/>
     <ownedAttribute xmi:id="_dGoD4EbYEeCvMexyU7cjtg" name="WorkedBy" type="_A3_9cETUEeC_SaZDL-mcDw" aggregation="composite"/>
     <ownedAttribute xmi:id="_evPAcEbYEeCvMexyU7cjtg" name="WorkedAt" type="_JFuk8ES1EeCFl51ftuwnCA" aggregation="composite"/>
-    <ownedAttribute xmi:id="_futgcEbYEeCvMexyU7cjtg" name="Width" aggregation="composite">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
-    </ownedAttribute>
-    <ownedAttribute xmi:id="_HCJt0EbdEeCvMexyU7cjtg" name="Height" aggregation="composite">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
-    </ownedAttribute>
+    <ownedAttribute xmi:id="_futgcEbYEeCvMexyU7cjtg" name="Width" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
+    <ownedAttribute xmi:id="_HCJt0EbdEeCvMexyU7cjtg" name="Height" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_PqiSMEbYEeCvMexyU7cjtg" name="Source" memberEnd="_PqiSMUbYEeCvMexyU7cjtg _PqiSNEbYEeCvMexyU7cjtg">
     <ownedEnd xmi:id="_PqiSMUbYEeCvMexyU7cjtg" name="1" type="_HF3icEbYEeCvMexyU7cjtg" association="_PqiSMEbYEeCvMexyU7cjtg">
@@ -271,12 +265,8 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_umohgEbZEeCvMexyU7cjtg" name="BaseItem">
     <generalization xmi:id="_6PNxYEbdEeCvMexyU7cjtg" general="_ybbsAEbdEeCvMexyU7cjtg"/>
-    <ownedAttribute xmi:id="_RJXVwEbaEeCvMexyU7cjtg" name="width" visibility="protected" aggregation="composite">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
-    </ownedAttribute>
-    <ownedAttribute xmi:id="_SYpMUEbaEeCvMexyU7cjtg" name="height" visibility="protected" aggregation="composite">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
-    </ownedAttribute>
+    <ownedAttribute xmi:id="_RJXVwEbaEeCvMexyU7cjtg" name="width" visibility="protected" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
+    <ownedAttribute xmi:id="_SYpMUEbaEeCvMexyU7cjtg" name="height" visibility="protected" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
     <ownedAttribute xmi:id="_Wj0MQEbaEeCvMexyU7cjtg" name="Uom" type="_gYCx4ETWEeCJe9RP8ofhZg" aggregation="composite"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_Wf-YoEbbEeCvMexyU7cjtg" name="UShapeItem">
@@ -499,4 +489,5 @@
     <ownedLiteral xmi:id="_ZuTm0FmoEeCONM7P5czMxA" name="Classic"/>
     <ownedLiteral xmi:id="_bbzDYFmoEeCONM7P5czMxA" name="Professional"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_uqut8FuLEeCWn_HrzsiL4Q" name="Double"/>
 </uml:Model>

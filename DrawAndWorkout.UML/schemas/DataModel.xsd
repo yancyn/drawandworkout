@@ -204,8 +204,8 @@
     <xsd:complexContent>
       <xsd:extension base="ShapeItem">
         <xsd:sequence>
-          <xsd:element name="Width" type="xsd:int"/>
-          <xsd:element name="Height" type="xsd:int"/>
+          <xsd:element name="Width" type="xsd:double"/>
+          <xsd:element name="Height" type="xsd:double"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -243,8 +243,8 @@
       <xsd:extension base="BaseItem">
         <xsd:sequence>
           <xsd:element name="PurchaseAt" type="xsd:dateTime"/>
-          <xsd:element name="Width" type="xsd:int"/>
-          <xsd:element name="Height" type="xsd:int"/>
+          <xsd:element name="Width" type="xsd:double"/>
+          <xsd:element name="Height" type="xsd:double"/>
           <xsd:element name="Stock" type="Stock"/>
           <xsd:element name="Warehouse" type="Warehouse"/>
         </xsd:sequence>
@@ -270,8 +270,8 @@
         <xsd:sequence>
           <xsd:element name="WorkedBy" type="Employee"/>
           <xsd:element name="WorkedAt" type="xsd:dateTime"/>
-          <xsd:element name="Width" type="xsd:int"/>
-          <xsd:element name="Height" type="xsd:int"/>
+          <xsd:element name="Width" type="xsd:double"/>
+          <xsd:element name="Height" type="xsd:double"/>
           <xsd:element name="Source" type="Inventory"/>
           <xsd:element name="WorkItem" type="WorkItem"/>
         </xsd:sequence>
@@ -405,8 +405,8 @@
     <xsd:complexContent>
       <xsd:extension base="ShapeItem">
         <xsd:sequence>
-          <xsd:element name="Width" type="xsd:int"/>
-          <xsd:element name="Height" type="xsd:int"/>
+          <xsd:element name="Width" type="xsd:double"/>
+          <xsd:element name="Height" type="xsd:double"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -525,8 +525,10 @@
           <xsd:element name="CreatedAt" type="xsd:dateTime"/>
           <xsd:element name="WorkedBy" type="Employee"/>
           <xsd:element name="ShapeItem" type="ShapeItem"/>
-          <xsd:element name="MaxWidth" type="xsd:int"/>
-          <xsd:element name="MaxHeight" type="xsd:int"/>
+          <xsd:element name="Left" type="xsd:int"/>
+          <xsd:element name="Top" type="xsd:int"/>
+          <xsd:element name="MaxWidth" type="xsd:double"/>
+          <xsd:element name="MaxHeight" type="xsd:double"/>
           <xsd:element name="Material" type="Stock"/>
           <xsd:element name="Elements" type="ShapeItem" minOccurs="0" maxOccurs="unbounded"/>
           <xsd:element name="Status" type="WorkStatus"/>

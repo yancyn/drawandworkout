@@ -20,12 +20,12 @@ namespace WorkOrderGUI
     /// </summary>
     public partial class ProjectWindow : Window
     {
+        private PageManager pageManager;
         public ProjectWindow()
         {
             InitializeComponent();
 
-            PageManager pageManager = new PageManager();
-
+            this.pageManager = new PageManager();
             Project project = CreateProject();
             PageViewModel page = new PageViewModel(project);
             pageManager.Add(page);
@@ -75,6 +75,8 @@ namespace WorkOrderGUI
             w2.Material = stock;
             w2.Height = 6;
             w2.Width = 24;
+            w2.Top = 400;
+            w2.Left = 200;
 
 
             WorkOrder wo = new WorkOrder();
@@ -83,6 +85,16 @@ namespace WorkOrderGUI
             target.WorkOrders.Add(wo);
 
             return target;
+        }
+
+        private void DrawingArea_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            Project project = (this.pageManager.CurrentPage.Item as Project);
+            project.Save(this.DrawingArea);
         }
     }
 }
