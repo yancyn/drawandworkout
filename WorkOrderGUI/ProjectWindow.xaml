@@ -49,7 +49,7 @@
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Size"/>
                 <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
                     <TextBox Width="50" Text="{Binding Width,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                    <TextBlock Text="x" Margin="4,0,4,0"/>
+                    <TextBlock Text="×" Margin="4,0,4,0"/>
                     <TextBox Width="50" Text="{Binding Height,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
             </Grid>
@@ -82,7 +82,7 @@
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Size"/>
                 <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
                     <TextBox Width="50" Text="{Binding MaxWidth,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                    <TextBlock Text="x" Margin="4,0,4,0"/>
+                    <TextBlock Text="×" Margin="4,0,4,0"/>
                     <TextBox Width="50" Text="{Binding MaxHeight,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
@@ -90,6 +90,7 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
+        
         <DataTemplate x:Key="LShapeTemplate">
             <Canvas>
                 <Canvas.Margin>
@@ -118,10 +119,10 @@
                         </Path.RenderTransform>
                     </Path>
                     <Rectangle Width="50" Height="24" Fill="White" Canvas.Left="125"/>
-                    <TextBlock Text="{Binding MaxWidth,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="150,0,0,0" Foreground="Blue" Canvas.Left="-20" />
+                    <TextBlock Text="{Binding MaxWidth,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="150,0,0,0" Foreground="Blue" Canvas.Left="-20" />
                 </Canvas>
                 <TextBlock Text="2'" Margin="60,420,0,0" Foreground="Blue"/>
-                <TextBlock Text="{Binding MaxHeight,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="0,210,0,0" Foreground="Blue"/>
+                <TextBlock Text="{Binding MaxHeight,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="0,210,0,0" Foreground="Blue"/>
             </Canvas>
         </DataTemplate>
         <DataTemplate x:Key="RectTemplate">
@@ -148,7 +149,7 @@
                     <Line X1="0" Y1="0" X2="0" Y2="24" Stroke="Blue" StrokeThickness="1"/>
                     <Line X1="200" Y1="0" X2="200" Y2="24" Stroke="Blue" StrokeThickness="1"/>
                     <Rectangle Width="40" Height="24" Fill="White" Canvas.Left="80"/>
-                    <TextBlock Text="{Binding Width,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="90,0,0,0" Foreground="Blue" TextAlignment="Center"/>
+                    <TextBlock Text="{Binding Width,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="90,0,0,0" Foreground="Blue" TextAlignment="Center"/>
                 </Canvas>
                 <Canvas>
                     <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="217" Canvas.Top="10">
@@ -171,7 +172,7 @@
                     <Line X1="200" Y1="80" X2="224" Y2="80" Stroke="Blue" StrokeThickness="1"/>
                     <Line X1="212" Y1="0" X2="212" Y2="80" Stroke="Blue" StrokeThickness="1"/>
                     <Rectangle Width="40" Height="24" Fill="White" Canvas.Left="200" Canvas.Top="31" />
-                    <TextBlock Text="{Binding Height,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="200,40,0,0" Foreground="Blue" TextAlignment="Center"/>
+                    <TextBlock Text="{Binding Height,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="200,40,0,0" Foreground="Blue" TextAlignment="Center"/>
                 </Canvas>
             </Canvas>
         </DataTemplate>

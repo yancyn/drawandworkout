@@ -134,12 +134,9 @@ namespace WorkOrderGUI
         #region IValueConverter Members
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value is decimal)
+            if (value is double)
             {
-
-            }
-            else if (value is double)
-            {
+                return ConvertInchToFeet(System.Convert.ToDouble(value));
             }
 
             throw new NotImplementedException();
@@ -149,6 +146,60 @@ namespace WorkOrderGUI
             throw new NotImplementedException();
         }
         #endregion
+        private string ConvertInchToFeet(double sender)
+        {
+            string output = string.Empty;
+            int i = sender.ToString().IndexOf('.');
+
+            if (i == -1)
+            {
+                double remainder = sender % 12;
+                int result = System.Convert.ToInt32((sender - remainder) / 12);
+                if (result > 0)
+                {
+                    output = result.ToString();
+                    output += "'";
+                }
+                if (remainder > 0) output += " " + remainder.ToString() + "\"";
+            }
+            else
+            {
+                double roundNumber = System.Convert.ToDouble(sender.ToString().Substring(0, i));
+                double floatingPoint = sender - roundNumber;
+                if (floatingPoint + 15 / 16 > 1) //round up if bigger 0.9375
+                    output = ConvertInchToFeet(roundNumber + 1);
+                else
+                    output = ConvertInchToFeet(roundNumber) + " " + ConvertToEighthInch(floatingPoint);
+            }
+
+            return output;
+        }
+        private string ConvertToEighthInch(double sender)
+        {
+            string output = string.Empty;
+            double interval = 0.0625;// 0.125;
+            string[] buckets = new string[16] {
+                "0", "1/16", 
+                "⅛", "3/16",
+                "¼", "5/16",
+                "⅜", "7/16",
+                "½", "9/16",
+                "⅝", "11/16",
+                "¾", "13/16",
+                "⅞", "15/16" };
+            for (int i = 0; i < 16; i++)
+            {
+                if (sender < interval * (i + 1))
+                {
+                    output += buckets[i];
+                    break;
+                }
+            }
+            if (output.Length == 0 && sender < 1) output = "1";//this should be exception case
+
+            output += "\"";
+            return output;
+        }
     }
     /// <summary>
     /// Get index of collection.

@@ -13,7 +13,9 @@
     <g:PercentageConverter x:Key="PercentageConverter"/>
     <g:UomStringConverter x:Key="UomStringConverter"/>
     <g:UomUnitConverter x:Key="UomUnitConverter"/>
-    <g:IndexConverter x:Key="IndexConverter"/>    
+    <g:IndexConverter x:Key="IndexConverter"/>
+    <g:FeetUnitConverter x:Key="FeetUnitConverter"/>
+    
 
     <DataTemplate x:Key="ProjectTemplate">
 	  <Grid Style="{DynamicResource GridBackground}">
