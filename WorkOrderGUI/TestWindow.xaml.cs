@@ -22,6 +22,7 @@ namespace WorkOrderGUI
         public TestWindow()
         {
             InitializeComponent();
+            //Margin margin = new Thickness();
 
             //Stocks stocks = new Stocks();
             //stocks = stocks.LoadFromFile() as Stocks;

@@ -129,6 +129,27 @@ namespace WorkOrderGUI
         }
         #endregion
     }
+    public class FeetUnitConverter : IValueConverter
+    {
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is decimal)
+            {
+
+            }
+            else if (value is double)
+            {
+            }
+
+            throw new NotImplementedException();
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
     /// <summary>
     /// Get index of collection.
     /// </summary>

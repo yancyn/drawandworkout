@@ -63,8 +63,9 @@ namespace HLGranite.Drawing.Test
             add1.Country = "Malaysia";
             target.DeliveryAddresses.Add(add1);
 
-            target.Phones.Add(new vCardPhone("012-4711134"));
+            target.Phones.Add(new vCardPhone("012-4711134"));            
             target.SaveToFile();
+            //(target as User).SaveToFile();
 
             //users.User.Add(target);
             //users.SaveToFile();

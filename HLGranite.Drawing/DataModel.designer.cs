@@ -363,27 +363,23 @@ namespace HLGranite.Drawing
     public partial class WorkItem : BaseItem
     {
 
-        private System.DateTime createdAtField;
+        protected System.DateTime createdAtField;
 
-        private Employee workedByField;
+        protected Employee workedByField;
 
-        private double maxWidthField;
+        protected double leftField;
 
-        private double maxHeightField;
+        protected double topField;
 
-        private double leftField;
+        protected Stock materialField;
 
-        private double topField;
+        protected ObservableCollection<WorkItem> elementsField;
 
-        private Stock materialField;
+        protected WorkStatus statusField;
 
-        private ObservableCollection<WorkItem> elementsField;
+        protected decimal progressField;
 
-        private WorkStatus statusField;
-
-        private decimal progressField;
-
-        private ShapeItem shapeItemField;
+        protected ShapeItem shapeItemField;
 
         public System.DateTime CreatedAt
         {
@@ -429,13 +425,13 @@ namespace HLGranite.Drawing
         {
             get
             {
-                return this.maxWidthField;
+                return this.widthField;
             }
             set
             {
-                if ((maxWidthField.Equals(value) != true))
+                if ((widthField.Equals(value) != true))
                 {
-                    this.maxWidthField = value;
+                    this.widthField = value;
                     this.OnPropertyChanged("MaxWidth");
                 }
             }
@@ -445,13 +441,13 @@ namespace HLGranite.Drawing
         {
             get
             {
-                return this.maxHeightField;
+                return this.heightField;
             }
             set
             {
-                if ((maxHeightField.Equals(value) != true))
+                if ((heightField.Equals(value) != true))
                 {
-                    this.maxHeightField = value;
+                    this.heightField = value;
                     this.OnPropertyChanged("MaxHeight");
                 }
             }
