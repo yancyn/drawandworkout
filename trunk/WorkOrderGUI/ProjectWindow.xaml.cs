@@ -21,6 +21,8 @@ namespace WorkOrderGUI
     public partial class ProjectWindow : Window
     {
         private PageManager pageManager;
+        private WorkItem selectedWorkItem;
+        private Point originalPoint;
         public ProjectWindow()
         {
             InitializeComponent();
@@ -78,23 +80,48 @@ namespace WorkOrderGUI
             w2.Top = 400;
             w2.Left = 200;
 
+            RectItem w3 = new RectItem();
+            w3.Material = stock;
+            w3.Height = 6;
+            w3.Width = 24;
+            //w3.Top = 100;
+            //w3.Left = 200;
+
 
             WorkOrder wo = new WorkOrder();
             wo.Items.Add(w1);
             wo.Items.Add(w2);
+            wo.Items.Add(w3);
             target.WorkOrders.Add(wo);
 
             return target;
-        }
-
-        private void DrawingArea_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
         }
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             Project project = (this.pageManager.CurrentPage.Item as Project);
             project.Save(this.DrawingArea);
+        }
+
+        private void DrawingArea_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("DrawingArea_MouseLeftButtonDown: " + new Random().Next() + " " + e.Device.Target.ToString());
+            this.originalPoint = e.GetPosition(this.DrawingArea);
+            if (e.Device.Target is Shape)
+            {
+                this.selectedWorkItem = (e.Device.Target as Shape).DataContext as WorkItem;
+                System.Diagnostics.Debug.WriteLine(this.selectedWorkItem.ToString());
+            }
+        }
+        private void ScrollViewer_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("DrawingArea_MouseLeftButtonUp" + new Random().Next());
+            if (this.selectedWorkItem != null)
+            {
+                Point newPosition = e.GetPosition(this.DrawingArea);
+                this.selectedWorkItem.Left += newPosition.X - originalPoint.X;
+                this.selectedWorkItem.Top += newPosition.Y - originalPoint.Y;
+                this.selectedWorkItem = null;//reset
+            }
         }
     }
 }

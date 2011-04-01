@@ -14,6 +14,18 @@ namespace HLGranite.Drawing
         /// Default constructor.
         /// </summary>
         public PolygonItem()
+            : base()
+        {
+            this.lengthsField = new System.Collections.ObjectModel.ObservableCollection<LengthItem>();
+        }
+        /// <summary>
+        /// Recommended constructor.
+        /// </summary>
+        /// <param name="stock"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        public PolygonItem(Stock stock, double width, double height)
+            : base(stock, width, height)
         {
             this.lengthsField = new System.Collections.ObjectModel.ObservableCollection<LengthItem>();
         }
