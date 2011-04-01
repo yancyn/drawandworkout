@@ -137,7 +137,7 @@
                 <Button x:Name="ButtonNew" Command="{Binding NewProject}" ToolTip="New project">
                     <Image Source="Images\page.png"/>
                 </Button>
-                <Button>
+                <Button Click="OpenButton_Click">
                     <Image Source="Images\folder_page.png" ToolTip="Open"/>
                 </Button>
                 <Button>
@@ -172,14 +172,16 @@
                 <ToolBar x:Name="Toolbox">
                     <ToolBar.ItemTemplate>
                         <DataTemplate>
-                            <RadioButton Style="{StaticResource ToolbarButton}" Content="{Binding Item}" ToolTip="{Binding Item.ToolTip}">
+                            <RadioButton Style="{StaticResource ToolbarButton}" Content="{Binding Item,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding Item.ToolTip}">
                                 <RadioButton.ContextMenu>
                                     <ContextMenu Style="{StaticResource TransparentFloatingToolbar}"
                                                  Visibility="{Binding Children.Count,Converter={StaticResource RowCountConverter}}">
-                                        <ToolBar ItemsSource="{Binding Children}">
+                                        <ToolBar ItemsSource="{Binding Children,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}">
                                             <ToolBar.ItemTemplate>
                                                 <DataTemplate>
-                                                    <RadioButton Content="{Binding Item}" Style="{StaticResource ToolbarButton}" ToolTip="{Binding Item.ToolTip}"/>
+                                                    <RadioButton
+                                                        Command="{Binding ReplaceParentToolbarCommand}"
+                                                        Content="{Binding Item,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ToolbarButton}" ToolTip="{Binding Item.ToolTip}"/>
                                                 </DataTemplate>
                                             </ToolBar.ItemTemplate>
                                         </ToolBar>

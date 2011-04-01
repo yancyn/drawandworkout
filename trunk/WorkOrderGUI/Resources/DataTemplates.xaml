@@ -133,13 +133,13 @@
                 <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" DataContext="{Binding ElementName=StockGrid,Path=DataContext.Item}">
                     <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding NewStock}">Add</Button>
                     <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding SaveStock}" ToolTip="Save all into database">Save</Button>
-                    <Button Content="Delete" Style="{StaticResource DefaultButtonStyle}" Tag="{Binding RemoveStock}" CommandParameter="{Binding ElementName=StockView,Path=SelectedItem}"/>
-                        <!--<i:Interaction.Triggers>
+                    <Button Content="Delete" Style="{StaticResource DefaultButtonStyle}" Tag="{Binding RemoveStock}" CommandParameter="{Binding ElementName=StockView,Path=SelectedItem}">
+                        <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
                                 <g:ConfirmCommandAction/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                    </Button>-->
+                    </Button>
                     <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RefreshStock}" ToolTip="Discard all changes">Reset</Button>
                 </WrapPanel>
                 <DockPanel LastChildFill="True" DockPanel.Dock="Top">
@@ -170,10 +170,8 @@
                             <TextBlock Grid.Row="2" Grid.Column="0" Text="Size"/>
                             <WrapPanel Grid.Row="2" Grid.Column="1">
                                 <TextBox Width="40" />
-                                <TextBlock Text="&quot;" />
-                                <TextBlock Margin="4,0,0,0" Text="x"/>
+                                <TextBlock Margin="4,0,4,0" Text="×"/>
                                 <TextBox Width="40" />
-                                <TextBlock Text="&quot;" />
                             </WrapPanel>
                             <TextBlock Grid.Row="3" Grid.Column="0" Text="Quantity"/>
                             <TextBox Grid.Row="3" Grid.Column="1"/>
@@ -219,13 +217,13 @@
                 <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" DataContext="{Binding ElementName=WarehouseGrid,Path=DataContext.Item}">
                     <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding NewWarehouse}">Add</Button>
                     <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding SaveWarehouse}" ToolTip="Save all into database">Save</Button>
-                    <Button Content="Delete" Style="{StaticResource DefaultButtonStyle}" Tag="{Binding RemoveWarehouse}" CommandParameter="{Binding ElementName=WarehouseView,Path=SelectedItem}"/>
-                        <!--<i:Interaction.Triggers>
+                    <Button Content="Delete" Style="{StaticResource DefaultButtonStyle}" Tag="{Binding RemoveWarehouse}" CommandParameter="{Binding ElementName=WarehouseView,Path=SelectedItem}">
+                        <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
                                 <g:ConfirmCommandAction/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                    </Button>-->
+                    </Button>
                     <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RefreshWarehouse}" ToolTip="Discard all changes">Reset</Button>
                 </WrapPanel>
                 <GroupBox DockPanel.Dock="Top" Header="Details">
