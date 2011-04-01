@@ -12,14 +12,33 @@ using System.Windows.Controls;
 
 namespace WorkOrderGUI
 {
-    public class ToolbarManager
+    public class ToolbarManager : System.ComponentModel.INotifyPropertyChanged
     {
         #region Properties
         private ObservableCollection<ToolbarViewModel> items;
         /// <summary>
         /// Toolbar collection.
         /// </summary>
-        public ObservableCollection<ToolbarViewModel> Items { get { return this.items; } }
+        public ObservableCollection<ToolbarViewModel> Items
+        {
+            get { return this.items; }
+            set
+            {
+                if (this.items != null)
+                {
+                    if (this.items.Equals(value) != true)
+                    {
+                        this.items = value;
+                        this.OnPropertyChanged("Items");
+                    }
+                }
+                else
+                {
+                    this.items = value;
+                    this.OnPropertyChanged("Items");
+                }
+            }
+        }
         #endregion
 
         public ToolbarManager()
@@ -56,7 +75,11 @@ namespace WorkOrderGUI
                             for (int j = panel3.Children.Count - 1; j >= 0; j--)
                             {
                                 ToolbarViewModel v = null;
-                                if (panel3.Children[j] is Shape) v = new ToolbarViewModel(panel3.Children[j] as Shape);
+                                if (panel3.Children[j] is Shape)
+                                {
+                                    v = new ToolbarViewModel(panel3.Children[j] as Shape);
+                                    v.Parent = viewModel;
+                                }
                                 panel3.Children.RemoveAt(j);
                                 viewModel.Children.Insert(0, v);
                             }
@@ -83,5 +106,17 @@ namespace WorkOrderGUI
                 }
             }
         }
+
+        #region INotifyPropertyChanged Members
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public virtual void OnPropertyChanged(string propertyName)
+        {
+            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
+            if ((handler != null))
+            {
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+        #endregion
     }
 }

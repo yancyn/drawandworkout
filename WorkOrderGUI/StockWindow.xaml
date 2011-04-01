@@ -55,10 +55,8 @@
                         <TextBlock Grid.Row="2" Grid.Column="0" Text="Size"/>
                         <WrapPanel Grid.Row="2" Grid.Column="1">
                             <TextBox Width="40" />
-                            <TextBlock Text="&quot;" />
-                            <TextBlock Margin="4,0,0,0" Text="x"/>
+                            <TextBlock Margin="4,0,4,0" Text="×"/>
                             <TextBox Width="40" />
-                            <TextBlock Text="&quot;" />
                         </WrapPanel>
                         <TextBlock Grid.Row="3" Grid.Column="0" Text="Quantity"/>
                         <TextBox Grid.Row="3" Grid.Column="1"/>

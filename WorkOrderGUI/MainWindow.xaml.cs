@@ -43,6 +43,7 @@ namespace WorkOrderGUI
                 //ConvertWindowToDataTemplate();
 
                 ToolbarManager toolbarManager = new ToolbarManager();
+                //this.Toolbox.DataContext = toolbarManager;
                 this.Toolbox.ItemsSource = toolbarManager.Items;
 
                 //testing only
@@ -175,6 +176,13 @@ namespace WorkOrderGUI
         #endregion
 
         #region Events
+        private void OpenButton_Click(object sender, RoutedEventArgs e)
+        {
+            //testing only
+            //ToolbarManager manager = this.Toolbox.DataContext as ToolbarManager;
+            //manager.Items[2].Children[3].ReplaceParent();
+        }
+
         private void MenuClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
