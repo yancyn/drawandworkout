@@ -44,7 +44,7 @@ namespace WorkOrderGUI
                 //ConvertWindowToDataTemplate();
 
                 this.toolbarManager = new ToolbarManager();
-                //this.Toolbox.DataContext = toolbarManager;//this cause the interface slow to render
+                this.Toolbox.DataContext = toolbarManager;
                 this.Toolbox.ItemsSource = toolbarManager.Items;
 
                 //testing only
@@ -72,6 +72,7 @@ namespace WorkOrderGUI
         /// <remarks>Fail.</remarks>
         private void ConvertWindowToDataTemplate()
         {
+            /*
             ProjectWindow win = new ProjectWindow();
             Grid grid = (Grid)win.Content;
             string xaml = "<DataTemplate";
@@ -89,10 +90,7 @@ namespace WorkOrderGUI
             context.XmlnsDictionary.Add("x", "http://schemas.microsoft.com/winfx/2006/xaml");
             context.XmlnsDictionary.Add("w", "http://schemas.microsoft.com/wpf/2008/toolkit");
             this.Resources.Add("ProjectTemplate", (DataTemplate)XamlReader.Load(stream, context));
-
-            //win.Close();
-            //DataTemplate template = new DataTemplate(grid);
-            //this.Resources.Add("ProjectTemplate", template);
+            */
         }
         private Project CreateProject()
         {
@@ -121,9 +119,40 @@ namespace WorkOrderGUI
 
             int size = DatabaseObject.Stocks.Stock.Count;
             Stock stock = DatabaseObject.Stocks.Stock[new Random().Next(size)];
+
+            LShapeItem w1 = new LShapeItem();//WorkItem w1 = new WorkItem();
+            w1.Tags.Add("LShapeItem04");
+            w1.Material = stock;
+            w1.Lengths.Add(new LengthItem { Length = 108 });
+            w1.Lengths.Add(new LengthItem { Length = 24 });
+            w1.Lengths.Add(new LengthItem { Length = 84 });
+            w1.Lengths.Add(new LengthItem { Length = 24 });
+            w1.Lengths.Add(new LengthItem { Length = 24 });
+            w1.Lengths.Add(new LengthItem { Length = 48 });
+            w1.MaxHeight = 108;
+            w1.MaxWidth = 48;
+
+            RectItem w2 = new RectItem();
+            w2.Tags.Add("RectItem00");
+            w2.Material = stock;
+            w2.Height = 6;
+            w2.Width = 24;
+            w2.Top = 400;
+            w2.Left = 200;
+
+            RectItem w3 = new RectItem();
+            w3.Tags.Add("RectItem00");
+            w3.Material = stock;
+            w3.Height = 6;
+            w3.Width = 24;
+            //w3.Top = 100;
+            //w3.Left = 200;
+
+
             WorkOrder wo = new WorkOrder();
-            wo.Items.Add(new WorkItem { MaxHeight = 24, MaxWidth = 56, Material = stock, Progress = 10 });
-            wo.Items.Add(new WorkItem { MaxHeight = 12, MaxWidth = 34, Material = stock, Progress = 30 });
+            wo.Items.Add(w1);
+            wo.Items.Add(w2);
+            wo.Items.Add(w3);
             target.WorkOrders.Add(wo);
 
             return target;

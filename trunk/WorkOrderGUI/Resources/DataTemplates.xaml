@@ -8,6 +8,7 @@
     xmlns:i="clr-namespace:Microsoft.Expression.Interactivity;assembly=Microsoft.Expression.Interactivity">
     
     <g:GlobaliztionResource x:Key="Resource"/>
+    
     <g:RowCountConverter x:Key="RowCountConverter"/>
     <g:NumberConverter x:Key="NumberConverter"/>
     <g:PercentageConverter x:Key="PercentageConverter"/>
@@ -15,110 +16,306 @@
     <g:UomUnitConverter x:Key="UomUnitConverter"/>
     <g:IndexConverter x:Key="IndexConverter"/>
     <g:FeetUnitConverter x:Key="FeetUnitConverter"/>
+    <g:MarginConverter x:Key="MarginConverter"/>
+    
+    <g:PageTemplateSelector x:Key="PageTemplateSelector"/>
+    <g:WorkItemTemplateSelector x:Key="WorkItemTemplateSelector"/>
     
 
-    <DataTemplate x:Key="ProjectTemplate">
-	  <Grid Style="{DynamicResource GridBackground}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="270"/>
-        </Grid.ColumnDefinitions>
-        <Canvas Grid.Column="0" Margin="40"/>
+    <DataTemplate DataType="{x:Type d:LengthItem}">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Width="60" HorizontalAlignment="Right" Margin="0,0,4,0">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource IndexConverter}">
+                            <Binding/>
+                            <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}" Path="ItemsSource"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+            </TextBlock>
+            <TextBox Text="{Binding Length,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type d:RectItem}">
+        <Grid Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <!-- temp -->
-        <ScrollViewer Grid.Column="1" Width="270" HorizontalAlignment="Right" HorizontalScrollBarVisibility="Disabled">
-            <StackPanel>
-                <Expander Style="{DynamicResource ExpanderBackground}" Header="Project" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="90"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Grid.Row="0"  Grid.Column="0" Text="Reference No."/>
-                        <TextBlock Grid.Row="0"  Grid.Column="1" Text="{Binding Item.CreatedAt,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Received Date"/>
-                        <w:DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding Item.CreatedAt,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" SelectedDateFormat="Long" />
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Deliver Date"/>
-                        <w:DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding Item.DueDate,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Status"/>
-                        <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Source={StaticResource ProjectStageEnums}}" SelectedValue="{Binding Item.Stage,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        
-                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Created By"/>
-                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Item.CreatedBy.EmailAddresses[0],ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Order By"/>
-                        <TextBox Grid.Row="5" Grid.Column="1" Style="{DynamicResource InputTextBox}" Text="{Binding Item.OrderBy.GivenName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBlock Grid.Row="6" Grid.Column="0" Text="Customer"/>
-                        <TextBox Grid.Row="6" Grid.Column="1" Style="{DynamicResource InputTextBox}" Text="{Binding Item.DeliverTo.GivenName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBlock Grid.Row="7" Grid.Column="0" Text="Phone"/>
-                        <TextBox Grid.Row="7" Grid.Column="1" Style="{DynamicResource InputTextBox}" Text="{Binding Item.DeliverTo.Phones[0].FullNumber,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBlock Grid.Row="8" Grid.Column="0" Text="Street"/>
-                        <TextBox Grid.Row="8" Grid.Column="1" Style="{DynamicResource InputTextBox}" MinLines="2" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].Street,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBlock Grid.Row="9" Grid.Column="0" Text="City"/>
-                        <TextBox Grid.Row="9" Grid.Column="1" Style="{DynamicResource InputTextBox}" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].City,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBlock Grid.Row="10" Grid.Column="0" Text="Postcode"/>
-                        <TextBox Grid.Row="10" Grid.Column="1" Style="{DynamicResource InputTextBox}" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].PostalCode,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBlock Grid.Row="11" Grid.Column="0" Text="GPS"/>
-                        <WrapPanel Grid.Row="11" Grid.Column="1">
-                            <TextBox Style="{DynamicResource InputTextBox}" Width="60" Text="{Binding Item.DeliverTo.Latitude,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock Text=" "/>
-                            <TextBox Style="{DynamicResource InputTextBox}" Width="60" Text="{Binding Item.DeliverTo.Longitude,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        </WrapPanel>
-
-                        <TextBlock Grid.Row="12" Grid.Column="0" Text="Remarks"/>
-                        <TextBox Grid.Row="12" Grid.Column="1" Style="{DynamicResource InputTextBox}" MinLines="3" AcceptsReturn="True" Text="{Binding Item.Notes,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                    </Grid>
-                </Expander>
-                <Expander Style="{DynamicResource ExpanderBackground}" Header="Summary" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="90"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Granite"/>
-                        <ComboBox Grid.Row="0" Grid.Column="1"
-                                  ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Stocks.Stock}"
-                                  SelectedItem="{Binding Item.WorkOrders[0].Items[0].Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Progress"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Item.Progress,Converter={StaticResource PercentageConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Total Area(f²)"/>
-                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Item.TotalArea,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Total Long(f)"/>
-                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Item.TotalLong,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Total Polish(f)"/>
-                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Item.TotalPolish,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Other"/>
-                        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Item.TotalOther,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                    </Grid>
-                </Expander>
-                <Expander Style="{DynamicResource ExpanderBackground}" Header="Details" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10"/>
+            <TextBlock Grid.Row="0" Grid.Column="0">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource IndexConverter}">
+                            <Binding/>
+                            <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}" Path="ItemsSource"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+            </TextBlock>
+            <WrapPanel Grid.Row="0" Grid.Column="1">
+                <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Stocks.Stock}"
+                          SelectedItem="{Binding Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Style="{StaticResource BorderlessButton}" ToolTip="Remove" Margin="4,0,4,0"
+                        Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Grid},AncestorLevel=2},Path=DataContext.Item.WorkOrders[0].RemoveWorkItemCommand}"
+                        CommandParameter="{Binding}">
+                    <Image Height="16" Source="..\Images\cross.png"/>
+                </Button>
+            </WrapPanel>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Size"/>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                <TextBox Width="50" Text="{Binding Width,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="×" Margin="4,0,4,0"/>
+                <TextBox Width="50" Text="{Binding Height,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
-        </ScrollViewer>
-      </Grid>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type d:WorkItem}">
+        <Grid Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource IndexConverter}">
+                            <Binding/>
+                            <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}" Path="ItemsSource"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+            </TextBlock>
+            <WrapPanel Grid.Row="0" Grid.Column="1">
+                <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Stocks.Stock}"
+                          SelectedItem="{Binding Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Style="{StaticResource BorderlessButton}" ToolTip="Remove" Margin="4,0,4,0"
+                        Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Grid},AncestorLevel=2},Path=DataContext.Item.WorkOrders[0].RemoveWorkItemCommand}"
+                        CommandParameter="{Binding}">
+                    <Image Height="16" Source="..\Images\cross.png"/>
+                </Button>
+            </WrapPanel>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Size"/>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                <TextBox Width="50" Text="{Binding MaxWidth,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="×" Margin="4,0,4,0"/>
+                <TextBox Width="50" Text="{Binding MaxHeight,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                <ItemsControl ItemsSource="{Binding Lengths}"/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="LShapeItem04">
+        <Canvas>
+            <Canvas.Margin>
+                <MultiBinding Converter="{StaticResource MarginConverter}">
+                    <Binding Path="Left"/>
+                    <Binding Path="Top"/>
+                </MultiBinding>
+            </Canvas.Margin>
+
+            <Rectangle Width="120" Height="420" Stroke="Black" StrokeThickness="1"/>
+            <Rectangle Width="300" Height="120" Stroke="Black" Fill="White" StrokeThickness="1"/>
+            <TextBlock Text="2'" Margin="300,60,0,0" Foreground="Blue"/>
+            <Canvas Canvas.Top="-24">
+                <Line X1="0" Y1="10" X2="300" Y2="10" Stroke="Blue" StrokeThickness="1"/>
+                <Line X1="0" Y1="0" X2="0" Y2="24" Stroke="Blue" StrokeThickness="1"/>
+                <Line X1="300" Y1="0" X2="300" Y2="24" Stroke="Blue" StrokeThickness="1"/>
+                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="10" Canvas.Top="5">
+                    <Path.RenderTransform>
+                        <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
+                    </Path.RenderTransform>
+                </Path>
+                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="290" Canvas.Top="5">
+                    <Path.RenderTransform>
+                        <ScaleTransform ScaleX="0.25" ScaleY="0.25" />
+                    </Path.RenderTransform>
+                </Path>
+                <Rectangle Width="50" Height="24" Fill="White" Canvas.Left="125"/>
+                <TextBlock Text="{Binding MaxWidth,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="150,0,0,0" Foreground="Blue" Canvas.Left="-20" />
+            </Canvas>
+            <TextBlock Text="2'" Margin="60,420,0,0" Foreground="Blue"/>
+            <TextBlock Text="{Binding MaxHeight,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="0,210,0,0" Foreground="Blue"/>
+        </Canvas>
+    </DataTemplate>
+    <DataTemplate x:Key="RectItem00">
+        <Canvas>
+            <Canvas.Margin>
+                <MultiBinding Converter="{StaticResource MarginConverter}">
+                    <Binding Path="Left"/>
+                    <Binding Path="Top"/>
+                </MultiBinding>
+            </Canvas.Margin>
+            <Rectangle Width="200" Height="80" Stroke="Black" Fill="White" StrokeThickness="1"/>
+            <Canvas Canvas.Top="80">
+                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="10" Canvas.Top="6">
+                    <Path.RenderTransform>
+                        <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
+                    </Path.RenderTransform>
+                </Path>
+                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="190" Canvas.Top="6">
+                    <Path.RenderTransform>
+                        <ScaleTransform ScaleX="0.25" ScaleY="0.25" />
+                    </Path.RenderTransform>
+                </Path>
+                <Line X1="0" Y1="10" X2="200" Y2="10" Stroke="Blue" StrokeThickness="1"/>
+                <Line X1="0" Y1="0" X2="0" Y2="24" Stroke="Blue" StrokeThickness="1"/>
+                <Line X1="200" Y1="0" X2="200" Y2="24" Stroke="Blue" StrokeThickness="1"/>
+                <Rectangle Width="40" Height="24" Fill="White" Canvas.Left="80"/>
+                <TextBlock Text="{Binding Width,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="90,0,0,0" Foreground="Blue" TextAlignment="Center"/>
+            </Canvas>
+            <Canvas>
+                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="217" Canvas.Top="10">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
+                            <RotateTransform Angle="90"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="207" Canvas.Top="70">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
+                            <RotateTransform Angle="270"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Line X1="200" Y1="0" X2="224" Y2="0" Stroke="Blue" StrokeThickness="1"/>
+                <Line X1="200" Y1="80" X2="224" Y2="80" Stroke="Blue" StrokeThickness="1"/>
+                <Line X1="212" Y1="0" X2="212" Y2="80" Stroke="Blue" StrokeThickness="1"/>
+                <Rectangle Width="40" Height="24" Fill="White" Canvas.Left="200" Canvas.Top="31" />
+                <TextBlock Text="{Binding Height,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="200,40,0,0" Foreground="Blue" TextAlignment="Center"/>
+            </Canvas>
+        </Canvas>
+    </DataTemplate>    
+
+
+    <DataTemplate x:Key="ProjectTemplate">
+        <Grid Style="{DynamicResource GridBackground}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="270"/>
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                      KeyUp="ScrollViewer_KeyUp"
+                      MouseLeftButtonUp="ScrollViewer_MouseLeftButtonUp">
+                <Canvas x:Name="DrawingArea" Margin="40" Height="1280" Width="800"
+                    MouseLeftButtonDown="DrawingArea_MouseLeftButtonDown">
+                    <ItemsControl ItemsSource="{Binding Item.WorkOrders[0].Items}"
+                                  ItemTemplateSelector="{StaticResource WorkItemTemplateSelector}"/>
+                </Canvas>
+            </ScrollViewer>
+
+            <ScrollViewer Grid.Column="1" Width="270" HorizontalAlignment="Right" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel>
+                    <Expander Style="{DynamicResource ExpanderBackground}" Header="Project" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0"  Grid.Column="0" Text="Reference No."/>
+                            <TextBlock Grid.Row="0"  Grid.Column="1" Text="{Binding Item.CreatedAt,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Received Date"/>
+                            <w:DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding Item.CreatedAt,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" SelectedDateFormat="Long"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Deliver Date"/>
+                            <w:DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding Item.DueDate,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Status"/>
+                            <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Source={StaticResource ProjectStageEnums}}" SelectedValue="{Binding Item.Stage,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <TextBlock Grid.Row="4" Grid.Column="0" Text="Created By"/>
+                            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Item.CreatedBy.EmailAddresses[0],ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="5" Grid.Column="0" Text="Order By"/>
+                            <TextBox Grid.Row="5" Grid.Column="1" Style="{DynamicResource InputTextBox}" Text="{Binding Item.OrderBy.GivenName,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="6" Grid.Column="0" Text="Customer"/>
+                            <TextBox Grid.Row="6" Grid.Column="1" Style="{DynamicResource InputTextBox}" Text="{Binding Item.DeliverTo.GivenName,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="7" Grid.Column="0" Text="Phone"/>
+                            <TextBox Grid.Row="7" Grid.Column="1" Style="{DynamicResource InputTextBox}" Text="{Binding Item.DeliverTo.Phones[0].FullNumber,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="8" Grid.Column="0" Text="Street"/>
+                            <TextBox Grid.Row="8" Grid.Column="1" Style="{DynamicResource InputTextBox}" MinLines="2" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].Street,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="9" Grid.Column="0" Text="City"/>
+                            <TextBox Grid.Row="9" Grid.Column="1" Style="{DynamicResource InputTextBox}" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].City,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="10" Grid.Column="0" Text="Postcode"/>
+                            <TextBox Grid.Row="10" Grid.Column="1" Style="{DynamicResource InputTextBox}" Text="{Binding Item.DeliverTo.DeliveryAddresses[0].PostalCode,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="11" Grid.Column="0" Text="GPS"/>
+                            <WrapPanel Grid.Row="11" Grid.Column="1">
+                                <TextBox Style="{DynamicResource InputTextBox}" Width="60" Text="{Binding Item.DeliverTo.Latitude,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Text=" "/>
+                                <TextBox Style="{DynamicResource InputTextBox}" Width="60" Text="{Binding Item.DeliverTo.Longitude,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            </WrapPanel>
+
+                            <TextBlock Grid.Row="12" Grid.Column="0" Text="Remarks"/>
+                            <TextBox Grid.Row="12" Grid.Column="1" Style="{DynamicResource InputTextBox}" MinLines="3" AcceptsReturn="True" Text="{Binding Item.Notes,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                    </Expander>
+                    <Expander Style="{DynamicResource ExpanderBackground}" Header="Summary" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Granite"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1"
+                                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Stocks.Stock}"
+                                      SelectedItem="{Binding Item.WorkOrders[0].Items[0].Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Progress"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Item.Progress,Converter={StaticResource PercentageConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Total Area"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Item.TotalArea,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Total Long"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Item.TotalLong,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="4" Grid.Column="0" Text="Total Polish"/>
+                            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Item.TotalPolish,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="5" Grid.Column="0" Text="Other"/>
+                            <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Item.TotalOther,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                    </Expander>
+                    <Expander Style="{DynamicResource ExpanderBackground}" Header="Details" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
+                        <StackPanel>
+                            <ItemsControl ItemsSource="{Binding Item.WorkOrders[0].Items,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </DataTemplate>
     <DataTemplate x:Key="StockTemplate">
         <Grid x:Name="StockGrid">
@@ -396,6 +593,4 @@
         </DockPanel>
       </ScrollViewer>
     </DataTemplate>
-    
-    <g:PageTemplateSelector x:Key="PageTemplateSelector"/>
 </ResourceDictionary>

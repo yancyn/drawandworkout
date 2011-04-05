@@ -38,11 +38,6 @@ namespace WorkOrderGUI
     }
     partial class EntryPoint
     {
-        //[DllImport("user32.dll")]
-        //[return: MarshalAs(UnmanagedType.Bool)]
-        //static extern bool SetForegroundWindow(IntPtr hWnd);
-        //private static Mutex m_Mutex;
-
         [STAThread]
         public static void Main()
         {
@@ -50,18 +45,12 @@ namespace WorkOrderGUI
 
             try
             {
-                //m_Mutex = new Mutex(true, "QualityQuestStartupMutex", out createdNew);
                 app = new App();
                 app.InitializeComponent();
                 app.Run();
             }
             catch (Exception ex)
             {
-                //catch unhandle error especially xaml build error.
-
-                //is this a good practice? will slow down performance?
-                //if so will be remove when the application is stable
-                //Logger.Error(typeof(EntryPoint), ex);
                 new ErrorWindow().ShowDialog(ex);
 
                 // Shutting down the application as an unrecoverable error has occurred.
