@@ -47,12 +47,19 @@ namespace WorkOrderGUI
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             FrameworkElement element = container as FrameworkElement;
-            if (element != null && item != null)
+            if (element != null && item is WorkItem)
             {
-                if (item is LShapeItem)
-                    return element.FindResource("LShapeTemplate") as DataTemplate;
-                else if (item is RectItem)
-                    return element.FindResource("RectTemplate") as DataTemplate;
+                WorkItem wo = item as WorkItem;
+                if (wo.Tags.Count > 0)
+                {
+                    return element.FindResource(wo.Tags[0].ToString()) as DataTemplate;
+                    //if (item is LShapeItem)
+                    //    return element.FindResource("LShapeTemplate") as DataTemplate;
+                    //else if (item is RectItem)
+                    //    return element.FindResource("RectTemplate") as DataTemplate;
+                }
+
+                return base.SelectTemplate(item, container);
             }
 
             return base.SelectTemplate(item, container);
