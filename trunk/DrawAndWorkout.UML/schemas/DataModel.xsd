@@ -319,15 +319,7 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  PolygonItem  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <xsd:complexType name="PolygonItem">
-    <xsd:complexContent>
-      <xsd:extension base="ShapeItem">
-        <xsd:sequence>
-          <xsd:element name="Lengths" type="LengthItem" minOccurs="3" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:extension>
-    </xsd:complexContent>
-  </xsd:complexType>
+  <xsd:complexType name="PolygonItem"/>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  Project  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -531,6 +523,7 @@
           <xsd:element name="MaxHeight" type="xsd:double"/>
           <xsd:element name="Material" type="Stock"/>
           <xsd:element name="Elements" type="ShapeItem" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="Lengths" type="LengthItem" minOccurs="1" maxOccurs="unbounded"/>
           <xsd:element name="Status" type="WorkStatus"/>
           <xsd:element name="Progress" type="xsd:decimal">
             <xsd:annotation>

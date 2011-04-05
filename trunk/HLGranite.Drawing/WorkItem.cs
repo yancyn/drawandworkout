@@ -32,6 +32,7 @@ namespace HLGranite.Drawing
         {
             this.createdAtField = base.dateField;
             this.elementsField = new ObservableCollection<WorkItem>();
+            this.lengthsField = new ObservableCollection<LengthItem>();
             this.leftField = 0;
             this.materialField = new Stock();
             this.progressField = 0;
