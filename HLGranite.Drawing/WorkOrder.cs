@@ -9,6 +9,7 @@ namespace HLGranite.Drawing
 {
     public partial class WorkOrder
     {
+        #region Properties
         private RemoveWorkItemCommand removeWorkItemCommand;
         public RemoveWorkItemCommand RemoveWorkItemCommand { get { return this.removeWorkItemCommand; } }
         private WorkItem selectedItem;
@@ -61,12 +62,16 @@ namespace HLGranite.Drawing
                 }
             }
         }
+        #endregion
+
         public WorkOrder()
         {
             this.guidField = Guid.NewGuid();
             this.itemsField = new ObservableCollection<WorkItem>();
             this.removeWorkItemCommand = new RemoveWorkItemCommand(this);
         }
+
+        #region Methods
         public void RemoveItem()
         {
             if (this.lastSelectedItem != null)
@@ -80,6 +85,7 @@ namespace HLGranite.Drawing
             if (this.Items.Contains(item))
                 this.Items.Remove(item);
         }
+        #endregion
     }
     public class RemoveWorkItemCommand : ICommand
     {

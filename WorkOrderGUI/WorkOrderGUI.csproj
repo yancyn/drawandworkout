@@ -102,10 +102,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProjectWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,9 +166,6 @@
     <Compile Include="Utils\Helpers.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\Mapi.cs" />
-    <Compile Include="ProjectWindow.xaml.cs">
-      <DependentUpon>ProjectWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Utils\GlobaliztionResource.cs" />
     <Compile Include="Resources\Labels.Designer.cs">
       <AutoGen>True</AutoGen>
