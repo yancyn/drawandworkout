@@ -2,66 +2,72 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StackPanel>
         <!-- 24x24 -->
-        <Path Stroke="White" Fill="Black" ToolTip="Selector" Data="M 0.5575,18.7662 C 0.5575,18.7662 0.5,0.5 0.5,0.5 c 0,0 12.04014,12.8752 12.04014,12.8752 0,0 -5.20198,-0.1182 -5.20198,-0.1182 0,0 3.4254,5.6771 3.4254,5.6771 0,0 -4.47307,2.1183 -4.47307,2.1183 0,0 -2.00879,-6.4587 -2.00879,-6.4587 0,0 -3.7242,4.1725 -3.7242,4.1725 z"/>
+        <Path Tag="" ToolTip="Selector" Stroke="White" Fill="Black" Data="M 0.5575,18.7662 C 0.5575,18.7662 0.5,0.5 0.5,0.5 c 0,0 12.04014,12.8752 12.04014,12.8752 0,0 -5.20198,-0.1182 -5.20198,-0.1182 0,0 3.4254,5.6771 3.4254,5.6771 0,0 -4.47307,2.1183 -4.47307,2.1183 0,0 -2.00879,-6.4587 -2.00879,-6.4587 0,0 -3.7242,4.1725 -3.7242,4.1725 z"/>
 
         <!-- 15x21 LShapeToolbar -->
         <StackPanel>
-            <Path Stroke="Black" ToolTip="Kitchen" Data="m 0,0 0,15 0,6 6,0 9,0 0,-6 L 6,15 6,0 0,0 z"/>
+            <Path Tag="LShapeItem00" ToolTip="Kitchen" Stroke="Black" Data="m 0,0 0,15 0,6 6,0 9,0 0,-6 L 6,15 6,0 0,0 z"/>
             <StackPanel>
-                <Path Stroke="Black" Data="m 0,0 0,15 0,6 6,0 9,0 0,-6 L 6,15 6,0 0,0 z"/>
-                <Path Stroke="Black" Data="m 0,0 0,6 15,0 0,9 6,0 0,-9 0,-6 -6,0 -15,0 z"/>
-                <Path Stroke="Black" Data="M 0,0 0,6 9,6 9,21 15,21 15,6 15,0 9,0 0,0 z"/>
-                <Path Stroke="Black" Data="m 15,0 0,9 -15,0 0,6 15,0 6,0 0,-6 0,-9 -6,0 z"/>
-                <Path Stroke="Black" Data="M 0,0 0,6 0,21 6,21 6,6 15,6 15,0 6,0 0,0 z"/>
-                <Path Stroke="Black" Data="m 0,0 0,9 0,6 6,0 15,0 L 21,9 6,9 6,0 0,0 z"/>
-                <Path Stroke="Black" Data="m 9,0 0,15 -9,0 0,6 9,0 6,0 0,-6 0,-15 -6,0 z"/>
-                <Path Stroke="Black" Data="M 0,0 0,6 0,15 6,15 6,6 21,6 21,0 6,0 0,0 z"/>
+                <Path Tag="LShapeItem00" ToolTip="Kitchen" Stroke="Black" Data="m 0,0 0,15 0,6 6,0 9,0 0,-6 L 6,15 6,0 0,0 z"/>
+                <Path Tag="LShapeItem01" ToolTip="Kitchen" Stroke="Black" Data="M 0,0 0,6 0,15 6,15 6,6 21,6 21,0 6,0 0,0 z"/>
+                <Path Tag="LShapeItem02" ToolTip="Kitchen" Stroke="Black" Data="M 0,0 0,6 9,6 9,21 15,21 15,6 15,0 9,0 0,0 z"/>
+                <Path Tag="LShapeItem03" ToolTip="Kitchen" Stroke="Black" Data="m 15,0 0,9 -15,0 0,6 15,0 6,0 0,-6 0,-9 -6,0 z"/>
+                <Path Tag="LShapeItem04" ToolTip="Kitchen" Stroke="Black" Data="M 0,0 0,6 0,21 6,21 6,6 15,6 15,0 6,0 0,0 z"/>
+                <Path Tag="LShapeItem05" ToolTip="Kitchen" Stroke="Black" Data="m 0,0 0,6 15,0 0,9 6,0 0,-9 0,-6 -6,0 -15,0 z"/>
+                <Path Tag="LShapeItem06" ToolTip="Kitchen" Stroke="Black" Data="m 0,0 0,9 0,6 6,0 15,0 L 21,9 6,9 6,0 0,0 z"/>
+                <Path Tag="LShapeItem07" ToolTip="Kitchen" Stroke="Black" Data="m 9,0 0,15 -9,0 0,6 9,0 6,0 0,-6 0,-15 -6,0 z"/>
             </StackPanel>
         </StackPanel>
         
         <!-- 21x21 LShapeToolbar -->
         <StackPanel>
-            <Path Stroke="Black" ToolTip="Kitchen" Data="m 0,0 0,15 0,6 6,0 15,0 0,-6 L 6,15 6,0 0,0 z"/>
+            <Path Tag="LShapeItem08" ToolTip="Kitchen" Stroke="Black" Data="m 0,0 0,15 0,6 6,0 15,0 0,-6 L 6,15 6,0 0,0 z"/>
             <StackPanel>
-                <Path Stroke="Black" Data="m 0,0 0,15 0,6 6,0 15,0 0,-6 L 6,15 6,0 0,0 z"/>
-                <Path Stroke="Black" Data="M 0,0 0,6 0,21 6,21 6,6 21,6 21,0 6,0 0,0 z"/>
-                <Path Stroke="Black" Data="M 0 0 L 0 6 L 15 6 L 15 21 L 21 21 L 21 6 L 21 0 L 15 0 L 0 0 z "/>
-                <Path Stroke="Black" Data="m 15,0 0,15 -15,0 0,6 15,0 6,0 0,-6 0,-15 -6,0 z"/>
+                <Path Tag="LShapeItem09" ToolTip="Kitchen" Stroke="Black" Data="m 0,0 0,15 0,6 6,0 15,0 0,-6 L 6,15 6,0 0,0 z"/>
+                <Path Tag="LShapeItem10" ToolTip="Kitchen" Stroke="Black" Data="M 0,0 0,6 0,21 6,21 6,6 21,6 21,0 6,0 0,0 z"/>
+                <Path Tag="LShapeItem11" ToolTip="Kitchen" Stroke="Black" Data="M 0 0 L 0 6 L 15 6 L 15 21 L 21 21 L 21 6 L 21 0 L 15 0 L 0 0 z "/>
+                <Path Tag="LShapeItem12" ToolTip="Kitchen" Stroke="Black" Data="m 15,0 0,15 -15,0 0,6 15,0 6,0 0,-6 0,-15 -6,0 z"/>
             </StackPanel>
         </StackPanel>
 
         <!-- 24x24 Unbalance UShapeToolbar-->
         <StackPanel>
-            <Path Stroke="Black" ToolTip="Kitchen" Data="M 0,0 0,17.14286 0,24 6.85714,24 24,24 l 0,-6.85714 0,-10.28572 -6.85714,0 0,10.28572 -10.28572,0 L 6.85714,0 0,0 z"/>
+            <Path Tag="UShapeItem00" ToolTip="Kitchen" Stroke="Black" Data="M 0,0 0,17.14286 0,24 6.85714,24 24,24 l 0,-6.85714 0,-10.28572 -6.85714,0 0,10.28572 -10.28572,0 L 6.85714,0 0,0 z"/>
             <StackPanel>
-                <Path Stroke="Black" Data="M 0,0 0,17.14286 0,24 6.85714,24 24,24 l 0,-6.85714 0,-10.28572 -6.85714,0 0,10.28572 -10.28572,0 L 6.85714,0 0,0 z"/>
-                <Path Stroke="Black" Data="M 0,0 0,6.85714 0,17.14286 0,24 l 6.85714,0 10.28572,0 0,-6.85714 -10.28572,0 0,-10.28572 L 24,6.85714 24,0 0,0 z"/>
-                <Path Stroke="Black" Data="m 0,0 0,6.85714 0,10.28572 6.85714,0 0,-10.28572 10.28572,0 0,17.14286 L 24,24 24,6.85714 24,0 17.14286,0 6.85714,0 0,0 z"/>
-                <Path Stroke="Black" Data="m 6.857143,0 0,6.85714 10.285714,0 0,10.28572 L 0,17.14286 0,24 17.142857,24 24,24 24,17.14286 24,0 6.857143,0 z"/>
-                <Path Stroke="Black" Data="m 17.14286,0 0,17.14286 -10.28572,0 0,-10.28572 L 0,6.85714 0,17.14286 0,24 6.85714,24 24,24 24,17.14286 24,0 17.14286,0 z"/>
-                <Path Stroke="Black" Data="M 0,0 0,6.85714 0,17.14286 0,24 6.85714,24 24,24 l 0,-6.85714 -17.14286,0 0,-10.28572 10.28572,0 L 17.14286,0 0,0 z"/>
-                <Path Stroke="Black" Data="M 0,0 0,6.85714 0,24 l 6.85714,0 0,-17.14286 10.28572,0 0,10.28572 6.85714,0 L 24,0 6.85714,0 0,0 z"/>
-                <Path Stroke="Black" Data="m 0,0 0,6.85714 17.14286,0 0,10.28572 -10.28572,0 0,6.85714 10.28572,0 L 24,24 24,17.14286 24,0 0,0 z"/>
+                <Path Tag="UShapeItem00" ToolTip="Kitchen" Stroke="Black" Data="M 0,0 0,17.14286 0,24 6.85714,24 24,24 l 0,-6.85714 0,-10.28572 -6.85714,0 0,10.28572 -10.28572,0 L 6.85714,0 0,0 z"/>
+                <Path Tag="UShapeItem01" ToolTip="Kitchen" Stroke="Black" Data="M 0,0 0,6.85714 0,17.14286 0,24 l 6.85714,0 10.28572,0 0,-6.85714 -10.28572,0 0,-10.28572 L 24,6.85714 24,0 0,0 z"/>
+                <Path Tag="UShapeItem02" ToolTip="Kitchen" Stroke="Black" Data="m 0,0 0,6.85714 0,10.28572 6.85714,0 0,-10.28572 10.28572,0 0,17.14286 L 24,24 24,6.85714 24,0 17.14286,0 6.85714,0 0,0 z"/>
+                <Path Tag="UShapeItem03" ToolTip="Kitchen" Stroke="Black" Data="m 6.857143,0 0,6.85714 10.285714,0 0,10.28572 L 0,17.14286 0,24 17.142857,24 24,24 24,17.14286 24,0 6.857143,0 z"/>
+                <Path Tag="UShapeItem04" ToolTip="Kitchen" Stroke="Black" Data="m 17.14286,0 0,17.14286 -10.28572,0 0,-10.28572 L 0,6.85714 0,17.14286 0,24 6.85714,24 24,24 24,17.14286 24,0 17.14286,0 z"/>
+                <Path Tag="UShapeItem05" ToolTip="Kitchen" Stroke="Black" Data="M 0,0 0,6.85714 0,17.14286 0,24 6.85714,24 24,24 l 0,-6.85714 -17.14286,0 0,-10.28572 10.28572,0 L 17.14286,0 0,0 z"/>
+                <Path Tag="UShapeItem06" ToolTip="Kitchen" Stroke="Black" Data="M 0,0 0,6.85714 0,24 l 6.85714,0 0,-17.14286 10.28572,0 0,10.28572 6.85714,0 L 24,0 6.85714,0 0,0 z"/>
+                <Path Tag="UShapeItem07" ToolTip="Kitchen" Stroke="Black" Data="m 0,0 0,6.85714 17.14286,0 0,10.28572 -10.28572,0 0,6.85714 10.28572,0 L 24,24 24,17.14286 24,0 0,0 z"/>
             </StackPanel>
         </StackPanel>
 
         <!-- 24x24 UShapeToolbar -->
         <StackPanel>
-            <Path Stroke="Black" ToolTip="Kitchen" Data="M 0,0 0,17.142856 0,24 6.85714,24 24,24 24,17.142856 24,0 l -6.857141,0 0,17.142856 -10.285719,0 L 6.85714,0 0,0 z"/>
+            <Path Tag="UShapeItem08" ToolTip="Kitchen" Stroke="Black" Data="M 0,0 0,17.142856 0,24 6.85714,24 24,24 24,17.142856 24,0 l -6.857141,0 0,17.142856 -10.285719,0 L 6.85714,0 0,0 z"/>
             <StackPanel>
-                <Path Stroke="Black" ToolTip="Kitchen" Data="M 0,0 0,17.142856 0,24 6.85714,24 24,24 24,17.142856 24,0 l -6.857141,0 0,17.142856 -10.285719,0 L 6.85714,0 0,0 z"/>
-                <Path Stroke="Black" Data="M 0,0 0,6.857143 0,17.142857 0,24 l 24,0 0,-6.857143 -17.14286,0 0,-10.285714 17.14286,0 L 24,0 6.85714,0 0,0 z"/>
-                <Path Stroke="Black" Data="M 0,0 0,6.85714 0,24 l 6.85714,0 0,-17.14286 10.28572,0 0,17.14286 L 24,24 24,0 6.85714,0 0,0 z"/>
-                <Path Stroke="Black" Data="m 0,0 0,6.85714 17.14286,0 0,10.28572 L 0,17.14286 0,24 24,24 24,17.14286 24,6.85714 24,0 17.14286,0 0,0 z"/>
+                <Path Tag="UShapeItem08" ToolTip="Kitchen" Stroke="Black" Data="M 0,0 0,17.142856 0,24 6.85714,24 24,24 24,17.142856 24,0 l -6.857141,0 0,17.142856 -10.285719,0 L 6.85714,0 0,0 z"/>
+                <Path Tag="UShapeItem09" ToolTip="Kitchen" Stroke="Black" Data="M 0,0 0,6.857143 0,17.142857 0,24 l 24,0 0,-6.857143 -17.14286,0 0,-10.285714 17.14286,0 L 24,0 6.85714,0 0,0 z"/>
+                <Path Tag="UShapeItem10" ToolTip="Kitchen" Stroke="Black" Data="M 0,0 0,6.85714 0,24 l 6.85714,0 0,-17.14286 10.28572,0 0,17.14286 L 24,24 24,0 6.85714,0 0,0 z"/>
+                <Path Tag="UShapeItem11" ToolTip="Kitchen" Stroke="Black" Data="m 0,0 0,6.85714 17.14286,0 0,10.28572 L 0,17.14286 0,24 24,24 24,17.14286 24,6.85714 24,0 17.14286,0 0,0 z"/>
             </StackPanel>            
         </StackPanel>
-        
-        <Rectangle Width="24" Height="8" StrokeThickness="1" Stroke="Black" ToolTip="Rectangle"/>
-        <Rectangle Width="20" Height="16" StrokeThickness="1" Stroke="Black" ToolTip="Rectangle"/>
-        <Rectangle Width="20" Height="20" StrokeThickness="1" Stroke="Black" ToolTip="Square"/>
-        <Rectangle Width="20" Height="16" StrokeThickness="1" Stroke="Black" RadiusX="5" RadiusY="5" ToolTip="Basin"/>
-        <Ellipse Width="20" Height="16" StrokeThickness="1" Stroke="Black" ToolTip="Basin"/>
-        <Ellipse Width="20" Height="20" StrokeThickness="1" Stroke="Black" ToolTip="Circle"/>
+
+        <StackPanel>
+            <Rectangle Tag="RectItem00" Width="24" Height="8" StrokeThickness="1" Stroke="Black" ToolTip="Rectangle"/>
+            <StackPanel>
+                <Rectangle Tag="RectItem00" Width="24" Height="8" StrokeThickness="1" Stroke="Black" ToolTip="Rectangle"/>
+                <Rectangle Tag="RectItem01" Width="8" Height="24" StrokeThickness="1" Stroke="Black" ToolTip="Rectangle"/>
+            </StackPanel>
+        </StackPanel>
+        <Rectangle Tag="" Width="20" Height="16" StrokeThickness="1" Stroke="Black" ToolTip="Rectangle"/>
+        <Rectangle Tag="" Width="20" Height="20" StrokeThickness="1" Stroke="Black" ToolTip="Square"/>
+        <Rectangle Tag="" Width="20" Height="16" StrokeThickness="1" Stroke="Black" RadiusX="5" RadiusY="5" ToolTip="Basin"/>
+        <Ellipse Tag="" Width="20" Height="16" StrokeThickness="1" Stroke="Black" ToolTip="Basin"/>
+        <Ellipse Tag="" Width="20" Height="20" StrokeThickness="1" Stroke="Black" ToolTip="Circle"/>
         <Path Fill="Black" Data="m 18,10 -8,8 8,0 0,-8 z" ToolTip="More"/>
     </StackPanel>
 </Window>

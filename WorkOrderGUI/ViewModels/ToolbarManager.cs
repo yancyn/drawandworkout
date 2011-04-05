@@ -39,6 +39,30 @@ namespace WorkOrderGUI
                 }
             }
         }
+        public ToolbarViewModel selectedToolbar;
+        /// <summary>
+        /// Gets or sets current selected toolbar after pick an arrow icon.
+        /// </summary>
+        public ToolbarViewModel SelectedToolbar
+        {
+            get { return this.selectedToolbar; }
+            set
+            {
+                if (this.selectedToolbar != null)
+                {
+                    if (this.selectedToolbar.Equals(value) != true)
+                    {
+                        this.selectedToolbar = value;
+                        this.OnPropertyChanged("SelectedToolbar");
+                    }
+                }
+                else
+                {
+                    this.selectedToolbar = value;
+                    this.OnPropertyChanged("SelectedToolbar");
+                }
+            }
+        }
         #endregion
 
         public ToolbarManager()
@@ -59,14 +83,20 @@ namespace WorkOrderGUI
                     ToolbarViewModel viewModel = null;
                     if (panel.Children[i] is Shape)
                     {
-                        viewModel = new ToolbarViewModel(panel.Children[i] as Shape);
+                        if ((panel.Children[i] as Shape).Tag != null)
+                            viewModel = new ToolbarViewModel((panel.Children[i] as Shape).Tag.ToString(), panel.Children[i] as Shape);
+                        else
+                            viewModel = new ToolbarViewModel(panel.Children[i] as Shape);
                     }
                     if (panel.Children[i] is Panel)
                     {
                         Panel panel2 = (Panel)panel.Children[i];
                         if (panel2.Children.Count == 2)  //todo: finetune
                         {
-                            viewModel = new ToolbarViewModel(panel2.Children[0] as Shape);
+                            if ((panel2.Children[0] as Shape).Tag != null)
+                                viewModel = new ToolbarViewModel((panel2.Children[0] as Shape).Tag.ToString(), panel2.Children[0] as Shape);
+                            else
+                                viewModel = new ToolbarViewModel(panel2.Children[0] as Shape);
                             Panel panel3 = (Panel)panel2.Children[1];
                             //remove 2 children from host
                             panel2.Children.RemoveAt(0);
@@ -77,7 +107,10 @@ namespace WorkOrderGUI
                                 ToolbarViewModel v = null;
                                 if (panel3.Children[j] is Shape)
                                 {
-                                    v = new ToolbarViewModel(panel3.Children[j] as Shape);
+                                    if ((panel3.Children[j] as Shape).Tag != null)
+                                        v = new ToolbarViewModel((panel3.Children[j] as Shape).Tag.ToString(), panel3.Children[j] as Shape);
+                                    else
+                                        v = new ToolbarViewModel(panel3.Children[j] as Shape);
                                     v.Parent = viewModel;
                                 }
                                 panel3.Children.RemoveAt(j);

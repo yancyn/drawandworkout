@@ -99,7 +99,7 @@ namespace WorkOrderGUI
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             Project project = (this.pageManager.CurrentPage.Item as Project);
-            project.Save(this.DrawingArea);
+            project.Save();//project.Save(this.DrawingArea);
         }
 
         private void DrawingArea_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

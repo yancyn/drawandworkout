@@ -25,6 +25,7 @@ namespace WorkOrderGUI
     public partial class MainWindow : Window
     {
         private PageManager pageManager;
+        private ToolbarManager toolbarManager;
         public MainWindow()
         {
             InitializeComponent();
@@ -42,8 +43,8 @@ namespace WorkOrderGUI
             {
                 //ConvertWindowToDataTemplate();
 
-                ToolbarManager toolbarManager = new ToolbarManager();
-                //this.Toolbox.DataContext = toolbarManager;
+                this.toolbarManager = new ToolbarManager();
+                //this.Toolbox.DataContext = toolbarManager;//this cause the interface slow to render
                 this.Toolbox.ItemsSource = toolbarManager.Items;
 
                 //testing only
@@ -198,5 +199,11 @@ namespace WorkOrderGUI
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(hyperlink.NavigateUri.ToString()));
         }
         #endregion
+
+        private void Toolbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.toolbarManager.SelectedToolbar = (sender as RadioButton).DataContext as ToolbarViewModel;
+            Logger.Info(typeof(MainWindow), this.toolbarManager.SelectedToolbar);
+        }
     }
 }
