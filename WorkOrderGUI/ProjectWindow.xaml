@@ -42,10 +42,16 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
-                <!--<TextBlock Grid.Row="1" Grid.Column="0" Text="Material"/>-->
-                <ComboBox Grid.Row="0" Grid.Column="1"
+                <WrapPanel Grid.Row="0" Grid.Column="1">
+                    <ComboBox
                           ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}},Path=DataContext.Database.Stocks.Stock}"
                           SelectedItem="{Binding Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Style="{StaticResource BorderlessButton}" ToolTip="Remove" Margin="4,0,4,0"
+                        Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Grid},AncestorLevel=2},Path=DataContext.Item.WorkOrders[0].RemoveWorkItemCommand}"
+                        CommandParameter="{Binding}">
+                        <Image Height="16" Source="..\Images\cross.png"/>
+                    </Button>
+                </WrapPanel>
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Size"/>
                 <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
                     <TextBox Width="50" Text="{Binding Width,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
@@ -275,6 +281,7 @@
         </Grid.ColumnDefinitions>
 
         <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                      KeyUp="ScrollViewer_KeyUp"
                       MouseLeftButtonUp="ScrollViewer_MouseLeftButtonUp">
             <Canvas x:Name="DrawingArea" Margin="40" Height="1280" Width="800"
                     MouseLeftButtonDown="DrawingArea_MouseLeftButtonDown">

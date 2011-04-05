@@ -22,7 +22,7 @@ namespace WorkOrderGUI
     {
         private PageManager pageManager;
         private ToolbarManager toolbarManager;
-        private WorkItem selectedWorkItem;
+        //private WorkItem selectedWorkItem;
         private Point originalPoint;
         public ProjectWindow()
         {
@@ -109,20 +109,23 @@ namespace WorkOrderGUI
             project.Save();//project.Save(this.DrawingArea);
         }
 
+        #region Events
         private void DrawingArea_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("DrawingArea_MouseLeftButtonDown: " + new Random().Next() + " " + e.Device.Target.ToString());
             this.originalPoint = e.GetPosition(this.DrawingArea);
             if (e.Device.Target is Shape)
             {
-                this.selectedWorkItem = (e.Device.Target as Shape).DataContext as WorkItem;
-                System.Diagnostics.Debug.WriteLine(this.selectedWorkItem.ToString());
+                //this.selectedWorkItem = (e.Device.Target as Shape).DataContext as WorkItem;
+                (this.pageManager.Items[0].Item as Project).WorkOrders[0].SelectedItem = (e.Device.Target as Shape).DataContext as WorkItem;
+                System.Diagnostics.Debug.WriteLine((this.pageManager.Items[0].Item as Project).WorkOrders[0].SelectedItem.ToString());
             }
         }
         private void ScrollViewer_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("DrawingArea_MouseLeftButtonUp" + new Random().Next());
-            if (this.selectedWorkItem == null)
+            //if (this.selectedWorkItem == null)
+            if ((this.pageManager.Items[0].Item as Project).WorkOrders[0].SelectedItem == null)
             {
                 if (this.toolbarManager.SelectedToolbar != null)
                 {
@@ -134,10 +137,21 @@ namespace WorkOrderGUI
             else //if (this.selectedWorkItem != null)
             {
                 Point newPosition = e.GetPosition(this.DrawingArea);
-                this.selectedWorkItem.Left += newPosition.X - originalPoint.X;
-                this.selectedWorkItem.Top += newPosition.Y - originalPoint.Y;
-                this.selectedWorkItem = null;//reset
+                //this.selectedWorkItem.Left += newPosition.X - originalPoint.X;
+                //this.selectedWorkItem.Top += newPosition.Y - originalPoint.Y;
+                //this.selectedWorkItem = null;//reset
+                (this.pageManager.Items[0].Item as Project).WorkOrders[0].SelectedItem.Left += newPosition.X - originalPoint.X;
+                (this.pageManager.Items[0].Item as Project).WorkOrders[0].SelectedItem.Top += newPosition.Y - originalPoint.Y;
+                (this.pageManager.Items[0].Item as Project).WorkOrders[0].SelectedItem = null;//reset
             }
         }
+        private void ScrollViewer_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                (this.pageManager.Items[0].Item as Project).WorkOrders[0].RemoveItem();
+            }
+        }
+        #endregion
     }
 }

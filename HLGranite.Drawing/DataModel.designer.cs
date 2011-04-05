@@ -375,6 +375,8 @@ namespace HLGranite.Drawing
 
         protected ObservableCollection<WorkItem> elementsField;
 
+        protected ObservableCollection<LengthItem> lengthsField;
+
         protected WorkStatus statusField;
 
         protected decimal progressField;
@@ -529,6 +531,30 @@ namespace HLGranite.Drawing
                 {
                     this.elementsField = value;
                     this.OnPropertyChanged("Elements");
+                }
+            }
+        }
+
+        public ObservableCollection<LengthItem> Lengths
+        {
+            get
+            {
+                return this.lengthsField;
+            }
+            set
+            {
+                if ((this.lengthsField != null))
+                {
+                    if ((lengthsField.Equals(value) != true))
+                    {
+                        this.lengthsField = value;
+                        this.OnPropertyChanged("Lengths");
+                    }
+                }
+                else
+                {
+                    this.lengthsField = value;
+                    this.OnPropertyChanged("Lengths");
                 }
             }
         }
@@ -741,35 +767,7 @@ namespace HLGranite.Drawing
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(UShapeItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TriangleItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(LShapeItem))]
-    public partial class PolygonItem : WorkItem //, System.ComponentModel.INotifyPropertyChanged
-    {
-
-        private ObservableCollection<LengthItem> lengthsField;
-
-        public ObservableCollection<LengthItem> Lengths
-        {
-            get
-            {
-                return this.lengthsField;
-            }
-            set
-            {
-                if ((this.lengthsField != null))
-                {
-                    if ((lengthsField.Equals(value) != true))
-                    {
-                        this.lengthsField = value;
-                        this.OnPropertyChanged("Lengths");
-                    }
-                }
-                else
-                {
-                    this.lengthsField = value;
-                    this.OnPropertyChanged("Lengths");
-                }
-            }
-        }
-    }
+    public partial class PolygonItem : WorkItem { }
 
     public partial class LengthItem : System.ComponentModel.INotifyPropertyChanged
     {

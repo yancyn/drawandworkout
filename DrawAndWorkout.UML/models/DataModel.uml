@@ -307,16 +307,6 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QPtXpUbfEeCvMexyU7cjtg" value="1"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_fS9nQEeWEeCyObvqYt56PQ" name="Length" memberEnd="_fS9nQUeWEeCyObvqYt56PQ _fS9nREeWEeCyObvqYt56PQ">
-    <ownedEnd xmi:id="_fS9nQUeWEeCyObvqYt56PQ" name="src" type="_S9XnYETUEeC_SaZDL-mcDw" association="_fS9nQEeWEeCyObvqYt56PQ">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fS9nQ0eWEeCyObvqYt56PQ" value="1"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fS9nQkeWEeCyObvqYt56PQ" value="1"/>
-    </ownedEnd>
-    <ownedEnd xmi:id="_fS9nREeWEeCyObvqYt56PQ" name="dst" type="_NYjv0EeZEeCyObvqYt56PQ" aggregation="composite" association="_fS9nQEeWEeCyObvqYt56PQ">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fS9nRkeWEeCyObvqYt56PQ" value="*"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fS9nRUeWEeCyObvqYt56PQ" value="3"/>
-    </ownedEnd>
-  </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_thkbAEeWEeCyObvqYt56PQ" name="vCard"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_0dBxQEeWEeCyObvqYt56PQ" name="Users">
     <generalization xmi:id="_8VIV8EeWEeCyObvqYt56PQ" general="_6pQC8EeWEeCyObvqYt56PQ"/>
@@ -490,4 +480,14 @@
     <ownedLiteral xmi:id="_bbzDYFmoEeCONM7P5czMxA" name="Professional"/>
   </packagedElement>
   <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_uqut8FuLEeCWn_HrzsiL4Q" name="Double"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_X420IF9mEeCHquCeSFq70w" name="Lengths" memberEnd="_X48TsF9mEeCHquCeSFq70w _X486wl9mEeCHquCeSFq70w">
+    <ownedEnd xmi:id="_X48TsF9mEeCHquCeSFq70w" name="src" type="_3ko0UETWEeCJe9RP8ofhZg" association="_X420IF9mEeCHquCeSFq70w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_X486wV9mEeCHquCeSFq70w" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_X486wF9mEeCHquCeSFq70w" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_X486wl9mEeCHquCeSFq70w" name="dst" type="_NYjv0EeZEeCyObvqYt56PQ" aggregation="composite" association="_X420IF9mEeCHquCeSFq70w">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_X49h0F9mEeCHquCeSFq70w" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_X486w19mEeCHquCeSFq70w" value="1"/>
+    </ownedEnd>
+  </packagedElement>
 </uml:Model>
