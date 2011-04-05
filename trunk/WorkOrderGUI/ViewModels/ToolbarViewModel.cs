@@ -34,6 +34,30 @@ namespace WorkOrderGUI
 
             }
         }
+        private string name;
+        /// <summary>
+        /// Gets or sets the corresponding WorkItem type in string.
+        /// </summary>
+        public string Name
+        {
+            get { return this.name; }
+            set
+            {
+                if (this.name != null)
+                {
+                    if (this.name.Equals(value) != true)
+                    {
+                        this.name = value;
+                        this.OnPropertyChanged("Name");
+                    }
+                }
+                else
+                {
+                    this.name = value;
+                    this.OnPropertyChanged("Name");
+                }
+            }
+        }
         private ObservableCollection<ToolbarViewModel> children;
         public ObservableCollection<ToolbarViewModel> Children
         {
@@ -92,16 +116,51 @@ namespace WorkOrderGUI
         /// <param name="shape"></param>
         public ToolbarViewModel(Shape shape)
         {
+            this.name = string.Empty;
             this.item = shape;
             this.children = new ObservableCollection<ToolbarViewModel>();
             this.replaceParentToolbarCommand = new ReplaceParentToolbarCommand(this);
         }
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="shape"></param>
+        public ToolbarViewModel(string name, Shape shape)
+        {
+            this.name = name;
+            this.item = shape;
+            this.children = new ObservableCollection<ToolbarViewModel>();
+            this.replaceParentToolbarCommand = new ReplaceParentToolbarCommand(this);
+        }
+        public override string ToString()
+        {
+            return this.name;
+        }
         public void ReplaceParent()
         {
-            Path path = new Path();
-            path.Data = (this.item as Path).Data;
-            path.Stroke = Brushes.Black;
-            this.parent.Item = path;
+            if (this.item is Path)
+            {
+                Path path = new Path();
+                path.Data = (this.item as Path).Data;
+                path.Stroke = Brushes.Black;
+                path.ToolTip = (this.item as Path).ToolTip;
+                this.parent.Item = path;
+                this.parent.Name = this.Name;
+            }
+            else if (this.item is Rectangle)
+            {
+                Rectangle rect = new Rectangle();
+                rect.Height = (this.item as Rectangle).Height;
+                rect.Width = (this.item as Rectangle).Width;
+                rect.StrokeThickness = 1;
+                rect.Stroke = Brushes.Black;
+                rect.ToolTip = "Rectangle";
+                this.parent.Item = rect;
+                this.parent.Name = this.Name;
+            }
+            else
+                Logger.Info(typeof(ToolbarViewModel), "Not supported type for ToolbarViewModel.ReplaceParent()");
         }
         #region INotifyPropertyChanged Members
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;

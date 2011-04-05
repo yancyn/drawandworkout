@@ -169,10 +169,10 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <ToolBarTray Grid.Row="0" Orientation="Vertical">
-                <ToolBar x:Name="Toolbox">
+                <ToolBar x:Name="Toolbox" ItemsSource="{Binding Items}">
                     <ToolBar.ItemTemplate>
                         <DataTemplate>
-                            <RadioButton Style="{StaticResource ToolbarButton}" Content="{Binding Item,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding Item.ToolTip}">
+                            <RadioButton Checked="Toolbox_Checked" Style="{StaticResource ToolbarButton}" Content="{Binding Item,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding Item.ToolTip}">
                                 <RadioButton.ContextMenu>
                                     <ContextMenu Style="{StaticResource TransparentFloatingToolbar}"
                                                  Visibility="{Binding Children.Count,Converter={StaticResource RowCountConverter}}">
@@ -181,7 +181,8 @@
                                                 <DataTemplate>
                                                     <RadioButton
                                                         Command="{Binding ReplaceParentToolbarCommand}"
-                                                        Content="{Binding Item,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ToolbarButton}" ToolTip="{Binding Item.ToolTip}"/>
+                                                        Content="{Binding Item,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ToolbarButton}" ToolTip="{Binding Item.ToolTip}"
+                                                        Checked="Toolbox_Checked"/>
                                                 </DataTemplate>
                                             </ToolBar.ItemTemplate>
                                         </ToolBar>
