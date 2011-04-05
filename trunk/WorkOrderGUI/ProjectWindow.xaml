@@ -75,10 +75,14 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
-                <!--<TextBlock Grid.Row="1" Grid.Column="0" Text="Material"/>-->
-                <ComboBox Grid.Row="0" Grid.Column="1"
-                          ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}},Path=DataContext.Database.Stocks.Stock}"
-                          SelectedItem="{Binding Material}"/>
+                <WrapPanel Grid.Row="0" Grid.Column="1">
+                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}},Path=DataContext.Database.Stocks.Stock}" SelectedItem="{Binding Material}"/>
+                    <Button Style="{StaticResource BorderlessButton}" ToolTip="Remove" Margin="4,0,4,0"
+                        Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Grid},AncestorLevel=2},Path=DataContext.Item.WorkOrders[0].RemoveWorkItemCommand}"
+                        CommandParameter="{Binding}">
+                        <Image Height="16" Source="..\Images\cross.png"/>
+                    </Button>
+                </WrapPanel>
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Size"/>
                 <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
                     <TextBox Width="50" Text="{Binding MaxWidth,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
@@ -177,6 +181,91 @@
             </Canvas>
         </DataTemplate>
         
+        <DataTemplate x:Key="LShapeItem04">
+            <Canvas>
+                <Canvas.Margin>
+                    <MultiBinding Converter="{StaticResource MarginConverter}">
+                        <Binding Path="Left"/>
+                        <Binding Path="Top"/>
+                    </MultiBinding>
+                </Canvas.Margin>
+
+                <Rectangle Width="120" Height="420" Stroke="Black" StrokeThickness="1"/>
+                <Rectangle Width="300" Height="120" Stroke="Black" Fill="White" StrokeThickness="1"/>
+                <TextBlock Text="2'" Margin="300,60,0,0" Foreground="Blue"/>
+                <Canvas Canvas.Top="-24">
+                    <Line X1="0" Y1="10" X2="300" Y2="10" Stroke="Blue" StrokeThickness="1"/>
+                    <Line X1="0" Y1="0" X2="0" Y2="24" Stroke="Blue" StrokeThickness="1"/>
+                    <Line X1="300" Y1="0" X2="300" Y2="24" Stroke="Blue" StrokeThickness="1"/>
+                    <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="10" Canvas.Top="5">
+                        <Path.RenderTransform>
+                            <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="290" Canvas.Top="5">
+                        <Path.RenderTransform>
+                            <ScaleTransform ScaleX="0.25" ScaleY="0.25" />
+                        </Path.RenderTransform>
+                    </Path>
+                    <Rectangle Width="50" Height="24" Fill="White" Canvas.Left="125"/>
+                    <TextBlock Text="{Binding MaxWidth,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="150,0,0,0" Foreground="Blue" Canvas.Left="-20" />
+                </Canvas>
+                <TextBlock Text="2'" Margin="60,420,0,0" Foreground="Blue"/>
+                <TextBlock Text="{Binding MaxHeight,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="0,210,0,0" Foreground="Blue"/>
+            </Canvas>
+        </DataTemplate>
+        <DataTemplate x:Key="RectItem00">
+            <Canvas>
+                <Canvas.Margin>
+                    <MultiBinding Converter="{StaticResource MarginConverter}">
+                        <Binding Path="Left"/>
+                        <Binding Path="Top"/>
+                    </MultiBinding>
+                </Canvas.Margin>
+                <Rectangle Width="200" Height="80" Stroke="Black" Fill="White" StrokeThickness="1"/>
+                <Canvas Canvas.Top="80">
+                    <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="10" Canvas.Top="6">
+                        <Path.RenderTransform>
+                            <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="190" Canvas.Top="6">
+                        <Path.RenderTransform>
+                            <ScaleTransform ScaleX="0.25" ScaleY="0.25" />
+                        </Path.RenderTransform>
+                    </Path>
+                    <Line X1="0" Y1="10" X2="200" Y2="10" Stroke="Blue" StrokeThickness="1"/>
+                    <Line X1="0" Y1="0" X2="0" Y2="24" Stroke="Blue" StrokeThickness="1"/>
+                    <Line X1="200" Y1="0" X2="200" Y2="24" Stroke="Blue" StrokeThickness="1"/>
+                    <Rectangle Width="40" Height="24" Fill="White" Canvas.Left="80"/>
+                    <TextBlock Text="{Binding Width,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="90,0,0,0" Foreground="Blue" TextAlignment="Center"/>
+                </Canvas>
+                <Canvas>
+                    <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="217" Canvas.Top="10">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
+                                <RotateTransform Angle="90"/>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="207" Canvas.Top="70">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
+                                <RotateTransform Angle="270"/>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Line X1="200" Y1="0" X2="224" Y2="0" Stroke="Blue" StrokeThickness="1"/>
+                    <Line X1="200" Y1="80" X2="224" Y2="80" Stroke="Blue" StrokeThickness="1"/>
+                    <Line X1="212" Y1="0" X2="212" Y2="80" Stroke="Blue" StrokeThickness="1"/>
+                    <Rectangle Width="40" Height="24" Fill="White" Canvas.Left="200" Canvas.Top="31" />
+                    <TextBlock Text="{Binding Height,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="200,40,0,0" Foreground="Blue" TextAlignment="Center"/>
+                </Canvas>
+            </Canvas>
+        </DataTemplate>
+
         <g:WorkItemTemplateSelector x:Key="WorkItemTemplateSelector"/>
     </Window.Resources>
     <Grid Style="{DynamicResource GridBackground}" DataContext="{Binding Items[0]}">

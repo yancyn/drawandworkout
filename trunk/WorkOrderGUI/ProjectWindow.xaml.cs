@@ -21,11 +21,15 @@ namespace WorkOrderGUI
     public partial class ProjectWindow : Window
     {
         private PageManager pageManager;
+        private ToolbarManager toolbarManager;
         private WorkItem selectedWorkItem;
         private Point originalPoint;
         public ProjectWindow()
         {
             InitializeComponent();
+
+            this.toolbarManager = new ToolbarManager();
+            this.toolbarManager.SelectedToolbar = this.toolbarManager.Items[1].Children[4];
 
             this.pageManager = new PageManager();
             Project project = CreateProject();
@@ -63,6 +67,7 @@ namespace WorkOrderGUI
             Stock stock = DatabaseObject.Stocks.Stock[new Random().Next(size)];
 
             LShapeItem w1 = new LShapeItem();//WorkItem w1 = new WorkItem();
+            w1.Tags.Add("LShapeItem04");
             w1.Material = stock;
             w1.Lengths.Add(new LengthItem { Length = 108 });
             w1.Lengths.Add(new LengthItem { Length = 24 });
@@ -74,6 +79,7 @@ namespace WorkOrderGUI
             w1.MaxWidth = 48;
 
             RectItem w2 = new RectItem();
+            w2.Tags.Add("RectItem00");
             w2.Material = stock;
             w2.Height = 6;
             w2.Width = 24;
@@ -81,6 +87,7 @@ namespace WorkOrderGUI
             w2.Left = 200;
 
             RectItem w3 = new RectItem();
+            w3.Tags.Add("RectItem00");
             w3.Material = stock;
             w3.Height = 6;
             w3.Width = 24;
@@ -115,7 +122,16 @@ namespace WorkOrderGUI
         private void ScrollViewer_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("DrawingArea_MouseLeftButtonUp" + new Random().Next());
-            if (this.selectedWorkItem != null)
+            if (this.selectedWorkItem == null)
+            {
+                if (this.toolbarManager.SelectedToolbar != null)
+                {
+                    LShapeItem wo = new LShapeItem();
+                    wo.Tags.Add(this.toolbarManager.SelectedToolbar.Name);
+                    (this.pageManager.Items[0].Item as Project).WorkOrders[0].Items.Add(wo);
+                }
+            }
+            else //if (this.selectedWorkItem != null)
             {
                 Point newPosition = e.GetPosition(this.DrawingArea);
                 this.selectedWorkItem.Left += newPosition.X - originalPoint.X;
