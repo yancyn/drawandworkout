@@ -48,21 +48,15 @@ namespace WorkOrderGUI
                 this.Toolbox.ItemsSource = toolbarManager.Items;
 
                 //testing only
-                #region Create example page
                 this.pageManager = new PageManager();
                 Project project = CreateProject();
                 PageViewModel page = new PageViewModel(project);
                 pageManager.Add(page);
-
-                Project project2 = CreateProject();
-                PageViewModel page2 = new PageViewModel(project2);
-                pageManager.Add(page2);
-                #endregion
                 this.MainGrid.DataContext = pageManager;
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex);
+                Logger.Info(typeof(MainWindow), ex);
                 throw ex;
             }
         }
@@ -145,8 +139,6 @@ namespace WorkOrderGUI
             w3.Material = stock;
             w3.Height = 6;
             w3.Width = 24;
-            //w3.Top = 100;
-            //w3.Left = 200;
 
 
             WorkOrder wo = new WorkOrder();
@@ -203,14 +195,59 @@ namespace WorkOrderGUI
             //removeKey2.CommandParameter = this.pageManager.CurrentPage;
             //this.InputBindings.Add(removeKey2);
         }
+
+        /// <summary>
+        /// Find visual child appear to interface after binding which visible or currently selected only.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        private T FindVisualChild<T>(DependencyObject obj) where T : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+                if (child != null && child is T)
+                    return (T)child;
+                else
+                {
+                    T childOfChild = FindVisualChild<T>(child);
+                    if (childOfChild != null)
+                        return childOfChild;
+                }
+            }
+            return null;
+        }
         #endregion
 
         #region Events
+        private void Toolbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.toolbarManager.SelectedToolbar = (sender as RadioButton).DataContext as ToolbarViewModel;
+            Logger.Info(typeof(MainWindow), this.toolbarManager.SelectedToolbar);
+            if (this.toolbarManager.SelectedToolbar == null)
+                this.StatusBar1.Text = "Ready";
+            else if (this.toolbarManager.SelectedToolbar.Name.Length == 0)
+                this.StatusBar1.Text = "Ready";
+            else
+                this.StatusBar1.Text = this.toolbarManager.SelectedToolbar.Name;
+        }
+
         private void OpenButton_Click(object sender, RoutedEventArgs e)
         {
             //testing only
             //ToolbarManager manager = this.Toolbox.DataContext as ToolbarManager;
             //manager.Items[2].Children[3].ReplaceParent();
+        }
+        private void PrintMenu_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                ContentPresenter tabChildren = FindVisualChild<ContentPresenter>(this.MainTabControl);//key
+                Canvas canvas = (this.FindResource("ProjectTemplate") as DataTemplate).FindName("DrawingArea", tabChildren) as Canvas;
+                printDialog.PrintVisual(canvas, this.Title);
+            }
         }
 
         private void MenuClose_Click(object sender, RoutedEventArgs e)
@@ -228,11 +265,5 @@ namespace WorkOrderGUI
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(hyperlink.NavigateUri.ToString()));
         }
         #endregion
-
-        private void Toolbox_Checked(object sender, RoutedEventArgs e)
-        {
-            this.toolbarManager.SelectedToolbar = (sender as RadioButton).DataContext as ToolbarViewModel;
-            Logger.Info(typeof(MainWindow), this.toolbarManager.SelectedToolbar);
-        }
     }
 }

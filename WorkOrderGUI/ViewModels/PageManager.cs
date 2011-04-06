@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using HLGranite.Drawing;
+using Thought.vCards;
 
 namespace WorkOrderGUI
 {
@@ -88,6 +89,8 @@ namespace WorkOrderGUI
         #region ICommand
         private NewProject newProject;
         public NewProject NewProject { get { return this.newProject; } }
+        private SaveProjectCommand saveProjectCommand;
+        public SaveProjectCommand SaveProjectCommand { get { return this.saveProjectCommand; } }
         private RemovePage removePage;
         public RemovePage RemovePage { get { return this.removePage; } }
         private SelectPage selectPage;
@@ -109,6 +112,7 @@ namespace WorkOrderGUI
             this.database = new DatabaseObject();
 
             this.newProject = new NewProject(this);
+            this.saveProjectCommand = new SaveProjectCommand();
             this.removePage = new RemovePage(this);
             this.selectPage = new SelectPage(this);
 
@@ -304,8 +308,35 @@ namespace WorkOrderGUI
         public event EventHandler CanExecuteChanged;
         public void Execute(object parameter)
         {
-            PageViewModel viewModel = new PageViewModel(new Project());
+            Project project = new Project();
+            project.WorkOrders.Add(new WorkOrder());
+
+            Employee creator = new Employee();
+            creator.EmailAddresses.Add(new vCardEmailAddress { Address = WorkOrderGUI.Properties.Settings.Default.Gmail });
+            project.CreatedBy = creator;
+
+            PageViewModel viewModel = new PageViewModel(project);
             this.manager.Add(viewModel);
+        }
+        #endregion
+    }
+    public class SaveProjectCommand : ICommand
+    {
+        public SaveProjectCommand()
+        {
+        }
+        #region ICommand Members
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+        public event EventHandler CanExecuteChanged;
+        public void Execute(object parameter)
+        {
+            if (parameter is Project)
+                (parameter as Project).Save();
+            else
+                throw new NotImplementedException("Not supported type!");
         }
         #endregion
     }

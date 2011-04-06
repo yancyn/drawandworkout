@@ -32,31 +32,44 @@ namespace WorkOrderGUI
             if (e.Device.Target is Shape)
             {
                 //this.selectedWorkItem = (e.Device.Target as Shape).DataContext as WorkItem;
-                (pageManager.Items[0].Item as Project).WorkOrders[0].SelectedItem = (e.Device.Target as Shape).DataContext as WorkItem;
-                System.Diagnostics.Debug.WriteLine((pageManager.Items[0].Item as Project).WorkOrders[0].SelectedItem.ToString());
+                if (pageManager.CurrentPage.Item is Project)
+                {
+                    (pageManager.CurrentPage.Item as Project).WorkOrders[0].SelectedItem = (e.Device.Target as Shape).DataContext as WorkItem;
+                    System.Diagnostics.Debug.WriteLine((pageManager.CurrentPage.Item as Project).WorkOrders[0].SelectedItem.ToString());
+                }
             }
         }
         private void ScrollViewer_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("DrawingArea_MouseLeftButtonUp" + new Random().Next());
             PageManager pageManager = (App.Current.MainWindow.FindName("MainGrid") as Grid).DataContext as PageManager;
-            if ((pageManager.Items[0].Item as Project).WorkOrders[0].SelectedItem == null)
+            if ((pageManager.CurrentPage.Item as Project).WorkOrders[0].SelectedItem == null)
             {
                 ToolbarManager toolbarManager = (App.Current.MainWindow.FindName("Toolbox") as ToolBar).DataContext as ToolbarManager;
                 if (toolbarManager.SelectedToolbar != null)
                 {
-                    LShapeItem wo = new LShapeItem();
-                    wo.Tags.Add(toolbarManager.SelectedToolbar.Name);
-                    (pageManager.Items[0].Item as Project).WorkOrders[0].Items.Add(wo);
+                    //todo: handle more WorkItem selection
+                    if (toolbarManager.SelectedToolbar.Name.Contains("LShapeItem"))
+                    {
+                        LShapeItem wo = new LShapeItem();
+                        wo.Tags.Add(toolbarManager.SelectedToolbar.Name);
+                        (pageManager.CurrentPage.Item as Project).WorkOrders[0].Items.Add(wo);
+                    }
+                    else if (toolbarManager.SelectedToolbar.Name.Contains("RectItem"))
+                    {
+                        RectItem wo = new RectItem();
+                        wo.Tags.Add(toolbarManager.SelectedToolbar.Name);
+                        (pageManager.CurrentPage.Item as Project).WorkOrders[0].Items.Add(wo);
+                    }
                 }
             }
             else
             {
                 Canvas canvas = (sender as Control).FindName("DrawingArea") as Canvas;
                 Point newPosition = e.GetPosition(canvas);
-                (pageManager.Items[0].Item as Project).WorkOrders[0].SelectedItem.Left += newPosition.X - originalPoint.X;
-                (pageManager.Items[0].Item as Project).WorkOrders[0].SelectedItem.Top += newPosition.Y - originalPoint.Y;
-                (pageManager.Items[0].Item as Project).WorkOrders[0].SelectedItem = null;//reset
+                (pageManager.CurrentPage.Item as Project).WorkOrders[0].SelectedItem.Left += newPosition.X - originalPoint.X;
+                (pageManager.CurrentPage.Item as Project).WorkOrders[0].SelectedItem.Top += newPosition.Y - originalPoint.Y;
+                (pageManager.CurrentPage.Item as Project).WorkOrders[0].SelectedItem = null;//reset
             }
         }
         private void ScrollViewer_KeyUp(object sender, KeyEventArgs e)
@@ -64,7 +77,7 @@ namespace WorkOrderGUI
             if (e.Key == Key.Delete)
             {
                 PageManager pageManager = (App.Current.MainWindow.FindName("MainGrid") as Grid).DataContext as PageManager;
-                (pageManager.Items[0].Item as Project).WorkOrders[0].RemoveItem();
+                (pageManager.CurrentPage.Item as Project).WorkOrders[0].RemoveItem();
             }
         }
 

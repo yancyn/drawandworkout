@@ -28,13 +28,15 @@
                         <Image Source="Images\folder_page.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="SaveMenu" Header="_Save" InputGestureText="Ctrl+S">
+                <MenuItem x:Name="SaveMenu" Header="_Save" InputGestureText="Ctrl+S"
+                          Command="{Binding SaveProjectCommand}"
+                          CommandParameter="{Binding CurrentPage.Item}">
                     <MenuItem.Icon>
                         <Image Source="Images\disk.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator/>
-                <MenuItem x:Name="PrintMenu" Header="_Print" InputGestureText="Ctrl+P">
+                <MenuItem x:Name="PrintMenu" Header="_Print" InputGestureText="Ctrl+P" Click="PrintMenu_Click">
                     <MenuItem.Icon>
                         <Image Source="Images\printer.png"/>
                     </MenuItem.Icon>
@@ -137,14 +139,15 @@
                 <Button x:Name="ButtonNew" Command="{Binding NewProject}" ToolTip="New project">
                     <Image Source="Images\page.png"/>
                 </Button>
-                <Button Click="OpenButton_Click">
-                    <Image Source="Images\folder_page.png" ToolTip="Open"/>
+                <Button Click="OpenButton_Click" ToolTip="Open">
+                    <Image Source="Images\folder_page.png"/>
                 </Button>
-                <Button>
-                    <Image Source="Images\disk.png" ToolTip="Save"/>
+                <Button Command="{Binding SaveProjectCommand}" ToolTip="Save project"
+                        CommandParameter="{Binding CurrentPage.Item}">
+                    <Image Source="Images\disk.png"/>
                 </Button>
                 <Separator/>
-                <Button>
+                <Button Click="PrintMenu_Click">
                     <Image Source="Images\printer.png" ToolTip="Print"/>
                 </Button>
                 <Separator/>
@@ -172,17 +175,19 @@
                 <ToolBar x:Name="Toolbox" ItemsSource="{Binding Items}">
                     <ToolBar.ItemTemplate>
                         <DataTemplate>
-                            <RadioButton Checked="Toolbox_Checked" Style="{StaticResource ToolbarButton}" Content="{Binding Item,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding Item.ToolTip}">
+                            <RadioButton x:Name="ParentRadio" Checked="Toolbox_Checked" Style="{StaticResource ToolbarButton}" Content="{Binding Item,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding Item.ToolTip}">
                                 <RadioButton.ContextMenu>
-                                    <ContextMenu Style="{StaticResource TransparentFloatingToolbar}"
+                                    <ContextMenu x:Name="ExtraToolboxMenu" Style="{StaticResource TransparentFloatingToolbar}"
                                                  Visibility="{Binding Children.Count,Converter={StaticResource RowCountConverter}}">
                                         <ToolBar ItemsSource="{Binding Children,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}">
                                             <ToolBar.ItemTemplate>
                                                 <DataTemplate>
                                                     <RadioButton
+                                                        Style="{StaticResource ToolbarButton}"
                                                         Command="{Binding ReplaceParentToolbarCommand}"
-                                                        Content="{Binding Item,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ToolbarButton}" ToolTip="{Binding Item.ToolTip}"
-                                                        Checked="Toolbox_Checked"/>
+                                                        Content="{Binding Item,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding Item.ToolTip}"
+                                                        Checked="Toolbox_Checked">
+                                                    </RadioButton>
                                                 </DataTemplate>
                                             </ToolBar.ItemTemplate>
                                         </ToolBar>

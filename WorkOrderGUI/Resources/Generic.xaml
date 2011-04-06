@@ -41,8 +41,18 @@
         <Setter Property="Margin" Value="4"/>
         <Setter Property="Width" Value="60"/>
     </Style>
+    <Style x:Key="HideTheMenu" BasedOn="{StaticResource ToolbarButton}" TargetType="{x:Type RadioButton}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ContextMenu}},Path=Visibility}" Value="Collapsed">
+                <Setter Property="IsChecked" Value="True"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}},Path=Title}" Value="Hello">
+                <Setter Property="IsChecked" Value="True"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
     <DataTemplate x:Key="WindowMenuTemplate">
-        <MenuItem Header="{Binding .}"
+        <MenuItem Header="{Binding}"
                   Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorLevel=3,AncestorType={x:Type Grid}},Path=DataContext.SelectPage}"
                   CommandParameter="{Binding .}"/>
     </DataTemplate>
