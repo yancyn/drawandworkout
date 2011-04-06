@@ -210,12 +210,9 @@
             </Grid.ColumnDefinitions>
 
             <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
-                      KeyUp="ScrollViewer_KeyUp"
-                      MouseLeftButtonUp="ScrollViewer_MouseLeftButtonUp">
-                <Canvas x:Name="DrawingArea" Margin="40" Height="1280" Width="800"
-                    MouseLeftButtonDown="DrawingArea_MouseLeftButtonDown">
-                    <ItemsControl ItemsSource="{Binding Item.WorkOrders[0].Items}"
-                                  ItemTemplateSelector="{StaticResource WorkItemTemplateSelector}"/>
+                          KeyUp="ScrollViewer_KeyUp" MouseLeftButtonUp="ScrollViewer_MouseLeftButtonUp">
+                <Canvas x:Name="DrawingArea" Margin="40" Height="1280" Width="800" MouseLeftButtonDown="DrawingArea_MouseLeftButtonDown">
+                    <ItemsControl ItemsSource="{Binding Item.WorkOrders[0].Items}" ItemTemplateSelector="{StaticResource WorkItemTemplateSelector}"/>
                 </Canvas>
             </ScrollViewer>
 
