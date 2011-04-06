@@ -93,6 +93,18 @@ namespace HLGranite.Drawing
                 return users;
             }
         }
+        private static Projects projects;
+        /// <summary>
+        /// Gets project collection from a stored database.
+        /// </summary>
+        public static Projects Projects
+        {
+            get
+            {
+                if (projects == null) projects = new Projects();
+                return projects;
+            }
+        }
         #endregion
 
         #region Serialize/Deserialize

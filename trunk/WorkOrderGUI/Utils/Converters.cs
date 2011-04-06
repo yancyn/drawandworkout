@@ -263,4 +263,26 @@ namespace WorkOrderGUI
         }
         #endregion
     }
+    public class CompanyAllInfoConverter : IValueConverter
+    {
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            string output = string.Empty;
+            output += WorkOrderGUI.Properties.Settings.Default.CompanyProfile.DisplayName;
+            output += "\n" + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.DeliveryAddresses[0].Street;
+            output += "\n" + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.DeliveryAddresses[0].City + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.DeliveryAddresses[0].PostalCode;
+            output += "\n" + "Tel/Fax: " + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.Phones[0].FullNumber;
+            output += "\n" + "hp: " + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.Phones[2].FullNumber;
+            output += "  " + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.Phones[3].FullNumber;
+            output += "\n" + "Email: " + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.EmailAddresses[0].Address;
+
+            return output;
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
 }

@@ -371,7 +371,14 @@ namespace HLGranite.Drawing
             System.IO.StreamReader sr = null;
             try
             {
-                file = new System.IO.FileStream(fileName, FileMode.Open, FileAccess.Read);
+                string path = "Data";
+                if (this.GetType() == typeof(Project))
+                    path += Path.DirectorySeparatorChar + "Projects";
+                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                path += Path.DirectorySeparatorChar + fileName + ".xml";
+                if (!File.Exists(path)) return null;
+
+                file = new System.IO.FileStream(path, FileMode.Open, FileAccess.Read);
                 sr = new System.IO.StreamReader(file, encoding);
                 string xmlString = sr.ReadToEnd();
                 sr.Close();

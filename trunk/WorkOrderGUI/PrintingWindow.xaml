@@ -1,0 +1,57 @@
+﻿<Window x:Class="WorkOrderGUI.PrintingWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:g="clr-namespace:WorkOrderGUI"
+    Title="PrintingWindow">
+    <Grid x:Name="PrintingGrid" Height="800" Width="600">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Row="0" Grid.Column="0" Stroke="Black" StrokeThickness="1"/>
+        <WrapPanel Margin="4" Grid.Row="0" Grid.Column="0" DataContext="{Binding Source={x:Static g:Properties.Settings.Default}}">
+            <Rectangle Width="100" Height="100" Fill="{StaticResource CompanyLogo}"/>
+            <TextBlock FontSize="10" Text="{Binding .,Converter={StaticResource CompanyAllInfoConverter}}"/>
+        </WrapPanel>
+
+        <Rectangle Grid.Row="0" Grid.Column="1" Stroke="Black" StrokeThickness="1"/>
+        <Grid Grid.Row="0" Grid.Column="1" Margin="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Ref No:"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CreatedAt}" FontWeight="Bold" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Delivery Date:"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DueDate}" FontWeight="Bold"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Order By:"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding OrderBy.GivenName}" FontWeight="Bold"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Customer:"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding DeliverTo.GivenName}"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Address:"/>
+            <TextBox Style="{StaticResource TransparentTextBox}" Grid.Row="4" Grid.Column="1" Text="{Binding DeliverTo.DeliveryAddresses[0].Street}" TextWrapping="WrapWithOverflow" MinLines="3"/>
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Telephone:"/>
+            <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding DeliverTo.Phones[0].FullNumber}" TextWrapping="WrapWithOverflow"/>
+            <TextBlock Grid.Row="7" Grid.Column="0" Text="Granite:"/>
+            <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding WorkOrder[0].Material}"/>
+        </Grid>
+
+        <Rectangle Grid.Row="1" Grid.ColumnSpan="2" Stroke="Black" StrokeThickness="1"/>
+    </Grid>
+</Window>
