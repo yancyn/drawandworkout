@@ -71,6 +71,7 @@
     <Compile Include="Planner.cs" />
     <Compile Include="PolygonItem.cs" />
     <Compile Include="Project.cs" />
+    <Compile Include="Projects.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RectItem.cs" />
     <Compile Include="ShapeItem.cs" />

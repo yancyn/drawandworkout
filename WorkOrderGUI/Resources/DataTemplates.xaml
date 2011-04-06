@@ -17,6 +17,7 @@
     <g:IndexConverter x:Key="IndexConverter"/>
     <g:FeetUnitConverter x:Key="FeetUnitConverter"/>
     <g:MarginConverter x:Key="MarginConverter"/>
+    <g:CompanyAllInfoConverter x:Key="CompanyAllInfoConverter"/>
     
     <g:PageTemplateSelector x:Key="PageTemplateSelector"/>
     <g:WorkItemTemplateSelector x:Key="WorkItemTemplateSelector"/>

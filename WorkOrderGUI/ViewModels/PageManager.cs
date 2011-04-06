@@ -312,7 +312,7 @@ namespace WorkOrderGUI
             project.WorkOrders.Add(new WorkOrder());
 
             Employee creator = new Employee();
-            creator.EmailAddresses.Add(new vCardEmailAddress { Address = WorkOrderGUI.Properties.Settings.Default.Gmail });
+            creator.EmailAddresses.Add(new vCardEmailAddress { Address = WorkOrderGUI.Properties.Settings.Default.Gmail + "@gmail.com" });
             project.CreatedBy = creator;
 
             PageViewModel viewModel = new PageViewModel(project);
