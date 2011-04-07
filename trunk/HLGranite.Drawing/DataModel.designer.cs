@@ -363,6 +363,8 @@ namespace HLGranite.Drawing
     public partial class WorkItem : BaseItem
     {
 
+        protected string modelField;
+
         protected System.DateTime createdAtField;
 
         protected Employee workedByField;
@@ -382,6 +384,27 @@ namespace HLGranite.Drawing
         protected decimal progressField;
 
         protected ShapeItem shapeItemField;
+
+        public string Model
+        {
+            get { return this.modelField; }
+            set
+            {
+                if ((this.modelField != null))
+                {
+                    if ((modelField.Equals(value) != true))
+                    {
+                        this.modelField = value;
+                        this.OnPropertyChanged("Model");
+                    }
+                }
+                else
+                {
+                    this.modelField = value;
+                    this.OnPropertyChanged("Model");
+                }
+            }
+        }
 
         public System.DateTime CreatedAt
         {
@@ -828,17 +851,64 @@ namespace HLGranite.Drawing
         }
     }
 
-    public partial class Bullnose : System.ComponentModel.INotifyPropertyChanged
+    public partial class Bullnose : WorkItem
     {
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
+        public double Width
         {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
+            get
             {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                return this.widthField;
+            }
+            set
+            {
+                if ((widthField.Equals(value) != true))
+                {
+                    this.widthField = value;
+                    this.OnPropertyChanged("Width");
+                }
+            }
+        }
+
+        public double Height
+        {
+            get
+            {
+                return this.heightField;
+            }
+            set
+            {
+                if ((heightField.Equals(value) != true))
+                {
+                    this.heightField = value;
+                    this.OnPropertyChanged("Height");
+                }
+            }
+        }
+    }
+    public partial class Bullnoses : DatabaseObject
+    {
+
+        private ObservableCollection<Bullnose> bullnoseField;
+
+        public ObservableCollection<Bullnose> Bullnose
+        {
+            get { return this.bullnoseField; }
+            set
+            {
+                if (this.bullnoseField != null)
+                {
+                    if (this.bullnoseField.Equals(value) != true)
+                    {
+                        this.bullnoseField = value;
+                        this.OnPropertyChanged("Bullnose");
+                    }
+                }
+                else
+                {
+                    this.bullnoseField = value;
+                    this.OnPropertyChanged("Bullnose");
+                }
             }
         }
     }

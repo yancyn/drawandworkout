@@ -35,6 +35,7 @@ namespace HLGranite.Drawing
             this.lengthsField = new ObservableCollection<LengthItem>();
             this.leftField = 0;
             this.materialField = new Stock();
+            this.modelField = string.Empty;
             this.progressField = 0;
             this.topField = 0;
             this.workedByField = new Employee();
