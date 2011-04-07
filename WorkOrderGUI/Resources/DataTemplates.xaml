@@ -11,6 +11,7 @@
     
     <g:RowCountConverter x:Key="RowCountConverter"/>
     <g:NumberConverter x:Key="NumberConverter"/>
+    <g:ShortDateConverter x:Key="ShortDateConverter"/>
     <g:PercentageConverter x:Key="PercentageConverter"/>
     <g:UomStringConverter x:Key="UomStringConverter"/>
     <g:UomUnitConverter x:Key="UomUnitConverter"/>

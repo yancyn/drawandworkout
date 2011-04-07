@@ -49,7 +49,7 @@ namespace WorkOrderGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("dd/MM/yyyy dd/MM/yyyy")]
+        [global::System.Configuration.DefaultSettingValueAttribute("dd/MM/yyyy")]
         public string ShortDate {
             get {
                 return ((string)(this["ShortDate"]));

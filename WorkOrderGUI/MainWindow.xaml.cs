@@ -241,12 +241,21 @@ namespace WorkOrderGUI
         }
         private void PrintMenu_Click(object sender, RoutedEventArgs e)
         {
-            PrintDialog printDialog = new PrintDialog();
-            if (printDialog.ShowDialog() == true)
+            if (this.pageManager.CurrentPage.Item is Project)
             {
-                ContentPresenter tabChildren = FindVisualChild<ContentPresenter>(this.MainTabControl);//key
-                Canvas canvas = (this.FindResource("ProjectTemplate") as DataTemplate).FindName("DrawingArea", tabChildren) as Canvas;
-                printDialog.PrintVisual(canvas, this.Title);
+                PrintDialog printDialog = new PrintDialog();
+                if (printDialog.ShowDialog() == true)
+                {
+                    //ContentPresenter tabChildren = FindVisualChild<ContentPresenter>(this.MainTabControl);//key
+                    //Canvas canvas = (this.FindResource("ProjectTemplate") as DataTemplate).FindName("DrawingArea", tabChildren) as Canvas;
+                    //printDialog.PrintVisual(canvas, this.Title);
+
+                    Project project = this.pageManager.CurrentPage.Item as Project;
+                    PrintingWindow printingWin = new PrintingWindow(project);
+                    printingWin.Show();
+                    printDialog.PrintVisual(printingWin.Content as Grid, project.Guid.ToString());
+                    //printingWin.Close();
+                }
             }
         }
 

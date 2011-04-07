@@ -60,6 +60,29 @@ namespace WorkOrderGUI
         #endregion
     }
     /// <summary>
+    /// Convert full date into short date format (ie. dd/MM/yyyy).
+    /// </summary>
+    public class ShortDateConverter : IValueConverter
+    {
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value == null) return string.Empty;
+            if (value is DateTime)
+            {
+                DateTime date = (DateTime)value;
+                return date.ToString("dd/MM/yyyy");
+            }
+
+            throw new NotImplementedException();
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
+    /// <summary>
     /// Convert to percentage value with % sign.
     /// </summary>
     public class PercentageConverter : IValueConverter
@@ -97,7 +120,7 @@ namespace WorkOrderGUI
         {
             if ((HLGranite.Drawing.Unit)value == HLGranite.Drawing.Unit.British)
                 return "inch";
-            else if((HLGranite.Drawing.Unit)value == HLGranite.Drawing.Unit.Metric)
+            else if ((HLGranite.Drawing.Unit)value == HLGranite.Drawing.Unit.Metric)
                 return "cm";
 
             throw new NotImplementedException();
@@ -271,10 +294,14 @@ namespace WorkOrderGUI
             string output = string.Empty;
             output += WorkOrderGUI.Properties.Settings.Default.CompanyProfile.DisplayName;
             output += "\n" + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.DeliveryAddresses[0].Street;
-            output += "\n" + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.DeliveryAddresses[0].City + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.DeliveryAddresses[0].PostalCode;
+
+            output += "\n" + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.DeliveryAddresses[0].City;
+            output += " " + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.DeliveryAddresses[0].PostalCode;
+
             output += "\n" + "Tel/Fax: " + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.Phones[0].FullNumber;
             output += "\n" + "hp: " + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.Phones[2].FullNumber;
             output += "  " + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.Phones[3].FullNumber;
+
             output += "\n" + "Email: " + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.EmailAddresses[0].Address;
 
             return output;
