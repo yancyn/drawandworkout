@@ -2,8 +2,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:g="clr-namespace:WorkOrderGUI"
-    Title="PrintingWindow">
-    <Grid x:Name="PrintingGrid" Height="800" Width="600">
+    Title="Print Preview" Width="800" Height="1280" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner">
+    <Grid x:Name="PrintingGrid" Margin="50,50,50,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
             <RowDefinition Height="*"/>
@@ -37,9 +37,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Ref No:"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CreatedAt}" FontWeight="Bold" />
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CreatedAt,Converter={StaticResource NumberConverter}}" FontWeight="Bold" />
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Delivery Date:"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DueDate}" FontWeight="Bold"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DueDate,Converter={StaticResource ShortDateConverter}}" FontWeight="Bold"/>
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Order By:"/>
             <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding OrderBy.GivenName}" FontWeight="Bold"/>
             <TextBlock Grid.Row="3" Grid.Column="0" Text="Customer:"/>
@@ -49,9 +49,12 @@
             <TextBlock Grid.Row="6" Grid.Column="0" Text="Telephone:"/>
             <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding DeliverTo.Phones[0].FullNumber}" TextWrapping="WrapWithOverflow"/>
             <TextBlock Grid.Row="7" Grid.Column="0" Text="Granite:"/>
-            <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding WorkOrder[0].Material}"/>
+            <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding WorkOrders[0].Items[0].Material}" FontWeight="Bold"/>
         </Grid>
 
         <Rectangle Grid.Row="1" Grid.ColumnSpan="2" Stroke="Black" StrokeThickness="1"/>
+        <Canvas Grid.Row="1" Grid.ColumnSpan="2" x:Name="DrawingArea" Margin="40">
+            <ItemsControl ItemsSource="{Binding WorkOrders[0].Items}" ItemTemplateSelector="{StaticResource WorkItemTemplateSelector}"/>
+        </Canvas>
     </Grid>
 </Window>

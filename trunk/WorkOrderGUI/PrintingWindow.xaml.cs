@@ -23,17 +23,10 @@ namespace WorkOrderGUI
         {
             InitializeComponent();
         }
-        public PrintingWindow(Project project, object drawing)
+        public PrintingWindow(Project project)
         {
             InitializeComponent();
             this.DataContext = project;
-            if (drawing is Canvas)
-            {
-                Canvas canvas = (drawing as Canvas);
-                this.PrintingGrid.Children.Add(canvas);
-                Grid.SetRow(canvas, 1);
-                Grid.SetColumn(canvas, 0);
-            }
         }
     }
 }

@@ -9,7 +9,7 @@
       <Value Profile="(Default)">dd/MM/yyyy HH:mm</Value>
     </Setting>
     <Setting Name="ShortDate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">dd/MM/yyyy dd/MM/yyyy</Value>
+      <Value Profile="(Default)">dd/MM/yyyy</Value>
     </Setting>
     <Setting Name="Svn" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
