@@ -291,7 +291,7 @@ namespace WorkOrderGUI
 
                     //scale smaller to allow put in numbering specification at right bottom
                     Canvas canvas = (Canvas)grid.FindName("DrawingArea");
-                    canvas.LayoutTransform = new ScaleTransform(0.9, 0.9);
+                    canvas.LayoutTransform = new ScaleTransform(0.9, 0.9);//key
 
                     //get selected printer capabilities
                     PrintFitToPage(printDialog, project, grid);

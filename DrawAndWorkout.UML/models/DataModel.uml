@@ -112,6 +112,9 @@
     <ownedAttribute xmi:id="_n2ks0Ft7EeCWn_HrzsiL4Q" name="Top" aggregation="composite">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
     </ownedAttribute>
+    <ownedAttribute xmi:id="_6A124GD3EeCdpqImjJpIrg" name="Name" aggregation="composite">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_MMJD0ETXEeCJe9RP8ofhZg" name="WorkOrder" memberEnd="_MMJD0UTXEeCJe9RP8ofhZg _MMJD1ETXEeCJe9RP8ofhZg">
     <ownedEnd xmi:id="_MMJD0UTXEeCJe9RP8ofhZg" name="src" type="_tN3KkETSEeC_SaZDL-mcDw" association="_MMJD0ETXEeCJe9RP8ofhZg">
@@ -361,9 +364,7 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_4QbfgEeYEeCyObvqYt56PQ" name="Shape"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_NYjv0EeZEeCyObvqYt56PQ" name="LengthItem">
-    <ownedAttribute xmi:id="_OwB5EEeZEeCyObvqYt56PQ" name="Length" aggregation="composite">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
-    </ownedAttribute>
+    <ownedAttribute xmi:id="_OwB5EEeZEeCyObvqYt56PQ" name="Length" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_YecfIEeZEeCyObvqYt56PQ" name="Bullnose"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_bBd1gEeZEeCyObvqYt56PQ" name="Type" memberEnd="_bBd1gUeZEeCyObvqYt56PQ _bBd1hEeZEeCyObvqYt56PQ">
