@@ -56,6 +56,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BullnosesTest.cs" />
     <Compile Include="CustomerTest.cs" />
     <Compile Include="DatabaseObjectTest.cs" />
     <Compile Include="InventoriesTest.cs" />

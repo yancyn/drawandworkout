@@ -49,7 +49,7 @@
                     <ScaleTransform ScaleX="0.25" ScaleY="0.25" />
                 </Path.RenderTransform>
             </Path>
-            <Rectangle Width="30" Height="24" Fill="White" Canvas.Left="50"/>
+            <Rectangle Width="40" Height="24" Fill="White" Canvas.Left="40"/>
             <TextBlock Margin="60,0,0,0" Foreground="Blue" Text="{Binding Lengths[1],ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
         </Canvas>
         <Ellipse Width="16" Height="16" Stroke="Gray" StrokeThickness="1" Canvas.Left="112" Canvas.Top="210"/>

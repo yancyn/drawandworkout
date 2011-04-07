@@ -59,6 +59,7 @@
     <Compile Include="BaseAttribute.cs" />
     <Compile Include="BaseElement.cs" />
     <Compile Include="BaseItem.cs" />
+    <Compile Include="Bullnoses.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="DatabaseObject.cs" />
     <Compile Include="DataModel.designer.cs" />

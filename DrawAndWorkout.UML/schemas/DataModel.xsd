@@ -179,7 +179,28 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  Bullnose  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <xsd:complexType name="Bullnose"/>
+  <xsd:complexType name="Bullnose">
+    <xsd:complexContent>
+      <xsd:extension base="WorkItem">
+        <xsd:sequence>
+          <xsd:element name="Width" type="xsd:double"/>
+          <xsd:element name="Height" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--  Bullnoses  -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:complexType name="Bullnoses">
+    <xsd:complexContent>
+      <xsd:extension base="DatabaseObject">
+        <xsd:sequence>
+          <xsd:element ref="Bullnose" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  Customer  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -202,7 +223,7 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="EllipseItem">
     <xsd:complexContent>
-      <xsd:extension base="ShapeItem">
+      <xsd:extension base="WorkItem">
         <xsd:sequence>
           <xsd:element name="Width" type="xsd:double"/>
           <xsd:element name="Height" type="xsd:double"/>
@@ -296,7 +317,7 @@
     </xsd:complexContent>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <!--  L  -->
+  <!--  LShapeItem  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="LShapeItem">
     <xsd:complexContent>
@@ -308,7 +329,7 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="LengthItem">
     <xsd:sequence>
-      <xsd:element name="Length" type="xsd:int"/>
+      <xsd:element name="Length" type="xsd:double"/>
       <xsd:element name="Type" type="Bullnose"/>
     </xsd:sequence>
   </xsd:complexType>
@@ -514,6 +535,7 @@
     <xsd:complexContent>
       <xsd:extension base="BaseItem">
         <xsd:sequence>
+          <xsd:element name="Model" type="xsd:string"/>
           <xsd:element name="CreatedAt" type="xsd:dateTime"/>
           <xsd:element name="WorkedBy" type="Employee"/>
           <xsd:element name="ShapeItem" type="ShapeItem"/>
@@ -573,6 +595,7 @@
   <xsd:element name="BaseElement" type="BaseElement"/>
   <xsd:element name="BaseItem" type="BaseItem"/>
   <xsd:element name="Bullnose" type="Bullnose"/>
+  <xsd:element name="Bullnoses" type="Bullnoses"/>
   <xsd:element name="Customer" type="Customer"/>
   <xsd:element name="DatabaseObject" type="DatabaseObject"/>
   <xsd:element name="EllipseItem" type="EllipseItem"/>

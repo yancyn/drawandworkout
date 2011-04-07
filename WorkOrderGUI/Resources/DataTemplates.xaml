@@ -173,7 +173,7 @@
                         <ScaleTransform ScaleX="0.25" ScaleY="0.25" />
                     </Path.RenderTransform>
                 </Path>
-                <Rectangle Width="30" Height="24" Fill="White" Canvas.Left="50"/>
+                <Rectangle Width="40" Height="24" Fill="White" Canvas.Left="40"/>
                 <TextBlock Margin="60,0,0,0" Foreground="Blue" Text="{Binding Lengths[1].Length,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
             </Canvas>
             <Ellipse Width="16" Height="16" Stroke="Gray" StrokeThickness="1" Canvas.Left="112" Canvas.Top="210"/>
@@ -232,7 +232,34 @@
                 </MultiBinding>
             </Canvas.Margin>
             <Rectangle Width="200" Height="80" Stroke="Black" Fill="White" StrokeThickness="1"/>
-            <Canvas Canvas.Top="80">
+            <Ellipse Width="16" Height="16" Stroke="Gray" StrokeThickness="1" Canvas.Left="-8" Canvas.Top="32"/>
+            <Ellipse Width="16" Height="16" Stroke="Gray" StrokeThickness="1" Canvas.Left="92" Canvas.Top="72"/>
+            <Ellipse Width="16" Height="16" Stroke="Gray" StrokeThickness="1" Canvas.Left="192" Canvas.Top="32"/>
+            <Canvas x:Name="Length2" Canvas.Left="212">
+                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="17" Canvas.Top="10">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
+                            <RotateTransform Angle="90"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="7" Canvas.Top="70">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
+                            <RotateTransform Angle="270"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Line X1="0" Y1="0" X2="24" Y2="0" Stroke="Blue" StrokeThickness="1"/>
+                <Line X1="0" Y1="80" X2="24" Y2="80" Stroke="Blue" StrokeThickness="1"/>
+                <Line X1="12" Y1="0" X2="12" Y2="80" Stroke="Blue" StrokeThickness="1"/>
+                <Rectangle Width="30" Height="24" Fill="White" Canvas.Top="25" />
+                <TextBlock Text="{Binding Height,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="6,30,0,0" Foreground="Blue" TextAlignment="Center"/>
+            </Canvas>
+            <Ellipse Width="16" Height="16" Stroke="Gray" StrokeThickness="1" Canvas.Left="92" Canvas.Top="-8"/>
+            <Canvas x:Name="Length3" Canvas.Top="-36">
                 <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="10" Canvas.Top="6">
                     <Path.RenderTransform>
                         <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
@@ -248,29 +275,6 @@
                 <Line X1="200" Y1="0" X2="200" Y2="24" Stroke="Blue" StrokeThickness="1"/>
                 <Rectangle Width="40" Height="24" Fill="White" Canvas.Left="80"/>
                 <TextBlock Text="{Binding Width,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="90,0,0,0" Foreground="Blue" TextAlignment="Center"/>
-            </Canvas>
-            <Canvas>
-                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="217" Canvas.Top="10">
-                    <Path.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
-                            <RotateTransform Angle="90"/>
-                        </TransformGroup>
-                    </Path.RenderTransform>
-                </Path>
-                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="207" Canvas.Top="70">
-                    <Path.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
-                            <RotateTransform Angle="270"/>
-                        </TransformGroup>
-                    </Path.RenderTransform>
-                </Path>
-                <Line X1="200" Y1="0" X2="224" Y2="0" Stroke="Blue" StrokeThickness="1"/>
-                <Line X1="200" Y1="80" X2="224" Y2="80" Stroke="Blue" StrokeThickness="1"/>
-                <Line X1="212" Y1="0" X2="212" Y2="80" Stroke="Blue" StrokeThickness="1"/>
-                <Rectangle Width="40" Height="24" Fill="White" Canvas.Left="200" Canvas.Top="31" />
-                <TextBlock Text="{Binding Height,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Margin="200,40,0,0" Foreground="Blue" TextAlignment="Center"/>
             </Canvas>
         </Canvas>
     </DataTemplate>    
