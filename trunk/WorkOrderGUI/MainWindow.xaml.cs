@@ -12,7 +12,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Markup;
+using System.Windows.Xps;
 using System.IO;
+using System.Printing;
 
 using HLGranite.Drawing;
 using Thought.vCards;
@@ -24,8 +26,11 @@ namespace WorkOrderGUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Fields
         private PageManager pageManager;
         private ToolbarManager toolbarManager;
+        #endregion
+
         public MainWindow()
         {
             InitializeComponent();
@@ -61,94 +66,34 @@ namespace WorkOrderGUI
             }
         }
         /// <summary>
-        /// todo: Try to convert Window content into DataTemplate.
+        /// Print visual object fit to page.
         /// </summary>
-        /// <remarks>Fail.</remarks>
-        private void ConvertWindowToDataTemplate()
+        /// <param name="printDialog"></param>
+        /// <param name="project"></param>
+        /// <param name="grid"></param>
+        /// <see>http://www.a2zdotnet.com/View.aspx?id=66</see>
+        private void PrintFitToPage(PrintDialog printDialog, Project project, Grid grid)
         {
-            /*
-            ProjectWindow win = new ProjectWindow();
-            Grid grid = (Grid)win.Content;
-            string xaml = "<DataTemplate";
-            xaml += " xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"";
-            xaml += " xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"";
-            xaml += " xmlns:w=\"http://schemas.microsoft.com/wpf/2008/toolkit\">";
-            //System.Windows.Markup.XamlWriter.Save(
-            xaml += System.Windows.Markup.XamlWriter.Save(grid);
-            xaml += "</DataTemplate>";
-            win.Close();
+            System.Printing.PrintCapabilities capabilities = printDialog.PrintQueue.GetPrintCapabilities(printDialog.PrintTicket);
 
-            MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(xaml));
-            ParserContext context = new ParserContext();
-            context.XmlnsDictionary.Add("", "http://schemas.microsoft.com/winfx/2006/xaml/presentation");
-            context.XmlnsDictionary.Add("x", "http://schemas.microsoft.com/winfx/2006/xaml");
-            context.XmlnsDictionary.Add("w", "http://schemas.microsoft.com/wpf/2008/toolkit");
-            this.Resources.Add("ProjectTemplate", (DataTemplate)XamlReader.Load(stream, context));
-            */
+            //get scale of the print wrt to screen of WPF visual
+            double scale = Math.Min(capabilities.PageImageableArea.ExtentWidth / grid.ActualWidth,
+                capabilities.PageImageableArea.ExtentHeight / grid.ActualHeight);
+
+            //Transform the Visual to scale
+            grid.LayoutTransform = new ScaleTransform(scale, scale);
+
+            //get the size of the printer page
+            Size sz = new Size(capabilities.PageImageableArea.ExtentWidth, capabilities.PageImageableArea.ExtentHeight);
+
+            //update the layout of the visual to the printer page size.
+            grid.Measure(sz);
+            grid.Arrange(new Rect(new Point(capabilities.PageImageableArea.OriginWidth, capabilities.PageImageableArea.OriginHeight), sz));
+
+            //now print the visual to printer to fit on the one page.
+            printDialog.PrintVisual(grid, project.Guid.ToString());//Fit to Page WPF Print
         }
-        private Project CreateProject()
-        {
-            Employee creator = new Employee();
-            creator.EmailAddresses.Add(new vCardEmailAddress { Address = "yancyn@gmail.com" });
 
-            Customer agent = new Customer { GivenName = "John" + new Random().Next(20) };
-
-            Customer customer = new Customer { GivenName = "Ah Hock" };
-            customer.Phones.Add(new vCardPhone { FullNumber = "012-4711134" });
-            vCardDeliveryAddress deliver = new vCardDeliveryAddress();
-            deliver.Street = "963 Jalan 6";
-            deliver.Region = "Machang Bubok";
-            deliver.City = "Bukit Mertajam";
-            deliver.PostalCode = "05400";
-            deliver.Country = "Malaysia";
-            customer.DeliveryAddresses.Add(deliver);
-            customer.Latitude = 6.09105f;
-            customer.Longitude = 100.44629f;
-
-            Project target = new Project();
-            target.CreatedBy = creator;
-            target.DeliverTo = customer;//customer.DeliveryAddresses[0];
-            target.OrderBy = agent;
-            target.Stage = ProjectStage.Draft;
-
-            int size = DatabaseObject.Stocks.Stock.Count;
-            Stock stock = DatabaseObject.Stocks.Stock[new Random().Next(size)];
-
-            LShapeItem w1 = new LShapeItem();//WorkItem w1 = new WorkItem();
-            w1.Tags.Add("LShapeItem04");
-            w1.Material = stock;
-            w1.Lengths.Add(new LengthItem { Length = 108 });
-            w1.Lengths.Add(new LengthItem { Length = 24 });
-            w1.Lengths.Add(new LengthItem { Length = 84 });
-            w1.Lengths.Add(new LengthItem { Length = 24 });
-            w1.Lengths.Add(new LengthItem { Length = 24 });
-            w1.Lengths.Add(new LengthItem { Length = 48 });
-            w1.MaxHeight = 108;
-            w1.MaxWidth = 48;
-
-            RectItem w2 = new RectItem();
-            w2.Tags.Add("RectItem00");
-            w2.Material = stock;
-            w2.Height = 6;
-            w2.Width = 24;
-            w2.Top = 400;
-            w2.Left = 200;
-
-            RectItem w3 = new RectItem();
-            w3.Tags.Add("RectItem00");
-            w3.Material = stock;
-            w3.Height = 6;
-            w3.Width = 24;
-
-
-            WorkOrder wo = new WorkOrder();
-            wo.Items.Add(w1);
-            wo.Items.Add(w2);
-            wo.Items.Add(w3);
-            target.WorkOrders.Add(wo);
-
-            return target;
-        }
         /// <summary>
         /// Obsolete. Build up menu for application.
         /// </summary>
@@ -218,6 +163,95 @@ namespace WorkOrderGUI
             }
             return null;
         }
+        private Project CreateProject()
+        {
+            Employee creator = new Employee();
+            creator.EmailAddresses.Add(new vCardEmailAddress { Address = "yancyn@gmail.com" });
+
+            Customer agent = new Customer { GivenName = "One Kitchen" + new Random().Next(20) };
+
+            Customer customer = new Customer { GivenName = "Ah Shing" };
+            customer.Phones.Add(new vCardPhone { FullNumber = "012-4711134" });
+            vCardDeliveryAddress deliver = new vCardDeliveryAddress();
+            deliver.Street = "963 Jalan 6\nMachang Bubok";
+            deliver.City = "Bukit Mertajam";
+            deliver.Region = "Penang";
+            deliver.PostalCode = "14020";
+            deliver.Country = "Malaysia";
+            customer.DeliveryAddresses.Add(deliver);
+            customer.Latitude = 5.33398f;
+            customer.Longitude = 100.50754f;
+
+            Project target = new Project();
+            target.CreatedBy = creator;
+            target.DeliverTo = customer;//customer.DeliveryAddresses[0];
+            target.OrderBy = agent;
+            target.Stage = ProjectStage.Draft;
+
+            int size = DatabaseObject.Stocks.Stock.Count;
+            Stock stock = DatabaseObject.Stocks.Stock[new Random().Next(size)];
+
+            LShapeItem w1 = new LShapeItem();//WorkItem w1 = new WorkItem();
+            w1.Tags.Add("LShapeItem04");
+            w1.Material = stock;
+            w1.Lengths.Add(new LengthItem { Length = 108 });
+            w1.Lengths.Add(new LengthItem { Length = 24 });
+            w1.Lengths.Add(new LengthItem { Length = 84 });
+            w1.Lengths.Add(new LengthItem { Length = 24 });
+            w1.Lengths.Add(new LengthItem { Length = 24 });
+            w1.Lengths.Add(new LengthItem { Length = 48 });
+            w1.MaxHeight = 108;
+            w1.MaxWidth = 48;
+
+            RectItem w2 = new RectItem();
+            w2.Tags.Add("RectItem00");
+            w2.Material = stock;
+            w2.Height = 6;
+            w2.Width = 24;
+            w2.Top = 400;
+            w2.Left = 200;
+
+            RectItem w3 = new RectItem();
+            w3.Tags.Add("RectItem00");
+            w3.Material = stock;
+            w3.Height = 6;
+            w3.Width = 24;
+
+
+            WorkOrder wo = new WorkOrder();
+            wo.Items.Add(w1);
+            wo.Items.Add(w2);
+            wo.Items.Add(w3);
+            target.WorkOrders.Add(wo);
+
+            return target;
+        }
+        /// <summary>
+        /// todo: Try to convert Window content into DataTemplate.
+        /// </summary>
+        /// <remarks>Fail.</remarks>
+        private void ConvertWindowToDataTemplate()
+        {
+            /*
+            ProjectWindow win = new ProjectWindow();
+            Grid grid = (Grid)win.Content;
+            string xaml = "<DataTemplate";
+            xaml += " xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"";
+            xaml += " xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"";
+            xaml += " xmlns:w=\"http://schemas.microsoft.com/wpf/2008/toolkit\">";
+            //System.Windows.Markup.XamlWriter.Save(
+            xaml += System.Windows.Markup.XamlWriter.Save(grid);
+            xaml += "</DataTemplate>";
+            win.Close();
+
+            MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(xaml));
+            ParserContext context = new ParserContext();
+            context.XmlnsDictionary.Add("", "http://schemas.microsoft.com/winfx/2006/xaml/presentation");
+            context.XmlnsDictionary.Add("x", "http://schemas.microsoft.com/winfx/2006/xaml");
+            context.XmlnsDictionary.Add("w", "http://schemas.microsoft.com/wpf/2008/toolkit");
+            this.Resources.Add("ProjectTemplate", (DataTemplate)XamlReader.Load(stream, context));
+            */
+        }
         #endregion
 
         #region Events
@@ -253,8 +287,14 @@ namespace WorkOrderGUI
                     Project project = this.pageManager.CurrentPage.Item as Project;
                     PrintingWindow printingWin = new PrintingWindow(project);
                     printingWin.Show();
-                    printDialog.PrintVisual(printingWin.Content as Grid, project.Guid.ToString());
-                    //printingWin.Close();
+                    Grid grid = printingWin.Content as Grid;
+
+                    //scale smaller to allow put in numbering specification at right bottom
+                    Canvas canvas = (Canvas)grid.FindName("DrawingArea");
+                    canvas.LayoutTransform = new ScaleTransform(0.9, 0.9);
+
+                    //get selected printer capabilities
+                    PrintFitToPage(printDialog, project, grid);
                 }
             }
         }

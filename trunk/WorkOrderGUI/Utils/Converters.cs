@@ -278,11 +278,39 @@ namespace WorkOrderGUI
 
             return null;//throw new NotImplementedException();
         }
-
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
         {
             return null;
             //throw new NotImplementedException();
+        }
+        #endregion
+    }
+    /// <summary>
+    /// Return order by or delivery to name (which is not empty).
+    /// </summary>
+    public class SoldToConverter : IMultiValueConverter
+    {
+        #region IMultiValueConverter Members
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (values.Length > 1)
+            {
+                if (values[0] is string && values[1] is string)
+                {
+                    if (values[0].ToString().Length == 0)
+                        return values[1].ToString();
+                    else
+                        return values[0].ToString();
+                }
+
+                throw new NotImplementedException();
+            }
+
+            throw new NotImplementedException();
+        }
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }
