@@ -14,8 +14,15 @@ namespace HLGranite.Drawing
             : base()
         {
         }
-        public RectItem(Stock stock, double width, double height)
-            : base(stock, width, height)
+        /// <summary>
+        /// Recommended constructor.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="stock"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        public RectItem(string model, Stock stock, double width, double height)
+            : base(model, stock, width, height)
         {
         }
     }

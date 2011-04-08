@@ -19,13 +19,15 @@ namespace HLGranite.Drawing
         /// <summary>
         /// Recommended constructor.
         /// </summary>
+        /// <param name="model"></param>
         /// <param name="stock"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public WorkItem(Stock stock, double width, double height)
+        public WorkItem(string model, Stock stock, double width, double height)
             : base(width, height)
         {
             Initialize();
+            this.modelField = model;
             this.materialField = stock;
         }
         protected void Initialize()

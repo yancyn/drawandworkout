@@ -296,7 +296,7 @@
 
             <ScrollViewer Grid.Column="1" Width="270" HorizontalAlignment="Right" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
-                    <Expander Style="{DynamicResource ExpanderBackground}" Header="Project" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
+                    <Expander Header="Project" Style="{DynamicResource ExpanderBackground}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="90"/>
@@ -352,7 +352,7 @@
                             <TextBox Grid.Row="12" Grid.Column="1" Style="{DynamicResource InputTextBox}" MinLines="3" AcceptsReturn="True" Text="{Binding Item.Notes,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         </Grid>
                     </Expander>
-                    <Expander Style="{DynamicResource ExpanderBackground}" Header="Summary" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
+                    <Expander Header="Summary" Style="{DynamicResource ExpanderBackground}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="90"/>
@@ -383,7 +383,10 @@
                             <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Item.TotalOther,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         </Grid>
                     </Expander>
-                    <Expander Style="{DynamicResource ExpanderBackground}" Header="Details" IsExpanded="True" Margin="0,0,0,10" BorderBrush="Black" BorderThickness="1" Padding="10">
+                    <Expander Header="Raw Materials" Style="{DynamicResource ExpanderBackground}">
+                        <!-- TODO -->
+                    </Expander>
+                    <Expander Header="Details" Style="{DynamicResource ExpanderBackground}">
                         <StackPanel>
                             <ItemsControl ItemsSource="{Binding Item.WorkOrders[0].Items,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
