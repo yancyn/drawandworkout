@@ -48,5 +48,20 @@ namespace HLGranite.Drawing.Test
             Bullnoses target = new Bullnoses();
             Assert.Inconclusive("TODO: Implement code to verify target");
         }
+        [TestMethod()]
+        public void SaveToFileTest()
+        {
+            Bullnoses target = new Bullnoses();
+            target.Bullnose.Add(new Bullnose { Model = "db" });
+            target.Bullnose.Add(new Bullnose { Model = "dep" });
+            target.Bullnose.Add(new Bullnose { Model = "drp" });
+            target.Bullnose.Add(new Bullnose { Model = "dcp" });
+            target.Bullnose.Add(new Bullnose { Model = "dog" });
+            target.Bullnose.Add(new Bullnose { Model = "ap" });
+            target.Bullnose.Add(new Bullnose { Model = "ep" });
+            target.Bullnose.Add(new Bullnose { Model = "cp" });
+            target.Bullnose.Add(new Bullnose { Model = "r" });
+            target.SaveToFile();
+        }
     }
 }
