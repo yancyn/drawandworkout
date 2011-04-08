@@ -42,6 +42,9 @@ namespace WorkOrderGUI
             return base.SelectTemplate(item, container);
         }
     }
+    /// <summary>
+    /// Point to the correct work item template based on model.
+    /// </summary>
     public class WorkItemTemplateSelector : DataTemplateSelector
     {
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
@@ -50,16 +53,11 @@ namespace WorkOrderGUI
             if (element != null && item is WorkItem)
             {
                 WorkItem wo = item as WorkItem;
-                if (wo.Tags.Count > 0)
-                {
-                    return element.FindResource(wo.Tags[0].ToString()) as DataTemplate;
-                    //if (item is LShapeItem)
-                    //    return element.FindResource("LShapeTemplate") as DataTemplate;
-                    //else if (item is RectItem)
-                    //    return element.FindResource("RectTemplate") as DataTemplate;
-                }
-
-                return base.SelectTemplate(item, container);
+                return element.FindResource(wo.Model) as DataTemplate;//wo.Tags[0].ToString()
+                //if (item is LShapeItem)
+                //    return element.FindResource("LShapeTemplate") as DataTemplate;
+                //else if (item is RectItem)
+                //    return element.FindResource("RectTemplate") as DataTemplate;
             }
 
             return base.SelectTemplate(item, container);

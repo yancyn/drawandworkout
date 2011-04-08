@@ -3,9 +3,10 @@
     <Style x:Key="GridBackground" TargetType="{x:Type Grid}">
         <Setter Property="Background" Value="Black"/>
     </Style>
-    <Style x:Key="ExpanderBackground" TargetType="{x:Type Expander}">
+    <Style x:Key="ExpanderBackground" BasedOn="{StaticResource DefaultExpander}" TargetType="{x:Type Expander}">
         <Setter Property="Background" Value="Black"/>
         <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>
     </Style>
     <Style x:Key="Labeling" TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="White"/>

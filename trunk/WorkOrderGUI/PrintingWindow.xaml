@@ -86,8 +86,10 @@
                     <WrapPanel>
                         <TextBlock Text="1. "/>
                         <TextBlock Text="{Binding MaxWidth}"/>
+                        <TextBlock Text="{Binding Uom,Converter={StaticResource UomUnitConverter}}"/>
                         <TextBlock Text="×"/>
                         <TextBlock Text="{Binding MaxHeight}"/>
+                        <TextBlock Text="{Binding Uom,Converter={StaticResource UomUnitConverter}}"/>
                     </WrapPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

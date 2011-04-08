@@ -42,6 +42,9 @@ namespace WorkOrderGUI
         }
 
         #region Methods
+        /// <summary>
+        /// Initialize page layout.
+        /// </summary>
         private void Initialize()
         {
             try
@@ -192,32 +195,13 @@ namespace WorkOrderGUI
             int size = DatabaseObject.Stocks.Stock.Count;
             Stock stock = DatabaseObject.Stocks.Stock[new Random().Next(size)];
 
-            LShapeItem w1 = new LShapeItem();//WorkItem w1 = new WorkItem();
-            w1.Tags.Add("LShapeItem04");
-            w1.Material = stock;
-            w1.Lengths.Add(new LengthItem { Length = 108 });
-            w1.Lengths.Add(new LengthItem { Length = 24 });
-            w1.Lengths.Add(new LengthItem { Length = 84 });
-            w1.Lengths.Add(new LengthItem { Length = 24 });
-            w1.Lengths.Add(new LengthItem { Length = 24 });
-            w1.Lengths.Add(new LengthItem { Length = 48 });
-            w1.MaxHeight = 108;
-            w1.MaxWidth = 48;
+            LShapeItem w1 = new LShapeItem("LShapeItem04", stock, 48, 108);
 
-            RectItem w2 = new RectItem();
-            w2.Tags.Add("RectItem00");
-            w2.Material = stock;
-            w2.Height = 6;
-            w2.Width = 24;
+            RectItem w2 = new RectItem("RectItem00",stock,6,24);
             w2.Top = 400;
             w2.Left = 200;
 
-            RectItem w3 = new RectItem();
-            w3.Tags.Add("RectItem00");
-            w3.Material = stock;
-            w3.Height = 6;
-            w3.Width = 24;
-
+            RectItem w3 = new RectItem("RectItem00",stock,13,26);
 
             WorkOrder wo = new WorkOrder();
             wo.Items.Add(w1);

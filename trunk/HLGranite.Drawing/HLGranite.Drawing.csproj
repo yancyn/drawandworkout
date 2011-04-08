@@ -69,6 +69,7 @@
     <Compile Include="Inventories.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Language.cs" />
+    <Compile Include="LShapeItem.cs" />
     <Compile Include="Planner.cs" />
     <Compile Include="PolygonItem.cs" />
     <Compile Include="Project.cs" />

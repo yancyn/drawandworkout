@@ -51,6 +51,12 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="DefaultExpander" TargetType="{x:Type Expander}">
+        <Setter Property="IsExpanded" Value="True"/>
+        <Setter Property="Margin" Value="0,0,0,10"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="10"/>
+    </Style>
     <DataTemplate x:Key="WindowMenuTemplate">
         <MenuItem Header="{Binding}"
                   Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorLevel=3,AncestorType={x:Type Grid}},Path=DataContext.SelectPage}"

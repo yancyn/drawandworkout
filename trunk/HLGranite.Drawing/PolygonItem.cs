@@ -21,11 +21,12 @@ namespace HLGranite.Drawing
         /// <summary>
         /// Recommended constructor.
         /// </summary>
+        /// <param name="model"></param>
         /// <param name="stock"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public PolygonItem(Stock stock, double width, double height)
-            : base(stock, width, height)
+        public PolygonItem(string model, Stock stock, double width, double height)
+            : base(model, stock, width, height)
         {
             this.lengthsField = new System.Collections.ObjectModel.ObservableCollection<LengthItem>();
         }
