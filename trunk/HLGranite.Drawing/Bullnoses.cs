@@ -9,6 +9,7 @@ namespace HLGranite.Drawing
     {
         public Bullnoses()
         {
+            base.fileName = "Bullnoses.xml";
             this.bullnoseField = new System.Collections.ObjectModel.ObservableCollection<Bullnose>();
         }
     }

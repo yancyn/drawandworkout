@@ -47,6 +47,7 @@ namespace WorkOrderGUI
             try
             {
                 //ConvertWindowToDataTemplate();
+                //this.Title += " ver " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
                 this.toolbarManager = new ToolbarManager();
                 this.Toolbox.DataContext = toolbarManager;

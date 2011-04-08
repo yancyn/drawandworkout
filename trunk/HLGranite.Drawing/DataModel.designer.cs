@@ -1454,6 +1454,7 @@ namespace HLGranite.Drawing
 
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Warehouses))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Stocks))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bullnoses))]
     //TODO: [System.Xml.Serialization.XmlIncludeAttribute(typeof(Users))]
     //TODO: [System.Xml.Serialization.XmlIncludeAttribute(typeof(Projects))]
     //TODO: [System.Xml.Serialization.XmlIncludeAttribute(typeof(InventoryWIPs))]
