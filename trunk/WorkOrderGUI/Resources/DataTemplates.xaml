@@ -16,6 +16,7 @@
     <g:UomStringConverter x:Key="UomStringConverter"/>
     <g:UomUnitConverter x:Key="UomUnitConverter"/>
     <g:IndexConverter x:Key="IndexConverter"/>
+    <g:LabelingConverter x:Key="LabelingConverter"/>
     <g:FeetUnitConverter x:Key="FeetUnitConverter"/>
     <g:MarginConverter x:Key="MarginConverter"/>
     <g:CompanyAllInfoConverter x:Key="CompanyAllInfoConverter"/>
@@ -39,7 +40,7 @@
         </StackPanel>
     </DataTemplate>
     <DataTemplate DataType="{x:Type d:RectItem}">
-        <Grid Margin="0,0,0,10">
+        <Grid Margin="0,0,0,10" Background="Beige">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="*"/>
@@ -52,23 +53,23 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Grid.Column="0">
-                    <TextBlock.Text>
-                        <MultiBinding Converter="{StaticResource IndexConverter}">
-                            <Binding/>
-                            <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}" Path="ItemsSource"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource LabelingConverter}">
+                        <Binding/>
+                        <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType={x:Type Expander}}" Path="DataContext"/>
+                    </MultiBinding>
+                </TextBlock.Text>
             </TextBlock>
             <WrapPanel Grid.Row="0" Grid.Column="1">
                 <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Stocks.Stock}"
                           SelectedItem="{Binding Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Style="{StaticResource BorderlessButton}" ToolTip="Remove" Margin="4,0,4,0"
-                        Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Grid},AncestorLevel=2},Path=DataContext.Item.WorkOrders[0].RemoveWorkItemCommand}"
+                        Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Expander}},Path=DataContext.RemoveWorkItemCommand}"
                         CommandParameter="{Binding}">
                     <Image Height="16" Source="..\Images\cross.png"/>
                 </Button>
             </WrapPanel>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Size"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Size" HorizontalAlignment="Right" Margin="0,0,4,0"/>
             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
                 <TextBox Width="50" Text="{Binding Width,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Text="×" Margin="4,0,4,0"/>
@@ -89,14 +90,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0">
-                    <TextBlock.Text>
-                        <MultiBinding Converter="{StaticResource IndexConverter}">
-                            <Binding/>
-                            <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}" Path="ItemsSource"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
-            </TextBlock>
+            <!--<TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding .,Converter={StaticResource IndexConverter}}"/>-->
             <WrapPanel Grid.Row="0" Grid.Column="1">
                 <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Stocks.Stock}"
                           SelectedItem="{Binding Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
@@ -106,13 +100,14 @@
                     <Image Height="16" Source="..\Images\cross.png"/>
                 </Button>
             </WrapPanel>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Size"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Size" HorizontalAlignment="Right" Margin="0,0,4,0"/>
             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
                 <TextBox Width="50" Text="{Binding MaxWidth,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Text="×" Margin="4,0,4,0"/>
                 <TextBox Width="50" Text="{Binding MaxHeight,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                <ItemsControl ItemsSource="{Binding Elements,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 <ItemsControl ItemsSource="{Binding Lengths}"/>
             </StackPanel>
         </Grid>
@@ -386,9 +381,10 @@
                     <Expander Header="Raw Materials" Style="{DynamicResource ExpanderBackground}">
                         <!-- TODO -->
                     </Expander>
-                    <Expander Header="Details" Style="{DynamicResource ExpanderBackground}">
+                    <Expander Header="Details" Style="{DynamicResource ExpanderBackground}"
+                              DataContext="{Binding Item.WorkOrders[0]}">
                         <StackPanel>
-                            <ItemsControl ItemsSource="{Binding Item.WorkOrders[0].Items,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <ItemsControl ItemsSource="{Binding Items,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </Expander>
                 </StackPanel>
