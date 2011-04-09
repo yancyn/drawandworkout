@@ -162,9 +162,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Resources\Bullnoses.xaml.cs">
-      <DependentUpon>Bullnoses.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="BullnoseManager.cs" />
+    <Compile Include="BullnoseViewModel.cs" />
     <Compile Include="ConfirmCommandAction.cs" />
     <Compile Include="PrintingWindow.xaml.cs">
       <DependentUpon>PrintingWindow.xaml</DependentUpon>

@@ -1,89 +1,89 @@
-﻿<Window x:Class="WorkOrderGUI.Bullnoses"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="Bullnoses">
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StackPanel>
-        <StackPanel x:Name="r">
+        <StackPanel x:Name="none">
+            <TextBlock Text="None"/>
+        </StackPanel>
+        <StackPanel x:Name="r" Width="60" Height="40">
             <TextBlock Text="r"/>
-            <Canvas Width="60" Height="40">
+            <Canvas>
                 <Path Stroke="Black" StrokeThickness="1" Data="M 13.577736,0 C 6.1199687,0 -0.62695294,6.1252791 0.04648577,12 l 18.31250023,0 28.5625,0 1.125,0 0,-12 -16.65625,0 -13.03125,0 z"/>
                 <Path Fill="White" Data="m 56.569433,-11.999908 0,48 -14.034565,0.08902 c 0,0 12.093352,-7.741234 -0.03457,-24.089018 -12.815625,-17.2747764 0.03457,-24.089018 0.03457,-24.089018 z"/>
                 <Path Stroke="Black" StrokeThickness="1" Data="m 42.500303,-12.177945 c 0,0 -12.815625,6.9032596 0,24.178036 12.127917,16.347784 0,24.178036 0,24.178036"/>
             </Canvas>
         </StackPanel>
-        <StackPanel x:Name="db">
+        <StackPanel x:Name="db" Width="60" Height="40">
             <TextBlock Text="db"/>
-            <Canvas Width="60" Height="40">
+            <Canvas>
                 <Path Stroke="Black" StrokeThickness="1" Data="M 13.577736,0 C 6.1199687,0 -0.62695294,6.1252791 0.04648577,12 l 18.31250023,0 28.5625,0 1.125,0 0,-12 -16.65625,0 -13.03125,0 z"/>
                 <Path Canvas.Top="12" Stroke="Black" StrokeThickness="1" Data="M 0.04648577,0 C -0.62695294,5.874721 6.1199685,12 13.577736,12 l 4.78125,0 5.65625,0 0,-12 -5.65625,0 -18.31250023,0 z"/>
                 <Path Fill="White" Data="m 56.569433,-11.999908 0,48 -14.034565,0.08902 c 0,0 12.093352,-7.741234 -0.03457,-24.089018 -12.815625,-17.2747764 0.03457,-24.089018 0.03457,-24.089018 z"/>
                 <Path Stroke="Black" StrokeThickness="1" Data="m 42.500303,-12.177945 c 0,0 -12.815625,6.9032596 0,24.178036 12.127917,16.347784 0,24.178036 0,24.178036"/>
             </Canvas>
         </StackPanel>
-        <StackPanel x:Name="ep">
+        <StackPanel x:Name="ep" Width="60" Height="40">
             <TextBlock Text="ep"/>
-            <Canvas Width="60" Height="40">
+            <Canvas>
                 <Rectangle Height="12" Width="48" Stroke="Black" StrokeThickness="1"/>
                 <Path Fill="White" Data="m 56.569433,-11.999908 0,48 -14.034565,0.08902 c 0,0 12.093352,-7.741234 -0.03457,-24.089018 -12.815625,-17.2747764 0.03457,-24.089018 0.03457,-24.089018 z"/>
                 <Path Stroke="Black" StrokeThickness="1" Data="m 42.500303,-12.177945 c 0,0 -12.815625,6.9032596 0,24.178036 12.127917,16.347784 0,24.178036 0,24.178036"/>
             </Canvas>
         </StackPanel>
-        <StackPanel x:Name="cp">
+        <StackPanel x:Name="cp" Width="60" Height="40">
             <TextBlock Text="cp"/>
-            <Canvas Width="60" Height="40">
+            <Canvas>
                 <Path Stroke="Black" StrokeThickness="1" Data="M 4.3125,0 0,4.28125 0,12 48,12 48,0 4.3125,0 z"/>
                 <Path Fill="White" Data="m 56.569433,-11.999908 0,48 -14.034565,0.08902 c 0,0 12.093352,-7.741234 -0.03457,-24.089018 -12.815625,-17.2747764 0.03457,-24.089018 0.03457,-24.089018 z"/>
                 <Path Stroke="Black" StrokeThickness="1" Data="m 42.500303,-12.177945 c 0,0 -12.815625,6.9032596 0,24.178036 12.127917,16.347784 0,24.178036 0,24.178036"/>
             </Canvas>
         </StackPanel>
-        <StackPanel x:Name="ap">
+        <StackPanel x:Name="ap" Width="60" Height="40">
             <TextBlock Text="ap"/>
-            <Canvas Width="60" Height="40">
+            <Canvas>
                 <Path Stroke="Black" StrokeThickness="1" Data="M 0,0 0,5.9375 8.0625,12 48,12 48,0 z"/>
                 <Path Fill="White" Data="m 56.569433,-11.999908 0,48 -14.034565,0.08902 c 0,0 12.093352,-7.741234 -0.03457,-24.089018 -12.815625,-17.2747764 0.03457,-24.089018 0.03457,-24.089018 z"/>
                 <Path Stroke="Black" StrokeThickness="1" Data="m 42.500303,-12.177945 c 0,0 -12.815625,6.9032596 0,24.178036 12.127917,16.347784 0,24.178036 0,24.178036"/>
             </Canvas>
         </StackPanel>
-        <StackPanel x:Name="dep">
+        <StackPanel x:Name="dep" Width="60" Height="40">
             <TextBlock Text="dep"/>
-            <Canvas Width="60" Height="40">
+            <Canvas>
                 <Rectangle Height="12" Width="48" Stroke="Black" StrokeThickness="1"/>
                 <Rectangle Height="12" Width="24" Stroke="Black" StrokeThickness="1" Canvas.Top="11"/>
                 <Path Fill="White" Data="m 56.569433,-11.999908 0,48 -14.034565,0.08902 c 0,0 12.093352,-7.741234 -0.03457,-24.089018 -12.815625,-17.2747764 0.03457,-24.089018 0.03457,-24.089018 z"/>
                 <Path Stroke="Black" StrokeThickness="1" Data="m 42.500303,-12.177945 c 0,0 -12.815625,6.9032596 0,24.178036 12.127917,16.347784 0,24.178036 0,24.178036"/>
             </Canvas>
         </StackPanel>
-        <StackPanel x:Name="dep2">
+        <StackPanel x:Name="dep2" Width="60" Height="40">
             <TextBlock Text="dep"/>
-            <Canvas Width="60" Height="40">
+            <Canvas>
                 <Path Stroke="Black" StrokeThickness="1" Data="M 48,0 48,12 12,12 0,0 z"/>
-                <Path Stroke="Black" StrokeThickness="1" Data="M 12,36 0,36 0,0 12,12 z"/>
+                <Path Stroke="Black" StrokeThickness="1" Data="M 12,24 0,24 0,0 12,12 z"/>
                 <Path Fill="White" Data="m 56.569433,-11.999908 0,48 -14.034565,0.08902 c 0,0 12.093352,-7.741234 -0.03457,-24.089018 -12.815625,-17.2747764 0.03457,-24.089018 0.03457,-24.089018 z"/>
                 <Path Stroke="Black" StrokeThickness="1" Data="m 42.500303,-12.177945 c 0,0 -12.815625,6.9032596 0,24.178036 12.127917,16.347784 0,24.178036 0,24.178036"/>
             </Canvas>
         </StackPanel>
-        <StackPanel x:Name="drp">
+        <StackPanel x:Name="drp" Width="60" Height="40">
             <TextBlock Text="drp"/>
-            <Canvas Width="60" Height="40">
+            <Canvas>
                 <Path Stroke="Black" StrokeThickness="1" Data="M 6,0 C 2.80086,0 0.22198,2.4754634 0.03125,5.625 l -0.0312,0 0,0.375 0,6 6,0 42,0 0,-6.375 0,-5.625 -6,0 -36,0 z"/>
                 <Path Stroke="Black" StrokeThickness="1" Data="m 0,12 0,6 0,0.15625 C 0.0816,21.408072 2.72781,24 6,24 l 12,0 6,0 0,-5.84375 L 24,18 24,12 6,12 0,12 z"/>
-                
                 <Path Fill="White" Data="m 56.569433,-11.999908 0,48 -14.034565,0.08902 c 0,0 12.093352,-7.741234 -0.03457,-24.089018 -12.815625,-17.2747764 0.03457,-24.089018 0.03457,-24.089018 z"/>
                 <Path Stroke="Black" StrokeThickness="1" Data="m 42.500303,-12.177945 c 0,0 -12.815625,6.9032596 0,24.178036 12.127917,16.347784 0,24.178036 0,24.178036"/>
             </Canvas>
         </StackPanel>
-        <StackPanel x:Name="dcp">
+        <StackPanel x:Name="dcp" Width="60" Height="40">
             <TextBlock Text="dcp"/>
-            <Canvas Width="60" Height="40">
+            <Canvas>
                 <Path Stroke="Black" StrokeThickness="1" Data="M 4.3125,0 0,4.28125 0,12 48,12 48,0 4.3125,0 z"/>
                 <Path Stroke="Black" StrokeThickness="1" Canvas.Top="12" Data="M 0,0 0,7.71875 4.3125,12 24,12 24,0 0,0 z"/>
                 <Path Fill="White" Data="m 56.569433,-11.999908 0,48 -14.034565,0.08902 c 0,0 12.093352,-7.741234 -0.03457,-24.089018 -12.815625,-17.2747764 0.03457,-24.089018 0.03457,-24.089018 z"/>
                 <Path Stroke="Black" StrokeThickness="1" Data="m 42.500303,-12.177945 c 0,0 -12.815625,6.9032596 0,24.178036 12.127917,16.347784 0,24.178036 0,24.178036"/>
             </Canvas>
         </StackPanel>
-        <StackPanel x:Name="dog">
+        <StackPanel x:Name="dog" Width="60" Height="40">
             <TextBlock Text="dog"/>
-            <Canvas Width="60" Height="40">
+            <Canvas>
                 <Path Stroke="Black" StrokeThickness="1" Data="m 48.009236,0 0,12 -47.99999974,0 c 0,0 -0.23627369,-2.5036096 1.68121754,-4.2669395 C 3.607945,5.9697306 6.0536833,6.9163336 8.1746065,5.2614491 10.295529,3.6065645 8.8648674,0.97479324 13.764652,0 z"/>
                 <Rectangle Canvas.Top="11.69" Height="10.02" Width="24.048" Stroke="Black" StrokeThickness="1" Canvas.Left="-0.334" />
                 <Path Fill="White" Data="m 56.569433,-11.999908 0,48 -14.034565,0.08902 c 0,0 12.093352,-7.741234 -0.03457,-24.089018 -12.815625,-17.2747764 0.03457,-24.089018 0.03457,-24.089018 z"/>

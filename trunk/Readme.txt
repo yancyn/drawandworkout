@@ -6,3 +6,4 @@ Save config file. Thanks to http://www.hanselman.com/blog/LearningWPFWithBabySma
 todo: Globalization - http://www.codeproject.com/KB/WPF/Localization_in_WPF.aspx
 http://msdn.microsoft.com/en-us/library/ms788718.aspx#examples_of_localization
 ICommand - http://msdn.microsoft.com/en-us/library/ms752308.aspx
+Color Helper, get color into ComboBox - http://www.thomasclaudiushuber.com/blog/2008/01/10/bind-to-methods-with-objectdataprovider/

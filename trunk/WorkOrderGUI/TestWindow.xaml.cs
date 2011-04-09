@@ -28,6 +28,17 @@ namespace WorkOrderGUI
             //stocks = stocks.LoadFromFile() as Stocks;
             //this.ComboBox1.ItemsSource = stocks.Stock;
             //this.ComboBox2.ItemsSource = Enum.GetValues(typeof(ProjectStage));
+
+            BullnoseManager manager = new BullnoseManager();
+            //this.ComboBox1.DataContext = manager;
+            this.ComboBox1.ItemsSource = manager.Bullnoses;
+            //foreach (BullnoseViewModel viewModel in manager.Bullnoses)
+            //    this.ComboBox2.Items.Add(viewModel.Content);
+        }
+
+        private void ComboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine((sender as ComboBox).SelectedValue);
         }
     }
 }

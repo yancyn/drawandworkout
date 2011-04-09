@@ -147,6 +147,9 @@
     <ownedAttribute xmi:id="_fM8XgEbVEeCvMexyU7cjtg" name="PurchaseAt" type="_JFuk8ES1EeCFl51ftuwnCA" aggregation="composite"/>
     <ownedAttribute xmi:id="_FPpSkEbWEeCvMexyU7cjtg" name="Width" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
     <ownedAttribute xmi:id="_GeK7MEbWEeCvMexyU7cjtg" name="Height" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
+    <ownedAttribute xmi:id="_IJjkcGKtEeCFqcwlqssDwA" name="Serial" aggregation="composite">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_bJNcUEbVEeCvMexyU7cjtg" name="Item" memberEnd="_bJNcUUbVEeCvMexyU7cjtg _bJNcVEbVEeCvMexyU7cjtg">
     <ownedEnd xmi:id="_bJNcUUbVEeCvMexyU7cjtg" name="1" type="_OXI4AEbVEeCvMexyU7cjtg" association="_bJNcUEbVEeCvMexyU7cjtg">
