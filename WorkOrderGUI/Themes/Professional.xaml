@@ -8,8 +8,17 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderBrush" Value="White"/>
     </Style>
+    
+    <!-- this is for employee reading use -->
     <Style x:Key="Labeling" TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="White"/>
+    </Style>
+    
+    <!-- this is for ruler measurement use -->
+    <Style x:Key="MeasurementStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="Foreground" Value="Blue"/>
+        <Setter Property="TextAlignment" Value="Center"/>
     </Style>
     <Style x:Key="InputTextBox" TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="Black"/>
