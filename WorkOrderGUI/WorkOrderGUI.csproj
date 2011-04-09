@@ -140,10 +140,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\ShapesToolbar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -162,9 +158,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BullnoseManager.cs" />
-    <Compile Include="BullnoseViewModel.cs" />
-    <Compile Include="ConfirmCommandAction.cs" />
+    <Compile Include="ViewModels\BullnoseManager.cs" />
+    <Compile Include="ViewModels\BullnoseViewModel.cs" />
+    <Compile Include="Utils\ConfirmCommandAction.cs" />
     <Compile Include="PrintingWindow.xaml.cs">
       <DependentUpon>PrintingWindow.xaml</DependentUpon>
     </Compile>
@@ -215,9 +211,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="UserControls\ShapesToolbar.xaml.cs">
-      <DependentUpon>ShapesToolbar.xaml</DependentUpon>
     </Compile>
     <Compile Include="WarehouseWindow.xaml.cs">
       <DependentUpon>WarehouseWindow.xaml</DependentUpon>

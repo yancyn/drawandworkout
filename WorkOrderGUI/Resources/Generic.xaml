@@ -215,4 +215,16 @@
         <Setter Property="BorderThickness" Value="0"/>
         <!--<Setter Property="Placement" Value="Absolute"/>-->
     </Style>
+    <Style x:Key="BullnoseSelection" TargetType="{x:Type ComboBox}">
+        <Setter Property="Width" Value="60"/>
+        <Setter Property="Height" Value="18"/>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <!--<ContentPresenter Content="{Binding Model}"/>-->
+                    <ContentPresenter Content="{Binding Content}"/><!-- todo: use new instance instead-->
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

@@ -11,13 +11,32 @@ using System.Xml;
 
 namespace WorkOrderGUI
 {
-    public class BullnoseManager
+    public class BullnoseManager : System.ComponentModel.INotifyPropertyChanged
     {
         private ObservableCollection<BullnoseViewModel> bullnoses;
         /// <summary>
         /// Gets bullnoses collection in graphics content.
         /// </summary>
-        public ObservableCollection<BullnoseViewModel> Bullnoses { get { return this.bullnoses; } }
+        public ObservableCollection<BullnoseViewModel> Bullnoses
+        {
+            get { return this.bullnoses; }
+            set
+            {
+                if (this.bullnoses != null)
+                {
+                    if (this.bullnoses.Equals(value) != true)
+                    {
+                        this.bullnoses = value;
+                        this.OnPropertyChanged("Bullnoses");
+                    }
+                }
+                else
+                {
+                    this.bullnoses = value;
+                    this.OnPropertyChanged("Bullnoses");
+                }
+            }
+        }
         public BullnoseManager()
         {
             this.bullnoses = new ObservableCollection<BullnoseViewModel>();
@@ -32,6 +51,7 @@ namespace WorkOrderGUI
             {
                 if (panel.Children[i] is StackPanel)
                 {
+                    //todo: create a new StackPanel object instead of just remove from Window
                     StackPanel item = panel.Children[i] as StackPanel;
                     //todo: get the name only by get rid of number at behind
                     this.bullnoses.Insert(0, new BullnoseViewModel(item.Name, item.Name, item));
@@ -40,5 +60,16 @@ namespace WorkOrderGUI
             }
             (obj as Window).Close();
         }
+        #region INotifyPropertyChanged Members
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public virtual void OnPropertyChanged(string propertyName)
+        {
+            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
+            if ((handler != null))
+            {
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+        #endregion
     }
 }
