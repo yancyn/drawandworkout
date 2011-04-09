@@ -260,6 +260,57 @@ namespace WorkOrderGUI
         #endregion
     }
     /// <summary>
+    /// Auto numbering work item collection for those only required to working on
+    /// especially only RectItem take into account.
+    /// </summary>
+    public class LabelingConverter : IMultiValueConverter
+    {
+        #region IMultiValueConverter Members
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (values.Length > 1)
+            {
+                string number = string.Empty;
+                if (!(values[0] is RectItem)) return number;
+                if (!(values[1] is WorkOrder)) return number;
+
+                RectItem rect = values[0] as RectItem;
+                WorkOrder wo = values[1] as WorkOrder;
+                int i = 0;
+                MatchItemInCollection(wo.Items, rect, ref i);
+                number = i.ToString() + ".";//todo: to desire format based on setting
+
+                return number;
+            }
+
+            throw new NotImplementedException();
+        }
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+        private bool MatchItemInCollection(ObservableCollection<WorkItem> collection, WorkItem source, ref int counter)
+        {
+            bool match = false;
+            foreach (WorkItem item in collection)
+            {
+                if (item is RectItem) counter++;
+                if (item.Guid.Equals(source.Guid))
+                {
+                    match = true;
+                    return match;
+                }
+
+                if (!match && item.Elements.Count > 0)
+                    match = MatchItemInCollection(item.Elements, source, ref counter);
+                if (match == true) return match;
+            }
+
+            return match;
+        }
+    }
+    /// <summary>
     /// Convert top and left into margin measurement.
     /// </summary>
     public class MarginConverter : IMultiValueConverter
