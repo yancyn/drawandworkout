@@ -28,8 +28,9 @@ namespace WorkOrderGUI
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
 
-            string theme = (WorkOrderGUI.Properties.Settings.Default.Theme == HLGranite.Drawing.Theme.Classic)
-                ? "Classic" : "Professional";
+            string theme = (WorkOrderGUI.Properties.Settings.Default.Theme == HLGranite.Drawing.Theme.Professional)
+                ? "Professional" : "Classic";
+            //it must exist before DataTemplates.xaml been loaded
             App.Current.Resources.MergedDictionaries.Add((
                 System.Windows.ResourceDictionary)System.Windows.Application.LoadComponent(
                 new System.Uri("/WorkOrderGUI;component/Themes/" + theme + ".xaml",
