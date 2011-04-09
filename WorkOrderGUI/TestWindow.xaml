@@ -45,5 +45,12 @@
             <Rectangle Width="40" Height="24" Fill="White" Canvas.Left="200" Canvas.Top="31" />
             <TextBlock Text="2'" Margin="200,40,0,0" Foreground="Blue" TextAlignment="Center"/>
         </Canvas>
+        <ComboBox x:Name="ComboBox1" Width="60" Height="18" ItemsSource="{Binding Bullnoses}" SelectedValuePath="Model">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <ContentPresenter Content="{Binding Content}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
     </Canvas>
 </Window>
