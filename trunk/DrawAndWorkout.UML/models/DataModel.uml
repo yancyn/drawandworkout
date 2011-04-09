@@ -487,17 +487,4 @@
     <ownedAttribute xmi:id="_nA7okGD9EeCdpqImjJpIrg" name="Width" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
     <ownedAttribute xmi:id="_odBMEGD9EeCdpqImjJpIrg" name="Height" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_3YoPwGD9EeCdpqImjJpIrg" name="Bullnoses">
-    <generalization xmi:id="_6lxZ0GEAEeCdpqImjJpIrg" general="_WyWboEeXEeCyObvqYt56PQ"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_4zRo0GD9EeCdpqImjJpIrg" name="Bullnose" memberEnd="_4zS28GD9EeCdpqImjJpIrg _4zTeAGD9EeCdpqImjJpIrg">
-    <ownedEnd xmi:id="_4zS28GD9EeCdpqImjJpIrg" name="src" type="_3YoPwGD9EeCdpqImjJpIrg" association="_4zRo0GD9EeCdpqImjJpIrg">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4zS28mD9EeCdpqImjJpIrg" value="1"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4zS28WD9EeCdpqImjJpIrg" value="1"/>
-    </ownedEnd>
-    <ownedEnd xmi:id="_4zTeAGD9EeCdpqImjJpIrg" name="dst" type="_g-MqEGD9EeCdpqImjJpIrg" aggregation="composite" association="_4zRo0GD9EeCdpqImjJpIrg">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4zTeAmD9EeCdpqImjJpIrg" value="*"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4zTeAWD9EeCdpqImjJpIrg"/>
-    </ownedEnd>
-  </packagedElement>
 </uml:Model>

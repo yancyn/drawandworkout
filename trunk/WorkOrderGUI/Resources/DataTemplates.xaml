@@ -25,9 +25,11 @@
     <g:PageTemplateSelector x:Key="PageTemplateSelector"/>
     <g:WorkItemTemplateSelector x:Key="WorkItemTemplateSelector"/>
     
+    <g:BullnoseManager x:Key="BullnoseManager"/>
+    
 
     <DataTemplate DataType="{x:Type d:LengthItem}">
-        <StackPanel Orientation="Horizontal">
+        <StackPanel x:Name="Container" Orientation="Horizontal" DataContext="{Binding}">
             <TextBlock Width="60" HorizontalAlignment="Right" Margin="0,0,4,0">
                     <TextBlock.Text>
                         <MultiBinding Converter="{StaticResource IndexConverter}">
@@ -37,6 +39,10 @@
                     </TextBlock.Text>
             </TextBlock>
             <TextBox Text="{Binding Length,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox Style="{StaticResource BullnoseSelection}"
+                      ItemsSource="{Binding Source={StaticResource BullnoseManager},Path=Bullnoses}"
+                      SelectedValue="{Binding Type.Model,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
+                      SelectedValuePath="Model"/>
         </StackPanel>
     </DataTemplate>
     <DataTemplate DataType="{x:Type d:RectItem}">
