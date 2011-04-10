@@ -202,6 +202,7 @@ namespace WorkOrderGUI
             w1.Lengths[3].Type = new Bullnose { Model = "dep2" };
             w1.Lengths[4].Type = new Bullnose { Model = "dep2" };
             //w1.Lengths[5].Type = new Bullnose { Model = "dep2" };
+            //w1.Elements.Add(new VerticalLine(string.Empty, 150));
 
             RectItem w2 = new RectItem("RectItem00",stock,6,24);
             w2.Top = 400;

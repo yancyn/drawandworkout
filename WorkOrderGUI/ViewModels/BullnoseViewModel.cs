@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Controls;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace WorkOrderGUI
 {
@@ -80,26 +78,7 @@ namespace WorkOrderGUI
         {
             this.model = model;
             this.name = name;
-            this.content = stackPanel;//DeepClone<StackPanel>(stackPanel);
-        }
-        /// <summary>
-        /// todo: fail to deep clone StackPanel.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="from"></param>
-        /// <returns></returns>
-        /// <see>http://stackoverflow.com/questions/32541/how-can-you-clone-a-wpf-object</see>
-        public static T DeepClone<T>(T from) where T : StackPanel
-        {
-            using (MemoryStream s = new MemoryStream())
-            {
-                BinaryFormatter f = new BinaryFormatter();
-                f.Serialize(s, from);
-                s.Position = 0;
-                object clone = f.Deserialize(s);
-
-                return (T)clone;
-            }
+            this.content = stackPanel;
         }
 
 

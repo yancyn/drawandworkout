@@ -290,6 +290,28 @@ namespace WorkOrderGUI
             throw new NotImplementedException();
         }
         #endregion
+        private bool MatchItemInCollection(ObservableCollection<ShapeItem> collection, WorkItem source, ref int counter)
+        {
+            bool match = false;
+            foreach (ShapeItem item in collection)
+            {
+                if (item is RectItem) counter++;
+                if (item is WorkItem)
+                {
+                    if ((item as WorkItem).Guid.Equals(source.Guid))
+                    {
+                        match = true;
+                        return match;
+                    }
+                }
+
+                //if (!match && item.Elements.Count > 0)
+                //    match = MatchItemInCollection(item.Elements, source, ref counter);
+                if (match == true) return match;
+            }
+
+            return match;
+        }
         private bool MatchItemInCollection(ObservableCollection<WorkItem> collection, WorkItem source, ref int counter)
         {
             bool match = false;
@@ -384,6 +406,58 @@ namespace WorkOrderGUI
             output += "\n" + "Email: " + WorkOrderGUI.Properties.Settings.Default.CompanyProfile.EmailAddresses[0].Address;
 
             return output;
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
+    /// <summary>
+    /// Filter out WorkItem object from WorkItem.Elements collection
+    /// remains real ShapeItem.
+    /// </summary>
+    public class ShapeItemOnlyConverter : IValueConverter
+    {
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is ObservableCollection<ShapeItem>)
+            {
+                ObservableCollection<ShapeItem> output = new ObservableCollection<ShapeItem>();
+                foreach(ShapeItem element in (value as ObservableCollection<ShapeItem>))
+                {
+                    if (!(element is WorkItem)) output.Add(element);
+                }
+
+                return output;
+            }
+
+            throw new NotImplementedException();
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
+    public class WorkItemOnlyConverter : IValueConverter
+    {
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is ObservableCollection<ShapeItem>)
+            {
+                ObservableCollection<ShapeItem> output = new ObservableCollection<ShapeItem>();
+                foreach (ShapeItem element in (value as ObservableCollection<ShapeItem>))
+                {
+                    if ((element is WorkItem)) output.Add(element);
+                }
+
+                return output;
+            }
+
+            throw new NotImplementedException();
         }
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {

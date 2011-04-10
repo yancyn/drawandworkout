@@ -59,12 +59,14 @@
     <Compile Include="BaseAttribute.cs" />
     <Compile Include="BaseElement.cs" />
     <Compile Include="BaseItem.cs" />
-    <Compile Include="Bullnoses.cs" />
+    <Compile Include="BaseWorkItem.cs" />
+    <Compile Include="Bullnose.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="DatabaseObject.cs" />
     <Compile Include="DataModel.designer.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="HorizontalLine.cs" />
     <Compile Include="INotification.cs" />
     <Compile Include="Inventories.cs" />
     <Compile Include="Inventory.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="vCard\vCardWebsiteTypes.cs" />
     <Compile Include="vCard\vCardWriter.cs" />
     <Compile Include="vCard\WarningMessages.Designer.cs" />
+    <Compile Include="VerticalLine.cs" />
     <Compile Include="Warehouse.cs" />
     <Compile Include="Warehouses.cs" />
     <Compile Include="WorkItem.cs" />

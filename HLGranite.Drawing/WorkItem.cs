@@ -30,17 +30,30 @@ namespace HLGranite.Drawing
             this.modelField = model;
             this.materialField = stock;
         }
-        protected void Initialize()
+        private void Initialize()
         {
-            this.createdAtField = base.dateField;
-            this.elementsField = new ObservableCollection<WorkItem>();
+            this.elementsField = new ObservableCollection<ShapeItem>();
+            this.elementsField.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(elementsField_CollectionChanged);
             this.lengthsField = new ObservableCollection<LengthItem>();
             this.leftField = 0;
             this.materialField = new Stock();
             this.modelField = string.Empty;
+            //todo: this.parentField = null;
             this.progressField = 0;
             this.topField = 0;
             this.workedByField = new Employee();
+        }
+
+        private void elementsField_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            //todo: if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            //{
+            //    int count = (sender as ObservableCollection<ShapeItem>).Count;
+            //    if ((sender as ObservableCollection<ShapeItem>)[count - 1] is WorkItem)
+            //    {
+            //        ((sender as ObservableCollection<ShapeItem>)[count - 1] as WorkItem).Parent = this;
+            //    }
+            //}
         }
     }
 }
