@@ -4,7 +4,7 @@
     xmlns:g="clr-namespace:WorkOrderGUI"
     Title="TestWindow" Height="600" Width="800">
     <Canvas>
-        <Rectangle Width="200" Height="80" Stroke="Black" Fill="White" StrokeThickness="1"/>
+        <Rectangle x:Name="Rectangle1" Width="200" Height="80" Stroke="Black" Fill="White" StrokeThickness="1"/>
         <Canvas Canvas.Top="80">
             <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="10" Canvas.Top="6">
                 <Path.RenderTransform>

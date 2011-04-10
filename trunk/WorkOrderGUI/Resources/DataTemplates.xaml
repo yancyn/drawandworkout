@@ -21,107 +21,23 @@
     <g:MarginConverter x:Key="MarginConverter"/>
     <g:CompanyAllInfoConverter x:Key="CompanyAllInfoConverter"/>
     <g:SoldToConverter x:Key="SoldToConverter"/>
+    <g:ShapeItemOnlyConverter x:Key="ShapeItemOnlyConverter"/>
+    <g:WorkItemOnlyConverter x:Key="WorkItemOnlyConverter"/>
     
     <g:PageTemplateSelector x:Key="PageTemplateSelector"/>
     <g:WorkItemTemplateSelector x:Key="WorkItemTemplateSelector"/>
     
     <g:BullnoseManager x:Key="BullnoseManager"/>
+    <!--<ObjectDataProvider x:Key="BullnoseManager" ObjectType="{x:Type g:BullnoseManager}"/>-->
     
-
-    <DataTemplate DataType="{x:Type d:LengthItem}">
-        <StackPanel x:Name="Container" Orientation="Horizontal" DataContext="{Binding}">
-            <TextBlock Width="60" HorizontalAlignment="Right" Margin="0,0,4,0">
-                    <TextBlock.Text>
-                        <MultiBinding Converter="{StaticResource IndexConverter}">
-                            <Binding/>
-                            <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}" Path="ItemsSource"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
-            </TextBlock>
-            <TextBox Text="{Binding Length,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-            <ComboBox Style="{StaticResource BullnoseSelection}"
-                      ItemsSource="{Binding Source={StaticResource BullnoseManager},Path=Bullnoses}"
-                      SelectedValue="{Binding Type.Model,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
-                      SelectedValuePath="Model"/>
-        </StackPanel>
-    </DataTemplate>
-    <DataTemplate DataType="{x:Type d:RectItem}">
-        <Grid Margin="0,0,0,10" Background="Beige">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <TextBlock Grid.Row="0" Grid.Column="0">
-                <TextBlock.Text>
-                    <MultiBinding Converter="{StaticResource LabelingConverter}">
-                        <Binding/>
-                        <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType={x:Type Expander}}" Path="DataContext"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <WrapPanel Grid.Row="0" Grid.Column="1">
-                <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Stocks.Stock}"
-                          SelectedItem="{Binding Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Style="{StaticResource BorderlessButton}" ToolTip="Remove" Margin="4,0,4,0"
-                        Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Expander}},Path=DataContext.RemoveWorkItemCommand}"
-                        CommandParameter="{Binding}">
-                    <Image Height="16" Source="..\Images\cross.png"/>
-                </Button>
-            </WrapPanel>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Size" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                <TextBox Width="50" Text="{Binding Width,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock Text="×" Margin="4,0,4,0"/>
-                <TextBox Width="50" Text="{Binding Height,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-            </StackPanel>
-        </Grid>
-    </DataTemplate>
-    <DataTemplate DataType="{x:Type d:WorkItem}">
-        <Grid Margin="0,0,0,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <!--<TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding .,Converter={StaticResource IndexConverter}}"/>-->
-            <WrapPanel Grid.Row="0" Grid.Column="1">
-                <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Stocks.Stock}"
-                          SelectedItem="{Binding Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Style="{StaticResource BorderlessButton}" ToolTip="Remove" Margin="4,0,4,0"
-                        Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Grid},AncestorLevel=2},Path=DataContext.Item.WorkOrders[0].RemoveWorkItemCommand}"
-                        CommandParameter="{Binding}">
-                    <Image Height="16" Source="..\Images\cross.png"/>
-                </Button>
-            </WrapPanel>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Size" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                <TextBox Width="50" Text="{Binding MaxWidth,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock Text="×" Margin="4,0,4,0"/>
-                <TextBox Width="50" Text="{Binding MaxHeight,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-                <ItemsControl ItemsSource="{Binding Elements,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <ItemsControl ItemsSource="{Binding Lengths}"/>
-            </StackPanel>
-        </Grid>
-    </DataTemplate>
-
 
     <DataTemplate x:Key="LShapeItem04">
         <Canvas>
+            <Canvas.Resources>
+                <DataTemplate DataType="{x:Type d:VerticalLine}">
+                    <Line X1="{Binding Left}" Y1="0" X2="{Binding Left}" Y2="120" Stroke="Black" StrokeThickness="1" StrokeDashArray="2,4"/>
+                </DataTemplate>
+            </Canvas.Resources>
             <Canvas.Margin>
                 <MultiBinding Converter="{StaticResource MarginConverter}">
                     <Binding Path="Left"/>
@@ -215,6 +131,7 @@
                 </Path>
                 <TextBlock Margin="150,0,0,0" Canvas.Left="-20" Style="{DynamicResource MeasurementStyle}" Text="{Binding MaxWidth,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
             </Canvas>
+            <ItemsControl ItemsSource="{Binding Elements,Converter={StaticResource ShapeItemOnlyConverter}}"/>
         </Canvas>
     </DataTemplate>
     <DataTemplate x:Key="RectItem00">
@@ -269,7 +186,101 @@
                 <TextBlock Margin="90,0,0,0" Style="{DynamicResource MeasurementStyle}" TextAlignment="Center" Text="{Binding Width,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
             </Canvas>
         </Canvas>
-    </DataTemplate>    
+    </DataTemplate>
+    
+    
+    <DataTemplate DataType="{x:Type d:LengthItem}">
+        <StackPanel x:Name="Container" Orientation="Horizontal" DataContext="{Binding}">
+            <TextBlock Width="60" HorizontalAlignment="Right" Margin="0,0,4,0">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource IndexConverter}">
+                            <Binding/>
+                            <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}" Path="ItemsSource"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+            </TextBlock>
+            <TextBox Text="{Binding Length,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox Style="{StaticResource BullnoseSelection}"
+                      ItemsSource="{Binding Source={StaticResource BullnoseManager},Path=Bullnoses}"
+                      SelectedValue="{Binding Type.Model,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
+                      SelectedValuePath="Model"/>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type d:RectItem}">
+        <Grid Margin="0,0,0,10" Background="Beige">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource LabelingConverter}">
+                        <Binding/>
+                        <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType={x:Type Expander}}" Path="DataContext"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <ComboBox Grid.Row="0" Grid.Column="1"
+                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Stocks.Stock}"
+                      SelectedItem="{Binding Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Size" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                <TextBox Width="50" Text="{Binding Width,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="×" Margin="4,0,4,0"/>
+                <TextBox Width="50" Text="{Binding Height,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Style="{StaticResource BorderlessButton}" ToolTip="Split" Margin="4,0,4,0">
+                    <Image Height="16" Source="..\Images\add.png"/>
+                </Button>
+                <Button Style="{StaticResource BorderlessButton}" ToolTip="Remove" Margin="4,0,4,0"
+                        Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Expander}},Path=DataContext.RemoveWorkItemCommand}"
+                        CommandParameter="{Binding}">
+                    <Image Height="16" Source="..\Images\cross.png"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type d:WorkItem}">
+        <Grid Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--<TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding .,Converter={StaticResource IndexConverter}}"/>-->
+            <WrapPanel Grid.Row="0" Grid.Column="1">
+                <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Stocks.Stock}"
+                          SelectedItem="{Binding Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Style="{StaticResource BorderlessButton}" ToolTip="Remove" Margin="4,0,4,0"
+                        Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Grid},AncestorLevel=2},Path=DataContext.Item.WorkOrders[0].RemoveWorkItemCommand}"
+                        CommandParameter="{Binding}">
+                    <Image Height="16" Source="..\Images\cross.png"/>
+                </Button>
+            </WrapPanel>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Size" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                <TextBox Width="50" Text="{Binding MaxWidth,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="×" Margin="4,0,4,0"/>
+                <TextBox Width="50" Text="{Binding MaxHeight,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                <ItemsControl ItemsSource="{Binding Elements,Converter={StaticResource WorkItemOnlyConverter},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <ItemsControl ItemsSource="{Binding Lengths}"/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
 
 
     <DataTemplate x:Key="ProjectTemplate">
@@ -664,4 +675,5 @@
         </DockPanel>
       </ScrollViewer>
     </DataTemplate>
+    
 </ResourceDictionary>

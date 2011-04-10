@@ -360,22 +360,135 @@ namespace HLGranite.Drawing
         }
     }
 
-    public partial class WorkItem : BaseItem
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(WorkItem))]
+    public partial class BaseWorkItem : ShapeItem
     {
 
-        protected string modelField;
+        protected System.Guid guidField;
 
-        protected System.DateTime createdAtField;
+        protected DateTime dateField;
+
+        protected string notesField;
+
+        protected Unit uomField;
+
+        protected double widthField;
+
+        protected double heightField;
+
+        protected ObservableCollection<Object> tagsField;
+
+        public System.Guid Guid
+        {
+            get
+            {
+                return this.guidField;
+            }
+            set
+            {
+                if ((this.guidField != null))
+                {
+                    if ((guidField.Equals(value) != true))
+                    {
+                        this.guidField = value;
+                        this.OnPropertyChanged("Guid");
+                    }
+                }
+                else
+                {
+                    this.guidField = value;
+                    this.OnPropertyChanged("Guid");
+                }
+            }
+        }
+
+        public string Notes
+        {
+            get
+            {
+                return this.notesField;
+            }
+            set
+            {
+                if ((this.notesField != null))
+                {
+                    if ((notesField.Equals(value) != true))
+                    {
+                        this.notesField = value;
+                        this.OnPropertyChanged("Notes");
+                    }
+                }
+                else
+                {
+                    this.notesField = value;
+                    this.OnPropertyChanged("Notes");
+                }
+            }
+        }
+
+        public Unit Uom
+        {
+            get
+            {
+                return this.uomField;
+            }
+            set
+            {
+                if ((uomField.Equals(value) != true))
+                {
+                    this.uomField = value;
+                    this.OnPropertyChanged("Uom");
+                }
+            }
+        }
+
+        public ObservableCollection<Object> Tags
+        {
+            get
+            {
+                return this.tagsField;
+            }
+            set
+            {
+                if ((this.tagsField != null))
+                {
+                    if ((tagsField.Equals(value) != true))
+                    {
+                        this.tagsField = value;
+                        this.OnPropertyChanged("Tag");
+                    }
+                }
+                else
+                {
+                    this.tagsField = value;
+                    this.OnPropertyChanged("Tag");
+                }
+            }
+        }
+
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+
+        public virtual void OnPropertyChanged(string propertyName)
+        {
+            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
+            if ((handler != null))
+            {
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PolygonItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(RectItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EllipseItem))]
+    public partial class WorkItem : BaseWorkItem
+    {
 
         protected Employee workedByField;
 
-        protected double leftField;
-
-        protected double topField;
-
         protected Stock materialField;
 
-        protected ObservableCollection<WorkItem> elementsField;
+        protected ObservableCollection<ShapeItem> elementsField;
 
         protected ObservableCollection<LengthItem> lengthsField;
 
@@ -385,38 +498,19 @@ namespace HLGranite.Drawing
 
         protected ShapeItem shapeItemField;
 
-        public string Model
-        {
-            get { return this.modelField; }
-            set
-            {
-                if ((this.modelField != null))
-                {
-                    if ((modelField.Equals(value) != true))
-                    {
-                        this.modelField = value;
-                        this.OnPropertyChanged("Model");
-                    }
-                }
-                else
-                {
-                    this.modelField = value;
-                    this.OnPropertyChanged("Model");
-                }
-            }
-        }
+        //protected WorkItem parentField;
 
         public System.DateTime CreatedAt
         {
             get
             {
-                return this.createdAtField;
+                return this.dateField;
             }
             set
             {
-                if ((createdAtField.Equals(value) != true))
+                if ((dateField.Equals(value) != true))
                 {
-                    this.createdAtField = value;
+                    this.dateField = value;
                     this.OnPropertyChanged("CreatedAt");
                 }
             }
@@ -478,38 +572,6 @@ namespace HLGranite.Drawing
             }
         }
 
-        public double Left
-        {
-            get
-            {
-                return this.leftField;
-            }
-            set
-            {
-                if ((leftField.Equals(value) != true))
-                {
-                    this.leftField = value;
-                    this.OnPropertyChanged("Left");
-                }
-            }
-        }
-
-        public double Top
-        {
-            get
-            {
-                return this.topField;
-            }
-            set
-            {
-                if ((topField.Equals(value) != true))
-                {
-                    this.topField = value;
-                    this.OnPropertyChanged("Top");
-                }
-            }
-        }
-
         public Stock Material
         {
             get
@@ -534,7 +596,7 @@ namespace HLGranite.Drawing
             }
         }
 
-        public ObservableCollection<WorkItem> Elements
+        public ObservableCollection<ShapeItem> Elements
         {
             get
             {
@@ -625,21 +687,29 @@ namespace HLGranite.Drawing
             }
         }
 
-        public ShapeItem ShapeItem
-        {
-            get
-            {
-                return this.shapeItemField;
-            }
-            set
-            {
-                if ((statusField.Equals(value) != true))
-                {
-                    this.shapeItemField = value;
-                    this.OnPropertyChanged("ShapeItem");
-                }
-            }
-        }
+        //todo: public WorkItem Parent
+        //{
+        //    get
+        //    {
+        //        return this.parentField;
+        //    }
+        //    set
+        //    {
+        //        if ((this.parentField != null))
+        //        {
+        //            if ((parentField.Equals(value) != true))
+        //            {
+        //                this.parentField = value;
+        //                this.OnPropertyChanged("Parent");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            this.parentField = value;
+        //            this.OnPropertyChanged("Parent");
+        //        }
+        //    }
+        //}
     }
 
     public partial class Employee : User { }
@@ -702,38 +772,67 @@ namespace HLGranite.Drawing
 
     public partial class Customer : User { }
 
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(RectItem))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PolygonItem))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ZShapeItem))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(UShapeItem))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TriangleItem))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(LShapeItem))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EllipseItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(VerticalLine))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(HorizontalLine))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bullnose))]
     public partial class ShapeItem : System.ComponentModel.INotifyPropertyChanged
     {
 
-        private ObservableCollection<ShapeItem> childField;
+        protected double topField;
 
-        public ObservableCollection<ShapeItem> Child
+        protected double leftField;
+
+        protected string modelField;
+
+        public string Model
         {
             get
             {
-                return this.childField;
+                return this.modelField;
             }
             set
             {
-                if ((this.childField != null))
+                if (this.modelField != null)
                 {
-                    if ((childField.Equals(value) != true))
+                    if ((modelField.Equals(value) != true))
                     {
-                        this.childField = value;
-                        this.OnPropertyChanged("Child");
+                        this.modelField = value;
+                        this.OnPropertyChanged("Model");
                     }
                 }
                 else
                 {
-                    this.childField = value;
-                    this.OnPropertyChanged("Child");
+                    this.modelField = value;
+                    this.OnPropertyChanged("Model");
+                }
+            }
+        }
+
+        public double Top
+        {
+            get { return this.topField; }
+            set
+            {
+                if (this.topField.Equals(value) != true)
+                {
+                    this.topField = value;
+                    this.OnPropertyChanged("Top");
+                }
+            }
+        }
+
+        public double Left
+        {
+            get
+            {
+                return this.leftField;
+            }
+            set
+            {
+                if ((leftField.Equals(value) != true))
+                {
+                    this.leftField = value;
+                    this.OnPropertyChanged("Left");
                 }
             }
         }
@@ -749,6 +848,12 @@ namespace HLGranite.Drawing
             }
         }
     }
+
+    public partial class VerticalLine : ShapeItem { }
+    
+    public partial class HorizontalLine : ShapeItem { }
+
+    public partial class LabelShape : ShapeItem { }
 
     public partial class RectItem : WorkItem //, System.ComponentModel.INotifyPropertyChanged
     {
@@ -851,8 +956,12 @@ namespace HLGranite.Drawing
         }
     }
 
-    public partial class Bullnose : WorkItem
+    public partial class Bullnose : ShapeItem
     {
+
+        private double widthField;
+
+        private double heightField;
 
         public double Width
         {
@@ -1454,7 +1563,6 @@ namespace HLGranite.Drawing
 
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Warehouses))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Stocks))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bullnoses))]
     //TODO: [System.Xml.Serialization.XmlIncludeAttribute(typeof(Users))]
     //TODO: [System.Xml.Serialization.XmlIncludeAttribute(typeof(Projects))]
     //TODO: [System.Xml.Serialization.XmlIncludeAttribute(typeof(InventoryWIPs))]

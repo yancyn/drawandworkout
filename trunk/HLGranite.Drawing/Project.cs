@@ -176,6 +176,7 @@ namespace HLGranite.Drawing
             this.fileName = this.guidField.ToString();
             //WriteToXaml(sender);
             SaveToFile();
+            System.Diagnostics.Debug.WriteLine("Save project " + this.guidField + " successfully");
         }
         /// <summary>
         /// Write to xaml file.
