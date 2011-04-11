@@ -66,6 +66,7 @@ namespace HLGranite.Drawing
             this.elementsField = new ObservableCollection<ShapeItem>();
             this.elementsField.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(elementsField_CollectionChanged);
             this.lengthsField = new ObservableCollection<LengthItem>();
+            this.lengthsField.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(lengthsField_CollectionChanged);
             this.leftField = 0;
             this.materialField = new Stock();
             this.modelField = string.Empty;
@@ -76,6 +77,15 @@ namespace HLGranite.Drawing
             //this.uomField = (Unit)Enum.Parse(typeof(Unit), "British");
             //todo: this.uomField = (Unit)System.Configuration.ConfigurationSettings.AppSettings["uom"].ToString();// Unit.British;
         }
+
+        protected void lengthsField_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            {
+                int count = (sender as ObservableCollection<LengthItem>).Count;
+                ((sender as ObservableCollection<LengthItem>)[count - 1] as LengthItem).PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(Type_PropertyChanged);
+            }
+        }
         private void elementsField_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
@@ -84,6 +94,21 @@ namespace HLGranite.Drawing
                 if ((sender as ObservableCollection<ShapeItem>)[count - 1] is WorkItem)
                 {
                     ((sender as ObservableCollection<ShapeItem>)[count - 1] as WorkItem).Parent = this;
+                }
+            }
+        }
+        protected void Type_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Type_PropertyChanged");
+            LengthItem source = (sender as LengthItem);
+            if (source.Type.Model.Length > 0)
+            {
+                bool start = false;
+                foreach (LengthItem item in this.lengthsField)
+                {
+                    if (start) item.Type = source.Type;
+                    if (item.Length == source.Length)//todo: stronger checking for LengthItem collection
+                        start = true;
                 }
             }
         }

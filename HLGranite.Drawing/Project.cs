@@ -165,18 +165,20 @@ namespace HLGranite.Drawing
         /// Save into database together with the canvas drawing.
         /// </summary>
         /// <param name="sender">Canvas, Panel or UIElement object.</param>
-        public void Save(object sender)
+        public bool Save(object sender)
         {
             this.fileName = this.guidField.ToString();
             WriteToXaml(sender);
             SaveToFile();
+            return true;
         }
-        public void Save()
+        public bool Save()
         {
             this.fileName = this.guidField.ToString();
             //WriteToXaml(sender);
             SaveToFile();
             System.Diagnostics.Debug.WriteLine("Save project " + this.guidField + " successfully");
+            return true;
         }
         /// <summary>
         /// Write to xaml file.

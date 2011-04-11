@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 using HLGranite.Drawing;
 using Thought.vCards;
@@ -334,7 +335,10 @@ namespace WorkOrderGUI
         public void Execute(object parameter)
         {
             if (parameter is Project)
-                (parameter as Project).Save();
+            {
+                bool success = (parameter as Project).Save();
+                if (success) MessageBox.Show("Save successfully.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
             else
                 throw new NotImplementedException("Not supported type!");
         }
