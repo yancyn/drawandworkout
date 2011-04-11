@@ -215,16 +215,26 @@
         <Setter Property="BorderThickness" Value="0"/>
         <!--<Setter Property="Placement" Value="Absolute"/>-->
     </Style>
+    
+    <!-- style the combobox for bullnose dropdown to display graphical image -->
     <Style x:Key="BullnoseSelection" TargetType="{x:Type ComboBox}">
-        <Setter Property="Width" Value="60"/>
-        <Setter Property="Height" Value="18"/>
+        <!--<Setter Property="Width" Value="60"/>-->
+        <!--<Setter Property="Height" Value="18"/>-->
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <ContentPresenter Content="{Binding Model}"/>
+                    <ContentPresenter Content="{Binding Name}"/><!-- Model -->
                     <!--<ContentPresenter Content="{Binding Content}"/>--><!-- todo: use new instance instead-->
                 </DataTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    
+    <!-- highlight a circle at each lenght of geometry object which maintains bullnose -->
+    <Style x:Key="BullnoseCircle" TargetType="{x:Type Ellipse}">
+        <Setter Property="Width" Value="16"/>
+        <Setter Property="Height" Value="16"/>
+        <Setter Property="Stroke" Value="Gray"/>
+        <Setter Property="StrokeThickness" Value="1"/>
     </Style>
 </ResourceDictionary>

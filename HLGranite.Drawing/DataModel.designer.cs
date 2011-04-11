@@ -498,8 +498,6 @@ namespace HLGranite.Drawing
 
         protected ShapeItem shapeItemField;
 
-        //protected WorkItem parentField;
-
         public System.DateTime CreatedAt
         {
             get
@@ -686,30 +684,6 @@ namespace HLGranite.Drawing
                 }
             }
         }
-
-        //todo: public WorkItem Parent
-        //{
-        //    get
-        //    {
-        //        return this.parentField;
-        //    }
-        //    set
-        //    {
-        //        if ((this.parentField != null))
-        //        {
-        //            if ((parentField.Equals(value) != true))
-        //            {
-        //                this.parentField = value;
-        //                this.OnPropertyChanged("Parent");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            this.parentField = value;
-        //            this.OnPropertyChanged("Parent");
-        //        }
-        //    }
-        //}
     }
 
     public partial class Employee : User { }
