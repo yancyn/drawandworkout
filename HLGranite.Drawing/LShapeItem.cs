@@ -10,6 +10,11 @@ namespace HLGranite.Drawing
         public LShapeItem()
             : base()
         {
+            for (int i = 0; i < 2; i++)
+                this.elementsField.Add(new RectItem("RectItem00", null, 0, 0));
+
+            for (int i = 0; i < 6; i++)
+                this.lengthsField.Add(new LengthItem());
         }
         /// <summary>
         /// Recommended constructor.
@@ -25,12 +30,12 @@ namespace HLGranite.Drawing
             this.elementsField.Add(new RectItem("RectItem00", stock, width, length));
             this.elementsField.Add(new RectItem("RectItem00", stock, length, height));
 
-            this.lengthsField.Add(new LengthItem { Length = height });
-            this.lengthsField.Add(new LengthItem { Length = length });
-            this.lengthsField.Add(new LengthItem { Length = height - length });
-            this.lengthsField.Add(new LengthItem { Length = width - length });
-            this.lengthsField.Add(new LengthItem { Length = length });
-            this.lengthsField.Add(new LengthItem { Length = width });
+            this.lengthsField.Add(new LengthItem(height));
+            this.lengthsField.Add(new LengthItem(length));
+            this.lengthsField.Add(new LengthItem(height - length));
+            this.lengthsField.Add(new LengthItem(width - length));
+            this.lengthsField.Add(new LengthItem(length));
+            this.lengthsField.Add(new LengthItem(width));
         }
     }
 }

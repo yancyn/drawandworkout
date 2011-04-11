@@ -10,41 +10,27 @@ using System.Windows.Markup;
 using System.IO;
 using System.Xml;
 using System.Runtime.Serialization.Formatters.Binary;
+using HLGranite.Drawing;
 
 namespace WorkOrderGUI
 {
     public class BullnoseManager : System.ComponentModel.INotifyPropertyChanged
     {
         #region Properties
-        private ObservableCollection<BullnoseViewModel> bullnoses;
+        private static ObservableCollection<BullnoseViewModel> bullnoses;
         /// <summary>
         /// Gets bullnoses collection in graphics content.
         /// </summary>
-        public ObservableCollection<BullnoseViewModel> Bullnoses
+        public static ObservableCollection<BullnoseViewModel> Bullnoses
         {
-            get { return this.bullnoses; }
-            set
-            {
-                if (this.bullnoses != null)
-                {
-                    if (this.bullnoses.Equals(value) != true)
-                    {
-                        this.bullnoses = value;
-                        this.OnPropertyChanged("Bullnoses");
-                    }
-                }
-                else
-                {
-                    this.bullnoses = value;
-                    this.OnPropertyChanged("Bullnoses");
-                }
-            }
+            get { return bullnoses; }
+            set { bullnoses = value; }
         }
         #endregion
 
         public BullnoseManager()
         {
-            this.bullnoses = new ObservableCollection<BullnoseViewModel>();
+            bullnoses = new ObservableCollection<BullnoseViewModel>();
             Initialize();
         }
 
@@ -54,27 +40,34 @@ namespace WorkOrderGUI
             StreamReader reader = new StreamReader("Bullnoses.xaml");
             DependencyObject obj = XamlReader.Load(reader.BaseStream) as DependencyObject;
             Panel panel = ((System.Windows.Controls.Panel)((obj as Window).Content));
-            foreach (UIElement element in panel.Children)
+
+            /*foreach (UIElement element in panel.Children)
             {
                 if (element is StackPanel)
                 {
                     StackPanel item = element as StackPanel;
                     string model = (item.Name == null) ? string.Empty : item.Name;
                     string name = (item.Name == null) ? string.Empty : item.Name;
+                    Bullnose bullnose = new Bullnose(model);
                     //todo: get the name by get rid of number at behind
-                    this.bullnoses.Add(new BullnoseViewModel(model, name, DeepClone(item)));
+                    bullnoses.Add(new BullnoseViewModel(bullnose, DeepClone(item)));
                 }
-            }
-            /*for (int i = panel.Children.Count - 1; i >= 0; i--)
+            }*/
+
+
+            for (int i = panel.Children.Count - 1; i >= 0; i--)
             {
                 if (panel.Children[i] is StackPanel)
                 {
                     StackPanel item = panel.Children[i] as StackPanel;
-                    this.bullnoses.Insert(0, new BullnoseViewModel(item.Name, item.Name, item));
+                    string model = (item.Name == null) ? string.Empty : item.Name;
+                    string name = (item.Name == null) ? string.Empty : item.Name;
+                    Bullnose bullnose = new Bullnose(model);
+                    bullnoses.Insert(0,new BullnoseViewModel(bullnose, DeepClone(item)));
                 }
                 panel.Children.RemoveAt(i);
             }
-            */
+
 
             (obj as Window).Close();
         }

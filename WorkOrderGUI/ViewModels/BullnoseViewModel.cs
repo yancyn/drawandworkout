@@ -3,51 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Controls;
+using HLGranite.Drawing;
 
 namespace WorkOrderGUI
 {
     public class BullnoseViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         #region Properties
-        private string model;
-        public string Model
+        private Bullnose bullnose;
+        /// <summary>
+        /// Gets or sets bullnose object.
+        /// </summary>
+        public Bullnose Bullnose
         {
-            get { return this.model; }
+            get { return this.bullnose; }
             set
             {
-                if (this.model != null)
+                if (this.bullnose != null)
                 {
-                    if (this.model.Equals(value) != true)
+                    if (this.bullnose.Equals(value) != true)
                     {
-                        this.model = value;
-                        this.OnPropertyChanged("Model");
+                        this.bullnose = value;
+                        this.OnPropertyChanged("Bullnose");
                     }
                 }
                 else
                 {
-                    this.model = value;
-                    this.OnPropertyChanged("Model");
-                }
-            }
-        }
-        private string name;
-        public string Name
-        {
-            get { return this.name; }
-            set
-            {
-                if (this.name != null)
-                {
-                    if (this.name.Equals(value) != true)
-                    {
-                        this.name = value;
-                        this.OnPropertyChanged("Name");
-                    }
-                }
-                else
-                {
-                    this.name = value;
-                    this.OnPropertyChanged("Name");
+                    this.bullnose = value;
+                    this.OnPropertyChanged("Bullnose");
                 }
             }
         }
@@ -74,10 +57,9 @@ namespace WorkOrderGUI
         }
         #endregion
 
-        public BullnoseViewModel(string model, string name, StackPanel stackPanel)
+        public BullnoseViewModel(Bullnose bullnose, StackPanel stackPanel)
         {
-            this.model = model;
-            this.name = name;
+            this.bullnose = bullnose;
             this.content = stackPanel;
         }
 

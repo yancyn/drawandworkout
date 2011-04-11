@@ -7,6 +7,13 @@ namespace HLGranite.Drawing
 {
     public partial class Bullnose
     {
-        public Bullnose() { }
+        public Bullnose() : base() { }
+        public Bullnose(string model) : base(model) { }
+        public Bullnose(string model, double width, double height)
+            : base(model)
+        {
+            this.widthField = width;
+            this.heightField = height;
+        }
     }
 }
