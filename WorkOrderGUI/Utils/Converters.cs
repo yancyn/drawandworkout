@@ -459,6 +459,7 @@ namespace WorkOrderGUI
                     if (!(element is WorkItem)) output.Add(element);
                 }
 
+                System.Diagnostics.Debug.WriteLine("ShapeItemOnlyConverter: " + output.Count);
                 return output;
             }
 
@@ -483,6 +484,7 @@ namespace WorkOrderGUI
                     if ((element is WorkItem)) output.Add(element);
                 }
 
+                System.Diagnostics.Debug.WriteLine("WorkItemOnlyConverter: " + output.Count);
                 return output;
             }
 
@@ -523,6 +525,25 @@ namespace WorkOrderGUI
             }
 
             throw new NotImplementedException("Not supported type");
+        }
+        #endregion
+    }
+    public class ParentOrChildSelector : IValueConverter
+    {
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is WorkItem)
+            {
+                return ((value as WorkItem).Parent == null)
+                    ? (value as WorkItem).AddElementCommand : (value as WorkItem).Parent.AddElementCommand;
+            }
+
+            throw new NotImplementedException("Not supported type.");
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

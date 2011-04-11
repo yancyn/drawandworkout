@@ -177,26 +177,29 @@
     </xsd:complexContent>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <!--  Bullnose  -->
+  <!--  BaseWorkItem  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <xsd:complexType name="Bullnose">
+  <xsd:complexType name="BaseWorkItem">
     <xsd:complexContent>
-      <xsd:extension base="WorkItem">
+      <xsd:extension base="ShapeItem">
         <xsd:sequence>
-          <xsd:element name="Width" type="xsd:double"/>
-          <xsd:element name="Height" type="xsd:double"/>
-        </xsd:sequence>
+	      <xsd:element name="Guid" type="ms:guid"/>
+	      <xsd:element name="Notes" type="xsd:string"/>
+	      <xsd:element name="Tags" type="Object" minOccurs="0" maxOccurs="unbounded"/>
+	      <xsd:element name="Uom" type="Unit"/>
+       </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <!--  Bullnoses  -->
+  <!--  Bullnose  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <xsd:complexType name="Bullnoses">
+  <xsd:complexType name="Bullnose">
     <xsd:complexContent>
-      <xsd:extension base="DatabaseObject">
+      <xsd:extension base="ShapeItem">
         <xsd:sequence>
-          <xsd:element ref="Bullnose" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="Width" type="xsd:double"/>
+          <xsd:element name="Height" type="xsd:double"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -237,6 +240,14 @@
   <xsd:complexType name="Employee">
     <xsd:complexContent>
       <xsd:extension base="User"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--  HorizontalLine  -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:complexType name="HorizontalLine">
+    <xsd:complexContent>
+      <xsd:extension base="ShapeItem"/>
     </xsd:complexContent>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -317,6 +328,14 @@
     </xsd:complexContent>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--  LabelShape  -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:complexType name="LabelShape">
+    <xsd:complexContent>
+      <xsd:extension base="ShapeItem"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  LShapeItem  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="LShapeItem">
@@ -340,7 +359,11 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  PolygonItem  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <xsd:complexType name="PolygonItem"/>
+  <xsd:complexType name="PolygonItem">
+    <xsd:complexContent>
+      <xsd:extension base="WorkItem"/>
+    </xsd:complexContent>
+  </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  Project  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -416,7 +439,7 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="RectItem">
     <xsd:complexContent>
-      <xsd:extension base="ShapeItem">
+      <xsd:extension base="WorkItem">
         <xsd:sequence>
           <xsd:element name="Width" type="xsd:double"/>
           <xsd:element name="Height" type="xsd:double"/>
@@ -425,20 +448,14 @@
     </xsd:complexContent>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <!--  Shape  -->
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <xsd:complexType name="Shape"/>
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  ShapeItem  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="ShapeItem">
-    <xsd:complexContent>
-      <xsd:extension base="Shape">
-        <xsd:sequence>
-          <xsd:element name="Child" type="ShapeItem" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:extension>
-    </xsd:complexContent>
+    <xsd:sequence>
+		<xsd:element name="Model" type="xsd:string"/>
+		<xsd:element name="Top" type="xsd:double"/>
+		<xsd:element name="Left" type="xsd:double"/>
+    </xsd:sequence>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  Stock  -->
@@ -533,14 +550,10 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="WorkItem">
     <xsd:complexContent>
-      <xsd:extension base="BaseItem">
+      <xsd:extension base="BaseWorkItem">
         <xsd:sequence>
-          <xsd:element name="Model" type="xsd:string"/>
           <xsd:element name="CreatedAt" type="xsd:dateTime"/>
           <xsd:element name="WorkedBy" type="Employee"/>
-          <xsd:element name="ShapeItem" type="ShapeItem"/>
-          <xsd:element name="Left" type="xsd:int"/>
-          <xsd:element name="Top" type="xsd:int"/>
           <xsd:element name="MaxWidth" type="xsd:double"/>
           <xsd:element name="MaxHeight" type="xsd:double"/>
           <xsd:element name="Material" type="Stock"/>
@@ -578,6 +591,14 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="vCardDeliveryAddressCollection"/>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--  VerticalLine  -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:complexType name="VerticalLine">
+    <xsd:complexContent>
+      <xsd:extension base="ShapeItem"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!--  ZShapeItem  -->
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="ZShapeItem">
@@ -594,17 +615,19 @@
   <xsd:element name="BaseAttribute" type="BaseAttribute"/>
   <xsd:element name="BaseElement" type="BaseElement"/>
   <xsd:element name="BaseItem" type="BaseItem"/>
+  <xsd:element name="BaseWorkItem" type="BaseWorkItem"/>
   <xsd:element name="Bullnose" type="Bullnose"/>
-  <xsd:element name="Bullnoses" type="Bullnoses"/>
   <xsd:element name="Customer" type="Customer"/>
   <xsd:element name="DatabaseObject" type="DatabaseObject"/>
   <xsd:element name="EllipseItem" type="EllipseItem"/>
   <xsd:element name="Employee" type="Employee"/>
+  <xsd:element name="HorizontalLine" type="HorizontalLine"/>
   <xsd:element name="Inventories" type="Inventories"/>
   <xsd:element name="Inventory" type="Inventory"/>
   <xsd:element name="InventoryWIP" type="InventoryWIP"/>
   <xsd:element name="InventoryWIPs" type="InventoryWIPs"/>
   <xsd:element name="InventoryManager" type="InventoryManager"/>
+  <xsd:element name="LabelShape" type="LabelShape"/>
   <xsd:element name="LShapeItem" type="LShapeItem"/>
   <xsd:element name="LengthItem" type="LengthItem"/>
   <xsd:element name="Object" type="Object"/>
@@ -612,7 +635,6 @@
   <xsd:element name="Project" type="Project"/>
   <xsd:element name="Projects" type="Projects"/>
   <xsd:element name="RectItem" type="RectItem"/>
-  <xsd:element name="Shape" type="Shape"/>
   <xsd:element name="ShapeItem" type="ShapeItem"/>
   <xsd:element name="Stock" type="Stock"/>
   <xsd:element name="Stocks" type="Stocks"/>
@@ -623,6 +645,7 @@
   <xsd:element name="Users" type="Users"/>
   <xsd:element name="vCard" type="vCard"/>
   <xsd:element name="vCardDeliveryAddressCollection" type="vCardDeliveryAddressCollection"/>
+  <xsd:element name="VerticalLine" type="VerticalLine"/>
   <xsd:element name="Warehouse" type="Warehouse"/>
   <xsd:element name="Warehouses" type="Warehouses"/>
   <xsd:element name="WorkItem" type="WorkItem"/>

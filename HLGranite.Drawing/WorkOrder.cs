@@ -80,10 +80,39 @@ namespace HLGranite.Drawing
                     this.Items.Remove(this.lastSelectedItem);
             }
         }
-        public void RemoveItem(WorkItem item)
+        public void RemoveItem(WorkItem sender)
         {
-            if (this.Items.Contains(item))
-                this.Items.Remove(item);
+            bool match = false;
+            //if (this.Items.Contains(sender))
+            for (int i = this.Items.Count - 1; i >= 0; i--)
+            {
+                if (match) return;
+                if (this.Items[i].Guid.Equals(sender.Guid))
+                {
+                    this.Items.RemoveAt(i);
+                    return;
+                }
+                match = MatchElement(this.Items[i].Elements, sender);
+            }
+        }
+        private bool MatchElement(ObservableCollection<ShapeItem> source, WorkItem sender)
+        {
+            bool match = false;
+            for (int i = source.Count - 1; i >= 0; i--)
+            {
+                if (match) return true;
+                if (source[i] is WorkItem)
+                {
+                    if ((source[i] as WorkItem).Guid.Equals(sender.Guid))
+                    {
+                        source.RemoveAt(i);
+                        return true;
+                    }
+                }
+                match = MatchElement((source[i] as WorkItem).Elements, sender);
+            }
+
+            return match;
         }
         #endregion
     }

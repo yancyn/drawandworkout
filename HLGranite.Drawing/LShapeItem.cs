@@ -10,11 +10,12 @@ namespace HLGranite.Drawing
         public LShapeItem()
             : base()
         {
-            for (int i = 0; i < 2; i++)
-                this.elementsField.Add(new RectItem("RectItem00", null, 0, 0));
-
-            for (int i = 0; i < 6; i++)
-                this.lengthsField.Add(new LengthItem());
+            Initialize();
+        }
+        public LShapeItem(string model)
+            : base(model)
+        {
+            Initialize();
         }
         /// <summary>
         /// Recommended constructor.
@@ -26,16 +27,26 @@ namespace HLGranite.Drawing
         public LShapeItem(string model, Stock stock, double width, double height)
             : base(model, stock, width, height)
         {
+            Initialize();
             double length = 24;//a normal default kitchen top length
-            this.elementsField.Add(new RectItem("RectItem00", stock, width, length));
-            this.elementsField.Add(new RectItem("RectItem00", stock, length, height));
+            this.elementsField[0] = new RectItem("RectItem00", stock, width, length);
+            this.elementsField[1] = new RectItem("RectItem00", stock, length, height);
 
-            this.lengthsField.Add(new LengthItem(height));
-            this.lengthsField.Add(new LengthItem(length));
-            this.lengthsField.Add(new LengthItem(height - length));
-            this.lengthsField.Add(new LengthItem(width - length));
-            this.lengthsField.Add(new LengthItem(length));
-            this.lengthsField.Add(new LengthItem(width));
+            this.lengthsField[0] = new LengthItem(height);
+            this.lengthsField[1] = new LengthItem(length);
+            this.lengthsField[2] = new LengthItem(height - length);
+            this.lengthsField[3] = new LengthItem(width - length);
+            this.lengthsField[4] = new LengthItem(length);
+            this.lengthsField[5] = new LengthItem(width);
+        }
+        private void Initialize()
+        {
+            base.numberOfSides = 6;
+            for (int i = 0; i < 2; i++)
+                this.elementsField.Add(new RectItem("RectItem00", null, 0, 0));
+
+            for (int i = 0; i < numberOfSides; i++)
+                this.lengthsField.Add(new LengthItem());
         }
     }
 }

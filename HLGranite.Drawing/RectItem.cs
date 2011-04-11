@@ -13,8 +13,17 @@ namespace HLGranite.Drawing
         public RectItem()
             : base()
         {
-            for (int i = 0; i < 4; i++)
-                this.lengthsField.Add(new LengthItem());
+            Initialize();
+        }
+        public RectItem(string model)
+            : base(model)
+        {
+            Initialize();
+        }
+        public RectItem(Stock stock)
+            : base(stock)
+        {
+            Initialize();
         }
         /// <summary>
         /// Recommended constructor.
@@ -26,10 +35,18 @@ namespace HLGranite.Drawing
         public RectItem(string model, Stock stock, double width, double height)
             : base(model, stock, width, height)
         {
-            this.lengthsField.Add(new LengthItem(height));
-            this.lengthsField.Add(new LengthItem(width));
-            this.lengthsField.Add(new LengthItem(height));
-            this.lengthsField.Add(new LengthItem(width));
+            Initialize();
+
+            this.lengthsField[0] = new LengthItem(height);
+            this.lengthsField[1] = new LengthItem(width);
+            this.lengthsField[2] = new LengthItem(height);
+            this.lengthsField[3] = new LengthItem(width);
+        }
+        private void Initialize()
+        {
+            base.numberOfSides = 4;
+            for (int i = 0; i < numberOfSides; i++)
+                this.lengthsField.Add(new LengthItem());
         }
     }
 }

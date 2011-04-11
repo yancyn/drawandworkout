@@ -51,14 +51,12 @@ namespace WorkOrderGUI
                     //todo: handle more WorkItem selection
                     if (toolbarManager.SelectedToolbar.Name.Contains("LShapeItem"))
                     {
-                        LShapeItem wo = new LShapeItem();
-                        wo.Model = toolbarManager.SelectedToolbar.Name;
+                        LShapeItem wo = new LShapeItem(toolbarManager.SelectedToolbar.Name);
                         (pageManager.CurrentPage.Item as Project).WorkOrders[0].Items.Add(wo);
                     }
                     else if (toolbarManager.SelectedToolbar.Name.Contains("RectItem"))
                     {
-                        RectItem wo = new RectItem();
-                        wo.Model = toolbarManager.SelectedToolbar.Name;
+                        RectItem wo = new RectItem(toolbarManager.SelectedToolbar.Name);
                         (pageManager.CurrentPage.Item as Project).WorkOrders[0].Items.Add(wo);
                     }
                 }

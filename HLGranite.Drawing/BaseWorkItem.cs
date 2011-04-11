@@ -9,13 +9,19 @@ namespace HLGranite.Drawing
     public partial class BaseWorkItem
     {
         public BaseWorkItem()
+            : base()
+        {
+            Initialize();
+        }
+        public BaseWorkItem(string model)
+            : base(model)
         {
             Initialize();
         }
         public BaseWorkItem(double width, double height)
+            : base()
         {
             Initialize();
-
             this.uomField = Unit.British;
             this.widthField = width;
             this.heightField = height;

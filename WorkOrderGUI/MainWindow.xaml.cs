@@ -264,6 +264,8 @@ namespace WorkOrderGUI
             //testing only
             //ToolbarManager manager = this.Toolbox.DataContext as ToolbarManager;
             //manager.Items[2].Children[3].ReplaceParent();
+
+            (this.pageManager.CurrentPage.Item as Project).WorkOrders[0].Items[0].Elements.Add(new RectItem());
         }
         private void PrintMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -306,5 +308,10 @@ namespace WorkOrderGUI
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(hyperlink.NavigateUri.ToString()));
         }
         #endregion
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
