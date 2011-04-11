@@ -14,6 +14,7 @@ namespace HLGranite.Drawing
         /// Default constructor.
         /// </summary>
         public PolygonItem() : base() { }
+        public PolygonItem(string model) : base(model) { }
         /// <summary>
         /// Recommended constructor.
         /// </summary>

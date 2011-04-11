@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Collections.ObjectModel;
 using System.Xml.Serialization;
+using System.Windows.Input;
 
 namespace HLGranite.Drawing
 {
     public partial class WorkItem
     {
         #region Properties
+        protected int numberOfSides;
         protected WorkItem parentField;
         [XmlIgnore()]
         public WorkItem Parent
@@ -37,6 +39,14 @@ namespace HLGranite.Drawing
         }
         #endregion
 
+        #region ICommand
+        private AddElementCommand addElementCommand;
+        /// <summary>
+        /// Add a new element or split into a new RectItem.
+        /// </summary>
+        public AddElementCommand AddElementCommand { get { return this.addElementCommand; } }
+        #endregion
+
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -44,6 +54,20 @@ namespace HLGranite.Drawing
             : base()
         {
             Initialize();
+        }
+        /// <summary>
+        /// New constructor.
+        /// </summary>
+        public WorkItem(string model)
+            : base(model)
+        {
+            Initialize();
+        }
+        public WorkItem(Stock stock)
+            : base()
+        {
+            Initialize();
+            this.materialField = stock;
         }
         /// <summary>
         /// Recommended constructor.
@@ -60,24 +84,27 @@ namespace HLGranite.Drawing
             this.materialField = stock;
         }
 
-        #region Methods & Events
+        #region Methods
         private void Initialize()
         {
+            this.addElementCommand = new AddElementCommand(this);
+
             this.elementsField = new ObservableCollection<ShapeItem>();
             this.elementsField.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(elementsField_CollectionChanged);
             this.lengthsField = new ObservableCollection<LengthItem>();
             this.lengthsField.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(lengthsField_CollectionChanged);
-            this.leftField = 0;
             this.materialField = new Stock();
-            this.modelField = string.Empty;
             this.parentField = null;
             this.progressField = 0;
-            this.topField = 0;
             this.workedByField = new Employee();
+            this.numberOfSides = 1;
+            this.statusField = WorkStatus.NotStarted;
             //this.uomField = (Unit)Enum.Parse(typeof(Unit), "British");
             //todo: this.uomField = (Unit)System.Configuration.ConfigurationSettings.AppSettings["uom"].ToString();// Unit.British;
         }
+        #endregion
 
+        #region Events
         protected void lengthsField_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
@@ -99,7 +126,7 @@ namespace HLGranite.Drawing
         }
         protected void Type_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Type_PropertyChanged");
+            //System.Diagnostics.Debug.WriteLine("Type_PropertyChanged");
             LengthItem source = (sender as LengthItem);
             if (source.Type.Model.Length > 0)
             {
@@ -111,6 +138,26 @@ namespace HLGranite.Drawing
                         start = true;
                 }
             }
+        }
+        #endregion
+    }
+    public class AddElementCommand : ICommand
+    {
+        private WorkItem manager;
+        public AddElementCommand(WorkItem sender)
+        {
+            this.manager = sender;
+        }
+        #region ICommand Members
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+        public event EventHandler CanExecuteChanged;
+        public void Execute(object parameter)
+        {
+            //if (manager.Parent != null)
+            manager.Elements.Add(new RectItem(manager.Material));
         }
         #endregion
     }

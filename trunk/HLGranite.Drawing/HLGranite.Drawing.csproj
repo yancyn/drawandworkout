@@ -85,6 +85,7 @@
     <Compile Include="SvnUpdater.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Users.cs" />
+    <Compile Include="UShapeItem.cs" />
     <Compile Include="vCard\vCard.cs" />
     <Compile Include="vCard\vCardAccessClassification.cs" />
     <Compile Include="vCard\vCardCertificate.cs" />

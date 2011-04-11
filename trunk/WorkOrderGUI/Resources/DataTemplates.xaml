@@ -24,12 +24,12 @@
     <g:ShapeItemOnlyConverter x:Key="ShapeItemOnlyConverter"/>
     <g:WorkItemOnlyConverter x:Key="WorkItemOnlyConverter"/>
     <g:BullnoseViewModelConverter x:Key="BullnoseViewModelConverter"/>
+    <g:ParentOrChildSelector x:Key="ParentOrChildSelector"/>
     
     <g:PageTemplateSelector x:Key="PageTemplateSelector"/>
     <g:WorkItemTemplateSelector x:Key="WorkItemTemplateSelector"/>
     
     <g:BullnoseManager x:Key="BullnoseManager"/>
-    <!--<ObjectDataProvider x:Key="BullnoseManager" ObjectType="{x:Type g:BullnoseManager}"/>-->
     
     <!-- this is for drawing use-->
     <DataTemplate x:Key="LShapeItem04">
@@ -228,7 +228,7 @@
         </StackPanel>
     </DataTemplate>
     <DataTemplate DataType="{x:Type d:RectItem}">
-        <Grid Margin="0,0,0,20" Background="Beige">
+        <Grid Margin="0,0,0,20" Background="Beige" DataContext="{Binding}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="*"/>
@@ -257,7 +257,8 @@
                 <TextBox Width="50" Text="{Binding Width,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Text="×" Margin="4,0,4,0"/>
                 <TextBox Width="50" Text="{Binding Height,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Style="{StaticResource BorderlessButton}" ToolTip="Split" Margin="4,0,4,0">
+                <Button Style="{StaticResource BorderlessButton}" ToolTip="Split" Margin="4,0,4,0"
+                        Command="{Binding .,Converter={StaticResource ParentOrChildSelector}}">
                     <Image Height="16" Source="..\Images\add.png"/>
                 </Button>
                 <Button Style="{StaticResource BorderlessButton}" ToolTip="Remove" Margin="4,0,4,0"
@@ -274,7 +275,7 @@
         </Grid>
     </DataTemplate>
     <DataTemplate DataType="{x:Type d:WorkItem}">
-        <Grid Margin="0,0,0,20">
+        <Grid Margin="0,0,0,20" DataContext="{Binding}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="*"/>
