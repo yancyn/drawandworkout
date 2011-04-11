@@ -13,6 +13,8 @@ namespace HLGranite.Drawing
         public RectItem()
             : base()
         {
+            for (int i = 0; i < 4; i++)
+                this.lengthsField.Add(new LengthItem());
         }
         /// <summary>
         /// Recommended constructor.
@@ -24,6 +26,10 @@ namespace HLGranite.Drawing
         public RectItem(string model, Stock stock, double width, double height)
             : base(model, stock, width, height)
         {
+            this.lengthsField.Add(new LengthItem(height));
+            this.lengthsField.Add(new LengthItem(width));
+            this.lengthsField.Add(new LengthItem(height));
+            this.lengthsField.Add(new LengthItem(width));
         }
     }
 }

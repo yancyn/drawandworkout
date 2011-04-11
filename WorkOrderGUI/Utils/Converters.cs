@@ -46,7 +46,7 @@ namespace WorkOrderGUI
             //if has parent hide the material selection box
             else if (value is WorkItem)
             {
-                return (value as WorkItem) != null ? Visibility.Hidden : Visibility.Visible;
+                return (value as WorkItem) != null ? Visibility.Collapsed : Visibility.Visible;
             }
             else if (value == null)
             {

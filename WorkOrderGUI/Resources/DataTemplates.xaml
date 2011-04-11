@@ -31,7 +31,7 @@
     <g:BullnoseManager x:Key="BullnoseManager"/>
     <!--<ObjectDataProvider x:Key="BullnoseManager" ObjectType="{x:Type g:BullnoseManager}"/>-->
     
-
+    <!-- this is for drawing use-->
     <DataTemplate x:Key="LShapeItem04">
         <Canvas>
             <Canvas.Resources>
@@ -154,9 +154,12 @@
                 </MultiBinding>
             </Canvas.Margin>
             <Rectangle Width="200" Height="80" Stroke="Black" Fill="White" StrokeThickness="1"/>
-            <Ellipse Width="16" Height="16" Stroke="Gray" StrokeThickness="1" Canvas.Left="-8" Canvas.Top="32"/>
-            <Ellipse Width="16" Height="16" Stroke="Gray" StrokeThickness="1" Canvas.Left="92" Canvas.Top="72"/>
-            <Ellipse Width="16" Height="16" Stroke="Gray" StrokeThickness="1" Canvas.Left="192" Canvas.Top="32"/>
+            <Ellipse Style="{StaticResource BullnoseCircle}" Canvas.Left="-8" Canvas.Top="32"
+                     Visibility="{Binding Lengths[0].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"/>
+            <Ellipse Style="{StaticResource BullnoseCircle}" Canvas.Left="92" Canvas.Top="72"
+                     Visibility="{Binding Lengths[1].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"/>
+            <Ellipse Style="{StaticResource BullnoseCircle}" Canvas.Left="192" Canvas.Top="32"
+                     Visibility="{Binding Lengths[2].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"/>
             <Canvas x:Name="Length2" Canvas.Left="212">
                 <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="17" Canvas.Top="10">
                     <Path.RenderTransform>
@@ -181,7 +184,8 @@
                     Margin="0,30,0,0" Style="{DynamicResource MeasurementStyle}"
                     Text="{Binding Height,Mode=TwoWay,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
             </Canvas>
-            <Ellipse Width="16" Height="16" Stroke="Gray" StrokeThickness="1" Canvas.Left="92" Canvas.Top="-8"/>
+            <Ellipse Style="{StaticResource BullnoseCircle}" Canvas.Left="92" Canvas.Top="-8"
+                     Visibility="{Binding Lengths[3].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"/>
             <Canvas x:Name="Length3" Canvas.Top="-36">
                 <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="10" Canvas.Top="6">
                     <Path.RenderTransform>
@@ -204,6 +208,7 @@
     </DataTemplate>
     
     
+    <!-- this is for control panel use -->
     <DataTemplate DataType="{x:Type d:LengthItem}">
         <StackPanel x:Name="Container" Orientation="Horizontal" DataContext="{Binding}">
             <TextBlock Width="60" HorizontalAlignment="Right" Margin="0,0,4,0">
@@ -223,7 +228,7 @@
         </StackPanel>
     </DataTemplate>
     <DataTemplate DataType="{x:Type d:RectItem}">
-        <Grid Margin="0,0,0,10" Background="Beige">
+        <Grid Margin="0,0,0,20" Background="Beige">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="*"/>
@@ -261,10 +266,15 @@
                     <Image Height="16" Source="..\Images\cross.png"/>
                 </Button>
             </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                <ItemsControl ItemsSource="{Binding Elements,Converter={StaticResource WorkItemOnlyConverter},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <ItemsControl Visibility="{Binding Parent,Converter={StaticResource VisibilityConverter}}"
+                    ItemsSource="{Binding Lengths,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
         </Grid>
     </DataTemplate>
     <DataTemplate DataType="{x:Type d:WorkItem}">
-        <Grid Margin="0,0,0,10">
+        <Grid Margin="0,0,0,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="*"/>
