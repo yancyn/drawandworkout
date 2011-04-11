@@ -178,7 +178,7 @@
                             <RadioButton x:Name="ParentRadio" Checked="Toolbox_Checked" Style="{StaticResource ToolbarButton}" Content="{Binding Item,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding Item.ToolTip}">
                                 <RadioButton.ContextMenu>
                                     <ContextMenu x:Name="ExtraToolboxMenu" Style="{StaticResource TransparentFloatingToolbar}"
-                                                 Visibility="{Binding Children.Count,Converter={StaticResource RowCountConverter}}">
+                                                 Visibility="{Binding Children.Count,Converter={StaticResource VisibilityConverter}}">
                                         <ToolBar ItemsSource="{Binding Children,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}">
                                             <ToolBar.ItemTemplate>
                                                 <DataTemplate>

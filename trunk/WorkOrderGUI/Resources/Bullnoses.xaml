@@ -1,8 +1,8 @@
 ﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StackPanel>
-        <StackPanel x:Name="none">
-            <TextBlock Text="none"/>
+        <StackPanel>
+            <TextBlock Text=""/>
         </StackPanel>
         <StackPanel x:Name="r" Width="60" Height="40">
             <TextBlock Text="r"/>

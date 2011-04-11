@@ -11,8 +11,9 @@ namespace WorkOrderGUI
 {
     /// <summary>
     /// If there is zero row count just hidden otherwise visible.
+    /// If WorkItem is null then hidden otherwise visible. Normall refer to WorkItem.Parent
     /// </summary>
-    public class RowCountConverter : IValueConverter
+    public class VisibilityConverter : IValueConverter
     {
         #region IValueConverter Members
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -21,10 +22,28 @@ namespace WorkOrderGUI
             {
                 return ((int)value) > 0 ? Visibility.Visible : Visibility.Hidden; //todo: check Visibility.Collapsed
             }
-            else
+            else if (value is LengthItem)
             {
-                throw new ArgumentException("Value should be of type boolean.");
+                //if contains bullnose model otherwise invisible
+                if ((value as LengthItem).Type == null)
+                    return Visibility.Hidden;
+                else if ((value as LengthItem).Type.Model.Length == 0)
+                    return Visibility.Hidden;
+                else
+                    return Visibility.Visible;
+                //return (value as LengthItem).Type.Model.Length > 0 ? Visibility.Visible : Visibility.Hidden;
             }
+            //if has parent hide the material selection box
+            else if (value is WorkItem)
+            {
+                return (value as WorkItem) != null ? Visibility.Hidden : Visibility.Visible;
+            }
+            else if (value == null)
+            {
+                return Visibility.Visible;
+            }
+
+            throw new ArgumentException("Not supported type of " + value.GetType());
         }
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {

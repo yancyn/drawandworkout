@@ -59,8 +59,10 @@ namespace WorkOrderGUI
                 if (element is StackPanel)
                 {
                     StackPanel item = element as StackPanel;
+                    string model = (item.Name == null) ? string.Empty : item.Name;
+                    string name = (item.Name == null) ? string.Empty : item.Name;
                     //todo: get the name by get rid of number at behind
-                    this.bullnoses.Add(new BullnoseViewModel(item.Name, item.Name, DeepClone(item)));
+                    this.bullnoses.Add(new BullnoseViewModel(model, name, DeepClone(item)));
                 }
             }
             /*for (int i = panel.Children.Count - 1; i >= 0; i--)
