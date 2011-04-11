@@ -15,7 +15,9 @@
     </Style>
     
     <!-- this is for ruler measurement use -->
+    <!-- margin set at instance object -->
     <Style x:Key="MeasurementStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="Padding" Value="4"/>
         <Setter Property="Background" Value="White"/>
         <Setter Property="Foreground" Value="Blue"/>
         <Setter Property="TextAlignment" Value="Center"/>
