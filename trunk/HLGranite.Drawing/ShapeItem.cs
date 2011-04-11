@@ -13,6 +13,12 @@ namespace HLGranite.Drawing
             this.topField = 0d;
             this.modelField = string.Empty;
         }
+        public ShapeItem(string model)
+        {
+            this.leftField = 0d;
+            this.topField = 0d;
+            this.modelField = model;
+        }
         public ShapeItem(string model, double left, double top)
         {
             this.modelField = model;

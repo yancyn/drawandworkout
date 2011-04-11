@@ -18,9 +18,20 @@ namespace WorkOrderGUI
         #region IValueConverter Members
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            //if (value == null) return Visibility.Collapsed;
+
             if (value is int)
             {
                 return ((int)value) > 0 ? Visibility.Visible : Visibility.Hidden; //todo: check Visibility.Collapsed
+            }
+            else if (value is Bullnose)
+            {
+                if ((value as Bullnose) == null)
+                    return Visibility.Hidden;
+                else if ((value as Bullnose).Model.Length == 0)
+                    return Visibility.Hidden;
+                else
+                    return Visibility.Visible;
             }
             else if (value is LengthItem)
             {
@@ -31,7 +42,6 @@ namespace WorkOrderGUI
                     return Visibility.Hidden;
                 else
                     return Visibility.Visible;
-                //return (value as LengthItem).Type.Model.Length > 0 ? Visibility.Visible : Visibility.Hidden;
             }
             //if has parent hide the material selection box
             else if (value is WorkItem)
@@ -481,6 +491,38 @@ namespace WorkOrderGUI
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+        #endregion
+    }
+    /// <summary>
+    /// Convert a bullnose model into BullnoseViewModel object and vice versa.
+    /// </summary>
+    public class BullnoseViewModelConverter : IValueConverter
+    {
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value == null) return null;
+            if (value is Bullnose)
+            {
+                BullnoseViewModel viewModel = (from f in BullnoseManager.Bullnoses
+                                               where f.Bullnose.Model.Equals((value as Bullnose).Model)
+                                               select f).FirstOrDefault();
+                return viewModel;
+            }
+
+            throw new NotImplementedException("Not supported type");
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is BullnoseViewModel) // && parameter is Bullnose)
+            {
+                return (value as BullnoseViewModel).Bullnose;
+                //(parameter as Bullnose).Model = (value as BullnoseViewModel).Model;
+                //return (parameter as Bullnose);
+            }
+
+            throw new NotImplementedException("Not supported type");
         }
         #endregion
     }

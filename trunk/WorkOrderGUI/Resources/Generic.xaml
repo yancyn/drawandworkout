@@ -218,13 +218,13 @@
     
     <!-- style the combobox for bullnose dropdown to display graphical image -->
     <Style x:Key="BullnoseSelection" TargetType="{x:Type ComboBox}">
-        <!--<Setter Property="Width" Value="60"/>-->
-        <!--<Setter Property="Height" Value="18"/>-->
+        <Setter Property="Width" Value="60"/>
+        <Setter Property="Height" Value="20"/>
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <ContentPresenter Content="{Binding Name}"/><!-- Model -->
-                    <!--<ContentPresenter Content="{Binding Content}"/>--><!-- todo: use new instance instead-->
+                    <!--<ContentPresenter Content="{Binding Name}"/>--><!-- Model -->
+                    <ContentPresenter Content="{Binding Content}"/><!-- todo: use new instance instead-->
                 </DataTemplate>
             </Setter.Value>
         </Setter>

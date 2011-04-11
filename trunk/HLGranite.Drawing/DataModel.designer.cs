@@ -465,17 +465,6 @@ namespace HLGranite.Drawing
                 }
             }
         }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
-            if ((handler != null))
-            {
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PolygonItem))]

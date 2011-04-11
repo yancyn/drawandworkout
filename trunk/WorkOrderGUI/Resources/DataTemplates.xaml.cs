@@ -52,13 +52,13 @@ namespace WorkOrderGUI
                     if (toolbarManager.SelectedToolbar.Name.Contains("LShapeItem"))
                     {
                         LShapeItem wo = new LShapeItem();
-                        wo.Tags.Add(toolbarManager.SelectedToolbar.Name);
+                        wo.Model = toolbarManager.SelectedToolbar.Name;
                         (pageManager.CurrentPage.Item as Project).WorkOrders[0].Items.Add(wo);
                     }
                     else if (toolbarManager.SelectedToolbar.Name.Contains("RectItem"))
                     {
                         RectItem wo = new RectItem();
-                        wo.Tags.Add(toolbarManager.SelectedToolbar.Name);
+                        wo.Model = toolbarManager.SelectedToolbar.Name;
                         (pageManager.CurrentPage.Item as Project).WorkOrders[0].Items.Add(wo);
                     }
                 }
@@ -72,6 +72,7 @@ namespace WorkOrderGUI
                 (pageManager.CurrentPage.Item as Project).WorkOrders[0].SelectedItem = null;//reset
             }
         }
+        //todo: handle more other key event ie. left & right key for moving graphic object.
         private void ScrollViewer_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Delete)
@@ -86,5 +87,20 @@ namespace WorkOrderGUI
             WorkOrderGUI.Properties.Settings.Default.Save();
         }
         #endregion
+
+        private void BullnoseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("ComboBox_SelectionChanged");
+            if (((sender as ComboBox).DataContext as LengthItem).Type == null)
+            {
+                LengthItem source = ((sender as ComboBox).DataContext as LengthItem);
+                LengthItem length = new LengthItem();
+                length.Length = source.Length;
+                length.Type = new Bullnose((sender as ComboBox).SelectedValue.ToString());
+                (sender as ComboBox).DataContext = length;
+                //((sender as ComboBox).DataContext as LengthItem).Type = new Bullnose(
+                //    (sender as ComboBox).SelectedValue.ToString());
+            }
+        }
     }
 }

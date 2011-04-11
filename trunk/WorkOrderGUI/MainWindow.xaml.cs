@@ -197,10 +197,10 @@ namespace WorkOrderGUI
 
             LShapeItem w1 = new LShapeItem("LShapeItem04", stock, 48, 108);
             //w1.Lengths[0].Type = new Bullnose { Model="dep2"};
-            w1.Lengths[1].Type = new Bullnose { Model = "dep2" };
-            w1.Lengths[2].Type = new Bullnose { Model = "dep2" };
-            w1.Lengths[3].Type = new Bullnose { Model = "dep2" };
-            w1.Lengths[4].Type = new Bullnose { Model = "dep2" };
+            w1.Lengths[1].Type = new Bullnose("dep2");
+            w1.Lengths[2].Type = new Bullnose("dep2");
+            w1.Lengths[3].Type = new Bullnose("dep2");
+            w1.Lengths[4].Type = new Bullnose("dep2");
             //w1.Lengths[5].Type = new Bullnose { Model = "dep2" };
             //w1.Elements.Add(new VerticalLine(string.Empty, 150));
 
