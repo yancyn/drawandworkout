@@ -19,6 +19,8 @@
     <g:LabelingConverter x:Key="LabelingConverter"/>
     <g:FeetUnitConverter x:Key="FeetUnitConverter"/>
     <g:MarginConverter x:Key="MarginConverter"/>
+    <g:TopMarginConverter x:Key="TopMarginConverter"/>
+    <g:LeftMarginConverter x:Key="LeftMarginConverter"/>
     <g:CompanyAllInfoConverter x:Key="CompanyAllInfoConverter"/>
     <g:SoldToConverter x:Key="SoldToConverter"/>
     <g:ShapeItemOnlyConverter x:Key="ShapeItemOnlyConverter"/>
@@ -36,7 +38,7 @@
         <Canvas>
             <Canvas.Resources>
                 <DataTemplate DataType="{x:Type d:VerticalLine}">
-                    <Line X1="{Binding Left}" Y1="0" X2="{Binding Left}" Y2="120" Stroke="Black" StrokeThickness="1" StrokeDashArray="2,4"/>
+                    <Line X1="{Binding Left}" Y1="0" X2="{Binding Left}" Y2="120" Style="{StaticResource DotStyle}"/>
                 </DataTemplate>
             </Canvas.Resources>
             <Canvas.Margin>
@@ -49,7 +51,6 @@
             <Rectangle Width="300" Height="120" Stroke="Black" Fill="White" StrokeThickness="1"/>
             <Rectangle Width="120" Height="420" Stroke="Black" Fill="White" Visibility="Hidden" StrokeThickness="1"/>
 
-            <!--<Line X1="0" Y1="100" X2="120" Y2="100" Stroke="Blue" StrokeThickness="1" StrokeDashArray="2,4"/>-->
             <Ellipse Visibility="{Binding Lengths[0].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource BullnoseCircle}" Canvas.Left="-8" Canvas.Top="210"/>
             <Canvas x:Name="Length0" Canvas.Left="-36">
@@ -147,6 +148,11 @@
     </DataTemplate>
     <DataTemplate x:Key="RectItem00">
         <Canvas>
+            <Canvas.Resources>
+                <DataTemplate DataType="{x:Type d:VerticalLine}">
+                    <Line X1="{Binding Left}" Y1="0" X2="{Binding Left}" Y2="80" Style="{StaticResource DotStyle}"/>
+                </DataTemplate>
+            </Canvas.Resources>
             <Canvas.Margin>
                 <MultiBinding Converter="{StaticResource MarginConverter}">
                     <Binding Path="Left"/>
@@ -204,6 +210,13 @@
                     Margin="90,0,0,0" Style="{DynamicResource MeasurementStyle}"
                     Text="{Binding Width,Mode=TwoWay,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
             </Canvas>
+            <ItemsControl ItemsSource="{Binding Elements,Converter={StaticResource ShapeItemOnlyConverter}}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
         </Canvas>
     </DataTemplate>
     
@@ -258,7 +271,8 @@
                 <TextBlock Text="×" Margin="4,0,4,0"/>
                 <TextBox Width="50" Text="{Binding Height,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Style="{StaticResource BorderlessButton}" ToolTip="Split" Margin="4,0,4,0"
-                        Command="{Binding .,Converter={StaticResource ParentOrChildSelector}}">
+                        Command="{Binding AddElementCommand}"
+                        Visibility="{Binding Parent,Converter={StaticResource VisibilityConverter}}">
                     <Image Height="16" Source="..\Images\add.png"/>
                 </Button>
                 <Button Style="{StaticResource BorderlessButton}" ToolTip="Remove" Margin="4,0,4,0"
@@ -291,6 +305,10 @@
             <WrapPanel Grid.Row="0" Grid.Column="1">
                 <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Stocks.Stock}"
                           SelectedItem="{Binding Material,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Style="{StaticResource BorderlessButton}" ToolTip="Split" Margin="4,0,4,0"
+                        Command="{Binding AddElementCommand}">
+                    <Image Height="16" Source="..\Images\add.png"/>
+                </Button>
                 <Button Style="{StaticResource BorderlessButton}" ToolTip="Remove" Margin="4,0,4,0"
                         Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Grid},AncestorLevel=2},Path=DataContext.Item.WorkOrders[0].RemoveWorkItemCommand}"
                         CommandParameter="{Binding}">
@@ -305,7 +323,8 @@
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                 <ItemsControl ItemsSource="{Binding Elements,Converter={StaticResource WorkItemOnlyConverter},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <ItemsControl ItemsSource="{Binding Lengths,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <ItemsControl ItemsSource="{Binding Lengths,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                              Visibility="{Binding Parent,Converter={StaticResource VisibilityConverter}}"/>
             </StackPanel>
         </Grid>
     </DataTemplate>
@@ -414,11 +433,10 @@
                             <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Item.TotalOther,Converter={StaticResource NumberConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                         </Grid>
                     </Expander>
-                    <Expander Header="Raw Materials" Style="{DynamicResource ExpanderBackground}">
-                        <!-- TODO -->
-                    </Expander>
+                    <Expander Header="History" Style="{DynamicResource ExpanderBackground}"/><!-- TODO -->
+                    <Expander Header="Raw Materials" Style="{DynamicResource ExpanderBackground}"/><!-- TODO -->
                     <Expander Header="Details" Style="{DynamicResource ExpanderBackground}"
-                              DataContext="{Binding Item.WorkOrders[0]}">
+                              DataContext="{Binding Item.WorkOrders[0]}"><!-- TODO: Change to support multiple WorkOrder -->
                         <StackPanel>
                             <ItemsControl ItemsSource="{Binding Items,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>

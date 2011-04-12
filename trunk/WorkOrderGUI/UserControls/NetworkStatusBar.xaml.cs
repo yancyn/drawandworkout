@@ -45,7 +45,7 @@ namespace WorkOrderGUI
         private void timer_Tick(object sender, EventArgs e)
         {
             long time = PingTime("www.google.com");
-            System.Diagnostics.Debug.WriteLine(time);
+            Logger.Info(typeof(NetworkStatusBar), "ping www.google.com:" + time);
             if (time > 0)
             {
                 this.Message.Text = "Online";

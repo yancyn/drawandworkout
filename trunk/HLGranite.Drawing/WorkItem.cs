@@ -102,6 +102,59 @@ namespace HLGranite.Drawing
             //this.uomField = (Unit)Enum.Parse(typeof(Unit), "British");
             //todo: this.uomField = (Unit)System.Configuration.ConfigurationSettings.AppSettings["uom"].ToString();// Unit.British;
         }
+        public void AddElement()
+        {
+            AddElement(new RectItem(this.materialField));
+        }
+        /// <summary>
+        /// Add a new RectItem and separate with a dotted line in drawing.
+        /// </summary>
+        /// <param name="sender"></param>
+        public void AddElement(RectItem sender)
+        {
+            //if it is a first RectItem then have to create 2
+            //otherwise just create additional 1
+            int counter = 0;
+            foreach (ShapeItem item in this.elementsField)
+            {
+                if (item is RectItem) counter++;
+            }
+
+            if (counter == 0)
+            {
+                this.elementsField.Add(new RectItem(this.materialField));
+                counter++;
+            }
+
+            this.elementsField.Add(new VerticalLine());
+            this.elementsField.Add(sender);
+            counter++;
+
+            int drawingWidth = 200;
+            int drawingHeight = 80;
+            int countLine = 0;
+            double buffer = 24;
+            if (this.modelField == "RectItem00")
+            {
+                foreach (ShapeItem item in this.elementsField)
+                {
+                    if (item is VerticalLine)
+                    {
+                        //(item as VerticalLine).Left = countLine * drawingWidth / counter;
+                        (item as VerticalLine).Left = drawingWidth / counter;
+                        //(item as VerticalLine).Top = -countLine * drawingHeight / counter +buffer;
+                    }
+                }
+            }
+            else if (this.modelField == "RectItem01")
+            {
+                foreach (ShapeItem item in this.elementsField)
+                {
+                    if (item is HorizontalLine)
+                        (item as HorizontalLine).Top = drawingWidth / counter;
+                }
+            }
+        }
         #endregion
 
         #region Events
@@ -156,8 +209,7 @@ namespace HLGranite.Drawing
         public event EventHandler CanExecuteChanged;
         public void Execute(object parameter)
         {
-            //if (manager.Parent != null)
-            manager.Elements.Add(new RectItem(manager.Material));
+            manager.AddElement();
         }
         #endregion
     }

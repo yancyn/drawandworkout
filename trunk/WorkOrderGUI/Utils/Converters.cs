@@ -388,6 +388,64 @@ namespace WorkOrderGUI
         #endregion
     }
     /// <summary>
+    /// Convert top value into margin.
+    /// </summary>
+    public class TopMarginConverter : IValueConverter
+    {
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is double)
+            {
+                double top = (double)value;
+                Thickness output = new Thickness(0, top, 0, 0);
+                return output;
+            }
+            else if (value is int)
+            {
+                int top = (int)value;
+                Thickness output = new Thickness(0, top, 0, 0);
+                return output;
+            }
+
+            return null;
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
+    /// <summary>
+    /// Convert left value into margin.
+    /// </summary>
+    public class LeftMarginConverter : IValueConverter
+    {
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is double)
+            {
+                double left = (double)value;
+                Thickness output = new Thickness(left, 0, 0, 0);
+                return output;
+            }
+            else if (value is int)
+            {
+                int left = (int)value;
+                Thickness output = new Thickness(left, 0, 0, 0);
+                return output;
+            }
+
+            return null;
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
+    /// <summary>
     /// Return order by or delivery to name (which is not empty).
     /// </summary>
     public class SoldToConverter : IMultiValueConverter

@@ -82,8 +82,8 @@ namespace HLGranite.Drawing
         }
         public void RemoveItem(WorkItem sender)
         {
-            bool match = false;
             //if (this.Items.Contains(sender))
+            bool match = false;
             for (int i = this.Items.Count - 1; i >= 0; i--)
             {
                 if (match) return;
@@ -108,8 +108,9 @@ namespace HLGranite.Drawing
                         source.RemoveAt(i);
                         return true;
                     }
+
+                    match = MatchElement((source[i] as WorkItem).Elements, sender);
                 }
-                match = MatchElement((source[i] as WorkItem).Elements, sender);
             }
 
             return match;
