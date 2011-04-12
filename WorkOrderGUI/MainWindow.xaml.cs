@@ -196,24 +196,33 @@ namespace WorkOrderGUI
             Stock stock = DatabaseObject.Stocks.Stock[new Random().Next(size)];
 
             LShapeItem w1 = new LShapeItem("LShapeItem04", stock, 48, 108);
-            //w1.Lengths[0].Type = new Bullnose { Model="dep2"};
             w1.Lengths[1].Type = new Bullnose("dep2");
             w1.Lengths[2].Type = new Bullnose("dep2");
             w1.Lengths[3].Type = new Bullnose("dep2");
             w1.Lengths[4].Type = new Bullnose("dep2");
-            //w1.Lengths[5].Type = new Bullnose { Model = "dep2" };
             //w1.Elements.Add(new VerticalLine(string.Empty, 150));
 
-            RectItem w2 = new RectItem("RectItem00",stock,6,24);
+            RectItem w2 = new RectItem("RectItem00", stock, 24, 6);
             w2.Top = 400;
             w2.Left = 200;
+            w2.AddElement();
 
-            RectItem w3 = new RectItem("RectItem00",stock,13,26);
+            RectItem w3 = new RectItem("RectItem00", stock, 28, 13);
+            w3.Top = 100;
+            w3.AddElement();
+            w3.AddElement();
+
+            RectItem w4 = new RectItem("RectItem00", stock, 36, 4);
+            w4.Top = 100;
+            w4.AddElement();
+            w4.AddElement();
+            w4.AddElement();
 
             WorkOrder wo = new WorkOrder();
             wo.Items.Add(w1);
             wo.Items.Add(w2);
             wo.Items.Add(w3);
+            wo.Items.Add(w4);
             target.WorkOrders.Add(wo);
 
             return target;

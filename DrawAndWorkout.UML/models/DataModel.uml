@@ -217,7 +217,7 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QnkNFUbWEeCvMexyU7cjtg"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_YnTOUEbXEeCvMexyU7cjtg" memberEnd="_YnTOUUbXEeCvMexyU7cjtg _YnTOVEbXEeCvMexyU7cjtg">
+  <packagedElement xmi:type="uml:Association" xmi:id="_YnTOUEbXEeCvMexyU7cjtg" name="Material" memberEnd="_YnTOUUbXEeCvMexyU7cjtg _YnTOVEbXEeCvMexyU7cjtg">
     <ownedEnd xmi:id="_YnTOUUbXEeCvMexyU7cjtg" name="1" type="_3ko0UETWEeCJe9RP8ofhZg" association="_YnTOUEbXEeCvMexyU7cjtg">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YnTOU0bXEeCvMexyU7cjtg" value="1"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YnTOUkbXEeCvMexyU7cjtg" value="1"/>

@@ -29,8 +29,16 @@ namespace HLGranite.Drawing
         {
             Initialize();
             double length = 24;//a normal default kitchen top length
-            this.elementsField[0] = new RectItem("RectItem00", stock, width, length);
-            this.elementsField[1] = new RectItem("RectItem00", stock, length, height);
+            //new RectItem("RectItem00", stock, width, length);
+            (this.elementsField[0] as RectItem).Material = stock;
+            (this.elementsField[0] as RectItem).Width = width;
+            (this.elementsField[0] as RectItem).Height = length;
+
+            //this.elementsField[1] is VerticalLine
+            //this.elementsField[2] = new RectItem("RectItem00", stock, length, height);
+            (this.elementsField[2] as RectItem).Material = stock;
+            (this.elementsField[2] as RectItem).Width = length;
+            (this.elementsField[2] as RectItem).Height = height - length;
 
             this.lengthsField[0] = new LengthItem(height);
             this.lengthsField[1] = new LengthItem(length);
@@ -42,11 +50,12 @@ namespace HLGranite.Drawing
         private void Initialize()
         {
             base.numberOfSides = 6;
-            for (int i = 0; i < 2; i++)
-                this.elementsField.Add(new RectItem("RectItem00", null, 0, 0));
-
             for (int i = 0; i < numberOfSides; i++)
                 this.lengthsField.Add(new LengthItem());
+
+            //for (int i = 0; i < 2; i++)
+            base.AddElement();
+            //base.AddElement(new RectItem("RectItem00", this.materialField, 0, 0));
         }
     }
 }

@@ -11,6 +11,10 @@ namespace HLGranite.Drawing
             : base()
         {
         }
+        public VerticalLine(double left)
+            : base(string.Empty, left, 0)
+        {
+        }
         public VerticalLine(string model, double left)
             : base(model, left, 0)
         {

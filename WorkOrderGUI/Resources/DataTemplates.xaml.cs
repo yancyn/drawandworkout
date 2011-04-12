@@ -86,6 +86,7 @@ namespace WorkOrderGUI
         }
         #endregion
 
+        //no use anymore
         private void BullnoseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("ComboBox_SelectionChanged");
