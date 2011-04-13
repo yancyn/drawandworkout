@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using HLGranite.Drawing;
 
 namespace WorkOrderGUI
 {
@@ -21,6 +22,7 @@ namespace WorkOrderGUI
         public StockWindow()
         {
             InitializeComponent();
+            this.StockView.DataContext = DatabaseObject.Stocks;
         }
     }
 }

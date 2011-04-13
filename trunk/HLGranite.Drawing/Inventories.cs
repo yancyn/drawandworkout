@@ -5,11 +5,14 @@ using System.Text;
 using System.Xml;
 using System.IO;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace HLGranite.Drawing
 {
     public partial class Inventories
     {
+        private AddInventoryCommand addInventoryCommand;
+        public AddInventoryCommand AddInventoryCommand { get { return this.addInventoryCommand; } }
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -30,6 +33,8 @@ namespace HLGranite.Drawing
                     this.inventoryField.Add(item);
                 }
             }
+
+            this.addInventoryCommand = new AddInventoryCommand(this);
         }
         public void Add(int quantity, Inventory source)
         {
@@ -57,8 +62,9 @@ namespace HLGranite.Drawing
             int output = 0;
             if (sender.Stock.Code.Length == 0) return output;
             Inventory result = (from f in this.inventoryField
-                                where f.Serial.CompareTo(prefix) >= 0
-                                select f).ToList<Inventory>()
+                                where prefix.Contains(f.Serial)
+                                //where f.Serial.CompareTo(prefix) >= 0
+                                select f)
                                 .OrderByDescending(f => f.Serial)
                                 .FirstOrDefault();
             if (result != null)
@@ -71,5 +77,48 @@ namespace HLGranite.Drawing
 
             return output;
         }
+    }
+    public class AddInventoryCommand : ICommand
+    {
+        private Inventories manager;
+        public AddInventoryCommand(Inventories sender)
+        {
+            this.manager = sender;
+        }
+        #region ICommand Members
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+        public event EventHandler CanExecuteChanged;
+        public void Execute(object parameter)
+        {
+            if (parameter is InventoryParameters)
+            {
+                Inventory inventory = new Inventory();
+                inventory.Warehouse = (parameter as InventoryParameters).Warehouse;
+                inventory.Stock = (parameter as InventoryParameters).Stock;
+                inventory.Width = (parameter as InventoryParameters).Width;
+                inventory.Height = (parameter as InventoryParameters).Height;
+                manager.Add((parameter as InventoryParameters).Quantity, inventory);
+                return;
+            }
+
+            throw new NotImplementedException("Not supported type of " + parameter.GetType());
+        }
+        #endregion
+    }
+    /// <summary>
+    /// HACK: Enable multibinding to CommandParameter during call AddInventoryCommand.
+    /// </summary>
+    /// <see>http://japikse.blogspot.com/2009/07/multibinding-and-command-parameters-in.html</see>
+    public class InventoryParameters
+    {
+        public Warehouse Warehouse { get; set; }
+        public DateTime PurchaseAt { get; set; }
+        public Stock Stock { get; set; }
+        public double Width { get; set; }
+        public double Height { get; set; }
+        public int Quantity { get; set; }
     }
 }
