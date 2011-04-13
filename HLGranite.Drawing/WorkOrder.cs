@@ -90,30 +90,12 @@ namespace HLGranite.Drawing
                 if (this.Items[i].Guid.Equals(sender.Guid))
                 {
                     this.Items.RemoveAt(i);
+                    System.Diagnostics.Debug.WriteLine("WorkOrder.Item[i] has been removed.");
                     return;
                 }
-                match = MatchElement(this.Items[i].Elements, sender);
+                match = this.Items[i].RemoveElement(sender);
+                //match =  MatchElement(this.Items[i].Elements, sender);
             }
-        }
-        private bool MatchElement(ObservableCollection<ShapeItem> source, WorkItem sender)
-        {
-            bool match = false;
-            for (int i = source.Count - 1; i >= 0; i--)
-            {
-                if (match) return true;
-                if (source[i] is WorkItem)
-                {
-                    if ((source[i] as WorkItem).Guid.Equals(sender.Guid))
-                    {
-                        source.RemoveAt(i);
-                        return true;
-                    }
-
-                    match = MatchElement((source[i] as WorkItem).Elements, sender);
-                }
-            }
-
-            return match;
         }
         #endregion
     }

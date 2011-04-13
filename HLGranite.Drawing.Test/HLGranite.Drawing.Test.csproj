@@ -67,6 +67,7 @@
     <Compile Include="vCardCollectionTest.cs" />
     <Compile Include="WarehousesTest.cs" />
     <Compile Include="WorkItemTest.cs" />
+    <Compile Include="WorkOrderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HLGranite.Drawing\HLGranite.Drawing.csproj">

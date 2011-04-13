@@ -13,6 +13,9 @@ namespace HLGranite.Drawing
         #region Properties
         protected int numberOfSides;
         protected WorkItem parentField;
+        /// <summary>
+        /// Parent WorkItem for this child RectItem or EllipseItem.
+        /// </summary>
         [XmlIgnore()]
         public WorkItem Parent
         {
@@ -102,6 +105,49 @@ namespace HLGranite.Drawing
             //this.uomField = (Unit)Enum.Parse(typeof(Unit), "British");
             //todo: this.uomField = (Unit)System.Configuration.ConfigurationSettings.AppSettings["uom"].ToString();// Unit.British;
         }
+        /// <summary>
+        /// Remove element from own ObservableCollection.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <returns></returns>
+        public bool RemoveElement(WorkItem sender)
+        {
+            bool found = (this.guidField.Equals(sender.Guid)) ? true : false;
+            if (found) return found;
+            found = MatchElement(this.elementsField, sender);
+
+            return found;
+        }
+        private bool MatchElement(ObservableCollection<ShapeItem> source, WorkItem sender)
+        {
+            bool match = false;
+            for (int i = source.Count - 1; i >= 0; i--)
+            {
+                if (source[i] is WorkItem)
+                {
+                    if ((source[i] as WorkItem).Guid.Equals(sender.Guid))
+                    {
+                        bool isRectItem = (source[i] is RectItem) ? true : false;
+                        source.RemoveAt(i);
+                        System.Diagnostics.Debug.WriteLine("WorkItem.Elements[i] has been removed.");
+                        //remove the dotted line as well
+                        //the dotted line must exist before RectItem normally
+                        if (isRectItem)
+                        {
+                            if (source[i - 1] is VerticalLine) source.RemoveAt(i - 1);
+                            else if (source[i - 1] is HorizontalLine) source.RemoveAt(i - 1);
+                        }
+                        return true;
+                    }
+
+                    match = MatchElement((source[i] as WorkItem).Elements, sender);
+                    if (match) return true;
+                }
+            }
+
+            return match;
+        }
+
         public void AddElement()
         {
             AddElement(new RectItem(this.materialField));
@@ -116,9 +162,7 @@ namespace HLGranite.Drawing
             //otherwise just create additional 1
             int counter = 0;
             foreach (ShapeItem item in this.elementsField)
-            {
                 if (item is RectItem) counter++;
-            }
 
             if (counter == 0)
             {
@@ -126,14 +170,14 @@ namespace HLGranite.Drawing
                 counter++;
             }
 
-            this.elementsField.Add(new VerticalLine());
+            if (this.modelField == "RectItem00")
+                this.elementsField.Add(new VerticalLine());
+            else
+                this.elementsField.Add(new HorizontalLine());
             this.elementsField.Add(sender);
             counter++;
 
             int drawingWidth = 200;
-            int drawingHeight = 80;
-            int countLine = 0;
-            double buffer = 24;
             if (this.modelField == "RectItem00")
             {
                 foreach (ShapeItem item in this.elementsField)
@@ -155,6 +199,14 @@ namespace HLGranite.Drawing
                 }
             }
         }
+        public void AddHorizontalElement(RectItem sender)
+        {
+            throw new NotImplementedException();
+        }
+        public void AddVerticalElement(RectItem sender)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Events
@@ -170,6 +222,7 @@ namespace HLGranite.Drawing
         {
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
             {
+                System.Diagnostics.Debug.WriteLine("adding ShapeItem");
                 int count = (sender as ObservableCollection<ShapeItem>).Count;
                 if ((sender as ObservableCollection<ShapeItem>)[count - 1] is WorkItem)
                 {

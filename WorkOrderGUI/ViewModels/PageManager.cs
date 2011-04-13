@@ -336,6 +336,7 @@ namespace WorkOrderGUI
         {
             if (parameter is Project)
             {
+                //todo: handle cursor?
                 bool success = (parameter as Project).Save();
                 if (success) MessageBox.Show("Save successfully.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
             }
