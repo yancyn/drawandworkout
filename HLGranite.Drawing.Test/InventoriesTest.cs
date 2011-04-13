@@ -43,7 +43,7 @@ namespace HLGranite.Drawing.Test
         ///A test for SaveToFile
         ///</summary>
         [TestMethod()]
-        public void SaveToFileTest()
+        public void AddInventoryTest()
         {
             Inventories target = DatabaseObject.Inventories;
 
@@ -53,8 +53,8 @@ namespace HLGranite.Drawing.Test
             inventory.Width = 72;
             inventory.Height = 24;
 
-            target.Add(inventory, 50);
-            target.SaveToFile();
+            target.Add(50, inventory);
+            //target.SaveToFile();
         }
     }
 }
