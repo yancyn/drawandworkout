@@ -1372,7 +1372,7 @@
     </children>
     <styles xmi:type="notation:CanonicalStyle" xmi:id="_toIpEUhyEeCrgMci05vtLw"/>
     <element xmi:type="uml:Enumeration" href="DataModel.uml#_tnuZYEhyEeCrgMci05vtLw"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_toIpEkhyEeCrgMci05vtLw" x="288" y="696"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_toIpEkhyEeCrgMci05vtLw" y="1164"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_2dpRMEhyEeCrgMci05vtLw" type="2003" fontName="Segoe UI">
     <children xmi:type="notation:DecorationNode" xmi:id="_2dpRM0hyEeCrgMci05vtLw" type="5005">
@@ -1423,7 +1423,7 @@
     </children>
     <styles xmi:type="notation:CanonicalStyle" xmi:id="_2dpRMUhyEeCrgMci05vtLw"/>
     <element xmi:type="uml:Enumeration" href="DataModel.uml#_2dQ2sEhyEeCrgMci05vtLw"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2dpRMkhyEeCrgMci05vtLw" x="312" y="396"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2dpRMkhyEeCrgMci05vtLw" x="240" y="420"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_S0vhokjLEeCGzpWswKZqhQ" type="2001" fillColor="8047085">
     <children xmi:type="notation:DecorationNode" xmi:id="_S0vho0jLEeCGzpWswKZqhQ" type="5003">
