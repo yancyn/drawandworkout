@@ -18,8 +18,6 @@ namespace WorkOrderGUI
         #region IValueConverter Members
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            //if (value == null) return Visibility.Collapsed;
-
             if (value is int)
             {
                 return ((int)value) > 0 ? Visibility.Visible : Visibility.Hidden; //todo: check Visibility.Collapsed
@@ -43,14 +41,46 @@ namespace WorkOrderGUI
                 else
                     return Visibility.Visible;
             }
-            //if has parent hide the material selection box
             else if (value is WorkItem)
             {
-                return (value as WorkItem) != null ? Visibility.Collapsed : Visibility.Visible;
+                //if has parent hide the material selection box
+                return (value as WorkItem) == null ? Visibility.Visible : Visibility.Collapsed;
             }
             else if (value == null)
             {
                 return Visibility.Visible;
+            }
+
+            throw new ArgumentException("Not supported type of " + value.GetType());
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
+    /// <summary>
+    /// Handle visibility of adding button.
+    /// </summary>
+    public class AllowAddConverter : IValueConverter
+    {
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value == null) return Visibility.Visible;
+            if (value is WorkItem)
+            {
+                //if has parent hide the material selection box
+                //if parent is LShapeItem, visible add button
+                if ((value as WorkItem) == null)
+                    return Visibility.Visible;
+                else
+                {
+                    if (value is LShapeItem)
+                        return Visibility.Visible;
+                    else
+                        return Visibility.Collapsed;
+                }
             }
 
             throw new ArgumentException("Not supported type of " + value.GetType());
@@ -520,59 +550,62 @@ namespace WorkOrderGUI
         #endregion
     }
     /// <summary>
-    /// Filter out WorkItem object from WorkItem.Elements collection
+    /// Abandon. Filter out WorkItem object from WorkItem.Elements collection
     /// remains real ShapeItem.
     /// </summary>
-    public class ShapeItemOnlyConverter : IValueConverter
-    {
-        #region IValueConverter Members
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            if (value is ObservableCollection<ShapeItem>)
-            {
-                ObservableCollection<ShapeItem> output = new ObservableCollection<ShapeItem>();
-                foreach(ShapeItem element in (value as ObservableCollection<ShapeItem>))
-                {
-                    if (!(element is WorkItem)) output.Add(element);
-                }
+    /// <remarks>
+    /// This will break the databinding rule.
+    /// </remarks>
+    //public class ShapeItemOnlyConverter : IValueConverter
+    //{
+    //    #region IValueConverter Members
+    //    public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    //    {
+    //        if (value is ObservableCollection<ShapeItem>)
+    //        {
+    //            ObservableCollection<ShapeItem> output = new ObservableCollection<ShapeItem>();
+    //            foreach(ShapeItem element in (value as ObservableCollection<ShapeItem>))
+    //            {
+    //                if (!(element is WorkItem)) output.Add(element);
+    //            }
 
-                System.Diagnostics.Debug.WriteLine("ShapeItemOnlyConverter: " + output.Count);
-                return output;
-            }
+    //            System.Diagnostics.Debug.WriteLine("ShapeItemOnlyConverter: " + output.Count);
+    //            return output;
+    //        }
 
-            throw new NotImplementedException();
-        }
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-    }
-    public class WorkItemOnlyConverter : IValueConverter
-    {
-        #region IValueConverter Members
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            if (value is ObservableCollection<ShapeItem>)
-            {
-                ObservableCollection<ShapeItem> output = new ObservableCollection<ShapeItem>();
-                foreach (ShapeItem element in (value as ObservableCollection<ShapeItem>))
-                {
-                    if ((element is WorkItem)) output.Add(element);
-                }
+    //        throw new NotImplementedException();
+    //    }
+    //    public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //    #endregion
+    //}
+    //public class WorkItemOnlyConverter : IValueConverter
+    //{
+    //    #region IValueConverter Members
+    //    public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    //    {
+    //        if (value is ObservableCollection<ShapeItem>)
+    //        {
+    //            ObservableCollection<ShapeItem> output = new ObservableCollection<ShapeItem>();
+    //            foreach (ShapeItem element in (value as ObservableCollection<ShapeItem>))
+    //            {
+    //                if ((element is WorkItem)) output.Add(element);
+    //            }
 
-                System.Diagnostics.Debug.WriteLine("WorkItemOnlyConverter: " + output.Count);
-                return output;
-            }
+    //            System.Diagnostics.Debug.WriteLine("WorkItemOnlyConverter: " + output.Count);
+    //            return output;
+    //        }
 
-            throw new NotImplementedException();
-        }
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-    }
+    //        throw new NotImplementedException();
+    //    }
+    //    public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //    #endregion
+    //}
     /// <summary>
     /// Convert a bullnose model into BullnoseViewModel object and vice versa.
     /// </summary>

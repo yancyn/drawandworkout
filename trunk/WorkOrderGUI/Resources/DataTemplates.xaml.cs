@@ -35,7 +35,8 @@ namespace WorkOrderGUI
                 if (pageManager.CurrentPage.Item is Project)
                 {
                     (pageManager.CurrentPage.Item as Project).WorkOrders[0].SelectedItem = (e.Device.Target as Shape).DataContext as WorkItem;
-                    System.Diagnostics.Debug.WriteLine((pageManager.CurrentPage.Item as Project).WorkOrders[0].SelectedItem.ToString());
+                    if ((pageManager.CurrentPage.Item as Project).WorkOrders[0].SelectedItem != null)
+                        System.Diagnostics.Debug.WriteLine((pageManager.CurrentPage.Item as Project).WorkOrders[0].SelectedItem.ToString());
                 }
             }
         }
@@ -48,16 +49,18 @@ namespace WorkOrderGUI
                 ToolbarManager toolbarManager = (App.Current.MainWindow.FindName("Toolbox") as ToolBar).DataContext as ToolbarManager;
                 if (toolbarManager.SelectedToolbar != null)
                 {
+                    Project project = (pageManager.CurrentPage.Item as Project);
+                    Stock stock = project.WorkOrders[0].Items[0].Material;
                     //todo: handle more WorkItem selection
                     if (toolbarManager.SelectedToolbar.Name.Contains("LShapeItem"))
                     {
-                        LShapeItem wo = new LShapeItem(toolbarManager.SelectedToolbar.Name);
-                        (pageManager.CurrentPage.Item as Project).WorkOrders[0].Items.Add(wo);
+                        LShapeItem wo = new LShapeItem(toolbarManager.SelectedToolbar.Name,stock,0,0);
+                        project.WorkOrders[0].Items.Add(wo);
                     }
                     else if (toolbarManager.SelectedToolbar.Name.Contains("RectItem"))
                     {
-                        RectItem wo = new RectItem(toolbarManager.SelectedToolbar.Name);
-                        (pageManager.CurrentPage.Item as Project).WorkOrders[0].Items.Add(wo);
+                        RectItem wo = new RectItem(toolbarManager.SelectedToolbar.Name, stock, 0, 0);
+                        project.WorkOrders[0].Items.Add(wo);
                     }
                 }
             }

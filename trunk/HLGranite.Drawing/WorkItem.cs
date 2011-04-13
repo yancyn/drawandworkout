@@ -112,40 +112,89 @@ namespace HLGranite.Drawing
         /// <returns></returns>
         public bool RemoveElement(WorkItem sender)
         {
-            bool found = (this.guidField.Equals(sender.Guid)) ? true : false;
-            if (found) return found;
-            found = MatchElement(this.elementsField, sender);
-
-            return found;
+            return MatchElement(this.elementsField, sender);
         }
         private bool MatchElement(ObservableCollection<ShapeItem> source, WorkItem sender)
         {
             bool match = false;
-            for (int i = source.Count - 1; i >= 0; i--)
-            {
-                if (source[i] is WorkItem)
-                {
-                    if ((source[i] as WorkItem).Guid.Equals(sender.Guid))
-                    {
-                        bool isRectItem = (source[i] is RectItem) ? true : false;
-                        source.RemoveAt(i);
-                        System.Diagnostics.Debug.WriteLine("WorkItem.Elements[i] has been removed.");
-                        //remove the dotted line as well
-                        //the dotted line must exist before RectItem normally
-                        if (isRectItem)
-                        {
-                            if (source[i - 1] is VerticalLine) source.RemoveAt(i - 1);
-                            else if (source[i - 1] is HorizontalLine) source.RemoveAt(i - 1);
-                        }
-                        return true;
-                    }
 
-                    match = MatchElement((source[i] as WorkItem).Elements, sender);
-                    if (match) return true;
+            try
+            {
+                for (int i = source.Count - 1; i >= 0; i--)
+                {
+                    if (source[i] is WorkItem)
+                    {
+                        if ((source[i] as WorkItem).Guid.Equals(sender.Guid))
+                        {
+                            bool isRectItem = (source[i] is RectItem) ? true : false;
+                            source.RemoveAt(i);
+                            System.Diagnostics.Debug.WriteLine("WorkItem.Elements[i] has been removed.");
+                            //remove the dotted line as well
+                            //the dotted line must exist before RectItem normally
+                            if (isRectItem)
+                            {
+                                if (i > 0)
+                                {
+                                    if (source[i - 1] is VerticalLine) source.RemoveAt(i - 1);
+                                    else if (source[i - 1] is HorizontalLine) source.RemoveAt(i - 1);
+                                }
+                            }
+                            return true;
+                        }
+
+                        match = MatchElement((source[i] as WorkItem).Elements, sender);
+                        if (match) return true;
+                    }
+                }
+
+                return match;
+            }
+            finally
+            {
+                int counter = 0;
+                foreach (ShapeItem item in this.elementsField)
+                    if (item is RectItem) counter++;
+
+                //if there only left 1 RectItem in collection, just remove the other as well
+                //the parent will represent the whole size!
+                if (counter == 1)
+                {
+                    for (int i = this.elementsField.Count - 1; i >= 0; i--)
+                    {
+                        if (this.elementsField[i] is RectItem)
+                        {
+                            this.elementsField.RemoveAt(i);
+                            break;
+                        }
+                    }
+                }
+
+                SetLineSpacing(counter);
+            }
+        }
+        /// <summary>
+        /// Configure all the lines spacing after each time addition or deletion of child element.
+        /// </summary>
+        /// <param name="counter"></param>
+        private void SetLineSpacing(int counter)
+        {
+            int drawingWidth = 200;
+            if (this.modelField == "RectItem00")
+            {
+                foreach (ShapeItem item in this.elementsField)
+                {
+                    if (item is VerticalLine)
+                        (item as VerticalLine).Left = drawingWidth / counter;
                 }
             }
-
-            return match;
+            else if (this.modelField == "RectItem01")
+            {
+                foreach (ShapeItem item in this.elementsField)
+                {
+                    if (item is HorizontalLine)
+                        (item as HorizontalLine).Top = drawingWidth / counter;
+                }
+            }
         }
 
         public void AddElement()
@@ -177,27 +226,7 @@ namespace HLGranite.Drawing
             this.elementsField.Add(sender);
             counter++;
 
-            int drawingWidth = 200;
-            if (this.modelField == "RectItem00")
-            {
-                foreach (ShapeItem item in this.elementsField)
-                {
-                    if (item is VerticalLine)
-                    {
-                        //(item as VerticalLine).Left = countLine * drawingWidth / counter;
-                        (item as VerticalLine).Left = drawingWidth / counter;
-                        //(item as VerticalLine).Top = -countLine * drawingHeight / counter +buffer;
-                    }
-                }
-            }
-            else if (this.modelField == "RectItem01")
-            {
-                foreach (ShapeItem item in this.elementsField)
-                {
-                    if (item is HorizontalLine)
-                        (item as HorizontalLine).Top = drawingWidth / counter;
-                }
-            }
+            SetLineSpacing(counter);
         }
         public void AddHorizontalElement(RectItem sender)
         {
