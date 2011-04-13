@@ -34,11 +34,9 @@ namespace HLGranite.Drawing
             (this.elementsField[0] as RectItem).Width = width;
             (this.elementsField[0] as RectItem).Height = length;
 
-            //this.elementsField[1] is VerticalLine
-            //this.elementsField[2] = new RectItem("RectItem00", stock, length, height);
-            (this.elementsField[2] as RectItem).Material = stock;
-            (this.elementsField[2] as RectItem).Width = length;
-            (this.elementsField[2] as RectItem).Height = height - length;
+            (this.elementsField[1] as RectItem).Material = stock;
+            (this.elementsField[1] as RectItem).Width = length;
+            (this.elementsField[1] as RectItem).Height = height - length;
 
             this.lengthsField[0].Length = width;
             this.lengthsField[1].Length = length;
@@ -53,9 +51,9 @@ namespace HLGranite.Drawing
             for (int i = 0; i < numberOfSides; i++)
                 this.lengthsField.Add(new LengthItem());
 
-            //for (int i = 0; i < 2; i++)
-            base.AddElement();
-            //base.AddElement(new RectItem("RectItem00", this.materialField, 0, 0));
+            //base.AddElement();
+            for (int i = 0; i < 2; i++)
+                this.elementsField.Add(new RectItem("RectItem00", this.materialField, 0, 0));
         }
     }
 }
