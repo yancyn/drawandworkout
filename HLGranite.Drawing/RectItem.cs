@@ -37,10 +37,10 @@ namespace HLGranite.Drawing
         {
             Initialize();
 
-            this.lengthsField[0] = new LengthItem(height);
-            this.lengthsField[1] = new LengthItem(width);
-            this.lengthsField[2] = new LengthItem(height);
-            this.lengthsField[3] = new LengthItem(width);
+            this.lengthsField[0].Length = width;
+            this.lengthsField[1].Length = height;
+            this.lengthsField[2].Length = width;
+            this.lengthsField[3].Length = height;
         }
         private void Initialize()
         {

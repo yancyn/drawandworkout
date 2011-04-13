@@ -40,12 +40,12 @@ namespace HLGranite.Drawing
             (this.elementsField[2] as RectItem).Width = length;
             (this.elementsField[2] as RectItem).Height = height - length;
 
-            this.lengthsField[0] = new LengthItem(height);
-            this.lengthsField[1] = new LengthItem(length);
-            this.lengthsField[2] = new LengthItem(height - length);
-            this.lengthsField[3] = new LengthItem(width - length);
-            this.lengthsField[4] = new LengthItem(length);
-            this.lengthsField[5] = new LengthItem(width);
+            this.lengthsField[0].Length = width;
+            this.lengthsField[1].Length = length;
+            this.lengthsField[2].Length = width - length;
+            this.lengthsField[3].Length = height - length;
+            this.lengthsField[4].Length = length;
+            this.lengthsField[5].Length = height;
         }
         private void Initialize()
         {
