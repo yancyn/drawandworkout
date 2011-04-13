@@ -474,6 +474,10 @@
     </DataTemplate>
     <DataTemplate x:Key="StockTemplate">
         <Grid x:Name="StockGrid">
+            <Grid.Resources>
+                <d:Inventories x:Key="Inventories"/>
+                <g:InventoryParametersConverter x:Key="InventoryParametersConverter"/>
+            </Grid.Resources>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="*" />
@@ -495,13 +499,13 @@
                     <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RefreshStock}" ToolTip="Discard all changes">Reset</Button>
                 </WrapPanel>
                 <DockPanel LastChildFill="True" DockPanel.Dock="Top">
-                    <GroupBox DockPanel.Dock="Right">
-                        <GroupBox.Header>
-                            <WrapPanel>
-                                <TextBlock Text="Stock In"/>
-                                <Button Margin="4,0,0,4" Width="20" Height="20">+</Button>
-                            </WrapPanel>
-                        </GroupBox.Header>
+                    <GroupBox DockPanel.Dock="Right" Header="Stock In">
+                        <!--<GroupBox.Header>
+                        <WrapPanel>
+                            <TextBlock Text="Stock In"/>
+                            <Button Margin="4,0,0,4" Width="20" Height="20">+</Button>
+                        </WrapPanel>
+                    </GroupBox.Header>-->
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="80"/>
@@ -514,19 +518,36 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0" Grid.Column="0" Text="Warehouse"/>
-                            <ComboBox Grid.Row="0" Grid.Column="1"
+                            <ComboBox x:Name="WarehouseComboBox" Grid.Row="0" Grid.Column="1"
                                   ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TabControl}},Path=DataContext.Database.Warehouses.Warehouse}"
                                   SelectedItem="{Binding Warehouse,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
                             <TextBlock Grid.Row="1" Grid.Column="0" Text="Date"/>
-                            <w:DatePicker Grid.Row="1" Grid.Column="1"/>
+                            <w:DatePicker x:Name="StockInDate" Grid.Row="1" Grid.Column="1"/>
                             <TextBlock Grid.Row="2" Grid.Column="0" Text="Size"/>
                             <WrapPanel Grid.Row="2" Grid.Column="1">
-                                <TextBox Width="40" />
+                                <TextBox x:Name="WidthTextBox" Width="40"/>
                                 <TextBlock Margin="4,0,4,0" Text="×"/>
-                                <TextBox Width="40" />
+                                <TextBox x:Name="HeightTextBox" Width="40"/>
                             </WrapPanel>
                             <TextBlock Grid.Row="3" Grid.Column="0" Text="Quantity"/>
-                            <TextBox Grid.Row="3" Grid.Column="1"/>
+                            <WrapPanel Grid.Row="3" Grid.Column="1">
+                                <TextBox x:Name="QtyTextBox" Width="40"/>
+                                <Button Style="{StaticResource BorderlessButton}" ToolTip="Add" Margin="4,0,4,0"
+                                    Command="{Binding AddInventoryCommand, Source={StaticResource Inventories}}">
+                                    <Button.CommandParameter>
+                                        <MultiBinding Converter="{StaticResource InventoryParametersConverter}">
+                                            <Binding ElementName="WarehouseComboBox" Path="SelectedItem"/>
+                                            <Binding ElementName="StockInDate" Path="SelectedDate"/>
+                                            <Binding/>
+                                            <!-- this is a stock -->
+                                            <Binding ElementName="WidthTextBox" Path="Text"/>
+                                            <Binding ElementName="HeightTextBox" Path="Text"/>
+                                            <Binding ElementName="QtyTextBox" Path="Text"/>
+                                        </MultiBinding>
+                                    </Button.CommandParameter>
+                                    <Image Height="16" Source="..\Images\add.png"/>
+                                </Button>
+                            </WrapPanel>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Details">

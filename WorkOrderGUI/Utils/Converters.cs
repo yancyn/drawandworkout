@@ -657,4 +657,37 @@ namespace WorkOrderGUI
         }
         #endregion
     }
+    public class InventoryParametersConverter : IMultiValueConverter
+    {
+        #region IMultiValueConverter Members
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (values.Length > 5)
+            {
+                var output = new InventoryParameters();
+                foreach (var item in values)
+                {
+                    if (item == null) continue;
+                    if (item is Warehouse)
+                        output.Warehouse = item as Warehouse;
+                    else if (item is DateTime)
+                        output.PurchaseAt = System.Convert.ToDateTime(item);
+                    else if (item is Stock)
+                        output.Stock = item as Stock;
+                }
+                if (values[3] != null && values[3].ToString().Length > 0) output.Width = System.Convert.ToDouble(values[3]);
+                if (values[4] != null && values[4].ToString().Length > 0) output.Height = System.Convert.ToDouble(values[4]);
+                if (values[5] != null && values[5].ToString().Length > 0) output.Quantity = System.Convert.ToInt32(values[5]);
+                return output;
+            }
+
+            return null;
+            //throw new NotImplementedException();
+        }
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
 }
