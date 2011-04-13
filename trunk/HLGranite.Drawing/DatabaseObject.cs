@@ -23,6 +23,24 @@ namespace HLGranite.Drawing
         /// </summary>
         protected string fileName;
 
+        private static Users users;
+        /// <summary>
+        /// Gets stocks collection from a stored database.
+        /// </summary>
+        public static Users Users
+        {
+            get
+            {
+                if (users == null)
+                {
+                    users = new Users();
+                    users = users.LoadFromFile() as Users;
+                    if (users == null) users = new Users();
+                }
+
+                return users;
+            }
+        }
         private static Stocks stocks;
         /// <summary>
         /// Gets stocks collection from a stored database.
@@ -57,6 +75,24 @@ namespace HLGranite.Drawing
                 return stocks;
             }
         }
+        private static Inventories inventories;
+        /// <summary>
+        /// Gets inventories collection from a stored database.
+        /// </summary>
+        public static Inventories Inventories
+        {
+            get
+            {
+                if (inventories == null)
+                {
+                    inventories = new Inventories();
+                    inventories = inventories.LoadFromFile() as Inventories;
+                    if (inventories == null) inventories = new Inventories();
+                }
+
+                return inventories;
+            }
+        }
         private static Warehouses warehouses;
         /// <summary>
         /// Gets warehouses collection from a stored database.
@@ -75,24 +111,7 @@ namespace HLGranite.Drawing
                 return warehouses;
             }
         }
-        private static Users users;
-        /// <summary>
-        /// Gets stocks collection from a stored database.
-        /// </summary>
-        public static Users Users
-        {
-            get
-            {
-                if (users == null)
-                {
-                    users = new Users();
-                    users = users.LoadFromFile() as Users;
-                    if (users == null) users = new Users();
-                }
 
-                return users;
-            }
-        }
         private static Projects projects;
         /// <summary>
         /// Gets project collection from a stored database.

@@ -148,7 +148,7 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_bJNcUEbVEeCvMexyU7cjtg" name="Item" memberEnd="_bJNcUUbVEeCvMexyU7cjtg _bJNcVEbVEeCvMexyU7cjtg">
+  <packagedElement xmi:type="uml:Association" xmi:id="_bJNcUEbVEeCvMexyU7cjtg" name="Stock" memberEnd="_bJNcUUbVEeCvMexyU7cjtg _bJNcVEbVEeCvMexyU7cjtg">
     <ownedEnd xmi:id="_bJNcUUbVEeCvMexyU7cjtg" name="1" type="_OXI4AEbVEeCvMexyU7cjtg" association="_bJNcUEbVEeCvMexyU7cjtg">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bJNcU0bVEeCvMexyU7cjtg" value="1"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bJNcUkbVEeCvMexyU7cjtg" value="1"/>

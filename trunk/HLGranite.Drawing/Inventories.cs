@@ -20,11 +20,34 @@ namespace HLGranite.Drawing
         }
         public void Add(Inventory source, int quantity)
         {
+            string prefix = source.Stock.Code + source.Width.ToString() + source.Height.ToString();
+            int number = GetLastSerialNumber(prefix, source);
             for (int i = 0; i < quantity; i++)
             {
+                number++;
                 Inventory item = new Inventory(source);
+                item.Serial = prefix + "-" + number.ToString("00000");// GetSerial(i, item);
                 this.inventoryField.Add(item);
             }
+        }
+        private int GetLastSerialNumber(string prefix, Inventory sender)
+        {
+            int output = 0;
+            if (sender.Stock.Code.Length == 0) return output;
+            Inventory result = (from f in this.inventoryField
+                                where f.Serial.CompareTo(prefix) >= 0
+                                select f).ToList<Inventory>()
+                                .OrderByDescending(f => f.Serial)
+                                .FirstOrDefault();
+            if (result != null)
+            {
+                string lastSerial = result.Serial;
+                string lastNumber = lastSerial.TrimStart(prefix.ToCharArray());
+                lastNumber = lastNumber.TrimStart(new char[] { '-' });
+                output = Convert.ToInt32(lastNumber);
+            }
+
+            return output;
         }
 
         #region Serialize/Deserialize
