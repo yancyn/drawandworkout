@@ -45,13 +45,14 @@ namespace HLGranite.Drawing.Test
         [TestMethod()]
         public void SaveToFileTest()
         {
+            Inventories target = DatabaseObject.Inventories;
+
             Inventory inventory = new Inventory();
-            inventory.Stock = new Stock { Name1 = "Blue Pearl" };
+            inventory.Stock = new Stock { Code = "BLU", Name1 = "Blue Pearl" };
             inventory.Warehouse = new Warehouse { Name1 = "Bukit Pinang" };
             inventory.Width = 72;
             inventory.Height = 24;
 
-            Inventories target = new Inventories();
             target.Add(inventory, 50);
             target.SaveToFile();
         }

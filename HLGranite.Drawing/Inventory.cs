@@ -14,6 +14,8 @@ namespace HLGranite.Drawing
             : base()
         {
             this.purchaseAtField = base.dateField;
+            this.serialField = string.Empty;
+            this.collectionField = new System.Collections.ObjectModel.ObservableCollection<InventoryWIP>();
         }
         /// <summary>
         /// Cloning constructor.

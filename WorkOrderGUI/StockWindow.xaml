@@ -28,13 +28,13 @@
                 <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding RefreshStock}" ToolTip="Discard all changes">Reset</Button>
             </WrapPanel>
             <DockPanel LastChildFill="True" DockPanel.Dock="Top">
-                <GroupBox DockPanel.Dock="Right">
-                    <GroupBox.Header>
+                <GroupBox DockPanel.Dock="Right" Header="Stock In">
+                    <!--<GroupBox.Header>
                         <WrapPanel>
                             <TextBlock Text="Stock In"/>
                             <Button Margin="4,0,0,4" Width="20" Height="20">+</Button>
                         </WrapPanel>
-                    </GroupBox.Header>
+                    </GroupBox.Header>-->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="80"/>
@@ -59,7 +59,12 @@
                             <TextBox Width="40" />
                         </WrapPanel>
                         <TextBlock Grid.Row="3" Grid.Column="0" Text="Quantity"/>
-                        <TextBox Grid.Row="3" Grid.Column="1"/>
+                        <WrapPanel Grid.Row="3" Grid.Column="1">
+                            <TextBox Width="40"/>
+                            <Button Style="{StaticResource BorderlessButton}" ToolTip="Add" Margin="4,0,4,0">
+                                <Image Height="16" Source="..\Images\add.png"/>
+                            </Button>
+                        </WrapPanel>
                     </Grid>
                 </GroupBox>
                 <GroupBox Header="Details">

@@ -1094,10 +1094,6 @@ namespace HLGranite.Drawing
 
         private double heightField;
 
-        private Inventory sourceField;
-
-        private WorkItem workItemField;
-
         public Employee WorkedBy
         {
             get
@@ -1169,54 +1165,6 @@ namespace HLGranite.Drawing
                 }
             }
         }
-
-        public Inventory Source
-        {
-            get
-            {
-                return this.sourceField;
-            }
-            set
-            {
-                if ((this.sourceField != null))
-                {
-                    if ((sourceField.Equals(value) != true))
-                    {
-                        this.sourceField = value;
-                        this.OnPropertyChanged("Source");
-                    }
-                }
-                else
-                {
-                    this.sourceField = value;
-                    this.OnPropertyChanged("Source");
-                }
-            }
-        }
-
-        public WorkItem WorkItem
-        {
-            get
-            {
-                return this.workItemField;
-            }
-            set
-            {
-                if ((this.workItemField != null))
-                {
-                    if ((workItemField.Equals(value) != true))
-                    {
-                        this.workItemField = value;
-                        this.OnPropertyChanged("WorkItem");
-                    }
-                }
-                else
-                {
-                    this.workItemField = value;
-                    this.OnPropertyChanged("WorkItem");
-                }
-            }
-        }
     }
 
     public partial class Inventory : BaseItem
@@ -1224,9 +1172,13 @@ namespace HLGranite.Drawing
 
         private System.DateTime purchaseAtField;
 
+        private string serialField;
+
         private Stock stockField;
 
         private Warehouse warehouseField;
+
+        private ObservableCollection<InventoryWIP> collectionField;
 
         public System.DateTime PurchaseAt
         {
@@ -1320,6 +1272,48 @@ namespace HLGranite.Drawing
                 {
                     this.warehouseField = value;
                     this.OnPropertyChanged("Warehouse");
+                }
+            }
+        }
+
+        public string Serial
+        {
+            get { return this.serialField; }
+            set
+            {
+                if (this.serialField != null)
+                {
+                    if (this.serialField.Equals(value) != true)
+                    {
+                        this.serialField = value;
+                        this.OnPropertyChanged("Serial");
+                    }
+                }
+                else
+                {
+                    this.serialField = value;
+                    this.OnPropertyChanged("Serial");
+                }
+            }
+        }
+
+        public ObservableCollection<InventoryWIP> Collection
+        {
+            get { return this.collectionField; }
+            set
+            {
+                if (this.collectionField != null)
+                {
+                    if (this.collectionField.Equals(value) != true)
+                    {
+                        this.collectionField = value;
+                        this.OnPropertyChanged("Collection");
+                    }
+                }
+                else
+                {
+                    this.collectionField = value;
+                    this.OnPropertyChanged("Collection");
                 }
             }
         }
