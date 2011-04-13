@@ -62,6 +62,28 @@ namespace WorkOrderGUI
         #endregion
     }
     /// <summary>
+    /// Visible when it is empty or zero, opposite with VisibilityConverter.
+    /// </summary>
+    public class VisibleEmptyConverter : IValueConverter
+    {
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is int)
+            {
+                int i = (int)value;
+                return (i == 0) ? Visibility.Visible : Visibility.Hidden;
+            }
+
+            throw new ArgumentException("Not supported type of " + value.GetType());
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
+    /// <summary>
     /// Convert date time, decimal to desire format.
     /// </summary>
     public class NumberConverter : IValueConverter
@@ -324,19 +346,16 @@ namespace WorkOrderGUI
             bool match = false;
             foreach (ShapeItem item in collection)
             {
-                if (item is RectItem) counter++;
-                if (item is WorkItem)
+                if (item is RectItem)
                 {
+                    //when only there are no child element anymore
+                    if ((item as WorkItem).Elements.Count == 0) counter++;
                     if ((item as WorkItem).Guid.Equals(source.Guid))
                     {
                         match = true;
                         return match;
                     }
                 }
-
-                //if (!match && item.Elements.Count > 0)
-                //    match = MatchItemInCollection(item.Elements, source, ref counter);
-                if (match == true) return match;
             }
 
             return match;
@@ -346,16 +365,16 @@ namespace WorkOrderGUI
             bool match = false;
             foreach (WorkItem item in collection)
             {
-                if (item is RectItem) counter++;
+                if (item is RectItem && item.Elements.Count == 0) counter++;//when only there are no child element anymore
                 if (item.Guid.Equals(source.Guid))
                 {
                     match = true;
                     return match;
                 }
 
-                if (!match && item.Elements.Count > 0)
+                if (item.Elements.Count > 0)
                     match = MatchItemInCollection(item.Elements, source, ref counter);
-                if (match == true) return match;
+                if (match) return match;
             }
 
             return match;

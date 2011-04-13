@@ -199,7 +199,7 @@
                 </ToolBar>
             </ToolBarTray>
             <TabControl x:Name="MainTabControl" Grid.Column="1"
-                        DataContext="{Binding ElementName=MainGrid,Path=DataContext}"
+                        DataContext="{Binding ElementName=MainGrid,Path=DataContext,UpdateSourceTrigger=PropertyChanged}"
                         SelectedItem="{Binding CurrentPage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                         ItemsSource="{Binding Items,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                         ContentTemplateSelector="{StaticResource PageTemplateSelector}"/>

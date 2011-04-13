@@ -10,6 +10,7 @@
     <g:GlobaliztionResource x:Key="Resource"/>
     
     <g:VisibilityConverter x:Key="VisibilityConverter"/>
+    <g:VisibleEmptyConverter x:Key="VisibleEmptyConverter"/>
     <g:NumberConverter x:Key="NumberConverter"/>
     <g:ShortDateConverter x:Key="ShortDateConverter"/>
     <g:PercentageConverter x:Key="PercentageConverter"/>
@@ -241,7 +242,15 @@
         </StackPanel>
     </DataTemplate>
     <DataTemplate DataType="{x:Type d:RectItem}">
-        <Grid Margin="0,0,0,20" Background="Beige" DataContext="{Binding}">
+        <Grid Margin="0,0,0,20" Background="Beige" DataContext="{Binding}" ToolTip="DataTemplate:RectItem">
+            <Grid.Resources>
+                <DataTemplate DataType="{x:Type d:HorizontalLine}">
+                    <WrapPanel Visibility="Hidden"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type d:VerticalLine}">
+                    <WrapPanel Visibility="Hidden"/>
+                </DataTemplate>
+            </Grid.Resources>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="*"/>
@@ -253,7 +262,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0">
+            <TextBlock Grid.Row="0" Grid.Column="0" Visibility="{Binding Elements.Count,Converter={StaticResource VisibleEmptyConverter}}">
                 <TextBlock.Text>
                     <MultiBinding Converter="{StaticResource LabelingConverter}" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                         <Binding/>
@@ -282,14 +291,16 @@
                 </Button>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-                <ItemsControl ItemsSource="{Binding Elements,Converter={StaticResource WorkItemOnlyConverter},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <ItemsControl Visibility="{Binding Parent,Converter={StaticResource VisibilityConverter}}"
-                    ItemsSource="{Binding Lengths,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <!--<ItemsControl ItemsSource="{Binding Elements,Converter={StaticResource WorkItemOnlyConverter},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>-->
+                <ItemsControl ItemsSource="{Binding Elements,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <ItemsControl HorizontalAlignment="Right"
+                              Visibility="{Binding Parent,Converter={StaticResource VisibilityConverter}}"                              
+                              ItemsSource="{Binding Lengths,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
         </Grid>
     </DataTemplate>
     <DataTemplate DataType="{x:Type d:WorkItem}">
-        <Grid Margin="0,0,0,20" DataContext="{Binding}">
+        <Grid Margin="0,0,0,20" DataContext="{Binding}" ToolTip="DataTemplate:WorkItem">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="*"/>
@@ -322,8 +333,10 @@
                 <TextBox Width="50" Text="{Binding MaxHeight,Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-                <ItemsControl ItemsSource="{Binding Elements,Converter={StaticResource WorkItemOnlyConverter},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                <ItemsControl ItemsSource="{Binding Lengths,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                <!--<ItemsControl ItemsSource="{Binding Elements,Converter={StaticResource WorkItemOnlyConverter},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>-->
+                <ItemsControl ItemsSource="{Binding Elements,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <ItemsControl HorizontalAlignment="Right"
+                              ItemsSource="{Binding Lengths,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"                              
                               Visibility="{Binding Parent,Converter={StaticResource VisibilityConverter}}"/>
             </StackPanel>
         </Grid>
@@ -436,7 +449,7 @@
                     <Expander Header="History" Style="{DynamicResource ExpanderBackground}"/><!-- TODO -->
                     <Expander Header="Raw Materials" Style="{DynamicResource ExpanderBackground}"/><!-- TODO -->
                     <Expander Header="Details" Style="{DynamicResource ExpanderBackground}"
-                              DataContext="{Binding Item.WorkOrders[0]}"><!-- TODO: Change to support multiple WorkOrder -->
+                              DataContext="{Binding Item.WorkOrders[0],UpdateSourceTrigger=PropertyChanged}"><!-- TODO: Change to support multiple WorkOrder -->
                         <StackPanel>
                             <ItemsControl ItemsSource="{Binding Items,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
