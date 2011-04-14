@@ -275,10 +275,12 @@
       <xsd:extension base="BaseItem">
         <xsd:sequence>
           <xsd:element name="PurchaseAt" type="xsd:dateTime"/>
+          <xsd:element name="Serial" type="xsd:string"/>
+          <xsd:element name="Warehouse" type="Warehouse"/>
+          <xsd:element name="Stock" type="Stock"/>
           <xsd:element name="Width" type="xsd:double"/>
           <xsd:element name="Height" type="xsd:double"/>
-          <xsd:element name="Stock" type="Stock"/>
-          <xsd:element name="Warehouse" type="Warehouse"/>
+          <xsd:element name="Collection" type="InventoryWIP" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -300,11 +302,8 @@
     <xsd:complexContent>
       <xsd:extension base="BaseItem">
         <xsd:sequence>
-          <xsd:element name="WorkedBy" type="Employee"/>
-          <xsd:element name="WorkedAt" type="xsd:dateTime"/>
           <xsd:element name="Width" type="xsd:double"/>
           <xsd:element name="Height" type="xsd:double"/>
-          <xsd:element name="Source" type="Inventory"/>
           <xsd:element name="WorkItem" type="WorkItem"/>
         </xsd:sequence>
       </xsd:extension>
@@ -350,6 +349,16 @@
     <xsd:sequence>
       <xsd:element name="Length" type="xsd:double"/>
       <xsd:element name="Type" type="Bullnose"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!--  Log  -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <xsd:complexType name="Log">
+    <xsd:sequence>
+		<xsd:element name="At" type="xsd:dateTime"/>
+		<xsd:element name="By" type="Employee"/>
+		<xsd:element name="Tag" type="Object"/>
     </xsd:sequence>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -418,6 +427,7 @@
               </xsd:documentation>
             </xsd:annotation>
           </xsd:element>
+          <xsd:element name="Logs" type="Log" minOccurs="1" maxOccurs="unbounded"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -552,14 +562,17 @@
     <xsd:complexContent>
       <xsd:extension base="BaseWorkItem">
         <xsd:sequence>
-          <xsd:element name="CreatedAt" type="xsd:dateTime"/>
+          <xsd:element name="WorkedAtAt" type="xsd:dateTime"/>
           <xsd:element name="WorkedBy" type="Employee"/>
+          <xsd:element name="Parent" type="WorkItem"/>
           <xsd:element name="MaxWidth" type="xsd:double"/>
           <xsd:element name="MaxHeight" type="xsd:double"/>
           <xsd:element name="Material" type="Stock"/>
+          <xsd:element name="Source" type="InventoryWIP"/>
           <xsd:element name="Elements" type="ShapeItem" minOccurs="0" maxOccurs="unbounded"/>
           <xsd:element name="Lengths" type="LengthItem" minOccurs="1" maxOccurs="unbounded"/>
           <xsd:element name="Status" type="WorkStatus"/>
+          <xsd:element name="Logs" type="Log" minOccurs="1" maxOccurs="unbounded"/>
           <xsd:element name="Progress" type="xsd:decimal">
             <xsd:annotation>
               <xsd:documentation>
@@ -630,6 +643,7 @@
   <xsd:element name="LabelShape" type="LabelShape"/>
   <xsd:element name="LShapeItem" type="LShapeItem"/>
   <xsd:element name="LengthItem" type="LengthItem"/>
+  <xsd:element name="Log" type="Log"/>
   <xsd:element name="Object" type="Object"/>
   <xsd:element name="PolygonItem" type="PolygonItem"/>
   <xsd:element name="Project" type="Project"/>

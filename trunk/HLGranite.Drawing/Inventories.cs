@@ -71,8 +71,7 @@ namespace HLGranite.Drawing
             int output = 0;
             if (sender.Stock.Code.Length == 0) return output;
             Inventory result = (from f in this.inventoryField
-                                //where prefix.Contains(f.Serial)
-                                where f.Serial.Contains(prefix) //CompareTo(prefix) >= 0
+                                where f.Serial.Contains(prefix)
                                 select f)
                                 .OrderByDescending(f => f.Serial)
                                 .FirstOrDefault();

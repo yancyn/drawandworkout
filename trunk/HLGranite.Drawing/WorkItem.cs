@@ -40,6 +40,31 @@ namespace HLGranite.Drawing
                 }
             }
         }
+        protected InventoryWIP sourceField;
+        /// <summary>
+        /// Indicate source inventory as raw material.
+        /// </summary>
+        [XmlIgnore()]
+        public InventoryWIP Source
+        {
+            get { return this.sourceField; }
+            set
+            {
+                if (this.sourceField != null)
+                {
+                    if (this.sourceField.Equals(value) != true)
+                    {
+                        this.sourceField = value;
+                        this.OnPropertyChanged("Source");
+                    }
+                }
+                else
+                {
+                    this.sourceField = value;
+                    this.OnPropertyChanged("Source");
+                }
+            }
+        }
         #endregion
 
         #region ICommand
@@ -102,6 +127,8 @@ namespace HLGranite.Drawing
             this.workedByField = new Employee();
             this.numberOfSides = 1;
             this.statusField = WorkStatus.NotStarted;
+            this.logsField = new ObservableCollection<Log>();
+            //this.sourceField = null;
             //this.uomField = (Unit)Enum.Parse(typeof(Unit), "British");
             //todo: this.uomField = (Unit)System.Configuration.ConfigurationSettings.AppSettings["uom"].ToString();// Unit.British;
         }
