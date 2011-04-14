@@ -135,6 +135,7 @@ namespace HLGranite.Drawing
             this.deliverToField = new Customer();
             this.stageField = ProjectStage.Draft;
             this.workOrdersField = new ObservableCollection<WorkOrder>();
+            this.logsField = new ObservableCollection<Log>();
 
             this.progressField = 0m;
             this.totalAreaField = 0m;

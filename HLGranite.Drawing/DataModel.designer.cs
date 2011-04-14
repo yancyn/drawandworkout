@@ -487,7 +487,9 @@ namespace HLGranite.Drawing
 
         protected ShapeItem shapeItemField;
 
-        public System.DateTime CreatedAt
+        protected ObservableCollection<Log> logsField;
+
+        public System.DateTime WorkedAt
         {
             get
             {
@@ -498,7 +500,7 @@ namespace HLGranite.Drawing
                 if ((dateField.Equals(value) != true))
                 {
                     this.dateField = value;
-                    this.OnPropertyChanged("CreatedAt");
+                    this.OnPropertyChanged("WorkedAt");
                 }
             }
         }
@@ -627,6 +629,30 @@ namespace HLGranite.Drawing
                 {
                     this.lengthsField = value;
                     this.OnPropertyChanged("Lengths");
+                }
+            }
+        }
+
+        public ObservableCollection<Log> Logs
+        {
+            get
+            {
+                return this.logsField;
+            }
+            set
+            {
+                if ((this.logsField != null))
+                {
+                    if ((logsField.Equals(value) != true))
+                    {
+                        this.logsField = value;
+                        this.OnPropertyChanged("Logs");
+                    }
+                }
+                else
+                {
+                    this.logsField = value;
+                    this.OnPropertyChanged("Logs");
                 }
             }
         }
@@ -860,6 +886,93 @@ namespace HLGranite.Drawing
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(LShapeItem))]
     public partial class PolygonItem : WorkItem { }
 
+    public partial class Log : System.ComponentModel.INotifyPropertyChanged
+    {
+
+        protected DateTime atField;
+
+        protected Employee byField;
+
+        protected object tagField;
+
+        public DateTime At
+        {
+            get
+            {
+                return this.atField;
+            }
+            set
+            {
+                if (this.atField != null)
+                {
+                    if ((atField.Equals(value) != true))
+                    {
+                        this.atField = value;
+                        this.OnPropertyChanged("At");
+                    }
+                }
+                else
+                {
+                    this.atField = value;
+                    this.OnPropertyChanged("At");
+                }
+            }
+        }
+
+        public Employee By
+        {
+            get { return this.byField; }
+            set
+            {
+                if (this.byField != null)
+                {
+                    if (this.byField.Equals(value) != true)
+                    {
+                        this.byField = value;
+                        this.OnPropertyChanged("By");
+                    }
+                }
+                else
+                {
+                    this.byField = value;
+                    this.OnPropertyChanged("By");
+                }
+            }
+        }
+
+        public object Tag
+        {
+            get { return this.tagField; }
+            set
+            {
+                if (this.tagField != null)
+                {
+                    if (this.tagField.Equals(value) != true)
+                    {
+                        this.tagField = value;
+                        this.OnPropertyChanged("Tag");
+                    }
+                }
+                else
+                {
+                    this.tagField = value;
+                    this.OnPropertyChanged("Tag");
+                }
+            }
+        }
+
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+
+        public virtual void OnPropertyChanged(string propertyName)
+        {
+            System.ComponentModel.PropertyChangedEventHandler handler = this.PropertyChanged;
+            if ((handler != null))
+            {
+                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+
     public partial class LengthItem : System.ComponentModel.INotifyPropertyChanged
     {
 
@@ -1086,53 +1199,11 @@ namespace HLGranite.Drawing
     public partial class InventoryWIP : BaseItem
     {
 
-        private Employee workedByField;
-
-        private System.DateTime workedAtField;
-
         private double widthField;
 
         private double heightField;
 
-        public Employee WorkedBy
-        {
-            get
-            {
-                return this.workedByField;
-            }
-            set
-            {
-                if ((this.workedByField != null))
-                {
-                    if ((workedByField.Equals(value) != true))
-                    {
-                        this.workedByField = value;
-                        this.OnPropertyChanged("WorkedBy");
-                    }
-                }
-                else
-                {
-                    this.workedByField = value;
-                    this.OnPropertyChanged("WorkedBy");
-                }
-            }
-        }
-
-        public System.DateTime WorkedAt
-        {
-            get
-            {
-                return this.workedAtField;
-            }
-            set
-            {
-                if ((workedAtField.Equals(value) != true))
-                {
-                    this.workedAtField = value;
-                    this.OnPropertyChanged("WorkedAt");
-                }
-            }
-        }
+        private WorkItem workItemField;
 
         public double Width
         {
@@ -1162,6 +1233,27 @@ namespace HLGranite.Drawing
                 {
                     this.heightField = value;
                     this.OnPropertyChanged("Height");
+                }
+            }
+        }
+
+        public WorkItem WorkItem
+        {
+            get { return this.workItemField; }
+            set
+            {
+                if (this.workItemField != null)
+                {
+                    if (this.workItemField.Equals(value) != true)
+                    {
+                        this.workItemField = value;
+                        this.OnPropertyChanged("WorkItem");
+                    }
+                }
+                else
+                {
+                    this.workItemField = value;
+                    this.OnPropertyChanged("WorkItem");
                 }
             }
         }
@@ -1336,6 +1428,8 @@ namespace HLGranite.Drawing
 
         private ProjectStage stageField;
 
+        private ObservableCollection<Log> logsField;
+
         public System.DateTime CreatedAt
         {
             get
@@ -1491,6 +1585,30 @@ namespace HLGranite.Drawing
                 {
                     this.stageField = value;
                     this.OnPropertyChanged("Stage");
+                }
+            }
+        }
+
+        public ObservableCollection<Log> Logs
+        {
+            get
+            {
+                return this.logsField;
+            }
+            set
+            {
+                if ((this.logsField != null))
+                {
+                    if ((logsField.Equals(value) != true))
+                    {
+                        this.logsField = value;
+                        this.OnPropertyChanged("Logs");
+                    }
+                }
+                else
+                {
+                    this.logsField = value;
+                    this.OnPropertyChanged("Logs");
                 }
             }
         }
@@ -1654,36 +1772,6 @@ namespace HLGranite.Drawing
                 {
                     this.projectField = value;
                     this.OnPropertyChanged("Project");
-                }
-            }
-        }
-    }
-
-    public partial class InventoryWIPs : DatabaseObject
-    {
-
-        private ObservableCollection<Inventory> inventoryField;
-
-        public ObservableCollection<Inventory> Inventory
-        {
-            get
-            {
-                return this.inventoryField;
-            }
-            set
-            {
-                if ((this.inventoryField != null))
-                {
-                    if ((inventoryField.Equals(value) != true))
-                    {
-                        this.inventoryField = value;
-                        this.OnPropertyChanged("Inventory");
-                    }
-                }
-                else
-                {
-                    this.inventoryField = value;
-                    this.OnPropertyChanged("Inventory");
                 }
             }
         }
