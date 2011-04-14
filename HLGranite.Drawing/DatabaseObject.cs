@@ -53,7 +53,6 @@ namespace HLGranite.Drawing
                 {
                     stocks = new Stocks();
                     stocks = stocks.LoadFromFile() as Stocks;
-                    //stocks = DatabaseObject.LoadFromFile() as Stocks;
                     if (stocks == null) stocks = new Stocks();
 
                     //sort collection by name1 alphabetically

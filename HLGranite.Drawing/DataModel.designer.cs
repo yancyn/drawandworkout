@@ -813,7 +813,7 @@ namespace HLGranite.Drawing
     }
 
     public partial class VerticalLine : ShapeItem { }
-    
+
     public partial class HorizontalLine : ShapeItem { }
 
     public partial class LabelShape : ShapeItem { }

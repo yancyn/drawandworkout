@@ -72,6 +72,24 @@ namespace HLGranite.Drawing
                     this.stockField.Add(s);
             }
         }
+        /// <summary>
+        /// Load from database.
+        /// </summary>
+        /// <returns></returns>
+        public DatabaseObject LoadFromFile()
+        {
+            Stocks output = base.LoadFromFile() as Stocks;
+            foreach (Stock item in output.Stock)
+            {
+                var inventories = from f in DatabaseObject.Inventories.Inventory
+                                  where f.Stock.Name1.Equals(item.Name1)
+                                  select f;
+                foreach (Inventory i in inventories)
+                    item.Inventories.Add(i);
+            }
+
+            return output;
+        }
         #endregion
     }
     /// <summary>
