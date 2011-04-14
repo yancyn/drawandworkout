@@ -96,7 +96,7 @@
     <ownedAttribute xmi:id="_KXy74ETYEeCJe9RP8ofhZg" name="WorkedBy" type="_A3_9cETUEeC_SaZDL-mcDw" aggregation="composite"/>
     <ownedAttribute xmi:id="_l2wPAEbTEeCvMexyU7cjtg" name="MaxWidth" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
     <ownedAttribute xmi:id="_n1t2EEbTEeCvMexyU7cjtg" name="MaxHeight" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
-    <ownedAttribute xmi:id="_v1SW4EbiEeCP999jW41XiA" name="CreatedAt" type="_JFuk8ES1EeCFl51ftuwnCA" aggregation="composite"/>
+    <ownedAttribute xmi:id="_v1SW4EbiEeCP999jW41XiA" name="WorkedAt" type="_JFuk8ES1EeCFl51ftuwnCA" aggregation="composite"/>
     <ownedAttribute xmi:id="_qa-JgEhyEeCrgMci05vtLw" name="Status" type="_tnuZYEhyEeCrgMci05vtLw" aggregation="composite"/>
     <ownedAttribute xmi:id="_u2Gg4GQlEeCzb4rt8IkBSA" name="numberOfSides" visibility="protected" aggregation="composite">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
@@ -149,11 +149,11 @@
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_bJNcUEbVEeCvMexyU7cjtg" name="Stock" memberEnd="_bJNcUUbVEeCvMexyU7cjtg _bJNcVEbVEeCvMexyU7cjtg">
-    <ownedEnd xmi:id="_bJNcUUbVEeCvMexyU7cjtg" name="1" type="_OXI4AEbVEeCvMexyU7cjtg" association="_bJNcUEbVEeCvMexyU7cjtg">
+    <ownedEnd xmi:id="_bJNcUUbVEeCvMexyU7cjtg" name="Inventories" type="_OXI4AEbVEeCvMexyU7cjtg" association="_bJNcUEbVEeCvMexyU7cjtg">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bJNcU0bVEeCvMexyU7cjtg" value="1"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bJNcUkbVEeCvMexyU7cjtg" value="1"/>
     </ownedEnd>
-    <ownedEnd xmi:id="_bJNcVEbVEeCvMexyU7cjtg" name="1" type="_z6EjUEbUEeCvMexyU7cjtg" aggregation="composite" association="_bJNcUEbVEeCvMexyU7cjtg">
+    <ownedEnd xmi:id="_bJNcVEbVEeCvMexyU7cjtg" name="Stock" type="_z6EjUEbUEeCvMexyU7cjtg" aggregation="composite" association="_bJNcUEbVEeCvMexyU7cjtg">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bJNcVkbVEeCvMexyU7cjtg" value="1"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bJNcVUbVEeCvMexyU7cjtg" value="1"/>
     </ownedEnd>
@@ -229,8 +229,6 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_HF3icEbYEeCvMexyU7cjtg" name="InventoryWIP">
     <generalization xmi:id="_NCNTIEbaEeCvMexyU7cjtg" general="_umohgEbZEeCvMexyU7cjtg"/>
-    <ownedAttribute xmi:id="_dGoD4EbYEeCvMexyU7cjtg" name="WorkedBy" type="_A3_9cETUEeC_SaZDL-mcDw" aggregation="composite"/>
-    <ownedAttribute xmi:id="_evPAcEbYEeCvMexyU7cjtg" name="WorkedAt" type="_JFuk8ES1EeCFl51ftuwnCA" aggregation="composite"/>
     <ownedAttribute xmi:id="_futgcEbYEeCvMexyU7cjtg" name="Width" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
     <ownedAttribute xmi:id="_HCJt0EbdEeCvMexyU7cjtg" name="Height" type="_uqut8FuLEeCWn_HrzsiL4Q" aggregation="composite"/>
   </packagedElement>
@@ -499,14 +497,14 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BI8JgGWvEeC5OfNVvs69AA" value="1"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_Wi238GWwEeC5OfNVvs69AA" name="Source" memberEnd="_Wi3fAGWwEeC5OfNVvs69AA _Wi4GEGWwEeC5OfNVvs69AA">
-    <ownedEnd xmi:id="_Wi3fAGWwEeC5OfNVvs69AA" name="1" type="_3ko0UETWEeCJe9RP8ofhZg" association="_Wi238GWwEeC5OfNVvs69AA">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Wi3fAmWwEeC5OfNVvs69AA" value="1"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Wi3fAWWwEeC5OfNVvs69AA" value="1"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_Me0-EGY7EeCFGs4obUXDoA" memberEnd="_Me0-EWY7EeCFGs4obUXDoA _Me1lImY7EeCFGs4obUXDoA">
+    <ownedEnd xmi:id="_Me0-EWY7EeCFGs4obUXDoA" name="Source" type="_HF3icEbYEeCvMexyU7cjtg" association="_Me0-EGY7EeCFGs4obUXDoA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Me1lIWY7EeCFGs4obUXDoA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Me1lIGY7EeCFGs4obUXDoA" value="1"/>
     </ownedEnd>
-    <ownedEnd xmi:id="_Wi4GEGWwEeC5OfNVvs69AA" name="1" type="_HF3icEbYEeCvMexyU7cjtg" aggregation="composite" association="_Wi238GWwEeC5OfNVvs69AA">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Wi4tIGWwEeC5OfNVvs69AA" value="1"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Wi4GEWWwEeC5OfNVvs69AA" value="1"/>
+    <ownedEnd xmi:id="_Me1lImY7EeCFGs4obUXDoA" name="WorkItem" type="_3ko0UETWEeCJe9RP8ofhZg" association="_Me0-EGY7EeCFGs4obUXDoA">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Me1lJGY7EeCFGs4obUXDoA" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Me1lI2Y7EeCFGs4obUXDoA" value="1"/>
     </ownedEnd>
   </packagedElement>
 </uml:Model>

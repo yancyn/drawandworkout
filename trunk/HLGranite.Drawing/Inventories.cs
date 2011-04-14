@@ -44,11 +44,20 @@ namespace HLGranite.Drawing
             {
                 number++;
 
+                //save into file
                 Inventory item = new Inventory(source);
                 item.Serial = prefix + "-" + number.ToString("00000");// GetSerial(i, item);
                 item.Save();
 
+                //add into inventories collection
                 this.inventoryField.Add(item);
+
+
+                //assign to stock's inventory collection
+                Stock stock = (from f in DatabaseObject.Stocks.Stock
+                               where f.Name1.Equals(source.Stock.Name1)
+                               select f).First();
+                stock.Inventories.Add(item);
             }
         }
         public void Remove(Inventory sender)
@@ -62,8 +71,8 @@ namespace HLGranite.Drawing
             int output = 0;
             if (sender.Stock.Code.Length == 0) return output;
             Inventory result = (from f in this.inventoryField
-                                where prefix.Contains(f.Serial)
-                                //where f.Serial.CompareTo(prefix) >= 0
+                                //where prefix.Contains(f.Serial)
+                                where f.Serial.Contains(prefix) //CompareTo(prefix) >= 0
                                 select f)
                                 .OrderByDescending(f => f.Serial)
                                 .FirstOrDefault();
