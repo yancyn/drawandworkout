@@ -36,6 +36,17 @@ namespace WorkOrderGUI
             //this.ComboBox1.ItemsSource = manager.Bullnoses;
             //foreach (BullnoseViewModel viewModel in manager.Bullnoses)
             //    this.ComboBox2.Items.Add(viewModel.Content);
+
+            //Stock stock = DatabaseObject.Stocks.Stock[21];
+            var result = from f in DatabaseObject.Inventories.Inventory
+                         where f.Stock.Code.Equals("JAG")
+                         group f by new { f.Width, f.Height }
+                             into g
+                             select g;
+                         //select f;
+            System.Diagnostics.Debug.WriteLine(result.Count());
+            foreach (var item in result)
+                System.Diagnostics.Debug.WriteLine(item.ToString());
         }
 
         private void ComboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)

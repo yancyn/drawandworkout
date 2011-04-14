@@ -183,11 +183,11 @@
     <xsd:complexContent>
       <xsd:extension base="ShapeItem">
         <xsd:sequence>
-	      <xsd:element name="Guid" type="ms:guid"/>
-	      <xsd:element name="Notes" type="xsd:string"/>
-	      <xsd:element name="Tags" type="Object" minOccurs="0" maxOccurs="unbounded"/>
-	      <xsd:element name="Uom" type="Unit"/>
-       </xsd:sequence>
+          <xsd:element name="Guid" type="ms:guid"/>
+          <xsd:element name="Notes" type="xsd:string"/>
+          <xsd:element name="Tags" type="Object" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="Uom" type="Unit"/>
+        </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -356,9 +356,9 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="Log">
     <xsd:sequence>
-		<xsd:element name="At" type="xsd:dateTime"/>
-		<xsd:element name="By" type="Employee"/>
-		<xsd:element name="Tag" type="Object"/>
+      <xsd:element name="At" type="xsd:dateTime"/>
+      <xsd:element name="By" type="Employee"/>
+      <xsd:element name="Tag" type="Object"/>
     </xsd:sequence>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -462,9 +462,9 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="ShapeItem">
     <xsd:sequence>
-		<xsd:element name="Model" type="xsd:string"/>
-		<xsd:element name="Top" type="xsd:double"/>
-		<xsd:element name="Left" type="xsd:double"/>
+      <xsd:element name="Model" type="xsd:string"/>
+      <xsd:element name="Top" type="xsd:double"/>
+      <xsd:element name="Left" type="xsd:double"/>
     </xsd:sequence>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -562,7 +562,7 @@
     <xsd:complexContent>
       <xsd:extension base="BaseWorkItem">
         <xsd:sequence>
-          <xsd:element name="WorkedAtAt" type="xsd:dateTime"/>
+          <xsd:element name="WorkedAt" type="xsd:dateTime"/>
           <xsd:element name="WorkedBy" type="Employee"/>
           <xsd:element name="Parent" type="WorkItem"/>
           <xsd:element name="MaxWidth" type="xsd:double"/>
