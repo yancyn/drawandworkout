@@ -111,6 +111,10 @@ namespace HLGranite.Drawing
             this.modelField = model;
             this.materialField = stock;
         }
+        public override string ToString()
+        {
+            return this.guidField.ToString();
+        }
 
         #region Methods
         private void Initialize()

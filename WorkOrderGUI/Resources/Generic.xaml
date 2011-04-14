@@ -244,4 +244,6 @@
         <Setter Property="StrokeThickness" Value="1"/>
         <Setter Property="StrokeDashArray" Value="2,4"/>
     </Style>
+    
+    <!-- todo: <Style x:Key="InventoryView" TargetType="{x:Type TreeViewItem}"/> -->
 </ResourceDictionary>

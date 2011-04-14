@@ -25,5 +25,9 @@ namespace HLGranite.Drawing
             this.leftField = left;
             this.topField = top;
         }
+        public override string ToString()
+        {
+            return this.modelField;
+        }
     }
 }

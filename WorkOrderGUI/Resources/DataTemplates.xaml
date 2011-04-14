@@ -8,6 +8,7 @@
     xmlns:i="clr-namespace:Microsoft.Expression.Interactivity;assembly=Microsoft.Expression.Interactivity">
 
     <g:GlobaliztionResource x:Key="Resource"/>
+    <g:BullnoseManager x:Key="BullnoseManager"/>
 
     <g:VisibilityConverter x:Key="VisibilityConverter"/>
     <g:VisibleEmptyConverter x:Key="VisibleEmptyConverter"/>
@@ -28,13 +29,13 @@
     <!--<g:ShapeItemOnlyConverter x:Key="ShapeItemOnlyConverter"/>-->
     <!--<g:WorkItemOnlyConverter x:Key="WorkItemOnlyConverter"/>-->
     <g:BullnoseViewModelConverter x:Key="BullnoseViewModelConverter"/>
+    <g:WidthAndHeightMixer x:Key="WidthAndHeightMixer"/>
+    
     <g:ParentOrChildSelector x:Key="ParentOrChildSelector"/>
-
     <g:PageTemplateSelector x:Key="PageTemplateSelector"/>
     <g:WorkItemTemplateSelector x:Key="WorkItemTemplateSelector"/>
 
-    <g:BullnoseManager x:Key="BullnoseManager"/>
-
+    
     <!-- this is for drawing use-->
     <DataTemplate x:Key="LShapeItem04">
         <Canvas>
@@ -55,7 +56,7 @@
             <Rectangle Width="120" Height="420" Stroke="Black" StrokeThickness="1"/>
             <Rectangle Width="300" Height="120" Stroke="Black" Fill="White" StrokeThickness="1"/>
             <Rectangle Width="120" Height="420" Stroke="Black" Fill="White" Visibility="Hidden" StrokeThickness="1"/>
-            
+
             <Ellipse Visibility="{Binding Lengths[0].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource BullnoseCircle}" Canvas.Left="150" Canvas.Top="-8"/>
             <Canvas x:Name="Length5" Canvas.Top="-36">
@@ -73,7 +74,7 @@
                     </Path.RenderTransform>
                 </Path>
                 <TextBlock Margin="150,0,0,0" Canvas.Left="-20" Style="{DynamicResource MeasurementStyle}" Text="{Binding MaxWidth,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-            </Canvas>            
+            </Canvas>
             <Ellipse Visibility="{Binding Lengths[1].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource BullnoseCircle}" Canvas.Left="292" Canvas.Top="50"/>
             <Canvas x:Name="Length4" Canvas.Left="312">
@@ -101,7 +102,7 @@
             <Ellipse Visibility="{Binding Lengths[2].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource BullnoseCircle}" Canvas.Left="150" Canvas.Top="110"/>
             <Ellipse Visibility="{Binding Lengths[3].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"
-                     Style="{StaticResource BullnoseCircle}" Canvas.Left="112" Canvas.Top="210"/>            
+                     Style="{StaticResource BullnoseCircle}" Canvas.Left="112" Canvas.Top="210"/>
             <Ellipse Visibility="{Binding Lengths[4].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource BullnoseCircle}" Canvas.Left="50" Canvas.Top="412"/>
             <Canvas x:Name="Length1" Canvas.Top="432">
@@ -486,6 +487,44 @@
                 <ListView x:Name="StockView" DisplayMemberPath="Name1" ItemsSource="{Binding Path=Item.Stock,UpdateSourceTrigger=PropertyChanged}"/>
             </GroupBox>
             <DockPanel Grid.Column="1" LastChildFill="True" DataContext="{Binding ElementName=StockView,Path=SelectedItem}">
+                <DockPanel.Resources>
+                    <DataTemplate x:Key="InventoryWIPTemplate">
+                        <WrapPanel>
+                            <TextBlock Text="{Binding Width}"/>
+                            <TextBlock Text="×"/>
+                            <TextBlock Text="{Binding Height}"/>
+                            <TextBlock Text=": "/>
+                            <TextBlock Text="{Binding Guid}"/>
+                            <!-- TODO: WorkItem -->
+                        </WrapPanel>
+                    </DataTemplate>
+                    <HierarchicalDataTemplate
+                            x:Key="InventoryTemplate"
+                            ItemsSource="{Binding Collection}"
+                            ItemTemplate="{StaticResource InventoryWIPTemplate}">
+                        <WrapPanel>
+                            <TextBlock Text="{Binding Serial}"/>
+                            <TextBlock Text=" contains: "/>
+                            <TextBlock Text="{Binding Collection.Count}"/>
+                        </WrapPanel>
+                    </HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate
+                            x:Key="InventoryGroupTemplate"
+                            ItemsSource="{Binding Items}"
+                            ItemTemplate="{StaticResource InventoryTemplate}">
+                        <WrapPanel>
+                            <TextBlock Text="Size "/>
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text=" count: "/>
+                            <TextBlock Text="{Binding ItemCount}"/>
+                        </WrapPanel>
+                    </HierarchicalDataTemplate>
+                    <CollectionViewSource x:Key="InventoryGroup" Source="{Binding Inventories}">
+                        <CollectionViewSource.GroupDescriptions>
+                            <PropertyGroupDescription PropertyName="." Converter="{StaticResource WidthAndHeightMixer}"/>
+                        </CollectionViewSource.GroupDescriptions>
+                    </CollectionViewSource>
+                </DockPanel.Resources>
                 <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" DataContext="{Binding ElementName=StockGrid,Path=DataContext.Item}">
                     <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding NewStock}">Add</Button>
                     <Button Style="{StaticResource DefaultButtonStyle}" Command="{Binding SaveStock}" ToolTip="Save all into database">Save</Button>
@@ -572,7 +611,9 @@
                         </Grid>
                     </GroupBox>
                 </DockPanel>
-                <w:DataGrid ItemsSource="{Binding Inventories,UpdateSourceTrigger=PropertyChanged}"/>
+                <TreeView x:Name="InventoryTree" Grid.Row="1"
+                          ItemsSource="{Binding Source={StaticResource InventoryGroup},Path=Groups}"
+                          ItemTemplate="{StaticResource InventoryGroupTemplate}"/>
             </DockPanel>
         </Grid>
     </DataTemplate>

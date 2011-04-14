@@ -690,4 +690,45 @@ namespace WorkOrderGUI
         }
         #endregion
     }
+    /// <summary>
+    /// Provide a grouping header for inventory by Width+Height.
+    /// </summary>
+    public class InventoryGroupingConverter : IValueConverter
+    {
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            var result = (from f in DatabaseObject.Inventories.Inventory
+                          group f by new { f.Width, f.Height } into g
+                          //where (f.Width + f.Height)
+                          select g);
+            throw new NotImplementedException();
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
+    /// <summary>
+    /// Join width and height into a grouping purpose in inventory display.
+    /// </summary>
+    public class WidthAndHeightMixer : IValueConverter
+    {
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is Inventory)
+            {
+                return (value as Inventory).Width.ToString() + "×" + (value as Inventory).Height.ToString();
+            }
+
+            throw new NotImplementedException();
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
 }

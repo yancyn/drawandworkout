@@ -13,6 +13,7 @@ namespace HLGranite.Drawing
         {
             this.heightField = source.Height;
             this.widthField = source.Width;
+            this.workItemField = source.WorkItem;
         }
     }
 }
