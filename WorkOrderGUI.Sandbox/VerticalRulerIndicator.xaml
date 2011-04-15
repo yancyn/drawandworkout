@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="WorkOrderGUI.Sandbox.VerticalRulerIndicator"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:g="clr-namespace:WorkOrderGUI.Sandbox"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <UserControl.Resources>
+        <!-- this is for ruler measurement use -->
+        <!-- margin set at instance object -->
+        <Style x:Key="{x:Type TextBlock}">
+            <Setter Property="TextBlock.Padding" Value="4"/>
+            <Setter Property="TextBlock.Background" Value="White"/>
+            <Setter Property="TextBlock.Foreground" Value="Blue"/>
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="{x:Type Line}">
+            <Setter Property="Line.Stroke" Value="Blue"/>
+            <Setter Property="Line.StrokeThickness" Value="1"/>
+        </Style>
+        <g:ArrowTopMarginConverter x:Key="ArrowTopMarginConverter"/>
+        <g:VerticalMiddlePointConverter x:Key="VerticalMiddlePointConverter"/>
+    </UserControl.Resources>
+    <Canvas>
+        <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="17" Canvas.Top="10">
+            <Path.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
+                    <RotateTransform Angle="90"/>
+                </TransformGroup>
+            </Path.RenderTransform>
+        </Path>
+        <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="7"
+              Canvas.Top="{Binding Length,Converter={StaticResource ArrowTopMarginConverter}}">
+            <Path.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
+                    <RotateTransform Angle="270"/>
+                </TransformGroup>
+            </Path.RenderTransform>
+        </Path>
+        <Line X1="0" Y1="0" X2="24" Y2="0"/>
+        <Line X1="0" Y1="{Binding Length}" X2="24" Y2="{Binding Length}"/>
+        <Line X1="12" Y1="0" X2="12" Y2="{Binding Length}"/>
+        <TextBlock Text="{Binding Value}" Canvas.Top="30"/>
+    </Canvas>
+</UserControl>

@@ -59,97 +59,26 @@
 
             <Ellipse Visibility="{Binding Lengths[0].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource BullnoseCircle}" Canvas.Left="150" Canvas.Top="-8"/>
-            <Canvas x:Name="Length5" Canvas.Top="-36">
-                <Line X1="0" Y1="10" X2="300" Y2="10" Stroke="Blue" StrokeThickness="1"/>
-                <Line X1="0" Y1="0" X2="0" Y2="24" Stroke="Blue" StrokeThickness="1"/>
-                <Line X1="300" Y1="0" X2="300" Y2="24" Stroke="Blue" StrokeThickness="1"/>
-                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="10" Canvas.Top="5">
-                    <Path.RenderTransform>
-                        <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
-                    </Path.RenderTransform>
-                </Path>
-                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="290" Canvas.Top="5">
-                    <Path.RenderTransform>
-                        <ScaleTransform ScaleX="0.25" ScaleY="0.25" />
-                    </Path.RenderTransform>
-                </Path>
-                <TextBlock Margin="150,0,0,0" Canvas.Left="-20" Style="{DynamicResource MeasurementStyle}" Text="{Binding MaxWidth,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-            </Canvas>
             <Ellipse Visibility="{Binding Lengths[1].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource BullnoseCircle}" Canvas.Left="292" Canvas.Top="50"/>
-            <Canvas x:Name="Length4" Canvas.Left="312">
-                <Line X1="10" Y1="0" X2="10" Y2="120" Stroke="Blue" StrokeThickness="1"/>
-                <Line X1="0" Y1="0" X2="24" Y2="0" Stroke="Blue" StrokeThickness="1"/>
-                <Line X1="0" Y1="120" X2="24" Y2="120" Stroke="Blue" StrokeThickness="1"/>
-                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="15" Canvas.Top="10">
-                    <Path.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
-                            <RotateTransform Angle="90"/>
-                        </TransformGroup>
-                    </Path.RenderTransform>
-                </Path>
-                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="4" Canvas.Top="110">
-                    <Path.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
-                            <RotateTransform Angle="270"/>
-                        </TransformGroup>
-                    </Path.RenderTransform>
-                </Path>
-                <TextBlock Margin="0,50,0,0" Style="{DynamicResource MeasurementStyle}" Text="{Binding Lengths[4].Length,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-            </Canvas>
             <Ellipse Visibility="{Binding Lengths[2].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource BullnoseCircle}" Canvas.Left="150" Canvas.Top="110"/>
             <Ellipse Visibility="{Binding Lengths[3].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource BullnoseCircle}" Canvas.Left="112" Canvas.Top="210"/>
             <Ellipse Visibility="{Binding Lengths[4].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource BullnoseCircle}" Canvas.Left="50" Canvas.Top="412"/>
-            <Canvas x:Name="Length1" Canvas.Top="432">
-                <Line X1="0" Y1="10" X2="120" Y2="10" Stroke="Blue" StrokeThickness="1"/>
-                <Line X1="0" Y1="0" X2="0" Y2="24" Stroke="Blue" StrokeThickness="1"/>
-                <Line X1="120" Y1="0" X2="120" Y2="24" Stroke="Blue" StrokeThickness="1"/>
-                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="10" Canvas.Top="5">
-                    <Path.RenderTransform>
-                        <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
-                    </Path.RenderTransform>
-                </Path>
-                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="110" Canvas.Top="5">
-                    <Path.RenderTransform>
-                        <ScaleTransform ScaleX="0.25" ScaleY="0.25" />
-                    </Path.RenderTransform>
-                </Path>
-                <TextBlock
-                    Margin="60,0,0,0" Style="{DynamicResource MeasurementStyle}"
-                    Text="{Binding Lengths[1].Length,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-            </Canvas>
             <Ellipse Visibility="{Binding Lengths[5].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource BullnoseCircle}" Canvas.Left="-8" Canvas.Top="210"/>
-            <Canvas x:Name="Length0" Canvas.Left="-36">
-                <Line X1="10" Y1="0" X2="10" Y2="420" Stroke="Blue" StrokeThickness="1"/>
-                <Line X1="0" Y1="0" X2="24" Y2="0" Stroke="Blue" StrokeThickness="1"/>
-                <Line X1="0" Y1="420" X2="24" Y2="420" Stroke="Blue" StrokeThickness="1"/>
-                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="15" Canvas.Top="10">
-                    <Path.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
-                            <RotateTransform Angle="90"/>
-                        </TransformGroup>
-                    </Path.RenderTransform>
-                </Path>
-                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="4" Canvas.Top="410">
-                    <Path.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
-                            <RotateTransform Angle="270"/>
-                        </TransformGroup>
-                    </Path.RenderTransform>
-                </Path>
-                <TextBlock
-                    Margin="0,210,0,0" Style="{DynamicResource MeasurementStyle}"
-                    Text="{Binding MaxHeight,Converter={StaticResource FeetUnitConverter},Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-            </Canvas>
-
+            
+            <g:HorizontalRulerIndicator Canvas.Top="-36" Length="300"
+                Value="{Binding MaxWidth,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+            <g:HorizontalRulerIndicator Canvas.Top="436" Length="120"
+                Value="{Binding Lengths[4].Length,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+            <g:VerticalRulerIndicator Canvas.Left="312" Length="120"
+                Value="{Binding Lengths[1].Length,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+            <g:VerticalRulerIndicator Canvas.Left="-36" Length="420"
+                Value="{Binding MaxHeight,Converter={StaticResource FeetUnitConverter},Mode=TwoWay,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
+            
             <ItemsControl ItemsSource="{Binding Elements,UpdateSourceTrigger=PropertyChanged}"/>
         </Canvas>
     </DataTemplate>
@@ -178,48 +107,8 @@
                      Visibility="{Binding Lengths[2].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"/>
             <Ellipse Style="{StaticResource BullnoseCircle}" Canvas.Left="-8" Canvas.Top="32"
                      Visibility="{Binding Lengths[3].Type,Mode=TwoWay,Converter={StaticResource VisibilityConverter},UpdateSourceTrigger=PropertyChanged}"/>
-            <Canvas x:Name="Length2" Canvas.Left="212">
-                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="17" Canvas.Top="10">
-                    <Path.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
-                            <RotateTransform Angle="90"/>
-                        </TransformGroup>
-                    </Path.RenderTransform>
-                </Path>
-                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="7" Canvas.Top="70">
-                    <Path.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
-                            <RotateTransform Angle="270"/>
-                        </TransformGroup>
-                    </Path.RenderTransform>
-                </Path>
-                <Line X1="0" Y1="0" X2="24" Y2="0" Stroke="Blue" StrokeThickness="1"/>
-                <Line X1="0" Y1="80" X2="24" Y2="80" Stroke="Blue" StrokeThickness="1"/>
-                <Line X1="12" Y1="0" X2="12" Y2="80" Stroke="Blue" StrokeThickness="1"/>
-                <TextBlock
-                    Margin="0,30,0,0" Style="{DynamicResource MeasurementStyle}"
-                    Text="{Binding Height,Mode=TwoWay,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-            </Canvas>
-            <Canvas x:Name="Length3" Canvas.Top="-36">
-                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="10" Canvas.Top="6">
-                    <Path.RenderTransform>
-                        <ScaleTransform ScaleX="-0.25" ScaleY="0.25" />
-                    </Path.RenderTransform>
-                </Path>
-                <Path Fill="Blue" Data="M 0 40 L 40 20 L 0 0 Z" Canvas.Left="190" Canvas.Top="6">
-                    <Path.RenderTransform>
-                        <ScaleTransform ScaleX="0.25" ScaleY="0.25" />
-                    </Path.RenderTransform>
-                </Path>
-                <Line X1="0" Y1="10" X2="200" Y2="10" Stroke="Blue" StrokeThickness="1"/>
-                <Line X1="0" Y1="0" X2="0" Y2="24" Stroke="Blue" StrokeThickness="1"/>
-                <Line X1="200" Y1="0" X2="200" Y2="24" Stroke="Blue" StrokeThickness="1"/>
-                <TextBlock
-                    Margin="90,0,0,0" Style="{DynamicResource MeasurementStyle}"
-                    Text="{Binding Width,Mode=TwoWay,Converter={StaticResource FeetUnitConverter},ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"/>
-            </Canvas>
+            <g:VerticalRulerIndicator Canvas.Left="212" Length="80" Value="{Binding Height,Converter={StaticResource FeetUnitConverter}}"/>
+            <g:HorizontalRulerIndicator Canvas.Top="-36" Length="200" Value="{Binding Width,Converter={StaticResource FeetUnitConverter}}"/>
             <ItemsControl ItemsSource="{Binding Elements,UpdateSourceTrigger=PropertyChanged}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

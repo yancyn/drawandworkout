@@ -253,8 +253,12 @@ namespace WorkOrderGUI
         private string ConvertInchToFeet(double sender)
         {
             string output = string.Empty;
-            int i = sender.ToString().IndexOf('.');
+            //if (sender == null) return output;
+            //if (sender.ToString().Length == 0) return output;
+            if(double.IsNaN(sender)) return output;
+            if (double.IsInfinity(sender)) return output;
 
+            int i = sender.ToString().IndexOf('.');
             if (i == -1)
             {
                 double remainder = sender % 12;
