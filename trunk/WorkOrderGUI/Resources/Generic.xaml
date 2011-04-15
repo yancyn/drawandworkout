@@ -4,81 +4,33 @@
     xmlns:g="clr-namespace:WorkOrderGUI"
     xmlns:d="clr-namespace:HLGranite.Drawing;assembly=HLGranite.Drawing"
     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-    
-    <Style x:Key="BorderlessButton" TargetType="{x:Type Button}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid Width="Auto">
-                        <!--<Rectangle Fill="{StaticResource WhiteToolbarBackground}" Name="ButtonPath" Stroke="#FF203D69" StrokeEndLineCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeStartLineCap="Flat" StrokeThickness="1" RadiusX="5" RadiusY="5" />-->
-                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True" />
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style x:Key="TransparentTextBox" TargetType="{x:Type TextBox}">
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Background" Value="Transparent"/>
-    </Style>
-    <Style x:Key="CrossTabButton" BasedOn="{StaticResource BorderlessButton}" TargetType="{x:Type Button}">
-        <Setter Property="Content" Value="x"/>
-        <Setter Property="Cursor" Value="Hand"/>
-    </Style>
-    <Style x:Key="RightLabel" TargetType="{x:Type TextBlock}">
-        <Setter Property="Height" Value="22"/>
-        <Setter Property="HorizontalAlignment" Value="Right"/>
-    </Style>
-    <Style x:Key="LeftLabel" TargetType="{x:Type TextBlock}">
-        <Setter Property="Height" Value="22"/>
-    </Style>
-    <Style x:Key="ToolbarButton" BasedOn="{StaticResource {x:Type ToggleButton}}" TargetType="{x:Type RadioButton}">
-        <Setter Property="GroupName" Value="Toolbox"/>
-        <Setter Property="Width" Value="32"/>
-        <Setter Property="Height" Value="32"/>
-    </Style>
-    <Style x:Key="DefaultButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="Margin" Value="4"/>
-        <Setter Property="Width" Value="60"/>
-    </Style>
-    <Style x:Key="HideTheMenu" BasedOn="{StaticResource ToolbarButton}" TargetType="{x:Type RadioButton}">
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ContextMenu}},Path=Visibility}" Value="Collapsed">
-                <Setter Property="IsChecked" Value="True"/>
-            </DataTrigger>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}},Path=Title}" Value="Hello">
-                <Setter Property="IsChecked" Value="True"/>
-            </DataTrigger>
-        </Style.Triggers>
-    </Style>
-    <Style x:Key="DefaultExpander" TargetType="{x:Type Expander}">
-        <Setter Property="IsExpanded" Value="True"/>
-        <Setter Property="Margin" Value="0,0,0,10"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Padding" Value="10"/>
-    </Style>
-    <DataTemplate x:Key="WindowMenuTemplate">
-        <MenuItem Header="{Binding}"
-                  Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorLevel=3,AncestorType={x:Type Grid}},Path=DataContext.SelectPage}"
-                  CommandParameter="{Binding}"/>
-    </DataTemplate>
-    
-    <!-- this is for labeling WorkItem in drawing use ie. 1,2,3,4 or A,B,C,D,E with a circle -->
-    <Style x:Key="CircleLabel" TargetType="{x:Type Label}">
-        <Setter Property="Background" Value="White"/>
-        <Setter Property="Foreground" Value="Blue"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Label}">
-                    <Canvas>
-                        <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Stroke="Blue" StrokeThickness="1" Fill="White"/>
-                        <TextBlock Text="{TemplateBinding Content}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <!--<ContentPresenter Content="{TemplateBinding Content}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
-                    </Canvas>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+
+    <!-- @see http://bea.stollnitz.com/blog/?p=28 -->
+    <ObjectDataProvider x:Key="LanguageEnums" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:TypeExtension TypeName="d:Language"/>
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <ObjectDataProvider x:Key="UomEnums" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:TypeExtension TypeName="d:Unit"/>
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <ObjectDataProvider x:Key="ProjectStageEnums" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:TypeExtension TypeName="d:ProjectStage"/>
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <ObjectDataProvider x:Key="ThemeEnums" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:TypeExtension TypeName="d:Theme"/>
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    <ObjectDataProvider x:Key="NumberFormatEnums" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:TypeExtension TypeName="d:NumberingFormat"/>
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
 
     <!-- Error Icon @see http://weblogs.asp.net/bsimser/archive/2008/10/24/building-an-error-icon-in-wpf.aspx -->
     <ControlTemplate x:Key="ErrorIcon">
@@ -179,32 +131,81 @@
         </Canvas>
     </ControlTemplate>
 
-    <!-- @see http://bea.stollnitz.com/blog/?p=28 -->
-    <ObjectDataProvider x:Key="LanguageEnums" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
-        <ObjectDataProvider.MethodParameters>
-            <x:TypeExtension TypeName="d:Language"/>
-        </ObjectDataProvider.MethodParameters>
-    </ObjectDataProvider>
-    <ObjectDataProvider x:Key="UomEnums" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
-        <ObjectDataProvider.MethodParameters>
-            <x:TypeExtension TypeName="d:Unit"/>
-        </ObjectDataProvider.MethodParameters>
-    </ObjectDataProvider>
-    <ObjectDataProvider x:Key="ProjectStageEnums" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
-        <ObjectDataProvider.MethodParameters>
-            <x:TypeExtension TypeName="d:ProjectStage"/>
-        </ObjectDataProvider.MethodParameters>
-    </ObjectDataProvider>
-    <ObjectDataProvider x:Key="ThemeEnums" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
-        <ObjectDataProvider.MethodParameters>
-            <x:TypeExtension TypeName="d:Theme"/>
-        </ObjectDataProvider.MethodParameters>
-    </ObjectDataProvider>
-    <ObjectDataProvider x:Key="NumberFormatEnums" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
-        <ObjectDataProvider.MethodParameters>
-            <x:TypeExtension TypeName="d:NumberingFormat"/>
-        </ObjectDataProvider.MethodParameters>
-    </ObjectDataProvider>
+    <Style x:Key="BorderlessButton" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Width="Auto">
+                        <!--<Rectangle Fill="{StaticResource WhiteToolbarBackground}" Name="ButtonPath" Stroke="#FF203D69" StrokeEndLineCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeStartLineCap="Flat" StrokeThickness="1" RadiusX="5" RadiusY="5" />-->
+                        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="TransparentTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    <Style x:Key="CrossTabButton" BasedOn="{StaticResource BorderlessButton}" TargetType="{x:Type Button}">
+        <Setter Property="Content" Value="x"/>
+        <Setter Property="Cursor" Value="Hand"/>
+    </Style>
+    <Style x:Key="RightLabel" TargetType="{x:Type TextBlock}">
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+    </Style>
+    <Style x:Key="LeftLabel" TargetType="{x:Type TextBlock}">
+        <Setter Property="Height" Value="22"/>
+    </Style>
+    <Style x:Key="ToolbarButton" BasedOn="{StaticResource {x:Type ToggleButton}}" TargetType="{x:Type RadioButton}">
+        <Setter Property="GroupName" Value="Toolbox"/>
+        <Setter Property="Width" Value="32"/>
+        <Setter Property="Height" Value="32"/>
+    </Style>
+    <Style x:Key="DefaultButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Width" Value="60"/>
+    </Style>
+    <Style x:Key="HideTheMenu" BasedOn="{StaticResource ToolbarButton}" TargetType="{x:Type RadioButton}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ContextMenu}},Path=Visibility}" Value="Collapsed">
+                <Setter Property="IsChecked" Value="True"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}},Path=Title}" Value="Hello">
+                <Setter Property="IsChecked" Value="True"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="DefaultExpander" TargetType="{x:Type Expander}">
+        <Setter Property="IsExpanded" Value="True"/>
+        <Setter Property="Margin" Value="0,0,0,10"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="10"/>
+    </Style>
+    
+    <DataTemplate x:Key="WindowMenuTemplate">
+        <MenuItem Header="{Binding}"
+                  Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorLevel=3,AncestorType={x:Type Grid}},Path=DataContext.SelectPage}"
+                  CommandParameter="{Binding}"/>
+    </DataTemplate>
+
+    <!-- this is for labeling WorkItem in drawing use ie. 1,2,3,4 or A,B,C,D,E with a circle -->
+    <Style x:Key="CircleLabel" TargetType="{x:Type Label}">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Foreground" Value="Blue"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+                    <Canvas>
+                        <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Stroke="Blue" StrokeThickness="1" Fill="White"/>
+                        <TextBlock Text="{TemplateBinding Content}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <!--<ContentPresenter Content="{TemplateBinding Content}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <!--<Style x:Key="{x:Type w:DatePicker}" TargetType="{x:Type w:DatePicker}">
         <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
@@ -215,7 +216,7 @@
         <Setter Property="BorderThickness" Value="0"/>
         <!--<Setter Property="Placement" Value="Absolute"/>-->
     </Style>
-    
+
     <!-- style the combobox for bullnose dropdown to display graphical image -->
     <Style x:Key="BullnoseSelection" TargetType="{x:Type ComboBox}">
         <Setter Property="Width" Value="60"/>
@@ -223,13 +224,15 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <!--<ContentPresenter Content="{Binding Name}"/>--><!-- Model -->
-                    <ContentPresenter Content="{Binding Content}"/><!-- todo: use new instance instead-->
+                    <!--<ContentPresenter Content="{Binding Name}"/>-->
+                    <!-- Model -->
+                    <ContentPresenter Content="{Binding Content}"/>
+                    <!-- todo: use new instance instead-->
                 </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <!-- highlight a circle at each lenght of geometry object which maintains bullnose -->
     <Style x:Key="BullnoseCircle" TargetType="{x:Type Ellipse}">
         <Setter Property="Width" Value="16"/>
@@ -237,13 +240,13 @@
         <Setter Property="Stroke" Value="Gray"/>
         <Setter Property="StrokeThickness" Value="1"/>
     </Style>
-    
+
     <!-- style for dotted line -->
     <Style x:Key="DotStyle" TargetType="{x:Type Line}">
         <Setter Property="Stroke" Value="Black"/>
         <Setter Property="StrokeThickness" Value="1"/>
         <Setter Property="StrokeDashArray" Value="2,4"/>
     </Style>
-    
+
     <!-- todo: <Style x:Key="InventoryView" TargetType="{x:Type TreeViewItem}"/> -->
 </ResourceDictionary>

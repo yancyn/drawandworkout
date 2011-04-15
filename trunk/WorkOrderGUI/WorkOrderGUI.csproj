@@ -100,6 +100,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UserControls\HorizontalRulerIndicator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserControls\SearchBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -144,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UserControls\VerticalRulerIndicator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="WarehouseWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -158,6 +166,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserControls\HorizontalRulerIndicator.xaml.cs">
+      <DependentUpon>HorizontalRulerIndicator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VerticalRulerIndicator.xaml.cs">
+      <DependentUpon>VerticalRulerIndicator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\BullnoseManager.cs" />
     <Compile Include="ViewModels\BullnoseViewModel.cs" />
     <Compile Include="Utils\ConfirmCommandAction.cs" />
