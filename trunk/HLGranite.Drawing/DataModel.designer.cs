@@ -764,6 +764,8 @@ namespace HLGranite.Drawing
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(VerticalLine))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(HorizontalLine))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bullnose))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(LabelShape))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BaseWorkItem))]
     public partial class ShapeItem : System.ComponentModel.INotifyPropertyChanged
     {
 
@@ -842,7 +844,32 @@ namespace HLGranite.Drawing
 
     public partial class HorizontalLine : ShapeItem { }
 
-    public partial class LabelShape : ShapeItem { }
+    public partial class LabelShape : ShapeItem
+    {
+
+        private string textField;
+
+        public string Text
+        {
+            get { return this.textField; }
+            set
+            {
+                if (this.textField != null)
+                {
+                    if (this.textField.Equals(value) != true)
+                    {
+                        this.textField = value;
+                        this.OnPropertyChanged("Text");
+                    }
+                }
+                else
+                {
+                    this.textField = value;
+                    this.OnPropertyChanged("Text");
+                }
+            }
+        }
+    }
 
     public partial class RectItem : WorkItem //, System.ComponentModel.INotifyPropertyChanged
     {

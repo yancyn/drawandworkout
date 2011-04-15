@@ -91,6 +91,16 @@
                 <DataTemplate DataType="{x:Type d:VerticalLine}">
                     <Line X1="{Binding Left}" Y1="0" X2="{Binding Left}" Y2="80" Style="{StaticResource DotStyle}"/>
                 </DataTemplate>
+                <DataTemplate DataType="{x:Type d:LabelShape}">
+                    <Label Content="{Binding Text}" Width="16" Height="16" Style="{StaticResource CircleLabel}">
+                        <Label.Margin>
+                            <MultiBinding Converter="{StaticResource MarginConverter}">
+                                <Binding Path="Left"/>
+                                <Binding Path="Top"/>
+                            </MultiBinding>
+                        </Label.Margin>
+                    </Label>
+                </DataTemplate>
             </Canvas.Resources>
             <Canvas.Margin>
                 <MultiBinding Converter="{StaticResource MarginConverter}">

@@ -9,3 +9,4 @@ ICommand - http://msdn.microsoft.com/en-us/library/ms752308.aspx
 Color Helper, get color into ComboBox - http://www.thomasclaudiushuber.com/blog/2008/01/10/bind-to-methods-with-objectdataprovider/
 WPF Debugger - Snoop http://blois.us/blog/2006/08/long-time-since-my-last-post-but-dont_21.html
 Open WPF IDE & Browser - http://www.kaxaml.com/
+Pie Chart control - http://www.codeproject.com/KB/WPF/PieChartDataBinding.aspx

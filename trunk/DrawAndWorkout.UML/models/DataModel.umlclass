@@ -1603,7 +1603,7 @@
     </children>
     <styles xmi:type="notation:CanonicalStyle" xmi:id="_g-zuEWD9EeCdpqImjJpIrg"/>
     <element xmi:type="uml:Class" href="DataModel.uml#_g-MqEGD9EeCdpqImjJpIrg"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_g-zuEmD9EeCdpqImjJpIrg" x="528" y="1068"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_g-zuEmD9EeCdpqImjJpIrg" x="540" y="1068"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_DD6Y4GN0EeCdjsokc-qjnQ" type="2001">
     <children xmi:type="notation:DecorationNode" xmi:id="_DD6Y42N0EeCdjsokc-qjnQ" type="5003">
@@ -1704,6 +1704,10 @@
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_I_mUNGN0EeCdjsokc-qjnQ" type="5019"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_I_mUNWN0EeCdjsokc-qjnQ" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_U7kyIGdSEeCdMOosdOX31w" type="3001">
+        <element xmi:type="uml:Property" href="DataModel.uml#_U6ZtcGdSEeCdMOosdOX31w"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_U7kyIWdSEeCdMOosdOX31w"/>
+      </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_I_mUNmN0EeCdjsokc-qjnQ" showTitle="true"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_I_mUN2N0EeCdjsokc-qjnQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_I_mUOGN0EeCdjsokc-qjnQ"/>
