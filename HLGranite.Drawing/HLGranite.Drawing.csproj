@@ -71,6 +71,7 @@
     <Compile Include="Inventories.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="InventoryWIP.cs" />
+    <Compile Include="LabelShape.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="LengthItem.cs" />
     <Compile Include="LShapeItem.cs" />

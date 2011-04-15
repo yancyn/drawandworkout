@@ -200,34 +200,46 @@ namespace HLGranite.Drawing
                     }
                 }
 
-                SetLineSpacing(counter);
+                SetSpacing(counter);
             }
         }
         /// <summary>
-        /// Configure all the lines spacing after each time addition or deletion of child element.
+        /// Configure all the spacing for lines & label after each time addition or deletion of child element.
         /// </summary>
         /// <param name="counter"></param>
-        private void SetLineSpacing(int counter)
+        private void SetSpacing(int counter)
         {
-            int drawingWidth = 200;
+            double drawingWidth = 200;
+            double labelWidth = 16;
             if (this.modelField == "RectItem00")
             {
+                int i = 0;
                 foreach (ShapeItem item in this.elementsField)
                 {
-                    if (item is VerticalLine)
-                        (item as VerticalLine).Left = drawingWidth / counter;
+                    //if (item is VerticalLine)
+                    //    (item as VerticalLine).Left = drawingWidth / counter;
+                    item.Left = (drawingWidth - (counter * labelWidth)) / counter / 2;
+                    if (item is LabelShape)
+                    {
+                        i++;
+                        (item as LabelShape).Text = i.ToString();
+                    }
                 }
             }
             else if (this.modelField == "RectItem01")
             {
+                int i = 0;
                 foreach (ShapeItem item in this.elementsField)
                 {
-                    if (item is HorizontalLine)
-                        (item as HorizontalLine).Top = drawingWidth / counter;
+                    item.Top = (drawingWidth - (counter * labelWidth)) / counter / 2;
+                    if (item is LabelShape)
+                    {
+                        i++;
+                        (item as LabelShape).Text = i.ToString();
+                    }
                 }
             }
         }
-
         public void AddElement()
         {
             AddElement(new RectItem(this.materialField));
@@ -241,12 +253,18 @@ namespace HLGranite.Drawing
             //if it is a first RectItem then have to create 2
             //otherwise just create additional 1
             int counter = 0;
-            foreach (ShapeItem item in this.elementsField)
-                if (item is RectItem) counter++;
+            //foreach (ShapeItem item in this.elementsField)
+            for (int i = this.elementsField.Count - 1; i >= 0; i--)
+            {
+                if (this.elementsField[i] is RectItem) counter++;
+                //if (this.elementsField[i] is LabelShape)
+                //    this.elementsField.RemoveAt(i);
+            }
 
             if (counter == 0)
             {
                 this.elementsField.Add(new RectItem(this.materialField));
+                this.elementsField.Add(new LabelShape());
                 counter++;
             }
 
@@ -255,9 +273,51 @@ namespace HLGranite.Drawing
             else
                 this.elementsField.Add(new HorizontalLine());
             this.elementsField.Add(sender);
+            this.elementsField.Add(new LabelShape());
             counter++;
 
-            SetLineSpacing(counter);
+            SetSpacing(counter);
+            //AddLabel(counter);
+        }
+        private void AddLabel(int count)
+        {
+            double drawingWidth = 200;
+            LabelShape label = null;
+
+            int buffer = 16 / 2;//this is the half diameter of the circle size for adjust back center
+            double origin = drawingWidth * -1 * (count - 1) / count;//turn to negative sign
+            System.Diagnostics.Debug.WriteLine("origin for " + count + " RectItem: " + origin);
+
+            //add the first label
+            if (this.modelField == "RectItem00")
+            {
+                //label = new LabelShape("1", origin + drawingWidth / count / 2 - buffer, 0);
+                label = new LabelShape("1", origin, 0);
+            }
+            else if (this.modelField == "RectItem01")
+            {
+            }
+            if (label != null) this.elementsField.Add(label);
+
+
+            //add the following label
+            for (int i = 1; i < count; i++)
+            {
+                label = null;
+                int block = i + 1;
+                if (this.modelField == "RectItem00")
+                {
+                    //label = new LabelShape(block.ToString(), origin + drawingWidth / count - buffer, 0);
+                    label = new LabelShape(block.ToString(), origin, 0);
+                    //label = new LabelShape(block.ToString(), 0, 0);
+                    //System.Diagnostics.Debug.WriteLine(label.Left);
+                }
+                else if (this.modelField == "RectItem01")
+                {
+                }
+
+                if (label != null) this.elementsField.Add(label);
+            }
         }
         public void AddHorizontalElement(RectItem sender)
         {
