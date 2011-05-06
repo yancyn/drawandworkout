@@ -118,6 +118,7 @@
       <xsd:enumeration value="Employee"/>
       <xsd:enumeration value="Customer"/>
       <xsd:enumeration value="Supplier"/>
+      <xsd:enumeration value="Agent"/>
     </xsd:restriction>
   </xsd:simpleType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -331,7 +332,11 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <xsd:complexType name="LabelShape">
     <xsd:complexContent>
-      <xsd:extension base="ShapeItem"/>
+      <xsd:extension base="ShapeItem">
+        <xsd:sequence>
+          <xsd:element name="Text" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -573,6 +578,7 @@
           <xsd:element name="Lengths" type="LengthItem" minOccurs="1" maxOccurs="unbounded"/>
           <xsd:element name="Status" type="WorkStatus"/>
           <xsd:element name="Logs" type="Log" minOccurs="1" maxOccurs="unbounded"/>
+          <xsd:element name="Label" type="xsd:string"/>
           <xsd:element name="Progress" type="xsd:decimal">
             <xsd:annotation>
               <xsd:documentation>

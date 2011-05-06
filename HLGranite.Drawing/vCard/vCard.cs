@@ -329,6 +329,7 @@ namespace Thought.vCards
             set
             {
                 this.familyName = value;
+                SetDisplayName();
             }
         }
 
@@ -398,6 +399,7 @@ namespace Thought.vCards
             set
             {
                 this.givenName = value;
+                SetDisplayName();
             }
         }
 
@@ -747,5 +749,9 @@ namespace Thought.vCards
             }
         }
 
+        protected void SetDisplayName()
+        {
+            this.displayName = this.givenName + " " +this.familyName;
+        }
     }
 }

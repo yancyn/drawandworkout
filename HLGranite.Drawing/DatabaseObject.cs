@@ -25,7 +25,7 @@ namespace HLGranite.Drawing
 
         private static Users users;
         /// <summary>
-        /// Gets stocks collection from a stored database.
+        /// Gets users collection from a stored database.
         /// </summary>
         public static Users Users
         {
@@ -342,6 +342,79 @@ namespace HLGranite.Drawing
                 {
                     sr.Dispose();
                 }
+            }
+        }
+
+        //for serialize and deserialize string array use ie. Agent list.
+        public List<string> DeserializeStringList(string xml)
+        {
+            System.IO.StringReader stringReader = null;
+            try
+            {
+                stringReader = new System.IO.StringReader(xml);
+                System.Xml.Serialization.XmlSerializer s = new System.Xml.Serialization.XmlSerializer(typeof(List<string>));
+                return ((List<string>)(s.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+            }
+            finally { if (stringReader != null) stringReader.Dispose(); }
+        }
+        public void LoadFromFile(string fileName, System.Text.Encoding encoding, out List<string> output)
+        {
+            output = new List<string>();
+            System.IO.FileStream file = null;
+            System.IO.StreamReader sr = null;
+            try
+            {
+                file = new System.IO.FileStream(fileName, FileMode.Open, FileAccess.Read);
+                sr = new System.IO.StreamReader(file, encoding);
+                string xmlString = sr.ReadToEnd();
+                sr.Close();
+                file.Close();
+
+                output = DeserializeStringList(xmlString);
+            }
+            finally
+            {
+                if (file != null) file.Dispose();
+                if (sr != null) sr.Dispose();
+            }
+        }
+        public virtual void SaveToFile(string fileName, object sender)
+        {
+            System.IO.StreamWriter streamWriter = null;
+            try
+            {
+                string xmlString = Serialize(Encoding.UTF8, sender);
+                streamWriter = new System.IO.StreamWriter(fileName, false, Encoding.UTF8);
+                streamWriter.WriteLine(xmlString);
+                streamWriter.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+                throw ex;
+            }
+            finally { if (streamWriter != null) streamWriter.Dispose(); }
+        }
+        public virtual string Serialize(System.Text.Encoding encoding, object sender)
+        {
+            System.IO.StreamReader streamReader = null;
+            System.IO.MemoryStream memoryStream = null;
+            try
+            {
+                memoryStream = new System.IO.MemoryStream();
+                System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
+                xmlWriterSettings.Encoding = encoding;
+                System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
+                System.Xml.Serialization.XmlSerializer s = new System.Xml.Serialization.XmlSerializer(sender.GetType());
+                s.Serialize(xmlWriter, sender);
+                memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
+                streamReader = new System.IO.StreamReader(memoryStream);
+                return streamReader.ReadToEnd();
+            }
+            finally
+            {
+                if (streamReader != null) streamReader.Dispose();
+                if (memoryStream != null) memoryStream.Dispose();
             }
         }
         #endregion
