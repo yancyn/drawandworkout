@@ -12,19 +12,16 @@ namespace HLGranite.Drawing
             : base()
         {
             this.typeField = UserRole.Customer;
-            //this.DeliveryAddresses.Add(new vCardDeliveryAddress());
         }
         public Customer(vCard card)
             : base(card)
         {
             this.typeField = UserRole.Customer;
-            //this.DeliveryAddresses.Add(new vCardDeliveryAddress());
         }
         public Customer(User user)
             : base(user as vCard)
         {
             this.typeField = UserRole.Customer;
-            //this.DeliveryAddresses.Add(new vCardDeliveryAddress());
         }
     }
 }

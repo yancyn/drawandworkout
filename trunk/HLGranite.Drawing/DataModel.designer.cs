@@ -489,6 +489,8 @@ namespace HLGranite.Drawing
 
         protected ObservableCollection<Log> logsField;
 
+        protected string labelField;
+
         public System.DateTime WorkedAt
         {
             get
@@ -699,6 +701,27 @@ namespace HLGranite.Drawing
                 }
             }
         }
+
+        public string Label
+        {
+            get { return this.labelField; }
+            set
+            {
+                if (this.labelField != null)
+                {
+                    if (this.labelField.Equals(value) != true)
+                    {
+                        this.labelField = value;
+                        this.OnPropertyChanged("Label");
+                    }
+                }
+                else
+                {
+                    this.labelField = value;
+                    this.OnPropertyChanged("Label");
+                }
+            }
+        }
     }
 
     public partial class Employee : User { }
@@ -757,6 +780,9 @@ namespace HLGranite.Drawing
 
         /// <remarks/>
         Supplier,
+
+        /// <remarks/>
+        Agent,
     }
 
     public partial class Customer : User { }

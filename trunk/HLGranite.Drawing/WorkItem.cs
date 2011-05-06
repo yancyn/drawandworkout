@@ -123,6 +123,7 @@ namespace HLGranite.Drawing
 
             this.elementsField = new ObservableCollection<ShapeItem>();
             this.elementsField.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(elementsField_CollectionChanged);
+            this.labelField = string.Empty;
             this.lengthsField = new ObservableCollection<LengthItem>();
             this.lengthsField.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(lengthsField_CollectionChanged);
             this.materialField = new Stock();

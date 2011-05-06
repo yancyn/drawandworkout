@@ -75,5 +75,24 @@ namespace HLGranite.Drawing.Test
             Assert.AreEqual(expected, actual);
             Assert.IsTrue(target.User[0].GivenName.Length > 0);
         }
+        [TestMethod()]
+        public void EditAddressTest()
+        {
+            User target = new User();
+            target.GivenName = "Smith";
+            target.FamilyName = "Lee";
+
+            vCardDeliveryAddress add1 = new vCardDeliveryAddress();
+            add1.Street = "963 Jalan 6";
+            add1.City = "Bukit Mertajam";
+            add1.PostalCode = "14020";
+            add1.Country = "Malaysia";
+            target.DeliveryAddresses.Add(add1);
+
+            target.Phones.Add(new vCardPhone("012-4711134"));
+
+            target.DeliveryAddresses[0].Street = "1 Jalan 6";
+            target.SaveToFile();
+        }
     }
 }
